@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Contact Travel Guide team for questions or collaborations.">
+    <meta name="keywords" content="contact travel, email, form">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide | Contact</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Contact Us</h1>
+
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <hr>
+    </header>
+
+    <form action="backend.php" method="post">
+
+        <label>Name:</label><br>
+        <input type="text" name="username" required minlength="3"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="pass" minlength="6"><br><br>
+
+        <label>Age:</label><br>
+        <input type="number" name="age" min="10" max="99"><br><br>
+
+        <label>Country:</label><br>
+        <select name="country">
+            <option value="jo">Jordan</option>
+            <option value="eg">Egypt</option>
+            <option value="tr" selected>Turkey</option>
+        </select><br><br>
+
+        <label>Languages:</label><br>
+        <input type="text" list="langs">
+        <datalist id="langs">
+            <option value="English">
+            <option value="Arabic">
+            <option value="French">
+            <option value="Turkish">
+        </datalist><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female<br><br>
+
+        <label>Hobbies:</label><br>
+        <input type="checkbox" name="hobbies[]" value="music"> Music
+        <input type="checkbox" name="hobbies[]" value="sports"> Sports
+        <input type="checkbox" name="hobbies[]" value="travel"> Travel<br><br>
+
+        <label>Message:</label><br>
+        <textarea name="msg" rows="4" cols="25" maxlength="200"></textarea><br><br>
+
+        <label>Upload File:</label><br>
+        <input type="file" name="file" accept="image/*,application/pdf" multiple><br><br>
+
+        <button type="submit">Send</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+    <footer>
+        <hr>
+        <p>&copy; 2025 Travel Guide</p>
+    </footer>
+
+</body>
+
+</html>
