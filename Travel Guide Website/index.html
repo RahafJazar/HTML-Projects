@@ -3,7 +3,7 @@
 
 <head>
     <title>Travel Guide Website</title>
-
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -18,8 +18,13 @@
     </header>
     <section>
         <h2>Top Travel Destination </h2>
-
-        <img src="./images/Petra2.png" usemap="#image-map" width="500" alt="Petra">
+        <!--Show different images for different screen sizes using <picture> tag  -->
+        <picture>
+            <source media="(min-width:650px)" srcset="./images/Petra.png">
+            <source media="(min-width:450px)" srcset="./images/Petra2.png">
+            <img src="./images/Petra.png" alt="Petra" width="500" usemap="#image-map">
+        </picture>
+        <!-- <img src="./images/Petra2.png" usemap="#image-map" width="500" alt="Petra"> -->
         <map name="image-map">
             <area target="_blank" alt="Petra" title="Petra" href="petra.html" coords="195,78,529,422" shape="rect" />
             <area target="_blank" alt="Horse" title="Horse" href="horse.html" coords="215,480,60,346" shape="rect" />
