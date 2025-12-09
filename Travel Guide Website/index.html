@@ -4,19 +4,25 @@
 <head>
     <title>Travel Guide Website</title>
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <meta http-equiv="refresh" content="10">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 </head>
 
 <body>
 
     <header>
         <h1>Welcome to Travel Guide Website 🌏</h1>
+    </header>
+    <section>
         <nav>
             <a href="./index.html" target="_self">Home</a> |
             <a href="./about.html" target="_self">About</a> |
-            <a href="./contact.html" target="_self">Contact</a>
+            <a href="./contact.html" target="_self">Contact |</a>
+            <a href="../layout pages/layout1Float.html" target="_blank">layout Float</a>
+            <a href="../layout pages/layouitFlex.html" target="_blank">layout Flex</a>
+            <a href="../layout pages/layoutgrid.html" target="_blank">layout Grid</a>
         </nav>
-    </header>
-    <section>
         <h2>Top Travel Destination </h2>
         <!--Show different images for different screen sizes using <picture> tag  -->
         <picture>
@@ -30,6 +36,23 @@
             <area target="_blank" alt="Horse" title="Horse" href="horse.html" coords="215,480,60,346" shape="rect" />
         </map>
 
+    </section>
+    <section>
+        <picture>
+            <source srcset="./images/img_smallflower.jpg" media="(max-width:600px)">
+            <source srcset="./images/img_flowers.jpg" media="(max-width:1300px)">
+            <source srcset="./images/flowers.jpg">
+            <img src="./images/img_smallflower.jpg" alt="">
+        </picture>
+    </section>
+    <section>
+        <h3 style="font-size: 5vw;">Respnsive Text Viewport</h3>
+        <p style="font-size: 2vw;">
+            Responsive Text Size
+            The text size can be set with a "vw" unit, which means the "viewport width".
+
+            That way the text size will follow the size of the browser window:
+        </p>
     </section>
 </body>
 
