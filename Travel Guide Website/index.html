@@ -7,6 +7,19 @@
     <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+
+    <style>
+        aside {
+            width: 20%;
+            margin-right: 5%;
+            padding: 5%;
+            float: right;
+            background-color: #ccc;
+            font-size: 90%;
+            /* font-style: italic; */
+
+        }
+    </style>
 </head>
 
 <body>
@@ -22,6 +35,7 @@
             <a href="../layout pages/layout1Float.html" target="_blank">layout Float</a>
             <a href="../layout pages/layouitFlex.html" target="_blank">layout Flex</a>
             <a href="../layout pages/layoutgrid.html" target="_blank">layout Grid</a>
+            <a href="./browsers.html" target="_blank">browsers</a>
         </nav>
         <h2>Top Travel Destination </h2>
         <!--Show different images for different screen sizes using <picture> tag  -->
@@ -35,16 +49,32 @@
             <area target="_blank" alt="Petra" title="Petra" href="petra.html" coords="195,78,529,422" shape="rect" />
             <area target="_blank" alt="Horse" title="Horse" href="horse.html" coords="215,480,60,346" shape="rect" />
         </map>
-
+        <aside>
+            <header>
+                <h3>Petra</h3>
+            </header>
+            <p>
+                <b> Petra</b> is created by <em>Anbat</em> that is one of common seven wondors of the world , it is
+                created in
+            <address>312BC</address>
+            </p>
+        </aside>
     </section>
     <section>
-        <picture>
-            <source srcset="./images/img_smallflower.jpg" media="(max-width:600px)">
-            <source srcset="./images/img_flowers.jpg" media="(max-width:1300px)">
-            <source srcset="./images/flowers.jpg">
-            <img src="./images/img_smallflower.jpg" alt="">
-        </picture>
+        <figure style="display: inline-block ; margin: 0 auto;">
+            <picture>
+                <source srcset="./images/img_smallflower.jpg" media="(max-width:600px)">
+                <source srcset="./images/img_flowers.jpg" media="(max-width:1300px)">
+                <source srcset="./images/flowers.jpg">
+                <img src="./images/img_smallflower.jpg" alt="">
+
+            </picture>
+            <figcaption style="font-size: 70%; text-align: center;">Flowers Images</figcaption>
+        </figure>
+
+
     </section>
+
     <section>
         <h3 style="font-size: 5vw;">Respnsive Text Viewport</h3>
         <p style="font-size: 2vw;">
