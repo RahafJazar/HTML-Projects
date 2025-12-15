@@ -36,14 +36,16 @@
 </head>
 
 <body>
-    <canvas id="myCanvas" width="200" height="100" style="border: 1px solid black;"></canvas>
+    <canvas id="myCanvas" width="200" height="100" style="border: 3px solid rgb(145, 46, 71);"></canvas>
 
     <script>
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
-        ctx.moveTo(0, 0);
-        ctx.lineTo(200, 100);
-        ctx.stroke();
+        ctx.fillStyle = "#000";
+        ctx.createLinearGradient(x0, y0, x1, y1);
+        ctx.fillRect(0, 0, c.width, c.height);
+        console.log(c.width)
+
     </script>
 
 </body>
