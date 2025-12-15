@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="This page represent browsers">
+    <meta name="keywords" content="browsers, articles">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+    <style>
+        #all-browsers {
+            margin: 0;
+            padding: 5px;
+            background-color: lightgray;
+        }
+
+        #all-browsers>h1,
+        .browser {
+            margin: 10px;
+            padding: 5px;
+        }
+
+        .browser {
+            background-color: white;
+        }
+
+        .browser>h2,
+        .browser>p {
+            /*خذ حجم الخط من العنصر الأب، وخلّي هذا العنصر أصغر بـ 10%.*/
+            font-size: 90%;
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <canvas id="myCanvas" width="200" height="100" style="border: 1px solid black;"></canvas>
+
+    <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+    </script>
+
+</body>
+
+</html>

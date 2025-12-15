@@ -23,10 +23,25 @@
         <hr>
     </header>
 
-    <form action="backend.php" method="post">
+    <form action="backend.php" method="post" oninput="x.value=parseInt(a.value)+ parseInt(b.value)">
 
-        <label>Name:</label><br>
-        <input type="text" name="username" required minlength="3"><br><br>
+        0
+        <input type="range" id="a" name="a" value="50">
+        100 +
+        <input type="number" id="b" name="b" value="50">
+        =
+        <output name="x" for="a b"></output>
+
+
+
+        <fieldset>
+            <legend>Personalia:</legend>
+            <label>first name :</label><br>
+            <input type="text" name="username" required minlength="3"><br><br>
+            <label>Last name :</label><br>
+            <input type="text" name="username" required minlength="3"><br><br>
+        </fieldset>
+
 
         <label>Email:</label><br>
         <input type="email" name="email" required><br><br>
@@ -53,6 +68,13 @@
             <option value="Turkish">
         </datalist><br><br>
 
+        <label>Browsers</label>
+        <input type="text" list="Browsers">
+        <datalist id="Browsers">
+            <option value="Safari">
+            <option value="Google">
+            <option value="Edge">
+        </datalist><br>
         <label>Gender:</label><br>
         <input type="radio" name="gender" value="male"> Male
         <input type="radio" name="gender" value="female"> Female<br><br>
