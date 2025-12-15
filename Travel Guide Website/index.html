@@ -21,6 +21,33 @@
         }
     </style>
 </head>
+<style>
+    ul {
+        background-color: #333333;
+        padding: 4px;
+        list-style-type: none;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    li {
+        float: left;
+        margin-right: 10px;
+    }
+
+    li a {
+        color: white;
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    li a:hover {
+        background-color: #111111;
+
+    }
+</style>
 
 <body>
 
@@ -36,54 +63,90 @@
             <a href="../layout pages/layouitFlex.html" target="_blank">layout Flex</a>
             <a href="../layout pages/layoutgrid.html" target="_blank">layout Grid</a>
             <a href="./browsers.html" target="_blank">browsers</a>
+            <a href="./canvas.html" target="_blank">Canvas</a>
         </nav>
-        <h2>Top Travel Destination </h2>
-        <!--Show different images for different screen sizes using <picture> tag  -->
-        <picture>
-            <source media="(min-width:650px)" srcset="./images/Petra.png">
-            <source media="(min-width:450px)" srcset="./images/Petra2.png">
-            <img src="./images/Petra.png" alt="Petra" width="500" usemap="#image-map">
-        </picture>
-        <!-- <img src="./images/Petra2.png" usemap="#image-map" width="500" alt="Petra"> -->
-        <map name="image-map">
-            <area target="_blank" alt="Petra" title="Petra" href="petra.html" coords="195,78,529,422" shape="rect" />
-            <area target="_blank" alt="Horse" title="Horse" href="horse.html" coords="215,480,60,346" shape="rect" />
-        </map>
-        <aside>
-            <header>
-                <h3>Petra</h3>
-            </header>
-            <p>
-                <b> Petra</b> is created by <em>Anbat</em> that is one of common seven wondors of the world , it is
-                created in
-            <address>312BC</address>
-            </p>
-        </aside>
-    </section>
-    <section>
-        <figure style="display: inline-block ; margin: 0 auto;">
+
+        <ul>
+            <li> <a href="./index.html" target="_self">Home</a>
+            </li>
+            <li> <a href="./about.html" target="_self">About</a> </li>
+            <li> <a href="./contact.html" target="_self">Contact </a></li>
+            <li> <a href="./appointment.html" target="_blank">Appointment</a></li>
+        </ul>
+
+        </nav>
+        </header>
+        <div style="background-color: burlywood; margin:auto;">
+            <h2>Petra</h2>
+            <p>Petraa is one of seven wonders of the world </p>
+            <p>Petra is conatins parts </p>
+        </div>
+        <section>
+
+            <h2>محافظات الاردن Description list</h2>
+            <dl>
+                <dt>عمان</dt>
+                <dd> العاصمة</dd>
+                <dt>الزرقاء</dt>
+                <dd>المحافظة</dd>
+                <dt>اربد</dt>
+                <dd>محافظة</dd>
+                <dt>جرش</dt>
+                <dd>محافظة</dd>
+            </dl>
+
+        </section>
+        <section>
+            >>>>>>> Stashed changes
+            <h2>Top Travel Destination </h2>
+            <!--Show different images for different screen sizes using <picture> tag  -->
             <picture>
-                <source srcset="./images/img_smallflower.jpg" media="(max-width:600px)">
-                <source srcset="./images/img_flowers.jpg" media="(max-width:1300px)">
-                <source srcset="./images/flowers.jpg">
-                <img src="./images/img_smallflower.jpg" alt="">
-
+                <source media="(min-width:650px)" srcset="./images/Petra.png">
+                <source media="(min-width:450px)" srcset="./images/Petra2.png">
+                <img src="./images/Petra.png" alt="Petra" width="500" usemap="#image-map">
             </picture>
-            <figcaption style="font-size: 70%; text-align: center;">Flowers Images</figcaption>
-        </figure>
+            <!-- <img src="./images/Petra2.png" usemap="#image-map" width="500" alt="Petra"> -->
+            <map name="image-map">
+                <area target="_blank" alt="Petra" title="Petra" href="petra.html" coords="195,78,529,422"
+                    shape="rect" />
+                <area target="_blank" alt="Horse" title="Horse" href="horse.html" coords="215,480,60,346"
+                    shape="rect" />
+            </map>
+            <aside>
+                <header>
+                    <h3>Petra</h3>
+                </header>
+                <p>
+                    <b> Petra</b> is created by <em>Anbat</em> that is one of common seven wondors of the world , it is
+                    created in
+                <address>312BC</address>
+                </p>
+            </aside>
+        </section>
+        <section>
+            <figure style="display: inline-block ; margin: 0 auto;">
+                <picture>
+                    <source srcset="./images/img_smallflower.jpg" media="(max-width:600px)">
+                    <source srcset="./images/img_flowers.jpg" media="(max-width:1300px)">
+                    <source srcset="./images/flowers.jpg">
+                    <img src="./images/img_smallflower.jpg" alt="">
+
+                </picture>
+                <figcaption style="font-size: 70%; text-align: center;">Flowers Images</figcaption>
+            </figure>
 
 
-    </section>
+        </section>
 
-    <section>
-        <h3 style="font-size: 5vw;">Respnsive Text Viewport</h3>
-        <p style="font-size: 2vw;">
-            Responsive Text Size
-            The text size can be set with a "vw" unit, which means the "viewport width".
+        <section>
+            <h3 style="font-size: 5vw;">Respnsive Text Viewport</h3>
+            <p style="font-size: 2vw;">
+                Responsive Text Size
+                The text size can be set with a "vw" unit, which means the "viewport width".
 
-            That way the text size will follow the size of the browser window:
-        </p>
-    </section>
+                That way the text size will follow the size of the browser window:
+            </p>
+        </section>
 </body>
 
 </html>
