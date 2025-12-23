@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="keywords" content="media, mp4 ,ogg ">
+    <meta name="description" content="This page descripe Html media">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        #box,
+        #target {
+            width: 60px;
+            text-align: center;
+            padding: 2px;
+            margin-right: 20px;
+            border: 1px solid black;
+            display: inline-block;
+        }
+
+        #box {
+            background-color: blueviolet;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Geolocation API</h2>
+    <button onclick="getLocation()">Get Location</button>
+    <p id="demo"></p>
+
+    <h2>Drag and Drop API</h2>
+    <div id="box" draggable="true" ondragstart="dragStartHandler(event)"> اسحبني </div>
+    <diV id="target" ondragover="dragOverHandler(event)" ondrop="dropHandler(event)"> حطني هون </diV>
+
+    <!--h1 to div -->
+    <h1 id="heading1Dragg" draggable="true" ondragstart="dragStartHandler(event)">w3school</h1>
+    <diV id="target" ondragover="dragOverHandler(event)" ondrop="dropHandler(event)"> حطني هون </diV>
+    <!-- a to div -->
+    <a id="link1" href="https://w3schools.com" draggable="true" ondragstart="dragStartHandler(event)">W3school link</a>
+    <diV id="target" ondragover="dragOverHandler(event)" ondrop="dropHandler(event)"> حطني هون </diV>
+
+
+    <h2> Web Storage API</h2>
+    <p id="checkStorage"> </p>
+
+    <!--Local Storage-->
+    <button onclick="clickCounterLocalStorage()">Click me! Local Storage</button>
+    <p id="counterResult1"></p>
+    <p>Click the button to see the counter increase</p>
+    <p>Close the browser tab (or window) , and try again , and the counter will continue to count .</p>
+
+    <br>
+    <!--Session Storage-->
+    <button onclick="clickCounterSessionStorage()">Click me! Session Storage</button>
+    <p id="counterResult2"></p>
+    <p>Click the button to see the counter increase</p>
+    <p>Close the browser tab (or window) , and try again , and the counter will start count again .</p>
+
+
+    <h2>Web Worker API</h2>
+    <p> Count numbers: <output id="apiWorkerResult"></output></p>
+    <button onclick="startWorker()">Start Worker</button>
+    <button onclick="stopWorker()">Stop Worker</button>
+
+
+    <script>
+        let x = document.getElementById("demo")
+        /* Check Browser Capablity التحقق إذا المتصفح يدعمه  => Always check that the browser support the API */
+        //1-Geolocation API
+        // 1️⃣ Check Browser Capability
+        if (!navigator.geolocation) {
+            alert("Your browser does not support location.");
+        }
+        /* Add Robust Error  Handling   : التعامل مع كل أنواع الأخطاء=> 
+        1- PERMISSION_DENIED : المستخدم رفض 
+        2- POSITION_UNVILABLE : GPS مش متوفر
+        3- TIMEOUT : اخذ وقت طويل 
+        4- UNKNOWN :خطا غامض
+        */
+
+        // 2️⃣ Robust Error Handling
+        function handleError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("You denied location access")
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("GPS not appear")
+                    break
+                case error.TIMEOUT:
+                    alert("Request timeout .Try Again")
+                    break
+                default:
+                    alert("Something went wrong.");
+            }
+        }
+
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude :" + position.coords.latitude + "<br> Longitude :" + position.coords.longitude + "<br> Timestamp : " + position.timestamp;
+        }
+
+
+        function getLocation() {
+            navigator.geolocation.getCurrentPosition(showPosition, handleError, { timeout: 5000 })
+        }
+
+        //2-Drag And Drop 
+        function dragStartHandler(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+        function dragOverHandler(event) {
+            event.preventDefault();
+        }
+        function dropHandler(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            event.target.appendChild(document.getElementById(data));
+        }
+
+        //3-Web storgae API
+        /* 1-Check Browser Capablity */
+        const result = document.getElementById("checkStorage")
+        if (typeof (Storage) != undefined) {
+            result.innerHTML = "Your Browser support web storage!"
+            //store
+            localStorage.setItem("lastname", "Jazar")
+            localStorage.setItem("bgcolor", "yellow")
+            //retreive
+            result.innerHTML += "<br> MY last Name " + localStorage.getItem("lastname")
+            result.style.backgroundColor = localStorage.getItem("bgcolor")
+        }
+        else {
+            result.innerHTML = "Sorry, No web Storage Support!"
+
+        }
+
+        function clickCounterLocalStorage() {
+            const counter = document.getElementById("counterResult1")
+            if (typeof (Storage) !== "undefined") {
+                if (localStorage.clickcount) {
+                    localStorage.clickcount = Number(localStorage.clickcount) + 1;
+
+                } else {
+                    localStorage.clickcount = 1;
+                }
+                counter.innerHTML = "You have clicked the button " + localStorage.clickcount + " times(s) !"
+            } else {
+                counter.innerHTML = "Sorry,no web storage api supported!"
+            }
+        }
+
+        function clickCounterSessionStorage() {
+            const counter = document.getElementById("counterResult2")
+            if (typeof (Storage) !== "undefined") {
+                if (sessionStorage.clickcount) {
+                    sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+
+                } else {
+                    sessionStorage.clickcount = 1;
+                }
+                counter.innerHTML = "You have clicked the button " + sessionStorage.clickcount + " times(s) !"
+            } else {
+                counter.innerHTML = "Sorry,no web storage api supported!"
+            }
+        }
+
+
+        ////4-Web Worker API
+        let w; //worker
+        function startWorker() {
+            let x = document.getElementById("apiWorkerResult")
+            if (typeof (Worker) !== "undefined") {
+                if (typeof (w) == "undefined") {
+                    w = new Worker("demo_workers.js")
+                }
+                w.onmessage = function (event) {
+                    x.innerHTML = event.data
+                }
+            } else {
+                x.innerHTML = "Sorry, No web worker support!"
+            }
+        }
+        function stopWorker() {
+            w.terminate();
+            w = "undefined";
+        }
+
+    </script>
+</body>
+
+</html>
