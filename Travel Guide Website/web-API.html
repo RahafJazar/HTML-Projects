@@ -64,6 +64,9 @@
     <button onclick="startWorker()">Start Worker</button>
     <button onclick="stopWorker()">Stop Worker</button>
 
+    <h2>SSE (Server-Sent event )</h2>
+    <button onclick="openServerSent()">Open SSE API </button>
+    <div id="SSEresult"></div>
 
     <script>
         let x = document.getElementById("demo")
@@ -186,6 +189,27 @@
         function stopWorker() {
             w.terminate();
             w = "undefined";
+        }
+
+
+        //5-SSE (server sent event ) API
+        function openServerSent() {
+            let result = document.getElementById("SSEresult")
+            if (typeof (EventSource) !== "undefined") {
+                const source = new EventSource("http://localhost:3000/events");
+                source.onmessage = function (event) {
+                    result.innerHTML += event.data + "<br>";
+                }
+                source.onopen = function () {
+                    alert("Connectior with server is opened ")
+                }
+                source.onerror = function (error) {
+                    console.log(error)
+                }
+
+            } else {
+                result.innerHTML = "Sorry, your browser doesn't support SSE"
+            }
         }
 
     </script>
