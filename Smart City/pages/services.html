@@ -10,6 +10,7 @@
     <meta name="keywords" content="services ,city , utilities">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Smart City Portal | Services </title>
+
 </head>
 
 <body>
@@ -57,10 +58,82 @@
                 <li> Track request status online </li>
             </ol>
         </section>
+        <!--- ==========Service Table ==================== -->
         <section class="service-section">
+            <h2>Service Details</h2>
+            <table id="services-table" border="1">
+                <caption>Service Details Table</caption>
+                <thead>
+                    <tr>
+                        <th colspan="2">Service Name</th>
+                        <th>Category</th>
+                        <th>Availablity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                    <tr>
+                        <td>Road </td>
+                        <td>Maintenance</td>
+                        <td>Transportation</td>
+                        <td>24/7</td>
+                        <td>
+                            <button class="request-btn">Request Service</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Water</td>
+                        <td> Supply Issue</td>
+                        <td>Utilities</td>
+                        <td>Working Hours</td>
+                        <td>
+                            <button class="request-btn">Request Service</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Garbage </td>
+                        <td>Collection</td>
+                        <td>Waste Management</td>
+                        <td>Scheduled</td>
+                        <td>
+                            <button class="request-btn">Request Service</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Emergency</td>
+                        <td> Assistance</td>
+                        <td>Health & Safety</td>
+                        <td>24/7</td>
+                        <td>
+                            <button class="request-btn">Request Service</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <!--- ========= Block vs Inline  EX ==================== -->
+        <section class="service-section">
+            <h2>Service Notes</h2>
+
+            <div id="note-box">
+                <p>
+                    <strong> Important : </strong>
+                    <span class="inline-highlight">Emergency services are available at all times.</span>
+                </p>
+                <p>
+                    Please ensure your contact information is <em>up to date</em> before submitting any request.
+                </p>
+            </div>
         </section>
     </main>
+    <!-- ===========Footer ====================== -->
+    <footer>
+        <p>
+            &copy;2025 Smart City Portal &nbsp;🌍
+        </p>
+    </footer>
 </body>
 
 </html>
