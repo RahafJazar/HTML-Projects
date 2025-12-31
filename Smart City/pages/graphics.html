@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Graphics page demonstrating HTML Canvas and SVG usage.">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <title>Smart City Portal | Graphics </title>
+</head>
+
+<body>
+    <!-- ============HEADER=====================-->
+    <header>
+        <h1>🎨 City Graphics</h1>
+        <p>Visual examples using HTML Canvas and SVG.</p>
+    </header>
+    <!-- ===========NAVIGATION===================-->
+    <nav>
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+            <li><a href="media.html">Media</a></li>
+            <li><a href="canvas.html">Graphics</a></li>
+        </ul>
+    </nav>
+    <!--=============MAIN CONTENT==============-->
+    <main>
+        <!---=====Canvas Section=========-->
+        <section>
+            <h2>🛣 City Road Map (Canvas)</h2>
+            <canvas id="roadCanvas" width="600" height="300" style="border: 4px solid black;">
+                Your browser doesn't support canvas
+            </canvas>
+            <p>
+                This map is drawn using JavaScript on a Canvas element.
+            </p>
+        </section>
+        <!-- =====SVG section ===========-->
+        <section>
+            <h2>📍 City Icons (SVG)</h2>
+            <svg width="600" height="200" style="border: 1px solid black;">
+                <!-- Road -->
+                <rect x="0" y="80" width="600" height="40" fill="gray"></rect>
+                <!-- Buildings-->
+                <rect x="20" y="20" width="50" height="60" fill="green"></rect>
+                <rect x="90" y="40" width="73" height="40" fill="darkorange"></rect>
+                <rect x="200" y="35" width="80" height="45" fill="steelblue"></rect>
+                <!-- Location Icons -->
+
+                <circle cx="45" cy="50" r="6" fill="red"></circle>
+                <circle cx="127" cy="60" r="6" fill="red"></circle>
+                <circle cx="240" cy="57" r="6" fill="red"></circle>
+                <!-- Text-->
+                <text x="300" y="170" fill="black" text-anchor="middle" font-size="20" font-famiy="Arial">Main City
+                    Road</text>
+
+            </svg>
+            <p>
+                Icons and text drawn using SVG (no JavaScript needed).
+            </p>
+        </section>
+    </main>
+    <!-- ==============Footer ===================-->
+    <footer>
+        <p>
+            &copy; 2025 Smart City Portal &nbsp; 🎨
+        </p>
+    </footer>
+
+    <!--- =========SCRIPT ==========-->
+    <script>
+        let canvasId = document.getElementById("roadCanvas");
+        let theContext = canvasId.getContext("2d");
+
+        const w = canvasId.width;
+        const h = canvasId.height;
+        /* Draw Road */
+        theContext.fillStyle = "gray";
+        theContext.fillRect(0, 120, w, h - 240)
+
+        /*Road Center Line*/
+        theContext.strokeStyle = "white"
+        theContext.setLineDash([5, 5])
+        theContext.beginPath()
+        theContext.moveTo(0, 150)
+        theContext.lineTo(600, 150)
+        theContext.stroke()
+
+        /* Draw Buildings */
+        //building1
+        theContext.setLineDash([])
+        theContext.fillStyle = "steelblue";
+        theContext.fillRect(50, 50, 60, 70)
+
+        //building2
+        theContext.fillStyle = "darkorange"
+        theContext.fillRect(120, 30, 70, 90)
+
+        //building3
+        theContext.fillStyle = "darkblue"
+        theContext.fillRect(220, 10, 90, 110)
+
+
+        /* Text */
+        theContext.fillStyle = "black"
+        theContext.font = "18px Arial"
+        theContext.fillText("Main City  Road", 230, 250)
+
+    </script>
+</body>
+
+</html>
