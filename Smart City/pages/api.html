@@ -7,6 +7,31 @@
     <meta name="description" content="Practice Web APIs: Geolocation, Drag & Drop, Web Storage, Web Workers ,SSE">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Smart City Portal | Web API </title>
+
+    <style>
+        .card {
+            width: 200px;
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: grab;
+            background-color: #f9f9f9;
+        }
+
+        #dropZone {
+            width: 640px;
+            height: 120px;
+            border: 2px dashed #2c3e50;
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,17 +49,118 @@
             <script>
                 function getLocation() {
                     let loc = document.getElementById("location")
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                loc.textContent = `Latitude :${position.coords.latitude}  , Longitude:${position.coords.longitude}`
+                            },
+                            (error) => {
+                                loc.textContent = `Geolocation is not supported in your browser`
+                            }
+                        )
+                    }
                 }
             </script>
         </section>
         <!-- Drag and Drop API -->
-        <section></section>
+
+        <section>
+            <h2> 🖱 Drag &amp; Drop Service cards</h2>
+            <div class="card" draggable="true" id="card1">Service1</div>
+            <div class="card" draggable="true" id="card2">Service2</div>
+            <div id="drop-zone">Drop Services Here </div>
+            <script>
+                const cards = document.querySelectorAll(".card");
+                const zone = document.getElementById("drop-zone");
+                //السحب
+                cards.forEach(card => {
+                    card.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('text', e.target.id);
+                    })
+                });
+                //الافلات
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault()
+                })
+                //(يضيفه ك append)   ايش بدي يصير بس ينفلت العنصر 
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+
+                    const id = e.dataTransfer.getData('text');
+                    const card = document.getElementById(id);
+
+                    zone.appendChild(card);
+                })
+            </script>
+        </section>
         <!-- Web Storage API -->
-        <section></section>
+        <section>
+            <h2>💾 Save Username (localStorage)</h2>
+            <input type="text" name="UserName" id="username" placeholder="Enter Your name">
+            <button onclick="saveUserName()">Save</button>
+            <p id="stored-name"></p>
+
+            <script>
+
+                function saveUserName() {
+                    if (Storage) {
+                        let name = document.getElementById("username").value;
+                        localStorage.setItem("username", name)
+                        document.getElementById("stored-name").textContent = `Saved Username : ${localStorage.getItem("username")}`
+                    }
+                }
+            </script>
+        </section>
         <!-- Web Workers API -->
-        <section></section>
-        <!-- SSE API-->
-        <section></section>
+        <section>
+            <h2> ⚙️ Background Counter (web worker)</h2>
+            <p> Count : <span ID="counter">0</span></p>
+            <button onclick="startWorker()">Start Worker</button>
+            <button onclick="stopWorker()">Stop Worker</button>
+
+            <script>
+                let worker;
+                function startWorker() {
+                    if (typeof (worker) !== undefined) {
+                        if (!worker) {
+                            worker = new Worker(URL.createObjectURL(
+                                new Blob([`
+                                let i=0;
+                                setInterval(()=>{
+                                 postMessage(i++);
+                                } ,1000)
+                                `], { type: "application/javascript" }))
+
+                            )
+                        }
+                        worker.onmessage = (e) => {
+                            document.getElementById('counter').textContent = e.data;
+                        }
+                    } else {
+                        alert("Web Workers not supported.");
+                    }
+                }
+
+                function stopWorker() {
+                    if (worker) {
+                        worker.terminate();
+                        worker = undefined;
+                    }
+                }
+            </script>
+        </section>
+        <!-- SSE (Server Sent Events ) API-->
+        <section>
+            <h2> 📡 Simple SSE Example </h2>
+            <p>Sever Sent Event Allow to push updates to clients (like notifications) </p>
+
+            <pre>
+                <code>
+                    const evtSource = new EventSource('/sse-endpoint');
+                    evtSource.onmessage = function(e) { console.log('Message from server: ', e.data); };
+                </code>
+            </pre>
+        </section>
     </main>
     <!--- ==================MAIN==================-->
     <!--- ==================FOOTER=============== -->
