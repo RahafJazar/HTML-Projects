@@ -53,9 +53,9 @@ section {
 .container {
     width: 400px;
     height: 400px;
-    background-image: url('./assets/images/img_smallflower.jpg');
+    background-image: url('./assets/images/img_smallflower.jpg'), url('./assets/images/img_smallflower.jpg'), url('./assets/images/img_smallflower.jpg');
     background-repeat: no-repeat;
-    background-position: right 20px;
-    background-size: cover;
+    background-position: top left, center center, bottom right;
+
     border: 1px solid black;
 }
