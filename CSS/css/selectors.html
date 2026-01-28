@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./selectorstyle.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div attr>Have only</div>
+    <div attr="val">Match</div>
+    <div attr="val val1 val2">List</div>
+    <div attr="valesff">Start</div>
+    <div attr="fdfrval">End </div>
+    <div attr="val-us">language - or Match</div>
+    <div attr="VAL">Ignore cases </div>
+    <div name="descendant  child combinators">
+        <p>This is descendant & child </p>
+        <p>this is descendant & child & general & adjacent </p>
+        <h2>this is not decendant</h2>
+        <div>
+            <p>this is only descendant </p>
+        </div>
+        <p>this is decendant & child & general sibling but not adjacent </p>
+    </div>
+    <div session="pseudo-class">
+        <label for="name">Username</label>
+        <input type="text" id="name">
+        <button>submit</button>
+        <a href="#">link1</a>
+        <a href="https://google.com">link2</a>
+        <a href="#">link3</a>
+        <a href="#">link4</a>
+        <a href="#p1">p1</a>
+        <a href="#p2">p2</a>
+        <div>
+            <p id="p1">p1 is hi </p>
+            <p id="p2">p2 is hi </p>
+        </div>
+    </div>
+
+    <form action="" formaName="login form">
+
+        <input type="checkbox" name="Languages" id="english" value="en">
+        <label for="english">en</label>
+        <input type="checkbox" name="Languages" id="arabic" value="ar">
+        <label for="arabic">ar</label>
+        <br>
+        <label for="name">username</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="age">age</label>
+        <input type="number" id="age" name="Age" min="1" max="20">
+        <br>
+        <input type="email" disabled placeholder="@gmail.com">
+        <br>
+        <label for="major">major</label>
+        <input type="text" name="Major" id="major" required>
+        <br>
+        <label for="university">university</label>
+        <input type="text" name="University" id="university">
+        <br>
+        <label for="religion">Religion</label>
+        <input type="text" name="Religion" id="religion" value="muslim" readonly>
+        <br>
+        <input type="checkbox" name="Agreement" id="agree" value="ag">
+        <label for="agree">agree</label>
+        <br>
+        <button>submit</button>
+
+    </form>
+    <div data="languages">
+        <ul>
+            <li>English</li>
+            <li>Arabic</li>
+            <li>French</li>
+            <li>Espain</li>
+            <li>Turkey</li>
+            <li>Oman</li>
+            <li>german</li>
+            <li>libya</li>
+        </ul>
+        <p>Hello</p>
+        <ol>
+            <li>Jordan</li>
+        </ol>
+        <div>
+
+        </div>
+        <p>World</p>
+
+        <p lang="ar">اهلا وسهلا </p>
+        <p lang="en">ًWelcome</p>
+
+        <my-tag>custom element </my-tag>
+        <br>
+        <button>no</button>
+        <button class="yes"> yes</button>
+        <button>neither</button>
+
+        <h1>Lama</h1>
+        <h1>Dana</h1>
+    
+    </div>
+
+    <script>
+        document.getElementById("agree").indeterminate = true;
+    </script>
+</body>
+
+</html>

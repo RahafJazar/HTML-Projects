@@ -1,0 +1,226 @@
+div[attr] {
+    color: red;
+}
+
+div[attr='val'] {
+    background-color: rgb(168, 94, 9);
+}
+
+div[attr~='val'] {
+    background-color: rgb(43, 129, 132);
+}
+
+div[attr ^='val'] {
+    background-color: rgb(22, 80, 187);
+}
+
+div[attr $='val'] {
+    background-color: rgb(217, 158, 80);
+}
+
+div[attr |='val'] {
+    background-color: rgb(208, 71, 183);
+}
+
+div[attr='val' i] {
+    background-color: coral;
+}
+
+div[name ^='descendant'] p {
+    /*0-1-0*/
+    color: green;
+}
+
+div[name~='child']>p {
+    /*0-1-0*/
+    color: blue;
+}
+
+div[name *='child']>p+p {
+    color: brown;
+}
+
+div[name *='child']>p~p {
+    color: rgb(225, 255, 0);
+}
+
+div[session |='pseudo'] button:hover {
+    /*0-1-0*/
+    background-color: rgb(191, 191, 227);
+}
+
+div[session |='pseudo'] a:active {
+    /* 0-1-0*/
+    background-color: chocolate;
+}
+
+div[session ^='pseudo'] input:focus {
+    background-color: chartreuse;
+}
+
+div[session *='pseudo'] input:focus-visible {
+    background-color: blueviolet;
+    outline: 2px solid crimson;
+}
+
+/* div[session *='pseudo']:focus-within {
+    background-color: coral;
+} */
+
+div[session ^='pseudo'] a:any-link {
+    font-size: x-large;
+}
+
+div[session *='pseudo'] a:link {
+    color: blue;
+}
+
+div[session *='pseudo'] a:visited {
+    color: red;
+}
+
+div[session|='pseudo'] #news:target {
+    color: aqua;
+}
+
+div[session *='pseudo'] div:target-within {
+    border: 9px solid green;
+}
+
+div[session |='pseudo'] p:target::before {
+    font: 70% sans-serif;
+    content: "►";
+    color: green;
+}
+
+form[formaName *='login']>input:checked {
+    outline: 2px solid rgb(165, 40, 121);
+}
+
+form[formaName ^='login']>input:disabled {
+    background-color: #e7a8a8;
+}
+
+form[formaName~='form']>input:enabled {
+    outline: 3px solid green;
+}
+
+form[formaName~='login'] label:has(+input:required)::before {
+    content: "*";
+    color: red;
+    font-size: large;
+}
+
+form[formaName~='login'] label:has(+input:optional)::before {
+    content: "*";
+    color: green;
+    font-size: large;
+}
+
+form[formaName *='login']>input:read-only {
+    color: rgb(137, 185, 221);
+    text-decoration: line-through;
+}
+
+form[formaName~='login']>input:read-write {
+
+    color: tan;
+    text-decoration: underline;
+}
+
+form[formaName ^='login'] label:has(+input:out-of-range)::after {
+    content: "Invalid input";
+    color: red;
+}
+
+form[formaName *='form'] input:invalid {
+    /*0-1-0*/
+    border: 2px solid red;
+}
+
+form[formaName *='form'] input:placeholder-shown {
+    /*0-1-0*/
+    color: aqua;
+    border: 2px solid rgb(201, 13, 120);
+}
+
+form[formaName *='form'] input:indeterminate {
+    /*0-1-0*/
+    outline: #e7a8a8;
+}
+
+div[data='languages'] ul>li:first-child,
+div[data='languages'] ul>li:last-child {
+    font-weight: 900;
+}
+
+div[data='languages'] ul>li:nth-child(1),
+div[data='languages'] ul>li:nth-last-child(1) {
+    color: green;
+}
+
+div[data='languages'] ul>li:nth-child(3n+1) {
+    /* => 1,4,7,10,....*/
+    background-color: rgb(179, 124, 234);
+}
+
+div[data='languages'] ul>li:nth-child(2n+2) {
+    /*-> 2,4,6,8,...*/
+    background-color: #e7a8a8;
+}
+
+div[data='languages'] p:first-of-type {
+    color: blue;
+}
+
+div[data='languages'] ol li:only-child {
+    border: 1px solid grey;
+}
+
+div[data='languages'] div:empty {
+    display: none;
+}
+
+div[data='languages'] p:nth-of-type(2) {
+    color: chocolate;
+}
+
+:root {
+    font-style: italic;
+}
+
+p:lang(en)::after {
+    content: "English";
+    color: red;
+}
+
+p:lang(ar)::after {
+    content: "arabic";
+    color: red;
+}
+
+p:dir(rtl) {
+    text-align: right;
+}
+
+:fullscreen {
+    background-color: black;
+    color: white;
+}
+
+my-tag {
+    border: 2px solid lime;
+    color: green;
+}
+
+div[data='languages'] button:not(.yes) {
+    color: red;
+}
+
+div[data='languages'] :is(h1, .title) {
+    color: gold;
+}
+
+div[data='languages'] h1 {
+    color: gray;
+}
