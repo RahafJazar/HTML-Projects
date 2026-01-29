@@ -1,0 +1,13 @@
+/*--- start Global Rules----*/
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+}
+
+/* --End global Rules --*/

@@ -105,12 +105,101 @@
 
         <h1>Lama</h1>
         <h1>Dana</h1>
-    
-    </div>
 
+    </div>
+    <div class="video-block">
+        <span id="state"></span>
+        <video width="300" height="200" controls class="videos">
+            <source id="vid" src="./videos/video2MP4.mp4" type="video/mp4">
+            <track src="./videos/Subtitles/subtitle_en.vtt" kind="subtitles" srclang="en" label="English" default>
+            </track>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <details>
+        <summary>Show Details</summary>
+        <p>This content is visible when open.</p>
+    </details>
+    <my-toggle></my-toggle>
+    <dialog id="my-dialog">
+        This is a modal dialog
+    </dialog>
+    <button id="openBtn">Open Modal</button>
+
+    <button popovertarget="info">Show Info</button>
+    <div popover id="info">
+        This is a popover content
+    </div>
     <script>
         document.getElementById("agree").indeterminate = true;
+        const v = document.getElementById("vid");
+        const s = document.getElementById("state");
+
+        v.onplay = () => s.textContent = "playing";
+        v.onpause = () => s.textContent = "paused";
+        v.onvolumechange = () =>
+            s.textContent = v.muted ? "muted" : "playing";
+
+
+        class MyToggle extends HTMLElement {
+            constructor() {
+                super();
+
+                this.attachShadow({ mode: 'open' });
+                this.shadowRoot.innerHTML = `
+        <style>
+          :host {
+            display: inline-block;
+            padding: 12px;
+            cursor: pointer;
+            border: 2px solid #333;
+            background: #fff;
+            color: #000;
+            user-select: none;
+          }
+
+          :host([on]) {
+            background: green;
+            color: white;
+          }
+
+          :host([off]){
+          background:red;
+          color :white;
+          }
+        </style>
+
+        Click me
+        `;
+
+                // نضيف/نمسح attribute عند الضغط
+                this.addEventListener("click", () => {
+                    if (this.hasAttribute("on")) {
+                        this.removeAttribute("on");
+                        this.setAttribute("off", "");
+                    } else {
+                        this.removeAttribute("off");
+                        this.setAttribute("on", "");
+
+                    }
+                });
+            }
+        }
+
+
+        customElements.define("my-toggle", MyToggle);
+
+        const dlg = document.getElementById("my-dialog");
+        document.getElementById("openBtn").addEventListener("click", () => {
+            dlg.showModal();
+        })
+
+
+
+
     </script>
+
+
 </body>
 
 </html>
