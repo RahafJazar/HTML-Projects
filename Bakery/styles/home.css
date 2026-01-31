@@ -1,6 +1,18 @@
+/*universal selector*/
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+/* == Home -> Home section*/
+.home-section {
+    background-color: rgb(206, 202, 202);
+    height: 100vh;
+}
+
+/* == //Home -> Home section*/
+
 
 
 /*== Home -> Our Baking  section ==*/
@@ -22,7 +34,7 @@
 }
 
 .baking-section>.bakingContent>.baking-card {
-    box-sizing: border-box;
+    
     float: left;
     width: 33.333%;
     text-align: center;
