@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+}
+
+body {}
+
+.albums-section {
+    background-color: rgb(182, 174, 159);
+    margin: 10px;
+
+}
+
+.albums-section>.project {
+    float: left;
+    background-color: rgb(55, 71, 55);
+    width: 25%;
+    text-align: center;
+    padding: 6px;
+    box-sizing: border-box;
+
+}
+
+.albums-section>.project>.inner {
+    background-color: #94dbc9;
+}
+
+.albums-section>.project>.inner>img {
+    width: 100%;
+}
+
+.albums-section>.clr {
+    clear: both;
+}

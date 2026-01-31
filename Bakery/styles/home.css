@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+}
+
+
+/*== Home -> Our Baking  section ==*/
+.baking-section {
+    background-color: rgb(241, 241, 241);
+    padding: 20px;
+}
+
+.baking-section>.bakingHeader {
+    text-align: center;
+
+}
+
+.baking-section>.bakingContent {
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+}
+
+.baking-section>.bakingContent>.baking-card {
+    box-sizing: border-box;
+    float: left;
+    width: 33.333%;
+    text-align: center;
+    padding: 10px;
+}
+
+.baking-section>.bakingContent>.baking-card>.bakingCardContent {
+    background-color: rgb(210, 224, 210);
+}
+
+.baking-section>.bakingContent>.baking-card>.bakingCardContent>img {
+    width: 100%;
+
+}
+
+/* clear float*/
+.clr {
+    clear: both;
+}
+
+/* // clear float*/
+/*== //Home -> Our Baking  section ==*/

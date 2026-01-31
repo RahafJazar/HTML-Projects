@@ -36,15 +36,59 @@
 </head>
 
 <body>
-    <canvas id="myCanvas" width="200" height="100" style="border: 3px solid rgb(145, 46, 71);"></canvas>
+    <img src="./images/img_smallflower.jpg" alt="" id="our-img">
+    <canvas id="myCanvas" width="400" height="400" style="border: 3px solid rgb(145, 46, 71);"></canvas>
 
     <script>
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-        ctx.fillStyle = "#000";
-        ctx.createLinearGradient(x0, y0, x1, y1);
-        ctx.fillRect(0, 0, c.width, c.height);
-        console.log(c.width)
+        var theCanvas = document.getElementById("myCanvas");
+        var theContext = theCanvas.getContext("2d");
+        w = theCanvas.width;
+        h = theCanvas.height;
+
+        /*theContext.font = "20px Arial"
+        //Draw chart column 
+        theContext.fillStyle = "#d35400";
+        theContext.fillRect(50, 50, 60, h - 50);
+        theContext.fillStyle = "#FFE52A";
+        theContext.fillText("1", 70, 80);
+
+        theContext.fillStyle = "#FFE52A";
+        theContext.fillRect(120, 80, 60, h - 70);
+        theContext.fillStyle = "#d35400";
+        theContext.fillText("2", 140, 110);
+
+        theContext.fillStyle = "#CF0F0F";
+        theContext.fillRect(200, 140, 60, h - 100);
+        theContext.fillStyle = "#26CCC2";
+        theContext.fillText("3", 220, 170);*/
+
+        //begin the path
+        theContext.beginPath();
+        //select the start position 
+        /* theContext.moveTo(0, 0)
+ 
+         //draw the points
+         theContext.lineTo(w / 2, (h / 2) - 40);
+ 
+ 
+ 
+         //select the start position 
+         theContext.moveTo(w, 0)
+ 
+         //draw the points
+         theContext.lineTo(w / 2, (h / 2) - 40);*/
+        theContext.moveTo(100, 100);
+        theContext.lineTo(100, 300);
+        theContext.lineTo(300, 300);
+        theContext.moveTo(300, 300);
+        theContext.lineTo(300, 100);
+        //adjust style and line width 
+        theContext.strokeStyle = "#00f";
+        theContext.lineWidth = 5;
+
+        //Draw the path
+        theContext.stroke()
+
 
     </script>
 
