@@ -12,14 +12,52 @@
     <!--========== Main Template CSS file=================-->
     <link rel="stylesheet" href="./css/leon.css">
     <!-- Normalize CSS file-->
-    <link rel="stylesheet" href="./css/standardNormalize.css">
+    <!-- <link rel="stylesheet" href="./css/standardNormalize.css"> -->
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
+<style>
+    * {
+        margin: 0;
+    }
+
+    .outer-top {
+        background-color: grey;
+        margin: 10px;
+    }
+
+    .inner-top {
+        margin: 15px;
+        background-color: aqua;
+    }
+
+    .outer-bottom {
+        margin: 20px;
+        background-color: blue;
+    }
+
+    .inner-bottom {
+        margin: 25px;
+        background-color: rgb(34, 105, 167);
+    }
+
+    div {
+        border: 1px solid black;
+    }
+</style>
 
 <body>
-    
+    <div class="outer-top">
+        <div class="inner-top">
+            some content
+        </div>
+    </div>
+    <div class="outer-bottom">
+        <div class="inner-bottom">
+            some more content
+        </div>
+    </div>
 </body>
 
 </html>
