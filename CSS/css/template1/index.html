@@ -22,41 +22,19 @@
         margin: 0;
     }
 
-    .outer-top {
-        background-color: grey;
-        margin: 10px;
-    }
-
-    .inner-top {
-        margin: 15px;
-        background-color: aqua;
-    }
-
-    .outer-bottom {
-        margin: 20px;
-        background-color: blue;
-    }
-
-    .inner-bottom {
-        margin: 25px;
-        background-color: rgb(34, 105, 167);
-    }
-
     div {
-        border: 1px solid black;
+        display: inline;
+    }
+
+    #over {
+        margin-left: -20px;
     }
 </style>
 
 <body>
-    <div class="outer-top">
-        <div class="inner-top">
-            some content
-        </div>
-    </div>
-    <div class="outer-bottom">
-        <div class="inner-bottom">
-            some more content
-        </div>
+    <div>Base div</div>
+    <div id="over">
+        Overlapping div
     </div>
 </body>
 
