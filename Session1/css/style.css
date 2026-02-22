@@ -1,0 +1,22 @@
+h2 {
+    background-color: yellow;
+}
+
+.space {
+    padding: 30px;
+    margin: 20px;
+}
+
+.font {
+    font-size: 23px;
+    color: green;
+}
+
+.bg-red {
+    background-color: red;
+    color: white;
+}
+
+.bg-blue {
+    background-color: blue;
+}

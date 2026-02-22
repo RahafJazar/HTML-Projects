@@ -2,6 +2,31 @@
 
 <head>
     <title>My Portfolio</title>
+    <style>
+        h1 {
+            color: rgba(19, 19, 68, 0.712);
+        }
+
+        h2 {
+            color: rgb(70, 70, 128);
+        }
+
+        h4 {
+            color: rgb(105, 105, 167);
+        }
+
+        .bg-blue {
+            background-color: rgb(208, 222, 233)
+        }
+
+        .bg-dark-blue {
+            background-color: rgba(7, 7, 126, 0.685);
+        }
+
+        .color-white {
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -10,7 +35,7 @@
             <tr>
                 <th colspan="4">
                     <h1>Rahaf Jazar Portfolio</h1>
-                    <p>Frontend Developer</p>
+                    <h4>Frontend Developer</h4>
                 </th>
             </tr>
         </thead>
@@ -37,14 +62,14 @@
                     <p>My journey started when i graduated from computer engineering at university of jordan , that I
                         decided to specialise in fullstack field ( frontend and backend ) using angular and .net, I
                         followed Route academy to learn angular correctly </p>
-                    <h2>Skills</h2>
+                    <h2 class="bg-blue">Skills</h2>
                     <ul>
-                        <li>HTML5</li>
-                        <li>CSS</li>
-                        <li>JS</li>
-                        <li>Angular</li>
-                        <li>C#</li>
-                        <li>.Net</li>
+                        <li><a href="#" target="_blank">HTML5</a></li>
+                        <li><a href="#" target="_blank">CSS</a></li>
+                        <li><a href="#" target="_blank">JS</a></li>
+                        <li> <a href="#" target="_blank">Angular</a></li>
+                        <li><a href="#" target="_blank">C#</a></li>
+                        <li> <a href="#" target="_blank">.Net</a></li>
                     </ul>
                 </td>
 
@@ -61,8 +86,9 @@
                     <table width="100%" border="1">
                         <caption>Professional Experience Overview</caption>
                         <thead>
-                            <tr>
+                            <tr class="bg-dark-blue  color-white">
                                 <th>Company</th>
+                                <th>Logo</th>
                                 <th>Role</th>
                                 <th>Key Achievements</th>
                                 <th>Dates</th>
@@ -71,6 +97,8 @@
                         <tbody>
                             <tr>
                                 <td rowspan="2">Etech Systems</td>
+                                <td rowspan="2"><img src="./images/backend.png" alt="backend development" width="150">
+                                </td>
                                 <td>Backend Developer</td>
                                 <td>
                                     <ul>
@@ -91,13 +119,32 @@
                                 </td>
                                 <td>Jul2024-Jan2025</td>
                             </tr>
+                            <tr>
+                                <td>Realsoft </td>
+                                <td><img src="./images/ai.png" alt="AI development" width="150"></td>
+                                <td>AI Development Intern</td>
+                                <td>
+                                    <ol>
+                                        <li>work on semantic search </li>
+                                        <li>work on elastic search</li>
+                                    </ol>
+                                </td>
+                                <td>Feb2024-Apr2024</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">Total Experience : 1.5 years in web development</td>
+                            </tr>
                         </tbody>
                     </table>
 
                 </td>
             </tr>
+
         </tbody>
     </table>
+
+
+
 </body>
 
 </html>
