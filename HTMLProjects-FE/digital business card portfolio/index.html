@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <title>My Portfolio</title>
@@ -7,32 +8,39 @@
 
 <body>
     <table width="100%" border="1">
-        <thead>
-            <tr>
-                <th colspan="4">
-                    <h1 style="color: rgba(19, 19, 68, 0.712);">Rahaf Jazar Portfolio</h1>
-                    <h4 style=" color: rgb(105, 105, 167);">Frontend Developer</h4>
-                </th>
-            </tr>
-        </thead>
+
         <tbody>
+            <tr>
+                <h1 style="color: rgba(19, 19, 68, 0.712);">Rahaf Jazar Portfolio</h1>
+                <h4 style=" color: rgb(105, 105, 167);">Frontend Developer</h4>
+            </tr>
             <!--About Me Section-------->
             <tr>
                 <td colspan="4">
                     <h2 style=" color: rgb(70, 70, 128);">About Me</h2>
                 </td>
             </tr>
+
             <tr>
-                <td>
-                    <img src="./images/userImg.png" alt="profile page" width="150">
-                    <br>
-                    <img src="./images/facebook.png" alt="Facebook icon" width="30">
-                    <img src="./images/linkedin.png" alt="linkedin icon" width="30">
-                    <img src="./images/instagram.png" alt="instagram icon" width="30">
-                    <img src="./images/github.png" alt="github icon" width="30">
+                <td colspan="2">
+                    <img src="./images/userImg.png" alt="profile page" width="200">
+
+                    <ul>
+                        <li style="display: inline;"> <a href="https://jo.linkedin.com/in/rahaf-jazar-721594235"
+                                target="_blank"> <img src="./images/linkedin.png" alt="linkedin icon" width="30"></a>
+                        </li>
+                        <li style="display: inline;"> <a href="https://www.facebook.com/rahaf.jazar/" target="_blank">
+                                <img src="./images/facebook.png" alt="Facebook icon" width="30"></a> </li>
+                        <li style="display: inline;"> <a href="https://www.instagram.com/rahafjazar2427/"
+                                target="_blank"> <img src="./images/instagram.png" alt="instagram icon" width="30"></a>
+                        </li>
+                        <li style="display: inline;"> <a href="https://github.com/RahafJazar" target="_blank"> <img
+                                    src="./images/github.png" alt="github icon" width="30"></a> </li>
+                    </ul>
+
 
                 </td>
-                <td colspan="3">
+                <td colspan="2">
                     <p>Hello! I am Rahaf Jazar , a passinate web developer with one and half years experience in backend
                         development using asp.net framework technology . </p>
                     <p>My journey started when i graduated from computer engineering at university of jordan , that I
@@ -135,7 +143,7 @@
                         <!--****personal information********-->
                         <fieldset>
                             <legend>Personal Information</legend>
-                            <table width="100%" border="1">
+                            <table width="100%">
                                 <tbody>
                                     <tr>
                                         <!--FirstName Input-->
@@ -196,7 +204,7 @@
                             <legend>
                                 Project Details
                             </legend>
-                            <table border="1" width="100%">
+                            <table width="100%">
                                 <tr>
                                     <!--Project Type Input-->
                                     <td>
@@ -222,7 +230,7 @@
                                 </tr>
                                 <tr>
                                     <!--Budget range-->
-                                    <td colspan="2">
+                                    <td colspan="3">
 
                                         <label>Budget Range: </label>
                                         <br>
@@ -241,18 +249,54 @@
                                         <label for="over25000">Over $25,000</label>
                                     </td>
                                     <!-- -->
-                                    <td colspan="2">
+                                    <td colspan="3">
 
                                         <label>Services Required (check all that apply): </label>
                                         <br>
-                                        <input type="checkbox" id="UiAndUx" value="ui-ux">
+                                        <input type="checkbox" id="UiAndUx" value="ui-ux" name="Services">
                                         <label for="UiAndUx">UI/UX Design</label>
+                                        <br>
+                                        <input type="checkbox" id="Frontend" value="frontend" name="Services">
+                                        <label for="Frontend">Frontend Development</label>
+                                        <br>
+                                        <input type="checkbox" id="Backend" value="backend" name="Services">
+                                        <label for="Backend">Backend Development</label>
+                                        <br>
+                                        <input type="checkbox" id="Hosting" value="hosting" name="Services">
+                                        <label for="Hosting">Hosting and Deployment</label>
+                                        <br>
+                                        <input type="checkbox" id="Maintenance" value="maintenance" name="Services">
+                                        <label for="Maintenance">Maintenance and support</label>
                                         <br>
 
                                     </td>
                                 </tr>
+                                <tr>
+                                    <!----heared about section-->
+                                    <td colspan="6">
+                                        <label for="hiringSource">How did you hear about me?</label>
+                                        <select name="Hiring" id="hiringSource" style="width: 200px;">
+                                            <option value="" disabled selected>--select source </option>
+                                            <option value="linkedin">Linkendin</option>
+                                            <option value="google">Google search</option>
+                                            <option value="jobPlatform">job platform</option>
+                                            <option value="friend">friend</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+
                             </table>
                         </fieldset>
+                        <br>
+                        <!---Buttons-->
+                        <button type="submit" style="background-color: rgb(35, 35, 233); color:white;">Send
+                            Message</button>
+                        <button type="reset" style="background-color: rgb(223, 30, 23); color:white;">Clear
+                            Form</button>
+
+
+
                     </form>
                 </td>
             </tr>
