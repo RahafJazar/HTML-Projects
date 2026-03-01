@@ -1,22 +1,46 @@
-h2 {
-    background-color: yellow;
-}
+ .space {
+     padding: 30px;
+     margin: 20px;
+ }
 
-.space {
-    padding: 30px;
-    margin: 20px;
-}
+ .font {
+     font-size: 23px;
+     color: green;
+ }
 
-.font {
-    font-size: 23px;
-    color: green;
-}
+ .bg-red {
+     background-color: red;
+     color: white;
+ }
 
-.bg-red {
-    background-color: red;
-    color: white;
-}
+ .bg-blue {
+     background-color: blue;
+ }
 
-.bg-blue {
-    background-color: blue;
-}
+ span {
+     color: blue;
+     font-size: 40px;
+ }
+
+ .parent.vip {
+     width: 50%;
+
+     border: 1px solid green;
+     padding: 2px;
+ }
+
+ .parent .test {
+     width: 50%;
+     background-color: brown;
+     border: 1px solid red;
+ }
+
+ .parent .test h2#welcoming {
+     color: chartreuse;
+ }
+
+ /*Grouping Selector*/
+ .parent.vip,
+ a {
+     background-color: aqua;
+ }
