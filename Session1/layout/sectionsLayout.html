@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .gallery {
+            background-color: tomato;
+
+        }
+
+        .gallery-header {
+            text-align: center;
+        }
+
+        .gallery-content {
+            width: 90%;
+            margin: auto;
+        }
+
+        .item {
+            float: left;
+            background-color: green;
+            width: 30%;
+            text-align: center;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .item img {
+            width: 100%;
+        }
+
+        .item:hover .item-layer {
+            background-color: rgba(146, 143, 143, 0.4);
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .navbar {
+
+            background-image: url("../images/Background.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+
+        }
+
+        .navbar .conatiner {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 90%;
+            margin: auto;
+        }
+
+        .logo {
+
+            float: left;
+        }
+
+        .logo img {
+            width: 20%;
+        }
+
+        .links {
+
+            float: right;
+
+        }
+
+        .links ul {
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .links ul li {
+            float: left;
+            margin-left: 20px;
+        }
+
+        .links ul li a {
+            color: aliceblue;
+            text-decoration: none;
+        }
+
+        .one {
+            height: 200px;
+            width: 200px;
+            background-color: blueviolet;
+
+        }
+
+        .two {
+            height: 100px;
+            width: 100px;
+            background-color: brown;
+            position: absolute;
+            top: 20%;
+            left: 20px;
+        }
+
+        .test {
+            background-color: aqua;
+            /* position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;*/
+        }
+
+        .buttons {
+            position: fixed;
+            border-radius: 50%;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="conatiner">
+            <div class="logo">
+                <img src="../images/BakeryLogo.png" alt="BakeryLogo">
+            </div>
+            <div class="links">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Our Offer</a></li>
+                    <li><a href="">Gallery</a></li>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Contact</a></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="clear"> </div>
+        </div>
+
+    </div>
+    <!-- <div class="one"> </div>
+    <div class="one test"> </div>
+    <div class="one">
+        <div class="two">  </div>
+    </div> -->
+    <div class="gallery">
+        <div class="gallery-header">
+            <h3>Our Baking</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. !</p>
+        </div>
+        <div class="gallery-content">
+            <div class="item">
+                <img src="../images/SuperiorBreads.png" alt="SuperiorBreads">
+                <h4>Superior Breads</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium rem doloremque exercitationem
+                    quas
+                    consequatur impedit dolores ipsum. Fuga, tenetur accusantium?</p>
+                <div class="item-layer"></div>
+            </div>
+            <div class="item">
+                <img src="../images/Bagels.png" alt="Bagels">
+                <h4>Superior Breads</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium rem doloremque exercitationem
+                    quas
+                    consequatur impedit dolores ipsum. Fuga, tenetur accusantium?</p>
+                <div class="item-layer"></div>
+            </div>
+            <div class="item">
+                <img src="../images/Cookies.png" alt="Cookies">
+                <h4>Superior Breads</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium rem doloremque exercitationem
+                    quas
+                    consequatur impedit dolores ipsum. Fuga, tenetur accusantium?</p>
+                <div class="item-layer"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+    </div>
+    <div style="background-color: blue;">welcome</div>
+    </div>
+    <div class="buttons">
+        <button>&coprod;</button>
+    </div>
+</body>
+
+</html>
