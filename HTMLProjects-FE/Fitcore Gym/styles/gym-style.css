@@ -1,39 +1,329 @@
-/*============Basic Style ==========================*/
+/*+++++++++++++++++++Basic Style ++++++++++++++++++++++++++*/
 * {
     margin: 0;
     padding: 0;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+
 }
 
-/*=============Float clear==========================*/
+img {
+    max-width: 100%;
+}
+
+/*+++++++++++++++++++Float clear+++++++++++++++++++*/
 .clear {
     clear: both;
 }
 
+/*+++++++++++++++++++Shared styles+++++++++++++++++++++++++*/
+
+.hero .container,
+.why_choose_us .container,
+.testimonials .container {
+
+    width: 80%;
+    margin: auto;
+
+
+}
+
+/*1-title*/
+
+.why_choose_us .title,
+.testimonials .title {
+
+    text-align: center;
+    width: 50%;
+    margin: 0 auto 40px;
+    padding: 20px;
+
+}
+
+.why_choose_us .title h2,
+.testimonials .title h2 {
+    font-size: 35px;
+    margin: 0 0 20px 0;
+}
+
+.why_choose_us .title p,
+.testimonials .title p {
+
+    margin: 0 0 20px 0;
+}
+
 /*===========Hero Section===========================*/
 .hero {
-    background-color: tomato;
-    margin: 2%;
-    padding: 2%;
+    /* background-color: tomato; */
+    width: 80%;
+    margin: 100px auto;
 }
 
-.hero .container {
-    background-color: purple;
-}
 
 .hero_content {
-    background-color: lime;
-    width: 40%;
-    height: 200px;
+    /* background-color: lime; */
+    width: 50%;
     float: left;
-    text-align: center;
+
+
+}
+
+.hero_content p,
+.hero_content h1,
+.hero_content .hero_content_CTA {
+    padding: 25px;
+}
+
+.hero_content h1 {
+    font-size: 70px;
+
+}
+
+.hero_content p {
+    font-size: 20px;
+    color: oklch(44.6% .03 256.802);
+
+}
+
+.hero_content .hero_content_CTA button {
+    padding: 20px 30px;
+    border-radius: 7%;
+    margin-right: 20px;
+}
+
+.hero_content .hero_content_CTA button.journey-btn {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none
+}
+
+.hero_content .hero_content_CTA button.learn-btn {
+
+    color: oklch(37.3% .034 259.733);
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid rgb(199, 197, 197);
 }
 
 .hero_img {
-    background-color: aqua;
-    width: 30%;
-    float: left;
+
+    width: 40%;
+    padding: 50px 0;
+    float: right;
+
 }
 
 .hero_img img {
+    width: 80%;
+    border-radius: 5%;
+}
+
+/*===============Why-Choose-Us Section=====================*/
+.why_choose_us {
+
+    width: 80%;
+    margin: 100px auto;
+}
+
+
+
+/* **********ICONS Style******* */
+
+
+.why_choose_us .benefit_cards {
+
+    margin: 0 auto 40px;
+}
+
+.why_choose_us .benefit_cards .card {
+
+    width: 28%;
+    float: left;
+    text-align: center;
+    padding: 20px 16px;
+    margin: 10px 15px 10px;
+    min-height: 230px;
+    border-radius: 5%;
+}
+
+.why_choose_us .benefit_cards .card h3,
+.why_choose_us .benefit_cards .card p {
+    margin: 15px auto;
+
+}
+
+.why_choose_us .benefit_cards .card p {
+    color: oklch(44.6% .03 256.802);
+}
+
+.box {
+    width: 70px;
+    height: 70px;
+    padding: 20x;
+    border-radius: 10px;
+    position: relative;
+    margin: 10px auto;
+}
+
+.blue {
+    background: oklch(54.6% .245 262.881);
+}
+
+.green {
+    background: oklch(59.6% .145 163.225);
+}
+
+.purple {
+    background: oklch(55.8% .288 302.321);
+}
+
+
+.mid-blue {
+    background: oklch(93.2% .032 255.585);
+}
+
+.mid-green {
+    background: oklch(95% .052 163.051);
+}
+
+.mid-purple {
+    background: oklch(94.6% .033 307.174);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    background: white;
+    margin: auto;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+}
+
+.square {
+    border-radius: 15%;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+/**************************************************************************/
+
+.why_choose_us .more_benefits .image {
+
+    width: 45%;
+    float: left;
+    text-align: center;
+    margin-right: 30px;
+    padding-top: 20px;
+}
+
+.why_choose_us .more_benefits .image img {
+    width: 90%;
+    border-radius: 5%;
+}
+
+.why_choose_us .more_benefits .content {
+
+    float: left;
+    width: 45%;
+    padding: 20px;
+}
+
+.why_choose_us .more_benefits .content h4 {
+    font-size: 28px;
+    margin: 6px 0 10px;
+}
+
+.why_choose_us .more_benefits .content ul {
+    list-style-type: none;
+}
+
+.why_choose_us .more_benefits .content ul li {
+
+    padding-left: 30px;
+    padding-top: 8px;
+    margin-bottom: 5px;
+    border-left: 3px solid black;
+}
+
+.why_choose_us .more_benefits .content ul li h5 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: oklch(21% .034 264.665);
+
+}
+
+.why_choose_us .more_benefits .content ul li p {
+    margin-bottom: 10px;
+    color: oklch(44.6% .03 256.802);
+
+}
+
+
+
+/*===============Testimonials Section=====================*/
+.testimonials {
+    background-color: tomato;
+    width: 80%;
+    margin: 100px auto;
+}
+
+.testimonials .reviews {
+    background-color: yellow;
+}
+
+.testimonials .reviews .card {
+    background-color: gray;
+    width: 28%;
+    float: left;
+    padding: 20px 16px;
+    margin: 10px 15px 10px;
+    min-height: 230px;
+    border-radius: 5%;
+}
+
+.testimonials .reviews .card .card_header .author_img {
+    width: 20%;
+    margin-right: 5px;
+    float: left;
+}
+
+.testimonials .reviews .card .card_header .author_img img {
     width: 100%;
+    border-radius: 50%;
+}
+
+.testimonials .reviews .card .card_header .author_info {
+    width: 70%;
+    float: left;
+    background-color: blue;
+    padding: 20px 2px 20px 6px;
+    float: left;
+}
+
+.testimonials .reviews .card .card_header .author_info p {
+    color: oklch(44.6% .03 256.802);
+}
+
+.testimonials .reviews .card .card_body {
+    margin-top: 40px;
+    color: oklch(37.3% .034 259.733);
+}
+
+.light-blue {
+    background: oklch(97% .014 254.604);
+}
+
+.light-green {
+    background: oklch(97.9% .021 166.113);
+}
+
+.light-purple {
+    background: oklch(97.7% .014 308.299);
 }
