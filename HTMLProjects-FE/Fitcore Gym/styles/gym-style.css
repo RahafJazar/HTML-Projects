@@ -1,0 +1,39 @@
+/*============Basic Style ==========================*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*=============Float clear==========================*/
+.clear {
+    clear: both;
+}
+
+/*===========Hero Section===========================*/
+.hero {
+    background-color: tomato;
+    margin: 2%;
+    padding: 2%;
+}
+
+.hero .container {
+    background-color: purple;
+}
+
+.hero_content {
+    background-color: lime;
+    width: 40%;
+    height: 200px;
+    float: left;
+    text-align: center;
+}
+
+.hero_img {
+    background-color: aqua;
+    width: 30%;
+    float: left;
+}
+
+.hero_img img {
+    width: 100%;
+}
