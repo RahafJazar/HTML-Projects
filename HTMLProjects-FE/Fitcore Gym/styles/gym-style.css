@@ -7,8 +7,35 @@
 
 }
 
+body {
+    font-size: 12px;
+    color: black;
+    line-height: 1.6;
+}
+
+a,
+span {
+    display: inline-block;
+}
+
 img {
     max-width: 100%;
+}
+
+input,
+select,
+textarea,
+.membership_form form button {
+    padding: 20px 0px 20px 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+label {
+    display: block;
+    color: oklch(37.3% .034 259.733);
+    margin-bottom: 20px;
 }
 
 /*+++++++++++++++++++Float clear+++++++++++++++++++*/
@@ -20,7 +47,8 @@ img {
 
 .hero .container,
 .why_choose_us .container,
-.testimonials .container {
+.testimonials .container,
+.membership_form .container {
 
     width: 80%;
     margin: auto;
@@ -31,7 +59,8 @@ img {
 /*1-title*/
 
 .why_choose_us .title,
-.testimonials .title {
+.testimonials .title,
+.membership_form .title {
 
     text-align: center;
     width: 50%;
@@ -41,13 +70,15 @@ img {
 }
 
 .why_choose_us .title h2,
-.testimonials .title h2 {
+.testimonials .title h2,
+.membership_form .title h2 {
     font-size: 35px;
     margin: 0 0 20px 0;
 }
 
 .why_choose_us .title p,
-.testimonials .title p {
+.testimonials .title p,
+.membership_form .title p {
 
     margin: 0 0 20px 0;
 }
@@ -55,7 +86,7 @@ img {
 /*===========Hero Section===========================*/
 .hero {
     /* background-color: tomato; */
-    width: 80%;
+    width: 90%;
     margin: 100px auto;
 }
 
@@ -71,7 +102,7 @@ img {
 .hero_content p,
 .hero_content h1,
 .hero_content .hero_content_CTA {
-    padding: 25px;
+    padding: 15px;
 }
 
 .hero_content h1 {
@@ -124,7 +155,7 @@ img {
 /*===============Why-Choose-Us Section=====================*/
 .why_choose_us {
 
-    width: 80%;
+    width: 90%;
     margin: 100px auto;
 }
 
@@ -140,12 +171,12 @@ img {
 
 .why_choose_us .benefit_cards .card {
 
-    width: 28%;
+    width: 27%;
     float: left;
     text-align: center;
-    padding: 20px 16px;
-    margin: 10px 15px 10px;
-    min-height: 230px;
+    padding: 20px 12px;
+    margin: 10px 13px 10px;
+    min-height: 250px;
     border-radius: 5%;
 }
 
@@ -269,22 +300,18 @@ img {
 
 /*===============Testimonials Section=====================*/
 .testimonials {
-    background-color: tomato;
-    width: 80%;
+
+    width: 90%;
     margin: 100px auto;
 }
 
-.testimonials .reviews {
-    background-color: yellow;
-}
 
 .testimonials .reviews .card {
-    background-color: gray;
-    width: 28%;
+    width: 27%;
     float: left;
-    padding: 20px 16px;
-    margin: 10px 15px 10px;
-    min-height: 230px;
+    padding: 20px 12px;
+    margin: 10px 13px 10px;
+    min-height: 250px;
     border-radius: 5%;
 }
 
@@ -302,7 +329,6 @@ img {
 .testimonials .reviews .card .card_header .author_info {
     width: 70%;
     float: left;
-    background-color: blue;
     padding: 20px 2px 20px 6px;
     float: left;
 }
@@ -326,4 +352,214 @@ img {
 
 .light-purple {
     background: oklch(97.7% .014 308.299);
+}
+
+.statistics {
+    background-color: #f9f3f4;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 20px;
+
+}
+
+.statistics .stat_item {
+
+    width: 22%;
+    margin-right: 17px;
+    text-align: center;
+    float: left;
+
+
+}
+
+.statistics .stat_item p {
+    color: oklch(44.6% .03 256.802);
+
+}
+
+.statistics .stat_item span {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+
+/*===============Membership Form  Section=====================*/
+.membership_form {
+
+    width: 90%;
+    margin: 100px auto;
+
+}
+
+
+
+.membership_form form {
+    width: 65%;
+    margin: auto;
+    padding: 20px;
+}
+
+.membership_form form .form_group,
+.membership_form form .email,
+.membership_form form .phone,
+.membership_form form .membership,
+.membership_form form .fitness_goals {
+    margin-bottom: 20px;
+}
+
+.membership_form form .form_group .first_name {
+    float: left;
+    width: 45%;
+
+}
+
+.membership_form form .form_group .last_name {
+    float: right;
+    width: 45%;
+
+}
+
+.membership_form form button {
+    background-color: black;
+    color: white;
+
+}
+
+.membership_form p {
+    font-size: 14px;
+    color: oklch(44.6% .03 256.802);
+    margin-top: 10px;
+    text-align: center;
+
+}
+
+
+/*============== Footer Section=====================*/
+.footer {
+    background-color: oklch(21% .034 264.665);
+}
+
+.footer .container {
+    width: 80%;
+    margin: auto;
+
+}
+
+.footer .container .content {
+    width: 100%;
+    margin: auto;
+    border-bottom: 1px solid oklch(55.1% .027 264.364);
+    padding: 20px;
+}
+
+.footer .container .content div {
+    padding: 10px 5px;
+}
+
+.footer .container .content .fitcore {
+
+    width: 42%;
+    color: white;
+    float: left;
+}
+
+.footer .container .content .fitcore p {
+    margin: 10px 0;
+}
+
+.footer .container .content .fitcore ul,
+.footer .container .content .quicklinks ul {
+    list-style-type: none;
+
+}
+
+.footer .container .content .contact .phone,
+.footer .container .content .contact .address,
+.footer .container .content .contact .hours,
+.footer .container .content .quicklinks ul,
+.footer .container .content .fitcore ul {
+    margin: 7px 0;
+}
+
+
+
+.footer .container .content .fitcore ul li {
+    float: left;
+    margin-right: 10px;
+
+}
+
+.footer .container .content .fitcore p,
+.footer .container .content .fitcore ul li a,
+.footer .container .content .quicklinks ul li a,
+.footer .container .content .contact .phone a,
+.footer .container .content .contact .address address,
+.footer .container .content .contact .hours p {
+    text-decoration: none;
+    color: oklch(55.1% .027 264.364);
+
+}
+
+.footer .container .content .contact .phone a,
+.footer .container .content .contact .address address,
+.footer .container .content .contact .hours p {
+
+    margin: 5px;
+}
+
+.footer .container .content .quicklinks {
+
+    color: white;
+    width: 24%;
+    float: left;
+
+}
+
+.footer .container .content .quicklinks ul li {
+    margin-bottom: 15px;
+
+}
+
+
+.footer .container .content .contact {
+
+    color: white;
+    width: 23%;
+    float: left;
+
+}
+
+.footer .container .copyright {
+    padding: 20px;
+}
+
+
+.footer .container .copyright p {
+    float: left;
+}
+
+.footer .container .copyright ul {
+    float: right;
+}
+
+.footer .container .copyright ul li {
+
+    float: left;
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+.footer .container .copyright ul li a {
+
+    text-decoration: none;
+}
+
+.footer .container .copyright ul li a,
+.footer .container .copyright p {
+
+    color: oklch(55.1% .027 264.364);
+
 }
