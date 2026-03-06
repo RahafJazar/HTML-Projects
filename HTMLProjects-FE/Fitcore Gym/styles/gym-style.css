@@ -55,7 +55,7 @@ img {
 /*===========Hero Section===========================*/
 .hero {
     /* background-color: tomato; */
-    width: 80%;
+    width: 90%;
     margin: 100px auto;
 }
 
@@ -75,7 +75,7 @@ img {
 }
 
 .hero_content h1 {
-    font-size: 70px;
+    font-size: 60px;
 
 }
 
@@ -124,7 +124,7 @@ img {
 /*===============Why-Choose-Us Section=====================*/
 .why_choose_us {
 
-    width: 80%;
+    width: 90%;
     margin: 100px auto;
 }
 
@@ -270,7 +270,7 @@ img {
 /*===============Testimonials Section=====================*/
 .testimonials {
     background-color: tomato;
-    width: 80%;
+    width: 90%;
     margin: 100px auto;
 }
 
