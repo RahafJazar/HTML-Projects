@@ -46,11 +46,82 @@
         .clear {
             clear: both;
         }
+
+
+        .menu {
+            overflow: auto;
+        }
+
+        .menu .header {
+            background-image: url("../images/saltaon.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        .menu .header .container {
+            text-align: center;
+            word-spacing: 5px;
+            color: rgb(19, 100, 105);
+            margin-top: 20px;
+        }
+
+        .menu .header h2 {
+            font-size: 40px;
+        }
+
+        .menu .content {
+
+            margin-top: 20px;
+        }
+
+        .menu .content .item {
+            width: 32.4%;
+            text-align: center;
+            padding: 5px;
+            float: left;
+        }
+
+        .menu .content .item h3,
+        .menu .content .item p {
+            color: rgb(19, 100, 105);
+            margin-bottom: 5px;
+
+        }
+
+        .menu .content .item span {
+            color: rgb(214, 139, 54);
+
+        }
+
+
+        .parent-box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            transition: width 3s;
+        }
+
+        .child-box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        .parent-box:hover {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <!-- <div class="parent">
+    <div class="parent">
         <div class="child">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ad omnis possimus dolorem fugit
             temporibus dolore rerum aliquam? Voluptatem nihil illo, similique cum corrupti qui, iure veritatis, sed eos
@@ -61,7 +132,7 @@
             quae quisquam dolorem omnis ab? Doloribus laudantium eos eum voluptatum! Neque ipsam dolorum architecto
             quod.
         </div>
-    </div> -->
+    </div>
 
     <div class="gallery">
         <!-- <div class="photo">
@@ -93,6 +164,60 @@
         </div>
         <textarea name=""
             id="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore obcaecati harum incidunt, provident error veritatis ipsum alias beatae assumenda numquam corporis similique nobis ipsam, quam sed, sequi eos excepturi. Pariatur, fugiat nemo, est ducimus assumenda molestiae sint, laboriosam delectus nobis temporibus repellendus. Ipsum recusandae asperiores nam fugit corporis ut ea dolorum blanditiis quidem nesciunt iure deserunt placeat sequi beatae odio sunt inventore eum sapiente dolores, eius explicabo quas! Voluptatum, dolorum. Molestias esse sapiente odit cum, unde illo ducimus autem, laborum et eaque quod nulla doloremque, voluptatum nobis fugiat. Adipisci tenetur quibusdam vel, atque fuga consequatur similique doloremque ipsa labore eaque!</textarea>
+    </div>
+
+    <div class="menu">
+        <div class="container">
+            <div class="header">
+                <div class="container">
+                    <p>Our Menu</p>
+                    <h2>Fresh From The Sea</h2>
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="container">
+                    <div class="item">
+                        <h3>crab salad</h3>
+                        <p>Tomatos/oliveoil/cheese</p>
+                        <p><span>$400</span></p>
+                    </div>
+                    <div class="item">
+                        <h3>crab salad</h3>
+                        <p>Tomatos/oliveoil/cheese</p>
+                        <p><span>$400</span></p>
+                    </div>
+                    <div class="item">
+                        <h3>crab salad</h3>
+                        <p>Tomatos/oliveoil/cheese</p>
+                        <p><span>$400</span></p>
+                    </div>
+                    <div class="item">
+                        <h3>crab salad</h3>
+                        <p>Tomatos/oliveoil/cheese</p>
+                        <p><span>$400</span></p>
+                    </div>
+                    <div class="item">
+                        <h3>crab salad</h3>
+                        <p>Tomatos/oliveoil/cheese</p>
+                        <p><span>$400</span></p>
+                    </div>
+                    <div class="item">
+                        <h3>crab salad</h3>
+                        <p>Tomatos/oliveoil/cheese</p>
+                        <p><span>$400</span></p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="parent-box">
+        <div class="child-box">
+
+        </div>
     </div>
 </body>
 
