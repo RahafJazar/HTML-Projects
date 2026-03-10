@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratcise transform </title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .gallery {
+            background-color: gray;
+            width: 90%;
+            margin: auto;
+
+        }
+
+        .person {
+            background-color: rgb(25, 0, 255);
+            width: 25%;
+            position: relative;
+
+        }
+
+        .person img {
+            width: 100%;
+            display: block;
+        }
+
+
+        .person-caption {
+            text-align: center;
+            background-color: rgba(207, 207, 108, 0.3);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 100%;
+            opacity: 0;
+            transition: all 1s;
+            overflow: hidden;
+        }
+
+        .person-caption h2 {
+            margin: 0;
+            background-color: rgba(207, 207, 108, 0.5);
+            padding: 10px;
+
+        }
+
+        .person-caption p {
+            padding: 15px 0;
+            font-size: small;
+
+        }
+
+        .person:hover {
+            transform: scale(1.3);
+        }
+
+        .person:hover .person-caption {
+            opacity: 1;
+            left: 0;
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery">
+        <div class="person">
+            <img src="../images/person.png" alt="person">
+            <div class="person-caption">
+                <h2>Amad</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, blanditiis! Vitae debitis sequi
+                    reiciendis fugiat alias inventore ipsam!</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
