@@ -1,13 +1,16 @@
 /*============ Wild Card Style  + Global styles====================*/
 * {
     font-family: "Exo", sans-serif;
+    color: black;
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
+    letter-spacing: 1.4px;
 }
 
 span,
@@ -20,6 +23,7 @@ a {
 }
 
 ul {
+    padding-inline: 0;
     list-style-type: none;
 }
 
@@ -31,55 +35,179 @@ img {
     clear: both;
 }
 
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.bg-purple-dark {
+    background-color: rgb(142, 81, 255);
+}
+
+.bg-purple-light {
+    background-color: rgb(166, 132, 255);
+}
+
+.rounded-20 {
+    border-radius: 20px;
+}
+
+.pd-5 {
+    padding: 5px;
+}
+
+.pd-7 {
+    padding: 7px;
+}
+
+.pd-20 {
+    padding: 20px;
+}
+
+.col-white {
+    color: white;
+}
+
+.bd-grey-light {
+    border: 1px solid rgb(153, 161, 175);
+}
+
 /*===========================================================*/
 
 /*======================NAV  section styles====================*/
 nav {
-    background-color: green;
-    padding: 10px 30px;
+    background-color: rgb(245, 243, 255);
+    position: relative;
+    padding: 10px 2px;
+    border-bottom: 1px solid rgb(221, 214, 255);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
 }
 
 nav .nav-header {
     float: left;
-    background-color: yellow;
     padding: 0;
-    position: relative;
-    width: 45%;
+    position: absolute;
+    width: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+
 }
 
 nav .nav-header .nav-icon {
-    background-color: blueviolet;
-    width: 5%;
+    background-color: rgb(142, 81, 255);
+    width: 7%;
     float: left;
- 
-    
+    padding: 5px;
+    border-radius: 10px;
+
+
 }
 
-nav .nav-header .nav-name {
-    background-color: purple;
-    float: left; 
+nav .nav-header .nav-icon img {
+    display: block;
+
 }
-nav .nav-header .nav-name h1  {
-   padding: 0;
-   margin: 0;
+
+
+nav .nav-header .nav-name {
+    float: left;
+    margin: 7px 5px 0;
+
+
+}
+
+nav .nav-header .nav-name h1 {
+    padding: 0;
+    margin: 0;
 }
 
 nav .nav-links {
-    background-color: red;
     float: right;
-    width: 45%;
+    padding-inline: 10px;
+    width: fit-content;
+
 
 }
+
+
 
 nav .nav-links ul li {
     float: left;
-    margin-right: 30px;
+    margin-left: 30px;
+    position: relative;
+
+}
+
+
+nav .nav-links ul li::before {
+    content: "";
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+nav .nav-links ul li a {
+    transition: color 0.5 ease;
+
+}
+
+nav .nav-links ul li:hover::before {
+    background-color: rgb(142, 81, 255);
+    width: 100%;
+}
+
+nav .nav-links ul li a:hover {
+    color: rgb(142, 81, 255);
 
 }
 
 
 
 
+/*========================================================*/
+
+/*==========================HERO section===================*/
+
+#hero {
+    background-color: green;
+    padding: 100px 0px;
+
+}
+
+#hero .hero-img,
+#hero .hero-info {
+    float: left;
+    width: 50%;
+}
+
+#hero .hero-img {
+    background-color: aqua;
+    padding: 20px;
+    position: relative;
+
+}
+
+#hero .hero-img .discount {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
+
+#hero .hero-info {
+    background-color: rgb(37, 28, 96);
+    padding: 20px;
+    position: relative;
+
+}
 
 
 /*========================================================*/
