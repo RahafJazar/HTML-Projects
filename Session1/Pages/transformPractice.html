@@ -119,6 +119,50 @@
                 width: 25%;
             }
         }
+
+
+        div {
+            box-sizing: border-box;
+            margin: 10px auto;
+            padding: 10px;
+            height: 160px;
+        }
+
+        .one {
+            background-color: brown;
+
+        }
+
+        .two {
+            background-color: green;
+            width: 80%;
+            margin-top: -100px;
+
+
+        }
+
+        .two_1 {
+            background-color: yellow;
+            height: 50px;
+            position: relative;
+            z-index: 4;
+
+
+        }
+
+        .two_2 {
+            background-color: rgb(48, 221, 212);
+            height: 50px;
+            margin-top: -30px;
+        }
+
+        .three {
+            background-color: blue;
+            width: 50%;
+            margin-top: -150px;
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -135,31 +179,23 @@
         </div>
     </div> -->
 
+    <div class="dialog-wrapper">
+        <div class="dialog-content">
+            <button class="close-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-x">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
 
-    <div class="watesr"
-        style="background-color: aqua;width: 50%; height: 90vh; margin: auto;display: flow-root; position:  relative;z-index: 1;">
-        <div class="kid">
-            <img src="../images/kid-removebg-preview.png" alt="kid" style="position: relative;z-index: -1;">
-        </div>
-        <div class="ring">
-            <img src="../images/ring1-removebg-preview.png" alt="ring"
-                style="margin-top: -100px;position: relative;z-index: 1;">
-        </div>
-        <div class="water">
-            <img src="../images/water-removebg-preview.png" alt="water" style="margin-top: -170px;position: relative;">
+                <span class="visually-hidden">
+                    Dismiss dialog
+                </span>
+            </button>
         </div>
     </div>
-    <div>
-        <div class="ring">
-            <img src="../images/ring.png" alt="">
-        </div>
-        <div class="duck">
-            <img src="../images/duck.png" alt="" style="margin-bottom: -40px; transform: rotate(40deg);">
-        </div>
-        <div class="ring">
-            <img src="../images/ring.png" alt="">
-        </div>
-    </div>
+
 </body>
 
 </html>

@@ -1,0 +1,85 @@
+/*============ Wild Card Style  + Global styles====================*/
+* {
+    font-family: "Exo", sans-serif;
+}
+
+body {
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+span,
+a {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    width: 100%;
+}
+
+.clear {
+    clear: both;
+}
+
+/*===========================================================*/
+
+/*======================NAV  section styles====================*/
+nav {
+    background-color: green;
+    padding: 10px 30px;
+}
+
+nav .nav-header {
+    float: left;
+    background-color: yellow;
+    padding: 0;
+    position: relative;
+    width: 45%;
+}
+
+nav .nav-header .nav-icon {
+    background-color: blueviolet;
+    width: 5%;
+    float: left;
+ 
+    
+}
+
+nav .nav-header .nav-name {
+    background-color: purple;
+    float: left; 
+}
+nav .nav-header .nav-name h1  {
+   padding: 0;
+   margin: 0;
+}
+
+nav .nav-links {
+    background-color: red;
+    float: right;
+    width: 45%;
+
+}
+
+nav .nav-links ul li {
+    float: left;
+    margin-right: 30px;
+
+}
+
+
+
+
+
+
+/*========================================================*/

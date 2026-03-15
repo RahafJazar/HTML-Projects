@@ -1,0 +1,9 @@
+{
+    "rules": {
+        "declaration-property-value-disallowed-list": {
+            "transition": [
+                "all"
+            ]
+        }
+    }
+}
