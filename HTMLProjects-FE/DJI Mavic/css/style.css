@@ -1,15 +1,14 @@
 /*============ Wild Card Style  + Global styles====================*/
 * {
     font-family: "Exo", sans-serif;
-    color: black;
     box-sizing: border-box;
-    color: #333;
     line-height: 1.5;
+    color: #000;
 }
 
 body {
     margin: 0;
-    color: #333;
+    color: black;
     font-size: 14px;
     letter-spacing: 1.4px;
 }
@@ -32,6 +31,34 @@ img {
     width: 100%;
 }
 
+table {
+    overflow-x: auto;
+    border: 2px solid #d1d5dccc;
+    border-radius: 20px;
+    padding: 30px;
+    overflow-x: auto;
+}
+
+table tbody tr td {
+    border-bottom: 1px solid #d1d5dccc;
+
+}
+
+table thead tr th {
+    border-bottom: 2px solid #d1d5dccc;
+
+}
+
+table tfoot tr td {
+    padding: 10px 0 10px;
+}
+
+table tfoot tr td:not(:first-child) {
+    text-align: center;
+}
+
+
+
 .clear {
     clear: both;
 }
@@ -39,6 +66,26 @@ img {
 .container {
     width: 90%;
     margin: auto;
+}
+
+.bd-radius-bottom-left-30 {
+    border-bottom-left-radius: 30px;
+}
+
+.bd-radius-bottom-right-30 {
+    border-bottom-right-radius: 30px;
+}
+
+.bd-radius-top-left-30 {
+    border-top-left-radius: 30px;
+}
+
+.bd-radius-top-right-30 {
+    border-top-right-radius: 30px;
+}
+
+.bd-radius-10 {
+    border-radius: 10px;
 }
 
 .bg-purple-dark {
@@ -55,6 +102,10 @@ img {
 
 .bg-red-light {
     background-color: rgb(255, 226, 226);
+}
+
+.bg-yellow {
+    background-color: rgb(240, 177, 0);
 }
 
 .rounded-20 {
@@ -80,12 +131,15 @@ img {
 .mg-top-10 {
     margin-top: 10px;
 }
+
 .mg-top-20 {
     margin-top: 20px;
 }
+
 .mg-bottom-10 {
     margin-bottom: 10px;
 }
+
 .mg-bottom-20 {
     margin-bottom: 20px;
 }
@@ -116,16 +170,20 @@ img {
 
 .fn-50 {
     font-size: 50px;
-   
 }
 
 .col-white {
     color: white;
-  
 }
-.col-blue-dark{
-   color: rgb(112, 8, 231) !important;
+
+progress::-webkit-progress-value {
+    color: green;
 }
+
+.col-blue-dark {
+    color: rgb(112, 8, 231) !important;
+}
+
 .col-purple-dark {
     color: rgb(142, 81, 255) !important;
 }
@@ -139,6 +197,8 @@ img {
 }
 
 
+
+
 .bd-grey-light {
     border: 1px solid rgba(153, 161, 175, 0.5);
 }
@@ -147,20 +207,36 @@ img {
     font-weight: bold;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
-.highlight{
-    
-background-color: rgb(237, 233, 254);
+
+.highlight {
+
+    background-color: rgb(237, 233, 254);
 }
- 
-.badge{
+
+.badge {
     background-color: oklch(60.6% .25 292.717);
     border-radius: 20px;
     padding: 10px;
     color: white;
 }
+
+.bad {
+    color: rgb(245, 73, 0);
+
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.light-grey {
+    color: #000 !important;
+    background-color: rgb(229, 231, 235) !important;
+}
+
 /*===========================================================*/
 
 /*======================NAV  section styles====================*/
@@ -272,13 +348,13 @@ nav .nav-links ul li a:hover {
 
 #hero .hero-img {
     float: left;
-    width: 45%; 
+    width: 45%;
     margin-right: 50px;
 }
- 
+
 #hero .hero-info {
     float: left;
-    width: 47%;
+    width: 48%;
 }
 
 #hero .hero-img {
@@ -296,12 +372,12 @@ nav .nav-links ul li a:hover {
 
 
 #hero .hero-info {
-    padding: 20px 10px 0 10px;
+    padding: 5px 0px 0 10px;
     position: relative;
 
 
 }
- 
+
 
 #hero .hero-info .cta button {
     padding: 10px;
@@ -324,44 +400,362 @@ nav .nav-links ul li a:hover {
 
 /*========================================================*/
 /*==================Comparison Section====================*/
-#comparison{
-    background-color: #ddfab8;
+#comparison {
+
+    padding: 20px;
 }
-#comparison .comparison-data thead th span:first-child{
-display: block;
-color: black;
-font-weight: bold;
-font-size: 16px;
+
+#comparison .comparison-header {
+    margin-bottom: 50px;
 }
-#comparison .comparison-data thead th span:last-child{
-display: block;
-color: rgb(106, 114, 130);
-font-size: 12px;
+
+#comparison .comparison-data thead th span:first-child {
+    display: block;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
 }
- 
-#comparison .comparison-data thead tr th { 
-  padding: 20px;
+
+#comparison .comparison-data thead th span:last-child {
+    display: block;
+    color: rgb(106, 114, 130);
+    font-size: 12px;
 }
+
+#comparison .comparison-data thead tr th {
+    padding: 20px;
+}
+
+
 #comparison .comparison-data tbody tr td {
-  text-align: center;
-  padding: 15px;
+    text-align: center;
+    padding: 15px;
 }
-#comparison .comparison-data tbody tr td .icon,
-#comparison .comparison-data tbody tr td .check{
- width: 20px;
- display: inline-block;
- vertical-align: middle;
+
+#comparison .comparison-data .icon,
+#comparison .comparison-data .check {
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
 }
-#comparison .comparison-data tbody tr td span
-{
- font-size: 15px;
- vertical-align: middle;
+
+#comparison .comparison-data tbody tr td span {
+    font-size: 15px;
+    vertical-align: middle;
 }
-#comparison .comparison-data tbody tr td .icon  img{
-  display: block;
+
+#comparison .comparison-data tbody tr td .icon img {
+    display: block;
 }
+
+#comparison .comparison-data tbody tr td:first-child {
+    text-align: left;
+}
+
+#comparison .comparison-winner {
+    width: 40%;
+    margin: 20px auto;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 10px;
+    padding-left: 40px;
+
+}
+
+#comparison .comparison-winner .icon {
+    width: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#comparison .comparison-winner div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#comparison .comparison-winner div p:first-child {
+    font-size: 15px;
+    color: rgb(0, 166, 62);
+    font-weight: bold;
+}
+
+#comparison .comparison-winner div p:last-child {
+    font-size: 11px;
+    color: rgb(0, 166, 62);
+
+}
+
 /*========================================================*/
- 
+
+/*=====================Feedback Section================*/
+
+
+#feedback .feedback-content .icon {
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#feedback .feedback-content .feedback-summary {
+    padding: 20px;
+    width: 30%;
+    position: sticky;
+    top: 30px;
+    float: left;
+    border: 2px solid rgb(229, 231, 235);
+
+
+}
+
+#feedback .feedback-content .feedback-summary-content {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+
+}
+
+#feedback .feedback-content .feedback-summary-content .content {
+    text-align: left;
+}
+
+#feedback .feedback-content .feedback-summary-content .content ul li .light-grey {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+#feedback .feedback-content .feedback-summary-content .content ul li span {
+    display: inline-block;
+}
+
+#feedback .feedback-content .feedback-summary-content .rating {
+    text-align: center;
+    display: flow-root;
+    padding-left: 30px;
+
+}
+
+#feedback .feedback-content .feedback-summary-content .rating div {
+    float: left;
+    width: 45%;
+    margin-right: 10px;
+}
+
+#feedback .feedback-content .feedback-summary-content .rating div {
+    float: left;
+    width: 45%;
+    margin-right: 10px;
+
+}
+
+
+#feedback .feedback-content .feedback-summary-content .rating div span {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+#feedback .feedback-content .feedback-reviews {
+    width: 60%;
+    float: right;
+    text-align: center;
+    margin-left: 30px;
+
+}
+
+#feedback .feedback-content .feedback-reviews .review-card {
+    padding: 20px;
+    border: 2px solid oklch(92.8% .006 264.531);
+    border-radius: 10px;
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .customer-profile {
+    float: left;
+    width: 50%;
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .customer-profile .customer-img {
+    width: 60px;
+    border-radius: 50%;
+    border: 3px solid rgb(142, 81, 255);
+    margin-right: 10px;
+    float: left;
+    vertical-align: middle;
+
+
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .customer-profile .customer-info {
+    float: left;
+    vertical-align: middle;
+    text-align: left;
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .customer-profile .customer-info h4,
+#feedback .feedback-content .feedback-reviews .review-card .customer-profile .customer-info p {
+    margin: 3px 1px;
+}
+
+
+#feedback .feedback-content .feedback-reviews .review-card .verification-purchase {
+    text-align: right;
+    width: 50%;
+    float: right;
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .verification-purchase span {
+    padding: 4px 10px;
+    border-radius: 20px;
+    color: rgb(142, 81, 255);
+    background-color: oklch(94.3% .029 294.588);
+
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .verification-purchase p {
+    margin: 6px 2px;
+}
+
+#feedback .feedback-content .feedback-reviews .review-card .customer-comment {
+    margin: 30px 2px;
+}
+
+#feedback .feedback-content .feedback-reviews .load-more button {
+    color: white;
+    background-color: rgb(142, 81, 255);
+    padding: 15px 40px;
+    margin: 20px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+
+
+
+/*=========================================================*/
+/*=====================Footer Section======================*/
+#footer {
+    background-color: rgb(16, 24, 40);
+    ;
+}
+
+
+
+#footer .content .social .name .footer-icon {
+    background-color: rgb(142, 81, 255);
+    width: 50px;
+    float: left;
+    padding: 6px;
+    border-radius: 10px;
+
+
+}
+
+#footer .content .social .name .footer-icon {
+
+    margin-right: 7px;
+}
+
+#footer .content .social .name .footer-icon img {
+    display: block;
+
+}
+
+#footer .content .social .social-apps ul li {
+    float: left;
+    width: 35px;
+    padding: 2px 5px;
+    margin-right: 10px;
+    background-color: rgb(30, 41, 57);
+    border-radius: 10px;
+
+}
+
+#footer .content .social .social-apps ul li.facebook:hover {
+    background-color: rgb(114, 128, 215);
+
+}
+
+#footer .content .social .social-apps ul li.twitter:hover {
+    background-color: rgb(155, 165, 227);
+
+}
+
+#footer .content .social .social-apps ul li.instagram:hover {
+    background-color: rgb(211, 133, 205);
+
+}
+
+#footer .content .social .social-apps ul li.youtube:hover {
+    background-color: rgb(224, 74, 74);
+
+}
+
+#footer .content .social .social-apps ul li img {
+    margin-top: 2px;
+    display: block;
+
+}
+
+#footer .content .products {
+    width: 25%;
+    float: left;
+}
+
+#footer .content .social {
+    width: 20%;
+    float: left;
+    margin-right: 40px;
+}
+
+#footer .content .products,
+#footer .content .supports,
+#footer .content .companies {
+
+    width: 25%;
+    float: left;
+}
+
+#footer .content .products ul li,
+#footer .content .supports ul li,
+#footer .content .companies ul li {
+    margin: 10px 5px;
+}
+
+#footer .content .social h3,
+#footer .content .social p,
+#footer .content .products h3,
+#footer .content .supports h3,
+#footer .content .companies h3 {
+    color: white !important;
+}
+
+#footer .content .products,
+#footer .content .supports,
+#footer .content .companies {
+    padding-top: 12px;
+}
+
+#footer .content .products ul li,
+#footer .content .supports ul li,
+#footer .content .companies ul li {
+    color: rgb(153, 161, 175);
+    ;
+}
+
+#footer .content .products ul li:hover,
+#footer .content .supports ul li:hover,
+#footer .content .companies ul li:hover {
+    color: #fff;
+
+}
+
+
+#footer .content {
+    border-bottom: 1px solid rgb(30, 41, 57);
+    ;
+}
+
+/*=========================================================*/
 
 
 @media screen and (max-width:1020px) {
