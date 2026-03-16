@@ -4,13 +4,13 @@
     color: black;
     box-sizing: border-box;
     color: #333;
+    line-height: 1.5;
 }
 
 body {
     margin: 0;
     color: #333;
     font-size: 14px;
-    line-height: 1.2;
     letter-spacing: 1.4px;
 }
 
@@ -69,12 +69,25 @@ img {
     padding: 7px;
 }
 
+.pd-10 {
+    padding: 10px;
+}
+
 .pd-20 {
     padding: 20px;
 }
 
+.mg-top-10 {
+    margin-top: 10px;
+}
+.mg-top-20 {
+    margin-top: 20px;
+}
 .mg-bottom-10 {
     margin-bottom: 10px;
+}
+.mg-bottom-20 {
+    margin-bottom: 20px;
 }
 
 .mg-right-5 {
@@ -97,12 +110,24 @@ img {
     font-size: 30px;
 }
 
-.col-white {
-    color: white;
+.fn-40 {
+    font-size: 40px;
 }
 
+.fn-50 {
+    font-size: 50px;
+   
+}
+
+.col-white {
+    color: white;
+  
+}
+.col-blue-dark{
+   color: rgb(112, 8, 231) !important;
+}
 .col-purple-dark {
-    color: rgb(142, 81, 255);
+    color: rgb(142, 81, 255) !important;
 }
 
 .col-black {
@@ -122,7 +147,20 @@ img {
     font-weight: bold;
 }
 
-
+.text-center{
+    text-align: center;
+}
+.highlight{
+    
+background-color: rgb(237, 233, 254);
+}
+ 
+.badge{
+    background-color: oklch(60.6% .25 292.717);
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+}
 /*===========================================================*/
 
 /*======================NAV  section styles====================*/
@@ -151,7 +189,7 @@ nav .nav-header {
 
 nav .nav-header .nav-icon {
     background-color: rgb(142, 81, 255);
-    width: 8%;
+    width: 50px;
     float: left;
     padding: 6px;
     border-radius: 10px;
@@ -232,10 +270,15 @@ nav .nav-links ul li a:hover {
 
 }
 
-#hero .hero-img,
+#hero .hero-img {
+    float: left;
+    width: 45%; 
+    margin-right: 50px;
+}
+ 
 #hero .hero-info {
     float: left;
-    width: 50%;
+    width: 47%;
 }
 
 #hero .hero-img {
@@ -253,11 +296,12 @@ nav .nav-links ul li a:hover {
 
 
 #hero .hero-info {
-    padding: 20px 30px 0 60px;
+    padding: 20px 10px 0 10px;
     position: relative;
 
 
 }
+ 
 
 #hero .hero-info .cta button {
     padding: 10px;
@@ -279,3 +323,54 @@ nav .nav-links ul li a:hover {
 
 
 /*========================================================*/
+/*==================Comparison Section====================*/
+#comparison{
+    background-color: #ddfab8;
+}
+#comparison .comparison-data thead th span:first-child{
+display: block;
+color: black;
+font-weight: bold;
+font-size: 16px;
+}
+#comparison .comparison-data thead th span:last-child{
+display: block;
+color: rgb(106, 114, 130);
+font-size: 12px;
+}
+ 
+#comparison .comparison-data thead tr th { 
+  padding: 20px;
+}
+#comparison .comparison-data tbody tr td {
+  text-align: center;
+  padding: 15px;
+}
+#comparison .comparison-data tbody tr td .icon,
+#comparison .comparison-data tbody tr td .check{
+ width: 20px;
+ display: inline-block;
+ vertical-align: middle;
+}
+#comparison .comparison-data tbody tr td span
+{
+ font-size: 15px;
+ vertical-align: middle;
+}
+#comparison .comparison-data tbody tr td .icon  img{
+  display: block;
+}
+/*========================================================*/
+ 
+
+
+@media screen and (max-width:1020px) {
+    nav .nav-links {
+        visibility: hidden;
+    }
+
+    #hero .hero-img,
+    #hero .hero-info {
+        width: 100%;
+    }
+}
