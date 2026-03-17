@@ -88,6 +88,7 @@ table tfoot tr td:not(:first-child) {
     border-radius: 10px;
 }
 
+
 .bg-purple-dark {
     background-color: rgb(142, 81, 255);
 }
@@ -106,6 +107,24 @@ table tfoot tr td:not(:first-child) {
 
 .bg-yellow {
     background-color: rgb(240, 177, 0);
+}
+
+.bg-orange {
+    background-color: rgb(255, 105, 0);
+}
+
+.bg-cyan {
+    background-color: rgb(0, 184, 219);
+}
+
+.bg-green {
+    background-color: rgb(0, 201, 80);
+
+}
+
+.bg-teal {
+    background-color: rgb(0, 187, 167);
+
 }
 
 .rounded-20 {
@@ -635,7 +654,7 @@ nav .nav-links ul li a:hover {
 /*=====================Footer Section======================*/
 #footer {
     background-color: rgb(16, 24, 40);
-    ;
+
 }
 
 
@@ -755,8 +774,135 @@ nav .nav-links ul li a:hover {
     ;
 }
 
-/*=========================================================*/
+#footer .copyright p {
+    float: left;
+    width: 65%;
+    color: white;
+}
 
+#footer .copyright .payment {
+    float: right;
+    width: 35%;
+    padding: 10px;
+
+
+}
+
+#footer .copyright .payment div:not(:last-child) {
+    width: 60px;
+    display: inline-block;
+    margin: 0 20px 0 20px;
+    background-color: white;
+    padding: 7px;
+    border-radius: 10px;
+    min-height: 40px;
+    position: relative;
+
+}
+
+#footer .copyright .payment div img {
+    width: 80%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*=========================================================*/
+/*-======================accessory-showcase Section==================*/
+#accessory-showcase {
+    padding: 20px;
+    margin: 70px 0;
+
+}
+
+#accessory-showcase .products-cards {
+
+    padding: 20px;
+
+}
+
+#accessory-showcase .products-cards .card {
+    width: 23%;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 10px;
+    float: left;
+    margin-right: 15px;
+    min-height: 410px;
+}
+
+#accessory-showcase .products-cards .card .card-container {
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+
+}
+
+#accessory-showcase .products-cards .card .card-img {
+    width: 100%;
+    position: relative;
+
+}
+
+#accessory-showcase .products-cards .card .card-img img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+
+}
+
+#accessory-showcase .products-cards .card .card-img img:hover {
+    width: 100%;
+    border-radius: 10px;
+    transform: scale(1.1);
+
+}
+
+#accessory-showcase .products-cards .card .card-img span {
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
+
+
+
+#accessory-showcase .products-cards .card .card-payment-info span {
+    margin-right: 13px;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+
+#accessory-showcase .products-cards .card .card-payment-info button {
+    box-sizing: border-box;
+    background-color: rgb(142, 81, 255);
+    border-radius: 20px;
+    padding: 4px 10px;
+}
+
+#accessory-showcase .view-more {
+    background-color: green;
+    text-align: center;
+    color: rgb(142, 81, 255);
+
+
+}
+
+#accessory-showcase .view-more button {
+    background-color: white;
+    padding: 20px 2      0px;
+    color: rgb(142, 81, 255);
+    font-weight: bold;
+    border-radius: 20px;
+
+
+}
+
+/*===========================================================*/
 
 @media screen and (max-width:1020px) {
     nav .nav-links {
