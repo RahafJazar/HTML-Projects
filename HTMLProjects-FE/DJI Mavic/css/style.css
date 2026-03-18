@@ -645,6 +645,13 @@ nav .nav-links ul li a:hover {
     border: 1px solid transparent;
     border-radius: 20px;
     font-weight: bold;
+    box-sizing: border-box;
+}
+
+#feedback .feedback-content .feedback-reviews .load-more button:hover {
+    color: rgb(142, 81, 255);
+    background-color:white; 
+  border:2px solid rgb(142, 81, 255);
 }
 
 
@@ -884,20 +891,31 @@ nav .nav-links ul li a:hover {
     padding: 4px 10px;
 }
 
-#accessory-showcase .view-more {
-    background-color: green;
+#accessory-showcase .view-more { 
     text-align: center;
     color: rgb(142, 81, 255);
+    margin:10px;
+   
 
 
 }
 
 #accessory-showcase .view-more button {
     background-color: white;
-    padding: 20px 2      0px;
+    padding: 20px 60px;
     color: rgb(142, 81, 255);
     font-weight: bold;
-    border-radius: 20px;
+    border-radius: 30px;
+    border: 2px solid rgb(142, 81, 255);;
+
+
+}
+#accessory-showcase .view-more button:hover {
+    background-color: rgb(142, 81, 255); 
+    padding: 20px 60px;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
 
 
 }
