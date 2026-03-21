@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-----------------Normalize.css(reset)--------------------->
     <link rel="stylesheet" href="./css/Normalize.css">
+    <!-----------------Fontawesome  ---------------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
     <style>
         /*general*/
@@ -19,7 +23,13 @@
         }
 
         .navbar {
-            background-color: rgb(209, 208, 208);
+            background-color: rgb(15, 15, 8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2;
+
+
         }
 
         .navbar .logo {
@@ -39,7 +49,6 @@
         }
 
         .navbar .logo h1 a {
-
             color: brown;
 
         }
@@ -51,11 +60,40 @@
             margin-bottom: 10px;
         }
 
+        .navbar .links #burgerBar {
+            color: white;
+            font-size: 20px;
+            margin-inline: 10px;
+            margin-top: 12px;
+            float: right;
+
+        }
+
+
+
+
         .navbar .links ul {
             list-style-type: none;
             margin: 0 !important;
             padding: 10px;
+            float: left;
+            display: none;
 
+
+        }
+
+        @media screen and (min-width:992px) {
+            .navbar .links #burgerBar {
+                display: none;
+
+            }
+
+            .navbar .links ul {
+
+                display: block;
+
+
+            }
 
         }
 
@@ -64,31 +102,249 @@
             margin-right: 10px;
         }
 
-        .hero {
-            background-color: yellowgreen;
-            height: 100vh;
-            display: flow-root;
+        .navbar .links ul li a {
+            color: white;
+        }
 
+        .hero {
+            height: 100vh;
+            position: relative;
+        }
+
+        .layer {
+            position: absolute;
+            background-color: rgba(4, 46, 46, 0.2);
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
         }
 
         .hero .text {
+
             text-align: center;
             width: 50%;
             margin: auto;
-            margin-top: 30px;
+            margin-top: 200px;
             color: white;
 
         }
+
+
 
         .hero .text h2 {
             font-size: 50px;
             color: brown;
             text-transform: capitalize;
         }
+
+        .hero {
+            background-image: url("./images/fokir.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .about.section {
+
+            background-color: rgb(207, 203, 203);
+        }
+
+        .about.section .container {
+            width: 90%;
+            margin: auto;
+            padding-block: 80px;
+        }
+
+
+
+        .about.section .about-img {
+            float: left;
+
+            border-radius: 5px;
+            margin-right: 20px;
+            width: 100%;
+            margin-bottom: 50px;
+
+        }
+
+        .about.section .about-img img {
+            width: 100%;
+            display: block;
+
+
+
+        }
+
+        .about.section .about-text {
+            float: right;
+            /* width: 55%; */
+            width: 100%;
+        }
+
+        @media screen and (min-width:800px) {
+            .about.section .container {
+                width: 80%;
+
+            }
+
+            .about.section .about-img {
+
+                width: 40%;
+                border: 6px solid rgb(73, 72, 72);
+            }
+
+            .about.section .about-img img {
+
+                position: relative;
+                top: 20px;
+                left: 20px;
+            }
+
+            .about.section .about-text {
+                width: 55%;
+
+            }
+
+
+        }
+
+
+        .about.section .about-text h2 {
+            font-size: 40px;
+            text-transform: uppercase;
+
+        }
+
+        .about.section .about-text p {
+            margin-block: 20px;
+            color: #555555;
+            border-bottom: 1px dashed #555555;
+            padding-bottom: 20px;
+
+        }
+
+
+        .about.section .about-text ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .about.section .about-text ul .inner-ul {
+            margin-right: 20px;
+            float: left;
+        }
+
+        .about.section .about-text ul .inner-ul ul li {
+            margin-bottom: 2px;
+        }
+
+        .about.section .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .about.section .about-text button {
+            padding: 10px 30px;
+            font-size: 16px;
+            background-color: brown;
+            color: wheat;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Conatct us section  */
+        .contact {
+            background-color: rebeccapurple;
+            padding-block: 30px;
+            text-align: center;
+        }
+
+        .contact .title {
+            width: fit-content;
+            margin-inline: auto;
+            background-color: #555555;
+            position: relative;
+        }
+
+        .contact .title h2 {
+            font-size: 35px;
+        }
+
+        .contact .title .lines {
+            background-color: yellow;
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+            height: 10px;
+            width: 80%;
+            left: 50%;
+            transform: translatex(-50%);
+        }
+
+        .contact form {
+            width: 60%;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 6px;
+            border: 1px solid #cccccc;
+        }
+
+        .contact input {
+            padding: 6px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+
+
+        .contact .inputs-group input:nth-child(1) {
+            float: left;
+            width: 48%;
+
+        }
+
+        .contact .inputs-group input:nth-child(2) {
+            float: right;
+            width: 48%;
+
+        }
+
+
+        .contact .form>input {
+            background-color: rgb(50, 19, 19);
+            width: 100%;
+
+
+        }
+
+        .contact textarea {
+            width: 100%;
+            max-width: 100%;
+            resize: vertical;
+            max-height: 500px;
+        }
+
+        .contact button {
+            padding: 8px;
+            background-color: tomato;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
+
     <div class="navbar">
         <div class="container">
             <div class="logo">
@@ -103,7 +359,10 @@
                     <li><a href="">Testimonial</a></li>
                     <li><a href="">Blog</a></li>
                     <li><a href="">Contact</a></li>
+
                 </ul>
+                <i class="fa-solid fa-bars" id="burgerBar"></i>
+                <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
@@ -111,11 +370,87 @@
     </div>
 
     <div class="hero">
-        <div class="text">
-            <span>Hello I'm</span>
-            <h2>Alix smith</h2>
-            <p>professional web develooper</p>
+        <div class="layer">
+            <div class="text">
+                <span>Hello I'm</span>
+                <h2>Alix smith</h2>
+                <p>professional web develooper</p>
+            </div>
         </div>
+
+    </div>
+
+
+    <div class="about section">
+        <div class="container">
+            <div class="about-img">
+                <img src="./images/about.png" alt="person">
+            </div>
+            <div class="about-text">
+                <h2>Hello,</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.</p>
+                <ul>
+                    <div class="inner-ul">
+                        <ul>
+                            <li><strong>Name</strong>:Rfadm sdss</li>
+                            <li><strong>Age</strong>:26 years</li>
+                            <li><strong>freeLance</strong>:Available</li>
+                        </ul>
+
+                    </div>
+                    <div class="inner-ul">
+                        <ul>
+                            <li><strong>Job title </strong>:Ux/UI</li>
+                            <li><strong>Location</strong>:US</li>
+                            <li><strong>Email</strong>:e@gmial.com</li>
+                        </ul>
+
+                    </div>
+                    <div class="clear"></div>
+                </ul>
+                <div class="buttons">
+                    <button>Download CV</button>
+                    <button>Hire Me </button>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+
+
+    <div class="contact section">
+        <div class="conatiner">
+            <div class="title">
+                <h2>Contact Us </h2>
+                <div class="lines">
+
+                </div>
+            </div>
+            <form action="" class="form">
+
+                <div class="inputs-group">
+                    <input type="text" name="userName" placeholder="Name">
+                    <input type="email" name="userEmail" placeholder="Email">
+                    <div class="clear"></div>
+                </div>
+                <input type="text" name="userSubject" placeholder="subject">
+                <textarea name="message" placeholder="Message For  me "></textarea>
+                <button>Send Message</button>
+
+        </div>
+
+        </form>
+
+
     </div>
 </body>
 

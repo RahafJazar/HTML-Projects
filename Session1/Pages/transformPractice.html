@@ -17,10 +17,46 @@
         .person {
             background-color: blue;
             width: 25%;
+            position: relative;
+            overflow: hidden;
         }
 
         .person img {
             width: 100%;
+            display: block;
+        }
+
+        /* معلومة مهمة :الtransition doesn't work with display =>لانها يا ابيض يا اسود يعني ظاهرة يا مخفية فالحل نستخدم opacity*/
+        .person .person-caption {
+            overflow: auto;
+            background-color: rgb(255, 255, 0, 0.2);
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 100%;
+            transition: all 0.5s;
+
+        }
+
+
+
+        .person-caption h2 {
+            margin: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+        }
+
+        .person-caption p {
+            padding: 15px 0;
+
+
+        }
+
+        .person:hover .person-caption {
+            left: 0;
         }
 
         /*  @media screen and (min-width : 500px) {
