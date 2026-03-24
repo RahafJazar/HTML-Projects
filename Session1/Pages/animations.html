@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation</title>
+    <style>
+      .test {
+        background-color: brown;
+        width: 500px;
+        height: 400px;
+        margin: 50px auto;
+        animation-name: changeBg;
+        animation-duration: 3s;
+        animation-delay: 2s;
+        animation-iteration-count: 3;o
+      }
+      @keyframes changeBg {
+        from {
+          background-color: green;
+        }
+        to {
+          background-color: rebeccapurple;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test"></div>
+  </body>
+</html>

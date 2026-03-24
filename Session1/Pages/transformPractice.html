@@ -1,65 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratcise transform </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pratcise transform</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        .gallery {
-            background-color: grey;
-        }
+      .gallery {
+        margin: 100px 5px;
+        background-color: grey;
+        display: flow-root;
+        padding: 20px;
+      }
 
-        .person {
-            background-color: blue;
-            width: 25%;
-            position: relative;
-            overflow: hidden;
-        }
+      .person {
+        width: 25%;
+        border: 1px solid rgb(163, 43, 147);
+        padding: 10px;
+        position: relative;
+        /* يمسح الزيادات */
+        overflow: hidden;
+        float: left;
+      }
 
-        .person img {
-            width: 100%;
-            display: block;
-        }
+      .person img {
+        width: 100%;
+        display: block;
 
-        /* معلومة مهمة :الtransition doesn't work with display =>لانها يا ابيض يا اسود يعني ظاهرة يا مخفية فالحل نستخدم opacity*/
-        .person .person-caption {
-            overflow: auto;
-            background-color: rgb(255, 255, 0, 0.2);
-            text-align: center;
-            color: white;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 100%;
-            transition: all 0.5s;
+        transition: all 1s;
+      }
 
-        }
+      /* معلومة مهمة :الtransition doesn't work with display =>لانها يا ابيض يا اسود يعني ظاهرة يا مخفية فالحل نستخدم opacity*/
+      .person .person-caption {
+        background-color: rgb(255, 255, 0, 0.2);
+        text-align: center;
+        color: white;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        opacity: 0;
+        transition: all 1s;
+      }
 
+      .person-caption h2 {
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px 0;
+        position: relative;
+        left: 120%; /*بالنسبة لمكانها */
+        transition: all 1.1s 1s;
+      }
 
+      .person-caption p {
+        padding: 15px 0;
+        transform: translate(120%);
+        transition: all 1.5s 2s;
+      }
 
-        .person-caption h2 {
-            margin: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 15px 0;
-        }
+      .person:hover .person-caption {
+        opacity: 1;
+        transform: rotate(360deg);
+      }
+      .person:hover img {
+        transform: scale(1.2);
+      }
+      .person:hover .person-caption h2 {
+        left: 0;
+      }
+      .person:hover .person-caption p {
+        transform: translate(0);
+      }
 
-        .person-caption p {
-            padding: 15px 0;
-
-
-        }
-
-        .person:hover .person-caption {
-            left: 0;
-        }
-
-        /*  @media screen and (min-width : 500px) {
+      /*  @media screen and (min-width : 500px) {
             body {
                 background-color: aqua;
             }
@@ -139,23 +156,54 @@
             z-index: 1;
         }*/
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="gallery">
-        <div class="person">
-
-            <img src="../images/Bagels.png" alt="person">
-            <div class="person-caption">
-                <h2>Amad</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, blanditiis! Vitae debitis sequi
-                    reiciendis fugiat alias inventore ipsam!</p>
-            </div>
+      <div class="person">
+        <img src="../images/Bagels.png" alt="person" />
+        <div class="person-caption">
+          <h2>Amad</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+            blanditiis! Vitae debitis sequi reiciendis fugiat alias inventore
+            ipsam!
+          </p>
         </div>
+      </div>
+      <div class="person">
+        <img src="../images/Bagels.png" alt="person" />
+        <div class="person-caption">
+          <h2>Amad</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+            blanditiis! Vitae debitis sequi reiciendis fugiat alias inventore
+            ipsam!
+          </p>
+        </div>
+      </div>
+      <div class="person">
+        <img src="../images/Bagels.png" alt="person" />
+        <div class="person-caption">
+          <h2>Amad</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+            blanditiis! Vitae debitis sequi reiciendis fugiat alias inventore
+            ipsam!
+          </p>
+        </div>
+      </div>
+      <div class="person">
+        <img src="../images/Bagels.png" alt="person" />
+        <div class="person-caption">
+          <h2>Amad</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+            blanditiis! Vitae debitis sequi reiciendis fugiat alias inventore
+            ipsam!
+          </p>
+        </div>
+      </div>
     </div>
-
-
-
-</body>
-
+  </body>
 </html>
