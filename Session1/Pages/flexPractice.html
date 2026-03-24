@@ -1,175 +1,246 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flex Practics</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-      }
 
-      /*==========Navbar===========*/
-      .navbar {
-        background-color: rgb(34, 32, 32);
-        padding: 0 15px;
-      }
-      .navbar .logo {
-      }
-      .navbar .logo img {
-        display: block;
-        width: 130px;
-      }
-      .navbar .links {
-        display: flow-root;
-      }
-      .navbar .links ul {
-        list-style-type: none;
-      }
-      .navbar .links ul li {
-        padding: 15px;
-      }
-      .navbar .links ul li a {
-        color: white;
-        text-decoration: none;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flex Practics</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-      /*=======Gallery ===============*/
+    body {
+      margin: 0;
+    }
+
+    /*==========Navbar===========*/
+    .navbar {
+      background-color: rgb(34, 32, 32);
+      padding: 0 15px;
+    }
+
+    .navbar .logo {}
+
+    .navbar .logo img {
+      display: block;
+      width: 130px;
+    }
+
+    .navbar .links {
+      display: flow-root;
+    }
+
+    .navbar .links ul {
+      list-style-type: none;
+    }
+
+    .navbar .links ul li {
+      padding: 15px;
+    }
+
+    .navbar .links ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /*=======Gallery ===============*/
+    .gallery {
+      background-color: gray;
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .gallery-item {
+      /*width: 33.3%;*/
+      width: 100%;
+      background-color: blueviolet;
+      position: relative;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+    }
+
+    .gallery-item .gallery-caption {
+      background-color: rgba(75, 75, 62, 0.5);
+      color: white;
+      display: flow-root;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /*small*/
+    @media screen and (min-width: 640px) {
       .gallery {
-        background-color: gray;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .gallery-item {
+        width: 50%;
+      }
+    }
+
+    /*medium*/
+    @media screen and (min-width: 768px) {
+      .navbar {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        position: fixed;
+        right: 0;
+        left: 0;
+        top: 0;
+      }
+
+      .navbar .links ul {
         display: flex;
         flex-flow: row wrap;
       }
+
+      .navbar .links ul li {
+        padding: 0 15px;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 50px;
+      }
+
       .gallery-item {
-        /*width: 33.3%;*/
-        width: 100%;
-        background-color: blueviolet;
-        position: relative;
+        width: 30%;
       }
-      .gallery-item img {
-        display: block;
-        width: 100%;
-      }
-      .gallery-item .gallery-caption {
-        background-color: rgba(75, 75, 62, 0.5);
-        color: white;
-        display: flow-root;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    }
+
+    .header {
+      background-color: tomato;
+      height: 100vh;
+      background-image: url("../images/Background.jpg");
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 30px;
+    }
+
+    .layer {
+      background-color: rgba(117, 19, 19, 0.5);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+
+    .header-caption p::after {
+      content: " | ";
+      animation-name: word;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+      animation-direction: alternate;
+    }
+
+    @keyframes word {
+      0% {
+        content: "|";
       }
 
-      /*small*/
-      @media screen and (min-width: 640px) {
-        .gallery {
-          display: flex;
-          flex-wrap: wrap;
-        }
-        .gallery-item {
-          width: 50%;
-        }
-      }
-      /*medium*/
-      @media screen and (min-width: 768px) {
-        .navbar {
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: space-between;
-          align-items: center;
-          padding: 15px;
-          position: fixed;
-          right: 0;
-          left: 0;
-          top: 0;
-        }
-        .navbar .links ul {
-          display: flex;
-          flex-flow: row wrap;
-        }
-        .navbar .links ul li {
-          padding: 0 15px;
-        }
-        .gallery {
-          display: flex;
-          flex-wrap: wrap;
-          column-gap: 50px;
-        }
-        .gallery-item {
-          width: 30%;
-        }
+      10% {
+        content: "D|";
       }
 
-      .header {
-        background-color: tomato;
-        height: 100vh;
-        background-image: url("../images/Background.jpg");
-        background-size: cover;
-        background-position: center;
-        margin-bottom: 30px;
+      20% {
+        content: "De|";
       }
-      .layer {
-        background-color: rgba(117, 19, 19, 0.5);
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div class="navbar">
-      <div class="logo">
-        <img src="../images/BakeryLogo.png" alt="bakery logo" />
-      </div>
-      <div class="links">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Gallery</a></li>
-        </ul>
+      30% {
+        content: "Dev|";
+      }
+
+      40% {
+        content: "Deve|";
+      }
+
+      50% {
+        content: "Devel|";
+      }
+
+      60% {
+        content: "Develo|";
+      }
+
+      70% {
+        content: "Develop|";
+      }
+
+      80% {
+        content: "Develope|";
+      }
+
+      90% {
+        content: "Developer|";
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/BakeryLogo.png" alt="bakery logo" />
+    </div>
+    <div class="links">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Gallery</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="header">
+    <div class="layer">
+      <div class="header-caption">
+        <span>Hello i'm</span>
+        <h1>alex smith</h1>
+        <!----Here will apply animation ----->
+        <p>professional Web Designer</p>
       </div>
     </div>
-    <div class="header">
-      <div class="layer">
-        <div class="header-caption">
-          <span>Hello i'm</span>
-          <h1>alex smith</h1>
-          <p>professional Web Designer</p>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <div class="gallery">
-      <div class="gallery-item">
-        <img src="../images/Cookies.png" alt="" />
-        <div class="gallery-caption">
-          <h2>Sea Food</h2>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="../images/Bagels.png" alt="" />
-        <div class="gallery-caption">
-          <h2>Sea Food</h2>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="../images/SuperiorBreads.png" alt="" />
-        <div class="gallery-caption">
-          <h2>Sea Food</h2>
-        </div>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="../images/Cookies.png" alt="" />
+      <div class="gallery-caption">
+        <h2>Sea Food</h2>
       </div>
     </div>
-  </body>
+    <div class="gallery-item">
+      <img src="../images/Bagels.png" alt="" />
+      <div class="gallery-caption">
+        <h2>Sea Food</h2>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/SuperiorBreads.png" alt="" />
+      <div class="gallery-caption">
+        <h2>Sea Food</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

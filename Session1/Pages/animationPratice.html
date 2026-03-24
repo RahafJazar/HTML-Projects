@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation practice</title>
+    <style>
+        .taxi {
+            width: 100px;
+            position: relative;
+            animation-name: taxi;
+            animation-duration: 4s;
+            animation-delay: 2s;
+            animation-direction: alternate;
+
+        }
+
+        @keyframes taxi {
+            0% {
+                left: 0;
+                transform: rotateY(0deg);
+            }
+
+            50% {
+                left: 1100px;
+                transform: rotateY(0deg);
+
+            }
+
+            51% {
+                left: 1100px;
+                transform: rotateY(180deg);
+            }
+
+            100% {
+                left: 0;
+                transform: rotateY(180deg);
+
+            }
+        }
+
+        img {
+            display: block;
+            margin: 20px 2px;
+            position: relative;
+            animation-name: duckMotion;
+            animation-iteration-count: infinite;
+            animation-delay: 2s;
+        }
+
+        .duck-1 {
+            animation-duration: 2s;
+        }
+
+        .duck-2 {
+
+            animation-duration: 5s;
+        }
+
+        .duck-3 {
+            animation-duration: 3s;
+        }
+
+        .duck-4 {
+            animation-duration: 2s;
+        }
+
+        .duck-5 {
+            animation-duration: 2s;
+        }
+
+        @keyframes duckMotion {
+            0% {
+                left: 0;
+            }
+
+            50% {
+                left: 1100px;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h2>Welcome</h2>
+    <img src="../images/taxi.png" alt="taxi" class="taxi">
+    <h2>Welcome</h2>
+
+    <div>
+        <img src="../images/duck.png" alt="" class="duck-1">
+        <img src="../images/duck.png" alt="" class="duck-2">
+        <img src="../images/duck.png" alt="" class="duck-3">
+        <img src="../images/duck.png" alt="" class="duck-4">
+        <img src="../images/duck.png" alt="" class="duck-5">
+
+    </div> -->
+    <nav>
+        
+    </nav>
+</body>
+
+</html>

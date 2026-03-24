@@ -1,31 +1,114 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animation</title>
-    <style>
-      .test {
-        background-color: brown;
-        width: 500px;
-        height: 400px;
-        margin: 50px auto;
-        animation-name: changeBg;
-        animation-duration: 3s;
-        animation-delay: 2s;
-        animation-iteration-count: 3;o
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .test {
+      background-color: brown;
+      width: 500px;
+      height: 400px;
+      margin: 50px auto;
+      animation-name: changeBg;
+      animation-duration: 3s;
+      animation-delay: 2s;
+      animation-iteration-count: 3;
+      animation-direction: alternate-reverse;
+      animation-fill-mode: backwards;
+      background-image: url("../images/Background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flow-root;
+    }
+
+
+    .test:hover {
+      animation-play-state: paused;
+    }
+
+    .test p {
+      margin-top: 200px;
+      color: rgb(5, 4, 4);
+    }
+
+    @keyframes changeBg {
+      0% {
+        background-image: url("../images/Cookies.png");
+
       }
-      @keyframes changeBg {
-        from {
-          background-color: green;
-        }
-        to {
-          background-color: rebeccapurple;
-        }
+
+
+      50% {
+        background-image: url("../images/Bagels.png");
+        border-radius: 300px;
+
       }
-    </style>
-  </head>
-  <body>
-    <div class="test"></div>
-  </body>
+
+      75% {
+        background-image: url("../images/SuperiorBreads.png");
+        border-radius: 100px;
+
+      }
+
+      100% {
+        background-image: url("../images/person.png");
+        border-radius: 100px;
+      }
+    }
+
+    /*loading */
+    .loading {
+      background-color: blueviolet;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      /* background-color: green; */
+      border-radius: 50%;
+      border-left: 3px solid gray;
+      border-right: 3px solid gray;
+      animation-name: loader;
+      animation-duration: 2s;
+      animation-delay: 1s;
+      animation-iteration-count: infinite;
+
+    }
+
+    @keyframes loader {
+      0% {
+
+        transform: rotate(0deg);
+      }
+
+      100% {
+
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="test">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, dolorum temporibus doloremque soluta aut dolorem,
+      libero dignissimos molestias, quasi quaerat qui quos consectetur. Quibusdam iusto incidunt velit optio fugiat
+    </p>
+  </div>
+  <div class="loading">
+    <div class="spinner"></div>
+  </div>
+</body>
+
 </html>
