@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        form {
+            display: flex;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            background-color: black;
+        }
+
+        label {
+            color: wheat;
+        }
+
+        .name {
+            flex-grow: 1;
+            flex-basis: 160px;
+        }
+
+        .email {
+            flex-grow: 3;
+            flex-basis: 200px;
+        }
+
+        button {
+            flex-grow: 1;
+            flex-basis: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        <div class="name">
+            <label for="username">Name</label>
+            <input type="text" name="Name" id="username" placeholder="Rosa">
+        </div>
+        <div class="email">
+            <label for="email_">Email</label>
+            <input type="email" name="Email" id="email_" placeholder="Rosa123@hmail.com">
+        </div>
+
+        <button>Submit</button>
+    </form>
+</body>
+
+</html>
