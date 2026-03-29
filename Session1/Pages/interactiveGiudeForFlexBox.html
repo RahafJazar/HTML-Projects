@@ -1,53 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flexbox</title>
     <style>
-        form {
-            display: flex;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 16px;
-            background-color: black;
-        }
+      form {
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 16px;
+        background-color: black;
+      }
 
-        label {
-            color: wheat;
-        }
+      label {
+        color: wheat;
+      }
 
-        .name {
-            flex-grow: 1;
-            flex-basis: 160px;
-        }
+      .name {
+        flex-grow: 1;
+        flex-basis: 160px;
+        background-color: green;
+      }
 
-        .email {
-            flex-grow: 3;
-            flex-basis: 200px;
-        }
+      .email {
+        flex-grow: 3;
+        flex-basis: 200px;
+        background-color: brown;
+      }
 
-        button {
-            flex-grow: 1;
-            flex-basis: 80px;
-        }
+      button {
+        flex-grow: 1;
+        flex-basis: 80px;
+      }
+
+      .item {
+        height: 50px;
+        border: 2px solid;
+        border-radius: 4px;
+        background: hotpink;
+        margin: 16px;
+      }
+
+      .item {
+        width: 2000px;
+      }
+      .flex-wrapper {
+        display: flex;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <form action="#">
-        <div class="name">
-            <label for="username">Name</label>
-            <input type="text" name="Name" id="username" placeholder="Rosa">
-        </div>
-        <div class="email">
-            <label for="email_">Email</label>
-            <input type="email" name="Email" id="email_" placeholder="Rosa123@hmail.com">
-        </div>
+      <div class="name">
+        <label for="username">Name</label>
+        <input type="text" name="Name" id="username" placeholder="Rosa" />
+      </div>
+      <div class="email">
+        <label for="email_">Email</label>
+        <input
+          type="email"
+          name="Email"
+          id="email_"
+          placeholder="Rosa123@hmail.com"
+        />
+      </div>
 
-        <button>Submit</button>
+      <button>Submit</button>
     </form>
-</body>
 
+    <div class="item"></div>
+    <div class="flex-wrapper">
+      <div class="item"></div>
+    </div>
+  </body>
 </html>
