@@ -488,14 +488,22 @@ nav .nav-cta {
 /*======================= Latest Articles Section==================*/
 
 #latest-articles {
-    background-color: #155dfc;
+    border: 2px solid black;
+}
+
+#latest-articles .container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 #latest-articles .latest-articles-cards {
-    background-color: #e7000b;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    padding: 25px;
+    gap: 20px;
 
 }
 
@@ -504,7 +512,31 @@ nav .nav-cta {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding: 30px auto;
 
+}
+
+#latest-articles .latest-articles-cards .title h3 {
+
+    font-size: 30px;
+
+}
+
+#latest-articles .latest-articles-cards .title .fresh {
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+    background-color: black;
+    transform: skewY(3deg);
+    box-shadow: 2px 2px black;
+    color: white;
+}
+
+#latest-articles .latest-articles-cards .title .fresh span {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
 }
 
 #latest-articles .latest-articles-cards .cards .card {
@@ -512,16 +544,19 @@ nav .nav-cta {
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
-    background-color: gray;
-    border: 2px solid black;
-    padding: 40px 30px 20px;
+    border: 3px solid black;
+    box-shadow: 3px 3px black;
+    padding: 20px 30px 20px;
+    margin-bottom: 10px;
 
 }
 
 #latest-articles .latest-articles-cards .cards .card .card-img {
-    background-color: #155dfc;
-    width: 20%;
+
+    width: 40%;
+    height: 40%;
     position: relative;
+    border: 2px solid black;
 
 }
 
@@ -544,13 +579,14 @@ nav .nav-cta {
 }
 
 #latest-articles .latest-articles-cards .cards .card .card-content {
-    background-color: #ad46ff;
+
     /* width: 70%; */
     width: 90%;
 }
 
 #latest-articles .latest-articles-cards .cards .card .card-content h4 {
     font-size: 22px;
+    margin: 6px;
 }
 
 #latest-articles .latest-articles-cards .cards .card .card-content p {
@@ -580,12 +616,284 @@ nav .nav-cta {
 }
 
 
+#latest-articles .latest-articles-cards .load-more-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-/*---------------Some builtin styles------------------*/
-.rotate-20-translateX-20 {
+
+
+}
+
+#latest-articles .latest-articles-cards .load-more-cta button {
+    font-size: 18px;
+    padding: 10px 30px;
+    background-color: #000000;
+    box-shadow: 4px 4px black;
+    color: white;
+    transition: all 0.2s ease;
+
+}
+
+#latest-articles .latest-articles-cards .load-more-cta button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+
+}
+
+
+#latest-articles .categories {
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+
+
+}
+
+#latest-articles .categories .trending-block,
+#latest-articles .categories .categories-block {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    border: 3px solid black;
+    box-shadow: 3px 3px black;
+    padding: 20px 30px 20px;
+
+}
+
+#latest-articles .categories .trending-block h4,
+#latest-articles .categories .categories-block h4 {
+    font-size: 25px;
+
+}
+
+#latest-articles .categories .trending-block div {
+    display: flex;
+    flex-direction: column;
+}
+
+#latest-articles .categories .trending-block div div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+
+
+#latest-articles .categories .trending-block div div div {
+    margin: 10px;
+
+}
+
+#latest-articles .categories .trending-block div div div h5 {
+    margin: 0px;
+
+}
+
+#latest-articles .categories .trending-block div div div {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#latest-articles .categories .categories-block div ul {
+    margin: 0;
+    padding: 0;
+
+}
+
+#latest-articles .categories .categories-block div ul li {
+    padding: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+
+}
+
+#latest-articles .categories .categories-block div ul li:hover {
+    box-shadow: 3px 4px black;
+    transform: translate(-3px, -3px);
+
+}
+
+/***********************************************************************/
+
+/*=======================Authors Section=============================*/
+#authors {
+    background-color: #db6363;
+}
+
+#authors .cards .card-img {
+    width: 150px;
+}
+
+#authors .cards .card-content .social a {
+    width: 50px;
+    padding: 14px;
+    background-color: black;
+}
+
+
+
+
+
+/********************************************************************/
+
+/*========================Footer Section ============================*/
+#footer {
+    background-color: #000000;
+    padding: 20px 30px;
+}
+
+
+
+#footer .content {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2px;
+    border-bottom: 2px solid white;
+    padding: 10px 10px 30px;
+
+
+
+}
+
+#footer .content .review {
+    flex-basis: 100%;
+
+
+}
+
+#footer .content .review .review-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+
+
+}
+
+#footer .content .review .review-title h3,
+#footer .content .categories .categories-title h3,
+#footer .content .news-letter .news-letter-title h3 {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
+
+#footer .content .review .review-title h3,
+#footer .content .categories .categories-title h3,
+#footer .content .categories .categories-content a,
+#footer .content .news-letter .news-letter-title h3,
+#footer .content .review .review-content p,
+#footer .content .news-letter .news-letter-content {
+
+    color: white;
+
+
+}
+
+#footer .content .review .review-title .review-icon {
+    width: 50px;
+    padding: 15px;
+    background-color: white;
+
+}
+
+
+#footer .content .categories {
+    flex-basis: 100%;
+
+}
+
+#footer .content .categories .categories-content ul {
+    padding: 2px;
+}
+
+#footer .content .categories .categories-content ul li {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+#footer .content .news-letter {
+    flex-basis: 100%;
+
+
+}
+
+#footer .content .news-letter .news-letter-subscribtion input {
+    margin-top: 30px;
+
+}
+
+#footer .content .news-letter .news-letter-subscribtion input {
+    width: 100%;
+    padding: 20px;
+    background-color: #000000;
+    border: 2px solid white;
+
+}
+
+#footer .content .news-letter .news-letter-subscribtion button {
+    width: 100%;
+    padding: 20px;
+    background-color: #fdc700;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+
+}
+
+#footer .content .news-letter .news-letter-subscribtion button:hover {
+    transform: translate(2px, 2px);
+}
+
+
+
+#footer .copyright {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+#footer .copyright p {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#footer .copyright .terms>a {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+
+}
+
+/*************************************************************************/
+
+
+
+
+/*---------------Some  reusable  styles------------------*/
+.rotate-20-translateX-10 {
     transform: rotate(20deg) translateX(10px);
 }
 
+.rotate-neg20-translateX-10 {
+    transform: rotate(-20deg) translateX(10px);
+}
+
+.rotate-40-translateX-5 {
+    transform: rotate(40deg) translateX(5px);
+}
 
 .bg-red {
     background-color: #fb2c36;
@@ -599,21 +907,120 @@ nav .nav-cta {
     background-color: #ad46ff;
 }
 
+.text-white {
+    color: white;
+}
+
+.text-4xl {
+    font-size: 30px;
+}
+
+.text-red-500 {
+    color: #fb2c36
+}
+
+.text-blue-500 {
+    color: #2b7fff
+}
+
+.text-purple-500 {
+
+    color: #ad46ff;
+}
+
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-lg {
+    font-size: 13px;
+}
+
+.bg-yellow-100 {
+    background-color: oklch(97.3% .071 103.193);
+}
+
+.bg-green-100 {
+    background-color: oklch(96.2% .044 156.743);
+}
+
+.bg-pink-100 {
+    background-color: oklch(94.8% .028 342.258);
+}
+
+.bg-blue-100 {
+    background-color: oklch(93.2% .032 255.585);
+}
+
+.bg-purple-100 {
+    background-color: oklch(94.6% .033 307.174);
+}
+
+.bg-yellow-300 {
+    background-color: #ffdf20;
+}
+
+.bg-green-300 {
+    background-color: #7bf1a8
+}
+
+.bg-pink-300 {
+    background-color: #fda5d5
+}
+
+.text-neutral-600 {
+    color: oklch(43.9% 0 0);
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+h5:hover.text-red-600 {
+    color: #e7000b
+}
+
+h5:hover.text-blue-600 {
+    color: #3171fc
+}
+
+h5:hover.text-purple-600 {
+    color: #a631fb
+}
+
+.text-upper {
+    text-transform: uppercase;
+}
+
+
 /*----------------------------------------------------*/
 
 
 
 
+@media screen and (min-width:710px) {
+    #footer .content .review {
+        flex-basis: 900px;
+        flex-grow: 1;
+    }
 
+    #footer .content .categories {
+        flex-basis: 100px;
+        flex-grow: 1;
+    }
 
-
+    #footer .content .news-letter {
+        flex-basis: 400px;
+        flex-grow: 1;
+    }
+}
 
 /*   large  */
 @media screen and (min-width:931px) {
     #hero .container {
         flex-direction: row;
         justify-content: space-evenly;
-
         gap: 0;
     }
 
@@ -640,5 +1047,55 @@ nav .nav-cta {
     }
 
 
+    /*----------latest articles  section ----------------*/
+    #latest-articles .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
 
+
+    #latest-articles .latest-articles-cards {
+
+        width: 66.6%;
+
+
+    }
+
+    #latest-articles .categories {
+
+        width: 33%;
+        position: sticky;
+        top: 0;
+        right: 0;
+
+    }
+
+    #latest-articles .latest-articles-cards .cards .card {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+
+    /*--------------------------------------------------*/
+
+    /*----------------------Footer section -----------------*/
+
+    #footer .content .review {
+        flex-basis: 300px;
+        flex-grow: 1;
+    }
+
+    #footer .content .categories {
+        flex-basis: 150px;
+        flex-grow: 1;
+    }
+
+    #footer .content .news-letter {
+        flex-basis: 300px;
+        flex-grow: 2;
+    }
+
+    /*----------------------------------------------------*/
 }
