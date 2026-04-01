@@ -644,6 +644,7 @@ nav .nav-cta {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #authors .cards {
@@ -746,6 +747,7 @@ nav .nav-cta {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #community .content {
@@ -1026,6 +1028,10 @@ nav .nav-cta {
     font-size: 20px;
 }
 
+.text-2xl {
+    font-size: 25px;
+}
+
 .text-3xl {
     font-size: 30px;
 }
@@ -1137,6 +1143,10 @@ h5:hover.text-purple-600 {
 /*----------------------------------------------------*/
 
 @media screen and (min-width: 710px) {
+    #authors .title h3 {
+        font-size: 30px;
+    }
+
     #footer .content .review {
         flex-basis: 900px;
         flex-grow: 1;
@@ -1155,6 +1165,7 @@ h5:hover.text-purple-600 {
 
 /*   large  */
 @media screen and (min-width: 931px) {
+
     #hero .container {
         flex-direction: row;
         justify-content: space-evenly;
@@ -1208,6 +1219,10 @@ h5:hover.text-purple-600 {
     /*--------------------------------------------------*/
 
     /*---------------Community section---------------*/
+    #community .title h3 {
+        font-size: 32px;
+    }
+
     #community .content {
         flex-flow: row wrap;
         gap: 10px;
@@ -1222,6 +1237,10 @@ h5:hover.text-purple-600 {
     /*---------------------------------------------------*/
 
     /*---------------authors Section---------------------*/
+    #authors .title h3 {
+        font-size: 32px;
+    }
+
     #authors .cards {
 
         display: flex;
@@ -1286,7 +1305,16 @@ h5:hover.text-purple-600 {
         display: block;
     }
 
+    /*---------------community--------------*/
+    #community .title h3 {
+        font-size: 35px;
+    }
+
     /*---------------authors Section---------------------*/
+    #authors .title h3 {
+        font-size: 35px;
+    }
+
     #authors .cards {
 
         display: flex;
