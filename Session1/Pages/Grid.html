@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .parent {
+            background-color: tan;
+            display: grid;
+            grid-template-areas:
+                "A1  A2"
+                "A3  A4";
+
+        }
+
+        .child {
+
+            border: 1px solid grey;
+            background-color: tomato;
+        }
+
+        .child-1 {
+            grid-area: A1;
+        }
+
+        .child-2 {
+            grid-area: A2;
+        }
+
+        .child-3 {
+            grid-area: A3;
+        }
+
+        .child-4 {
+            grid-area: A4;
+        }
+
+        .layout {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 30% 30% 10% 30%;
+            grid-template-areas:
+                'header  header  header   header'
+                'main    main     .       sidebar'
+                'footer  footer  footer   footer ';
+        }
+
+        .header {
+            background-color: orange;
+            grid-area: header;
+        }
+
+        .main {
+            background-color: blue;
+            grid-area: main;
+        }
+
+        .sidebar {
+
+            background-color: tomato;
+            grid-area: sidebar;
+        }
+
+        .footer {
+            background-color: green;
+            grid-area: footer;
+        }
+
+        @media screen and (max-width:768px) {
+            .layout {
+                grid-template-areas:
+                    'header'
+                    'main'
+                    'sidebar'
+                    'footer';
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child child-1">
+            <h2>child-1</h2>
+        </div>
+        <div class="child child-2">
+            <h2>child-2</h2>
+        </div>
+        <div class="child child-3">
+            <h2>child-3</h2>
+        </div>
+        <div class="child child-4">
+            <h2>child-4</h2>
+        </div>
+
+    </div>
+
+    <div class="layout">
+        <div class="header">
+            header
+        </div>
+        <div class="main">
+            main
+        </div>
+        <div class="sidebar">
+            sidebar
+        </div>
+        <div class="footer">
+            footer
+        </div>
+    </div>
+
+    <div class="background">
+        
+    </div>
+</body>
+
+</html>
