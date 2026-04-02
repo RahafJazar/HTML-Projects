@@ -12,12 +12,16 @@
         }
 
         .parent {
+            height: 500px;
             background-color: tan;
             display: grid;
-            grid-template-areas:
-                "A1  A2"
-                "A3  A4";
-
+            grid-template-columns: repeat(3, 20%);
+            grid-template-rows: repeat(2, 100px);
+            /* justify-items: center;
+            align-items: center; */
+            /* place-items: center stretch; */
+            justify-content: space-around;
+            align-content: space-between ;
         }
 
         .child {
@@ -26,21 +30,7 @@
             background-color: tomato;
         }
 
-        .child-1 {
-            grid-area: A1;
-        }
 
-        .child-2 {
-            grid-area: A2;
-        }
-
-        .child-3 {
-            grid-area: A3;
-        }
-
-        .child-4 {
-            grid-area: A4;
-        }
 
         .layout {
             margin-top: 30px;
@@ -118,7 +108,7 @@
     </div>
 
     <div class="background">
-        
+
     </div>
 </body>
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .parent {
+            width: 80%;
+            height: 10%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr) repeat(2, 2fr);
+            grid-template-areas:
+                ' a  a  a  a   b  b   b   b  b  b  c  c '
+                'd   d   d  d  e  e   e   f  f  f  c  c ';
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .child {
+            object-fit: cover;
+        }
+
+        .child-1 {
+            grid-area: a;
+        }
+
+        .child-2 {
+            grid-area: b;
+        }
+
+        .child-3 {
+            grid-area: c;
+        }
+
+        .child-4 {
+            grid-area: d;
+        }
+
+        .child-5 {
+            grid-area: e;
+        }
+
+        .child-6 {
+            grid-area: f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child child-1"><img src="../images/grid1.png" alt="" class="img-1"></div>
+        <div class="child child-2"><img src="../images/grid2.png" alt="" class="img-2"></div>
+        <div class="child child-3"><img src="../images/grid3.png" alt="" class="img-3"></div>
+        <div class="child child-4"><img src="../images/grid4.png" alt="" class="img-4"></div>
+        <div class="child child-5"><img src="../images/grid5.png" alt="" class="img-5"></div>
+        <div class="child child-6"><img src="../images/grid6.png" alt="" class="img-6"></div>
+    </div>
+</body>
+
+</html>
