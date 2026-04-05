@@ -12,6 +12,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
     <style>
+        :root{
+            --main-color:brown;
+            --color:white;
+
+        }
         /*general*/
         .clear {
             clear: both;
@@ -49,7 +54,7 @@
         }
 
         .navbar .logo h1 a {
-            color: brown;
+            color: var(--main-color,red);
 
         }
 
@@ -61,7 +66,7 @@
         }
 
         .navbar .links #burgerBar {
-            color: white;
+            color: var(--color);
             font-size: 20px;
             margin-inline: 10px;
             margin-top: 12px;
@@ -103,7 +108,7 @@
         }
 
         .navbar .links ul li a {
-            color: white;
+            color: var(--color);
         }
 
         .hero {
@@ -126,7 +131,7 @@
             width: 50%;
             margin: auto;
             margin-top: 200px;
-            color: white;
+            color: var(--color);
 
         }
 
@@ -134,7 +139,7 @@
 
         .hero .text h2 {
             font-size: 50px;
-            color: brown;
+            color: var(--main-color);
             text-transform: capitalize;
         }
 
@@ -248,7 +253,7 @@
         .about.section .about-text button {
             padding: 10px 30px;
             font-size: 16px;
-            background-color: brown;
+            background-color: var(--main-color);
             color: wheat;
             border-radius: 10px;
             margin-right: 20px;
@@ -336,7 +341,7 @@
             background-color: tomato;
             border-radius: 10px;
             border: none;
-            color: white;
+            color: var(--color);
             cursor: pointer;
             margin-top: 20px;
         }
