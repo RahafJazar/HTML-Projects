@@ -12,11 +12,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
     <style>
-        :root{
-            --main-color:brown;
-            --color:white;
+        :root {
+            --main-color: brown;
+            --color: white;
 
         }
+
         /*general*/
         .clear {
             clear: both;
@@ -32,7 +33,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 2;
+            z-index: 3;
 
 
         }
@@ -54,7 +55,7 @@
         }
 
         .navbar .logo h1 a {
-            color: var(--main-color,red);
+            color: var(--main-color, red);
 
         }
 
@@ -170,13 +171,23 @@
             margin-right: 20px;
             width: 100%;
             margin-bottom: 50px;
+            position: relative;
 
         }
 
         .about.section .about-img img {
             width: 100%;
             display: block;
+            filter: drop-shadow(7px 7px 2px black);
+            transition: filter 0.2s ease;
+            z-index: 2;
 
+
+        }
+
+        .about.section .about-img img:hover {
+
+            filter: drop-shadow(7px 7px 2px black) hue-rotate(80deg) blur(2px);
 
 
         }
@@ -389,7 +400,11 @@
     <div class="about section">
         <div class="container">
             <div class="about-img">
-                <img src="./images/about.png" alt="person">
+                <img src="./images/about_rm_bg.png" alt="person">
+                <div
+                    style="background-color: gold; width: 40px ; height:  40px; position: absolute; right: 20px; bottom: 30px;">
+
+                </div>
             </div>
             <div class="about-text">
                 <h2>Hello,</h2>
@@ -457,6 +472,9 @@
 
 
     </div>
+
+
+    <div class="wheel"></div>
 </body>
 
 </html>

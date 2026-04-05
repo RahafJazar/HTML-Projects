@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>units</title>
+    <style>
+        :root {
+            font-size: 10px;
+        }
+
+        .parent {
+            padding: 40px;
+            font-size: 10px;
+            background-color: gray;
+        }
+
+        .test {
+            background-color: tomato;
+            width: 25%;
+            font-size: 1em;
+            padding: 0.5em;
+            margin: 0.5em;
+        }
+
+        @media screen and (min-width:500px) {
+            :root {
+                font-size: 15px;
+            }
+
+            .parent {
+                font-size: 12px;
+            }
+        }
+
+        @media screen and (min-width :900px) {
+            :root {
+                font-size: 18px;
+            }
+
+            .parent {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="test">
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dignissimos architecto adipisci ipsum
+                similique. Esse consequuntur aut minus dolore atque.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
