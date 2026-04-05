@@ -1,0 +1,56 @@
+.parent {
+  width: 800px;
+  height: 400px;
+  padding: 30px;
+  margin: 20px;
+  background-color: yellow;
+}
+.child {
+  width: 600px;
+  height: 200px;
+  padding: inherit;
+  margin: inherit;
+  background-color: tomato;
+}
+
+p {
+  line-height: 20px;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  text-transform: uppercase;
+}
+:root {
+  font-size: 18px;
+}
+.hero {
+  background-image: url("../images/image_22.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  color: aliceblue;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.hero p {
+  font-size: 0.9rem;
+}
+
+.btn-red:hover {
+  background-color: rgb(167, 24, 24);
+  color: white;
+}
+
+@media screen and (max-width: 500px) {
+  :root {
+    font-size: 15px;
+  }
+}
