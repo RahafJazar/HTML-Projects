@@ -1,0 +1,167 @@
+ :root {
+     --bg-gradient-to-br: linear-gradient(45deg, oklch(54.6% .245 262.881) 30%, oklch(45.7% .24 277.023) 70%);
+ }
+
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     font-family: "IBM Plex Sans Arabic", sans-serif;
+     line-height: 1.2;
+     letter-spacing: 0.4;
+
+
+ }
+
+ body {
+     margin: 0;
+     padding: 0;
+     color: black;
+     overflow: hidden;
+ }
+
+ img {
+     width: 100%;
+     display: block;
+ }
+
+ a,
+ span {
+     display: inline-block;
+ }
+
+ a {
+     text-decoration: none;
+ }
+
+ ul {
+     list-style-type: none;
+ }
+
+ button {
+     border: none;
+ }
+
+ /*--------------------*/
+
+ .layout .container {
+     display: grid;
+     grid-template-columns: 1fr 4fr;
+     grid-template-rows: 100% 100%;
+     grid-template-areas:
+         'sidebar content';
+ }
+
+ .sidebar {
+     grid-area: sidebar;
+ }
+
+ .content {
+     grid-area: content;
+ }
+
+ .w-50 {
+     width: 50px;
+ }
+
+ .p-20 {
+     padding: 20px;
+ }
+
+ .p-10 {
+     padding: 10px;
+ }
+
+ .p-15 {
+     padding: 15px;
+ }
+
+
+ .bd-radius-15 {
+     border-radius: 10px;
+ }
+
+ /*-------sidebar------------------*/
+ .sidebar {
+     padding-top: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     overflow: auto;
+     padding-inline: 20px;
+ }
+
+ /*1-sidebar-title --*/
+ .sidebar-title {
+     background-color: burlywood;
+     display: flex;
+     column-gap: 10px;
+
+
+     & div:first-child {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-basis: 50px;
+         background: var(--bg-gradient-to-br);
+     }
+ }
+
+
+
+ /* 2- sidebar -menu--*/
+
+ .sidebar-menu {
+     background-color: aqua;
+
+     & ul {
+         display: flex;
+         flex-direction: column;
+         row-gap: 20px;
+
+         & a {
+             display: flex;
+             align-items: center;
+             column-gap: 20px;
+         }
+
+         & li:focus-within {
+             background-color: green;
+         }
+     }
+
+     & img {
+         width: 20px;
+     }
+
+ }
+
+
+
+
+ /*-----sidebar-quick-procedures----*/
+ /* 3-sidebar-quick-procedures*/
+ .sidebar-quick-procedures {
+     background-color: gray;
+     display: flex;
+     flex-direction: column;
+     row-gap: 20px;
+
+     & .procedures {
+         display: flex;
+         flex-direction: column;
+         row-gap: 20px;
+
+         & .procedure {
+             background-color: tomato;
+             display: flex;
+             column-gap: 20px;
+             align-items: center;
+
+             & div:first-child {
+                 width: 20px;
+             }
+         }
+     }
+
+ }
