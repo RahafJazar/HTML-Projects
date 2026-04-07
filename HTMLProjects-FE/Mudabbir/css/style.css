@@ -1,5 +1,19 @@
  :root {
-     --bg-gradient-to-br: linear-gradient(45deg, oklch(54.6% .245 262.881) 30%, oklch(45.7% .24 277.023) 70%);
+     --bg-gradient-to-br: linear-gradient(45deg, rgb(21, 93, 251) 30%, rgb(67, 45, 215) 70%);
+     --color-blue-50: rgb(239, 246, 255);
+     --color-blue-100: rgb(219, 234, 254);
+     --color-blue-200: rgb(232, 242, 255);
+     --color-blue-500: rgb(43, 127, 255);
+     --color-blue-700: rgb(20, 71, 230);
+     --color-gray-600: rgb(74, 85, 101);
+     --color-green-200: rgb(230, 250, 238);
+     --color-green-500: rgb(0, 201, 80);
+     --color-purple-200: rgb(247, 237, 255);
+     --color-purple-500: rgb(173, 70, 255);
+     --color-orange-200: rgb(255, 240, 229);
+     --color-orange-500: rgb(255, 105, 0);
+
+
  }
 
  * {
@@ -81,52 +95,109 @@
      border-radius: 10px;
  }
 
+ .bg-orange-200 {
+     background-color: var(--color-orange-200);
+ }
+
+ .bg-purple-200 {
+     background-color: var(--color-purple-200)
+ }
+
+ .bg-green-200 {
+     background-color: var(--color-green-200);
+ }
+
+ .bg-blue-200 {
+     background-color: var(--color-blue-200);
+ }
+
+ .bg-orange-500 {
+     background-color: var(--color-orange-500);
+ }
+
+ .bg-purple-500 {
+     background-color: var(--color-purple-500)
+ }
+
+ .bg-green-500 {
+     background-color: var(--color-green-500);
+ }
+
+ .bg-blue-500 {
+     background-color: var(--color-blue-500);
+ }
+
  /*-------sidebar------------------*/
  .sidebar {
-     padding-top: 20px;
+     height: 100vh;
      display: flex;
      flex-direction: column;
      gap: 20px;
      overflow: auto;
-     padding-inline: 20px;
+     scrollbar-width: thin;
+     scrollbar-color: #9ca3af4d transparent;
+     padding: 20px;
+
  }
 
  /*1-sidebar-title --*/
  .sidebar-title {
-     background-color: burlywood;
+
      display: flex;
      column-gap: 10px;
+     padding: 1em;
 
 
      & div:first-child {
          display: flex;
          justify-content: center;
          align-items: center;
-         flex-basis: 50px;
+         flex-basis: 60px;
+         padding: 1em;
          background: var(--bg-gradient-to-br);
      }
- }
 
+     & div:nth-child(2) {
+         display: flex;
+         flex-direction: column;
+         row-gap: 2px;
+     }
+ }
 
 
  /* 2- sidebar -menu--*/
 
  .sidebar-menu {
-     background-color: aqua;
+
+     padding: 1em;
 
      & ul {
          display: flex;
          flex-direction: column;
-         row-gap: 20px;
+         row-gap: 10px;
+
+         & li {
+             padding: 0.6em;
+
+         }
 
          & a {
              display: flex;
              align-items: center;
              column-gap: 20px;
+             color: var(--color-gray-600);
+             font-weight: bold;
          }
 
          & li:focus-within {
-             background-color: green;
+             background-color: var(--color-blue-50);
+             border: var(--color-blue-100);
+             border-radius: 10px;
+
+             & a {
+                 color: var(--color-blue-700);
+
+             }
          }
      }
 
@@ -136,16 +207,14 @@
 
  }
 
-
-
-
  /*-----sidebar-quick-procedures----*/
  /* 3-sidebar-quick-procedures*/
  .sidebar-quick-procedures {
-     background-color: gray;
+
      display: flex;
      flex-direction: column;
      row-gap: 20px;
+     padding: 1em;
 
      & .procedures {
          display: flex;
@@ -153,15 +222,136 @@
          row-gap: 20px;
 
          & .procedure {
-             background-color: tomato;
+             background-color: transparent;
              display: flex;
              column-gap: 20px;
              align-items: center;
 
              & div:first-child {
-                 width: 20px;
+                 width: 30px;
+                 padding: 0.5em;
+                 border-radius: 10px;
              }
+
+
          }
      }
 
+ }
+
+
+
+ /*--------Wrokspace area-------*/
+ .workspace {
+     background-color: gray;
+ }
+
+ .workspace .header-bar {
+     background-color: tomato;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+
+     & .muddabir-logo {
+         width: 100%;
+         background-color: aquamarine;
+         display: flex;
+         flex-direction: row;
+         justify-content: flex-start;
+         align-items: center;
+
+         & div:first-child {
+             flex-basis: 60px;
+         }
+     }
+
+     & .notifications {
+         width: 100%;
+         flex-grow: 1;
+         background-color: blueviolet;
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+         align-items: center;
+
+         & div:nth-child(1) button {
+             width: 20px;
+             flex-basis: 60px;
+             padding: 2px;
+             background-color: blue;
+         }
+
+         & div:nth-child(2) {
+             display: flex;
+             flex-direction: row-reverse;
+             justify-content: space-between;
+
+             .user-img {
+
+                 width: 40px;
+             }
+         }
+
+     }
+
+     & .status {
+         flex-basis: 100%;
+         background-color: yellow;
+
+     }
+ }
+
+
+ @media screen and (min-width:560px) {
+     .workspace .header-bar {
+         background-color: tomato;
+         display: flex;
+         flex-direction: row;
+         justify-content: space-around;
+
+
+         & .muddabir-logo {
+             width: auto;
+             order: 1;
+             background-color: aquamarine;
+             display: flex;
+             flex-direction: row;
+             justify-content: space-around;
+             align-items: center;
+
+             & div:first-child {
+                 flex-basis: 60px;
+             }
+         }
+
+         & .notifications {
+             width: auto;
+             order: 3;
+             background-color: blueviolet;
+             display: flex;
+             flex-direction: row;
+             justify-content: space-between;
+             align-items: center;
+
+             & div:nth-child(2) {
+                 display: flex;
+                 flex-direction: row-reverse;
+                 justify-content: space-between;
+
+                 .user-img {
+
+                     width: 40px;
+                 }
+             }
+
+         }
+
+         & .status {
+             width: auto;
+             order: 2;
+             background-color: yellow;
+
+         }
+     }
  }
