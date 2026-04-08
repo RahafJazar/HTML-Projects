@@ -1,357 +1,492 @@
- :root {
-     --bg-gradient-to-br: linear-gradient(45deg, rgb(21, 93, 251) 30%, rgb(67, 45, 215) 70%);
-     --color-blue-50: rgb(239, 246, 255);
-     --color-blue-100: rgb(219, 234, 254);
-     --color-blue-200: rgb(232, 242, 255);
-     --color-blue-500: rgb(43, 127, 255);
-     --color-blue-700: rgb(20, 71, 230);
-     --color-gray-600: rgb(74, 85, 101);
-     --color-green-200: rgb(230, 250, 238);
-     --color-green-500: rgb(0, 201, 80);
-     --color-purple-200: rgb(247, 237, 255);
-     --color-purple-500: rgb(173, 70, 255);
-     --color-orange-200: rgb(255, 240, 229);
-     --color-orange-500: rgb(255, 105, 0);
-
-
- }
-
- * {
-     box-sizing: border-box;
-     margin: 0;
-     padding: 0;
-     font-family: "IBM Plex Sans Arabic", sans-serif;
-     line-height: 1.2;
-     letter-spacing: 0.4;
-
-
- }
-
- body {
-     margin: 0;
-     padding: 0;
-     color: black;
-     overflow: hidden;
- }
-
- img {
-     width: 100%;
-     display: block;
- }
-
- a,
- span {
-     display: inline-block;
- }
-
- a {
-     text-decoration: none;
- }
-
- ul {
-     list-style-type: none;
- }
-
- button {
-     border: none;
- }
-
- /*--------------------*/
-
- .layout .container {
-     display: grid;
-     grid-template-columns: 1fr 4fr;
-     grid-template-rows: 100% 100%;
-     grid-template-areas:
-         'sidebar content';
- }
-
- .sidebar {
-     grid-area: sidebar;
- }
-
- .content {
-     grid-area: content;
- }
-
- .w-50 {
-     width: 50px;
- }
-
- .p-20 {
-     padding: 20px;
- }
-
- .p-10 {
-     padding: 10px;
- }
-
- .p-15 {
-     padding: 15px;
- }
-
-
- .bd-radius-15 {
-     border-radius: 10px;
- }
-
- .bg-orange-200 {
-     background-color: var(--color-orange-200);
- }
-
- .bg-purple-200 {
-     background-color: var(--color-purple-200)
- }
-
- .bg-green-200 {
-     background-color: var(--color-green-200);
- }
-
- .bg-blue-200 {
-     background-color: var(--color-blue-200);
- }
-
- .bg-orange-500 {
-     background-color: var(--color-orange-500);
- }
-
- .bg-purple-500 {
-     background-color: var(--color-purple-500)
- }
-
- .bg-green-500 {
-     background-color: var(--color-green-500);
- }
-
- .bg-blue-500 {
-     background-color: var(--color-blue-500);
- }
-
- /*-------sidebar------------------*/
- .sidebar {
-     height: 100vh;
-     display: flex;
-     flex-direction: column;
-     gap: 20px;
-     overflow: auto;
-     scrollbar-width: thin;
-     scrollbar-color: #9ca3af4d transparent;
-     padding: 20px;
-
- }
-
- /*1-sidebar-title --*/
- .sidebar-title {
-
-     display: flex;
-     column-gap: 10px;
-     padding: 1em;
-
-
-     & div:first-child {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-basis: 60px;
-         padding: 1em;
-         background: var(--bg-gradient-to-br);
-     }
-
-     & div:nth-child(2) {
-         display: flex;
-         flex-direction: column;
-         row-gap: 2px;
-     }
- }
-
-
- /* 2- sidebar -menu--*/
-
- .sidebar-menu {
-
-     padding: 1em;
-
-     & ul {
-         display: flex;
-         flex-direction: column;
-         row-gap: 10px;
-
-         & li {
-             padding: 0.6em;
-
-         }
-
-         & a {
-             display: flex;
-             align-items: center;
-             column-gap: 20px;
-             color: var(--color-gray-600);
-             font-weight: bold;
-         }
-
-         & li:focus-within {
-             background-color: var(--color-blue-50);
-             border: var(--color-blue-100);
-             border-radius: 10px;
-
-             & a {
-                 color: var(--color-blue-700);
-
-             }
-         }
-     }
-
-     & img {
-         width: 20px;
-     }
-
- }
-
- /*-----sidebar-quick-procedures----*/
- /* 3-sidebar-quick-procedures*/
- .sidebar-quick-procedures {
-
-     display: flex;
-     flex-direction: column;
-     row-gap: 20px;
-     padding: 1em;
-
-     & .procedures {
-         display: flex;
-         flex-direction: column;
-         row-gap: 20px;
-
-         & .procedure {
-             background-color: transparent;
-             display: flex;
-             column-gap: 20px;
-             align-items: center;
-
-             & div:first-child {
-                 width: 30px;
-                 padding: 0.5em;
-                 border-radius: 10px;
-             }
-
-
-         }
-     }
-
- }
-
-
-
- /*--------Wrokspace area-------*/
- .workspace {
-     background-color: gray;
- }
-
- .workspace .header-bar {
-     background-color: tomato;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     align-items: center;
-
-     & .muddabir-logo {
-         width: 100%;
-         background-color: aquamarine;
-         display: flex;
-         flex-direction: row;
-         justify-content: flex-start;
-         align-items: center;
-
-         & div:first-child {
-             flex-basis: 60px;
-         }
-     }
-
-     & .notifications {
-         width: 100%;
-         flex-grow: 1;
-         background-color: blueviolet;
-         display: flex;
-         flex-direction: row;
-         justify-content: space-between;
-         align-items: center;
-
-         & div:nth-child(1) button {
-             width: 20px;
-             flex-basis: 60px;
-             padding: 2px;
-             background-color: blue;
-         }
-
-         & div:nth-child(2) {
-             display: flex;
-             flex-direction: row-reverse;
-             justify-content: space-between;
-
-             .user-img {
-
-                 width: 40px;
-             }
-         }
-
-     }
-
-     & .status {
-         flex-basis: 100%;
-         background-color: yellow;
-
-     }
- }
-
-
- @media screen and (min-width:560px) {
-     .workspace .header-bar {
-         background-color: tomato;
-         display: flex;
-         flex-direction: row;
-         justify-content: space-around;
-
-
-         & .muddabir-logo {
-             width: auto;
-             order: 1;
-             background-color: aquamarine;
-             display: flex;
-             flex-direction: row;
-             justify-content: space-around;
-             align-items: center;
-
-             & div:first-child {
-                 flex-basis: 60px;
-             }
-         }
-
-         & .notifications {
-             width: auto;
-             order: 3;
-             background-color: blueviolet;
-             display: flex;
-             flex-direction: row;
-             justify-content: space-between;
-             align-items: center;
-
-             & div:nth-child(2) {
-                 display: flex;
-                 flex-direction: row-reverse;
-                 justify-content: space-between;
-
-                 .user-img {
-
-                     width: 40px;
-                 }
-             }
-
-         }
-
-         & .status {
-             width: auto;
-             order: 2;
-             background-color: yellow;
-
-         }
-     }
- }
+:root {
+  --bg-gradient-to-br: linear-gradient(
+    45deg,
+    rgb(21, 93, 251) 30%,
+    rgb(67, 45, 215) 70%
+  );
+  --color-blue-50: rgb(130, 177, 238);
+  --color-blue-100: rgb(219, 234, 254);
+  --color-blue-200: rgb(232, 242, 255);
+  --color-blue-500: rgb(43, 127, 255);
+  --color-blue-700: rgb(20, 71, 230);
+  --color-gray-600: rgb(74, 85, 101);
+  --color-green-200: rgb(230, 250, 238);
+  --color-green-500: rgb(0, 201, 80);
+  --color-green-700: rgb(0, 130, 53);
+  --color-purple-200: rgb(247, 237, 255);
+  --color-purple-500: rgb(173, 70, 255);
+  --color-orange-200: rgb(255, 240, 229);
+  --color-orange-500: rgb(255, 105, 0);
+  --color-gray-50: rgb(249, 250, 251);
+  --color-gray-100: rgb(243, 244, 246);
+  --color-gray-200: rgb(229, 231, 235);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  line-height: 1.2;
+  letter-spacing: 0.4;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+a,
+span {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  border: none;
+}
+
+/*--------------------*/
+
+.layout .container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 100% 100%;
+  grid-template-areas: "sidebar content";
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+}
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.w-50 {
+  width: 50px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.p-15 {
+  padding: 15px;
+}
+
+.bd-radius-15 {
+  border-radius: 10px;
+}
+
+.bg-orange-200 {
+  background-color: var(--color-orange-200);
+}
+
+.bg-purple-200 {
+  background-color: var(--color-purple-200);
+}
+
+.bg-green-200 {
+  background-color: var(--color-green-200);
+}
+
+.bg-blue-200 {
+  background-color: var(--color-blue-200);
+}
+
+.bg-orange-500 {
+  background-color: var(--color-orange-500);
+}
+
+.bg-purple-500 {
+  background-color: var(--color-purple-500);
+}
+
+.bg-green-500 {
+  background-color: var(--color-green-500);
+}
+
+.bg-blue-500 {
+  background-color: var(--color-blue-500);
+}
+
+/*-------sidebar------------------*/
+.sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af4d transparent;
+  padding: 20px;
+}
+
+/*1-sidebar-title --*/
+.sidebar-title {
+  display: flex;
+  column-gap: 10px;
+  padding: 1em;
+
+  & div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 60px;
+    padding: 1em;
+    background: var(--bg-gradient-to-br);
+  }
+
+  & div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+  }
+}
+
+/* 2- sidebar -menu--*/
+
+.sidebar-menu {
+  padding: 1em;
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    & li {
+      padding: 0.6em;
+    }
+
+    & a {
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+      color: var(--color-gray-600);
+      font-weight: bold;
+    }
+
+    & li:focus-within {
+      background-color: var(--color-blue-50);
+      border: var(--color-blue-100);
+      border-radius: 10px;
+
+      & a {
+        color: var(--color-blue-700);
+      }
+    }
+  }
+
+  & img {
+    width: 20px;
+  }
+}
+
+/*-----sidebar-quick-procedures----*/
+/* 3-sidebar-quick-procedures*/
+.sidebar-quick-procedures {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 1em;
+
+  & .procedures {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    & .procedure {
+      background-color: transparent;
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+
+      & div:first-child {
+        width: 30px;
+        padding: 0.5em;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+/*========================================================================*/
+
+/*--------Wrokspace area-------*/
+.workspace {
+  background-color: gray;
+}
+
+.workspace .header-bar {
+  background-color: tomato;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  & .muddabir-logo {
+    width: 100%;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+
+    & div:first-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 60px;
+      padding: 1em;
+      background: var(--bg-gradient-to-br);
+    }
+  }
+
+  & .notifications {
+    width: 100%;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & div:nth-child(1) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      button {
+        min-height: 40px;
+        flex-basis: 40px;
+        padding: 5px 10px;
+        background-color: transparent;
+        border: var(--color-gray-200);
+        background-color: var(--color-gray-50);
+        border-radius: 5px;
+
+        &:hover {
+          background-color: var(--color-gray-200);
+        }
+      }
+    }
+
+    & div:nth-child(2) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .user-img {
+        width: 40px;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  & .status {
+    width: 100%;
+    background-color: yellow;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    .circle {
+      background-color: var(--color-green-500);
+    }
+    p {
+      color: var(--color-green-700);
+    }
+  }
+}
+
+@media screen and (min-width: 560px) and (max-width: 767px) {
+  .workspace .header-bar {
+    background-color: tomato;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    & .muddabir-logo {
+      flex-basis: auto;
+      order: 1;
+      background-color: aquamarine;
+
+      & div:first-child {
+        flex-basis: 60px;
+      }
+    }
+
+    & .notifications {
+      flex-basis: auto;
+      flex-grow: 5;
+      order: 3;
+      background-color: blueviolet;
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      gap: 40px;
+      align-items: center;
+
+      & div:nth-child(2) {
+        .user-img {
+          width: 40px;
+        }
+      }
+    }
+
+    & .status {
+      flex-basis: auto;
+      order: 2;
+      background-color: yellow;
+    }
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1231px) {
+  .layout .container {
+    display: grid;
+    grid-template-columns: 10% 4fr;
+    grid-template-rows: 100% 100%;
+    grid-template-areas: "sidebar content";
+  }
+  /*1-sidebar-title --*/
+  .sidebar-title {
+    & div:nth-child(2) {
+      display: none;
+    }
+  }
+  /* 2- sidebar -menu--*/
+
+  .sidebar-menu {
+    padding: 1em;
+
+    & a {
+      span {
+        display: none;
+      }
+    }
+  }
+  /* 3-sidebar-quick-procedures*/
+  .sidebar-quick-procedures {
+    h3 {
+      display: none;
+    }
+
+    & .procedures {
+      & .procedure {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+  .workspace .header-bar {
+    background-color: tomato;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    & .muddabir-logo {
+      flex-basis: auto;
+      order: 1;
+      background-color: aquamarine;
+
+      & div:first-child {
+        flex-basis: 60px;
+      }
+    }
+
+    & .notifications {
+      flex-basis: auto;
+      flex-grow: 5;
+      order: 3;
+      background-color: blueviolet;
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      gap: 40px;
+      align-items: center;
+
+      & div:nth-child(2) {
+        .user-img {
+          width: 40px;
+        }
+      }
+    }
+
+    & .status {
+      flex-basis: auto;
+      order: 2;
+      background-color: yellow;
+    }
+  }
+}
+
+@media screen and (min-width: 1232px) {
+  .workspace .header-bar {
+    background-color: tomato;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    & .muddabir-logo {
+      flex-basis: auto;
+      order: 1;
+      background-color: aquamarine;
+
+      & div:first-child {
+        flex-basis: 60px;
+      }
+    }
+
+    & .notifications {
+      flex-basis: auto;
+      flex-grow: 5;
+      order: 3;
+      background-color: blueviolet;
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      gap: 40px;
+      align-items: center;
+
+      & div:nth-child(2) {
+        .user-img {
+          width: 40px;
+        }
+      }
+    }
+
+    & .status {
+      flex-basis: auto;
+      order: 2;
+      background-color: yellow;
+    }
+  }
+}
