@@ -1,0 +1,199 @@
+<tbody>
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/emma.png">
+                <div>
+                    <p>محمود النجار</p>
+                    <p>تحويل أموال</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-green-800 bg-green-100">
+                دخل
+            </span>
+        </td>
+        <td class="date">14 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">+350 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/restaurant.png">
+                <div>
+                    <p>مطعم Meat moot</p>
+                    <p>دفع مطعم</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-orange-800 bg-orange-100">
+                طعام
+            </span>
+        </td>
+        <td class="date">14 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">-2200 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/amazon.png">
+                <div>
+                    <p>Amazon مشتريات</p>
+                    <p>تسوق إلكتروني</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-blue-800 bg-blue-100">
+                تسوق
+            </span>
+        </td>
+        <td class="date">13 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">-1250 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/user.png">
+                <div>
+                    <p>أحمد العربي</p>
+                    <p>دفع فاتورة مقسمة</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-purple-800 bg-purple-100">
+                فاتورة مقسمة
+            </span>
+        </td>
+        <td class="date">13 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">-1400 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/user2.png">
+                <div>
+                    <p>محمد عوض</p>
+                    <p>دفع عمل حر</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-green-800 bg-green-100">
+                عمل
+            </span>
+        </td>
+        <td class="date">12 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">+2500 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/shell.png">
+                <div>
+                    <p>محطة وقود Shell</p>
+                    <p>شراء وقود</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-red-800 bg-red-100">
+                مواصلات
+            </span>
+        </td>
+        <td class="date">12 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-yellow-800 bg-yellow-100">معلق</span>
+        </td>
+        <td class="amount">-700 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/netflix.png">
+                <div>
+                    <p>اشتراك Netflix</p>
+                    <p>اشتراك شهري</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-blue-800 bg-blue-100">
+                ترفيه
+            </span>
+        </td>
+        <td class="date">11 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">-780 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/gym.png">
+                <div>
+                    <p>نادي FitLife</p>
+                    <p>عضوية شهرية</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-teal-800 bg-teal-100">
+                صحة
+            </span>
+        </td>
+        <td class="date">10 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">-500 جنية</td>
+    </tr>
+
+    <tr>
+        <td class="transaction">
+            <div>
+                <img src="../images/course.png">
+                <div>
+                    <p>كورس Jonas</p>
+                    <p>دورة تعليمية</p>
+                </div>
+            </div>
+        </td>
+        <td class="category">
+            <span class="text-green-800 bg-green-100">
+                تعليم
+            </span>
+        </td>
+        <td class="date">9 أكتوبر 2025</td>
+        <td class="status">
+            <span class="text-green-800 bg-green-100">مكتمل</span>
+        </td>
+        <td class="amount">-250 جنية</td>
+    </tr>
+</tbody>
