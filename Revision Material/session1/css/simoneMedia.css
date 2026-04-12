@@ -1,0 +1,8 @@
+@media screen and (max-width:1200px) {
+    .main-title h2{
+       font-size: 70px;
+    }
+    .main-title p{
+       font-size: 20px;
+    }
+}
