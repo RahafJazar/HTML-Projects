@@ -1,10 +1,11 @@
-.parent {
+/* .parent {
   width: 800px;
   height: 400px;
   padding: 30px;
   margin: 20px;
   background-color: yellow;
-}
+} */
+
 .child {
   width: 600px;
   height: 200px;
@@ -19,9 +20,11 @@ p {
   word-spacing: 1px;
   text-transform: uppercase;
 }
+
 :root {
   font-size: 18px;
 }
+
 .hero {
   background-image: url("../images/image_22.jpg");
   background-position: center;
@@ -40,6 +43,7 @@ p {
   font-size: 3rem;
   font-weight: bold;
 }
+
 .hero p {
   font-size: 0.9rem;
 }
@@ -53,4 +57,19 @@ p {
   :root {
     font-size: 15px;
   }
+}
+
+
+
+/*----Bootstrap Components --------*/
+
+.btn {
+  --bs-btn-box-shadow:
+    3px 2px 3px rgba(246, 37, 37, 0.15);
+  box-shadow: var(--bs-btn-box-shadow);
+
+}
+
+.btn-red {
+  background-color: red;
 }
