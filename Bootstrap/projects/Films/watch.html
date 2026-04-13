@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+    <title>Moves</title>
+</head>
+
+<body>
+
+
+    <div class="top-menu ">
+        <div class="container-fluid ">
+            <nav class="navbar navbar-expand-lg  fixed-top myNav " style="background-color: #1e4a6b;"
+                data-bs-theme="light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">شاهد</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto mb-2 mt-3 mt-lg-0 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.html">الصفحة الرئيسية</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">الرابط</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    الافلام
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">افلام عربي</a></li>
+                                    <li><a class="dropdown-item" href="#">افلام اجنبي</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">افلام هندية</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    مسلسلات
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">مسلسلات عربي</a></li>
+                                    <li><a class="dropdown-item" href="#">مسلسلات اجنبي</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">مسلسلات هندية</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  " aria-disabled="true">نبذة عنا</a>
+                            </li>
+                            <li>
+                                <!---Button Trigger Modal -->
+                                <a class="btn btn-info " data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    تسجيل الدخول
+                                </a>
+
+
+                            </li>
+                        </ul>
+
+                        <div class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <button class="btn btn-outline-info" type="submit"
+                                onclick="location.href='search.html';">بحث</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!---------------------Modal--------------------------------->
+            <!-- Login Modal -->
+            <div class="modal fade " id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">تسجيل الدخول</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form>
+                                <div class="mb-3">
+                                    <label for="email" class="col-form-label">البريد الالكتروني</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="col-form-label">كلمة المرور</label>
+                                    <input type="password" class="form-control" id="password"></input>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" data-bs-target="#resetPasswordModal" data-bs-toggle="modal">نسيت كلمة المرور</a>
+                            <a href="#" class="mx-auto">انشاء حساب </a>
+                            <button type="button" class="btn btn-primary"> دخول</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peset Password Modal -->
+            <div class="modal fade " id="resetPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">كلمة المرور </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form>
+
+                                <div class="mb-3">
+                                    <label for="password" class="col-form-label">كلمة المرور الجديدة</label>
+                                    <input type="password" class="form-control" id="password"></input>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="col-form-label">تأكيد كلمة المرور </label>
+                                    <input type="password" class="form-control" id="password"></input>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-bs-target="#loginModal"
+                                data-bs-toggle="modal"> حفظ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!------------------------------------------------------------>
+            <div class="watch-page pt-5">
+
+                <div class="card border-0">
+                    <div class="row px-2">
+                        <div class="col-lg-7 p-2">
+                            <div>
+                                <video controls class="w-100" poster="./images/submails/Girlfight-01.jpg">
+                                    <source src="./videos/video2MP4.mp4" type="video/mp4">
+                                    <code>video</code>
+                                </video>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="card-block">
+                                <a href="watch.html">
+                                    <h4>الفلم يروي عن: </h4>
+                                </a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ut quas harum ad
+                                    corporis
+                                    natus aspernatur, accusantium pariatur reprehenderit nam?</p>
+                                <small>
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>3000 مشاهدة</span>
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span>قبل اربع اشهر </span>
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content bg-info ">
+                <h2 class="py-5">افتراحات </h2>
+                <div class="row gy-5 p-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 p-1">
+                            <a href="watch.html">
+                                <img src="./images/submails/Girlfight-01.jpg" class="card-img-top" alt="Girlfight Film">
+                                <div class="card-body p-0">
+                                    <h5 class="card-title">Girlfight </h5>
+
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>3000 مشاهدة</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 p-1">
+                            <a href="watch.html">
+                                <img src="./images/submails/One-Battle-After-Another37.jpg" class="card-img-top"
+                                    alt="One-Battle-After-Another Film ">
+                                <div class="card-body p-0">
+                                    <h5 class="card-title">One-Battle-After-Another </h5>
+
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>3000 مشاهدة</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 p-1">
+                            <a href="watch.html">
+                                <img src="./images/submails/Soft-Liquid-Center-19.jpg" class="card-img-top"
+                                    alt="One-Battle-After-Another Film ">
+                                <div class="card-body p-0">
+                                    <h5 class="card-title">Soft-Liquid-Center</h5>
+
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>3000 مشاهدة</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

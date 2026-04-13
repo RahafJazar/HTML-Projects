@@ -1,3 +1,45 @@
+/*======Navbar==============*/
 .navbar-brand {
     color: green;
+}
+
+.myNav .nav-link {
+    color: white;
+}
+
+.myNav .nav-link.active {
+    background-color: rgb(205, 242, 187);
+    color: rgb(12, 11, 11);
+    border-radius: 10px;
+}
+
+@media (min-width:992px) {
+    .myNav .navbar-nav {
+        flex-direction: row;
+        gap: 15px;
+
+    }
+
+}
+
+/*=====Content=============*/
+.content {
+    padding-top: 60px;
+}
+
+/*=========Search page============*/
+.search-header {
+    padding-top: 100px;
+}
+
+.search-header .container {
+    &:has(#filterToggle:checked) {
+        .sibling-b {
+            display: none;
+        }
+    }
+
+    .sibling-b {
+        background-color: rgba(178, 174, 174, 0.3);
+    }
 }
