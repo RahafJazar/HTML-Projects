@@ -1,0 +1,26 @@
+ .myNav .nav-item .nav-link{
+    font-size: 14px; 
+    font-weight: 200;
+    transition: all 0.3s;
+    color: white;
+ }
+ .myNav .nav-item .nav-link.active{
+ background-color: tomato;
+ border-radius: 10px;
+ }
+
+ .myNav .nav-item .nav-link:hover{
+    color: blue;
+ }
+ .myNav .navbar-brand{
+    width: 100px;
+   
+ }
+ .our-baking-section{
+    padding-top: 100px;
+    text-align: center;
+ }
+
+ .myNav  .navbar-toggler{
+     background-color: rgb(211, 210, 210);
+ }
