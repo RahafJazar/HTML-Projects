@@ -73,3 +73,17 @@ p {
 .btn-red {
   background-color: red;
 }
+
+.nav-link{
+  color: red;
+}
+.myNav .nav-link.active{
+  color: red;
+ background-color: aqua;
+ border-radius: 10px;
+}
+
+.icons ul li i {
+  color: blue;
+  padding-left: 20px;
+}
