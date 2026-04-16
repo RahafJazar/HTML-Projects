@@ -1,0 +1,24 @@
+:root {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --green-50: rgb(197, 247, 28);
+}
+
+html {
+    font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+}
+
+.myNav a,
+.myNav .navbar-nav a.active {
+    color: lightcyan;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.navbar-brand span {
+    color: var(--green-50);
+}
+
+.myNav .navbar-nav .sign-in {
+    background-color: var(--green-50);
+    color: black;
+}

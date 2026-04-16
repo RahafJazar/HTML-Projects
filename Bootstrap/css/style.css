@@ -118,10 +118,14 @@ p {
 }
 
 .carousel-indicators [data-bs-target] {
-  width: 30px;
+  width: 30px; 
   height: 30px;
   border-radius: 50%;
   background-image: url("../images/duck.png");
   background-position: center;
   background-size: cover;
+}
+
+.MySection3 .card>div {
+  min-height: 140px;
 }
