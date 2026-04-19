@@ -1,81 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/all.min.css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <!---GoogleFont Chakra  petch-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Arena Game</title>
-</head>
+  </head>
 
-<body>
-    <!--Navbar---->
+  <body>
+    <!--Header---->
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark myNav py-3 px-2">
-            <div class="container-fluid ">
-                <div class="navbar-brand " href="#">
-                    <img src="./images/svg/svgexport-1.svg" alt="logo" width="50">
-                    <span class="fw-bold text-xl ">GameArena</span>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold active text-capitalize   text-lg" aria-current="page"
-                                href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  fw-bold text-capitalize text-lg" href="#">our games</a>
-                        </li>
+      <!--///Nav Section-->
+      <nav
+        class="navbar navbar-expand-lg bg-black myNav py-3 px-5 border-bottom shadow-lg fixed-top"
+      >
+        <div class="container-fluid">
+          <div class="navbar-brand align-items-center" href="#">
+            <img src="./images/svg/svgexport-1.svg" alt="logo" width="30" />
+            <span class="fw-bold text-xl px-2">GameArena</span>
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 left-side">
+              <li class="nav-item">
+                <a
+                  class="nav-link fw-bold active text-capitalize text-lg"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
+                  >our games</a
+                >
+              </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link  fw-bold text-capitalize text-lg" href="#">what we do</a>
-                        </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
+                  >what we do</a
+                >
+              </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link  fw-bold text-capitalize text-lg" href="#">our team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  fw-bold text-capitalize  text-lg" href="#">contact us </a>
-                        </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
+                  >our team</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
+                  >contact us
+                </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 right-side">
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-capitalize text-lg"
+                  aria-current="page"
+                  href="#"
+                >
+                  <svg
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="svg-inline--fa fa-bell text-lg"
+                    data-prefix="far"
+                    data-icon="bell"
+                    role="img"
+                    viewBox="0 0 448 512"
+                    aria-hidden="true"
+                    data-fa-i2svg=""
+                    width="20"
+                    height="20"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M224 0c-13.3 0-24 10.7-24 24l0 9.7C118.6 45.3 56 115.4 56 200l0 14.5c0 37.7-10 74.7-29 107.3L5.1 359.2C1.8 365 0 371.5 0 378.2 0 399.1 16.9 416 37.8 416l372.4 0c20.9 0 37.8-16.9 37.8-37.8 0-6.7-1.8-13.3-5.1-19L421 321.7c-19-32.6-29-69.6-29-107.3l0-14.5c0-84.6-62.6-154.7-144-166.3l0-9.7c0-13.3-10.7-24-24-24zM392.4 368l-336.9 0 12.9-22.1C91.7 306 104 260.6 104 214.5l0-14.5c0-66.3 53.7-120 120-120s120 53.7 120 120l0 14.5c0 46.2 12.3 91.5 35.5 131.4L392.4 368zM156.1 464c9.9 28 36.6 48 67.9 48s58-20 67.9-48l-135.8 0z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold text-capitalize text-lg" href="#">
+                  <svg
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="svg-inline--fa fa-message text-lg"
+                    data-prefix="far"
+                    data-icon="message"
+                    role="img"
+                    viewBox="0 0 512 512"
+                    aria-hidden="true"
+                    data-fa-i2svg=""
+                    width="20"
+                    height="20"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M203.7 512.9s0 0 0 0l-37.8 26.7c-7.3 5.2-16.9 5.8-24.9 1.7S128 529 128 520l0-72-32 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l320 0c53 0 96 43 96 96l0 224c0 53-43 96-96 96l-120.4 0-91.9 64.9zm64.3-104.1c8.1-5.7 17.8-8.8 27.7-8.8L416 400c26.5 0 48-21.5 48-48l0-224c0-26.5-21.5-48-48-48L96 80c-26.5 0-48 21.5-48 48l0 224c0 26.5 21.5 48 48 48l56 0c10.4 0 19.3 6.6 22.6 15.9 .9 2.5 1.4 5.2 1.4 8.1l0 49.7c32.7-23.1 63.3-44.7 91.9-64.9z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
 
+              <li class="nav-item rounded sign-in">
+                <a
+                  class="nav-link fw-bold text-capitalize text-lg py-2 px-3"
+                  href="#"
+                >
+                  Sign in
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-                    </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active text-capitalize   text-lg" aria-current="page" href="#">
-                                <img src="./images/svg/svgexport-2.svg" alt="" width="25">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  fw-bold text-capitalize text-lg" href="#">
-                                <img src="./images/svg/svgexport-3.svg" alt="" width="25">
-                            </a>
-                        </li>
-
-                        <li class="nav-item sign-in">
-                            <a class="nav-link  fw-bold text-capitalize text-lg py-2  px-3 rounded-4 " href="#"> Sign in
-                            </a>
-                        </li>
-
-
-
-
-                    </ul>
-                </div>
+      <!--///Hero Section -->
+      <div class="hero">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-6">
+              <img src="./images/png/hero-img-C0b4IWtS.png" alt=""  width="500"/>
+              <div class="active-players">
+                <svg
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="svg-inline--fa fa-trophy sm:text-xl text-lg text-primary"
+                  data-prefix="fas"
+                  data-icon="trophy"
+                  role="img"
+                  viewBox="0 0 512 512"
+                  aria-hidden="true"
+                  data-fa-i2svg=""
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    fill=" rgb(197, 247, 28);"
+                    d="M144.3 0l224 0c26.5 0 48.1 21.8 47.1 48.2-.2 5.3-.4 10.6-.7 15.8l49.6 0c26.1 0 49.1 21.6 47.1 49.8-7.5 103.7-60.5 160.7-118 190.5-15.8 8.2-31.9 14.3-47.2 18.8-20.2 28.6-41.2 43.7-57.9 51.8l0 73.1 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0 0-73.1c-16-7.7-35.9-22-55.3-48.3-18.4-4.8-38.4-12.1-57.9-23.1-54.1-30.3-102.9-87.4-109.9-189.9-1.9-28.1 21-49.7 47.1-49.7l49.6 0c-.3-5.2-.5-10.4-.7-15.8-1-26.5 20.6-48.2 47.1-48.2zM101.5 112l-52.4 0c6.2 84.7 45.1 127.1 85.2 149.6-14.4-37.3-26.3-86-32.8-149.6zM380 256.8c40.5-23.8 77.1-66.1 83.3-144.8L411 112c-6.2 60.9-17.4 108.2-31 144.8z"
+                  ></path>
+                </svg>
+                <div></div>
+              </div>
             </div>
-        </nav>
+          </div>
+        </div>
+      </div>
     </header>
 
-
-
     <script src="./js/bootstrap.bundle.min.js"></script>
-</body>
-
+  </body>
 </html>
