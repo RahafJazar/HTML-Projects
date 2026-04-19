@@ -3,56 +3,287 @@
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
   --green-50: rgb(197, 247, 28);
+
 }
 
 body {
   font-family: "Chakra Petch", sans-serif;
   font-weight: 300;
   font-style: normal;
+  word-spacing: 4px;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Days One, sans-serif;
+}
+
+
+
+.font-chakra {
+  font-family: "Chakra Petch", sans-serif;
+}
+
+/*==================================*/
 
 .myNav .left-side a,
 .myNav .left-side .active {
-  color: white; 
+  color: white;
   cursor: pointer;
 }
-.myNav .left-side a:hover ,
+
+.myNav .left-side a:hover,
 .myNav .left-side .active:hover,
-.myNav  .right-side a svg:hover  {
+.myNav .right-side a svg:hover {
   color: var(--green-50);
 }
 
 .navbar-brand span {
   color: var(--green-50);
 }
-.myNav  .right-side a svg,
-.myNav .navbar-toggler .navbar-toggler-icon{
-    color:white
+
+.myNav .right-side a svg,
+.myNav .navbar-toggler .navbar-toggler-icon {
+  color: white
 }
-.myNav  .right-side .sign-in {
-  background-color: var(--green-50); 
-  transition:background-color 0.5s ease;
+
+.myNav .right-side .sign-in {
+  background-color: var(--green-50);
+  transition: background-color 0.5s ease;
 }
-.myNav  .right-side .sign-in  a{
- 
+
+.myNav .right-side .sign-in a {
+
   color: black;
- 
+
 }
-.myNav  .right-side .sign-in:hover {
-  background-color:  color-mix(in oklab,  var(--green-50) 80%,  transparent);
+
+.myNav .right-side .sign-in.background-motion:hover {
+  background-color: color-mix(in oklab, var(--green-50) 80%, transparent);
 }
 
 
 /* #region =================Hero Section================*/
-.hero{
-  padding-top: 300px;
-  height: 100vh;
+.hero {
   background-image: url("../images/png/hero-bg-H6PoyNYD.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  .container-fluid {
+    padding: 150px 30px 50px;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-headline {
+    font-size: 60px;
+
+    .accent {
+      color: var(--green-50);
+    }
+  }
+
+  .cta {
+    button:first-of-type {
+      color: black;
+      transition: all 0.1s ease;
+    }
+
+    button:nth-of-type(2) {
+      color: var(--green-50);
+    }
+
+    .cta-buttons-bg {
+      background-color: var(--green-50);
+    }
+
+    .cta-buttons-border {
+      border: 2px solid var(--green-50);
+    }
+  }
+
+  .left-side {
+    .cta {
+      button:hover.background-motion {
+        color: black;
+        background-color: color-mix(in oklab, var(--green-50) 80%, transparent);
+      }
+    }
+  }
+
+  .image-container {
+    &.img-border {
+      border: 2px solid var(--green-50);
+    }
+  }
+
+  .right-side {
+    background: linear-gradient(to right, #d3ec1c, #4ade80);
+    padding: 4px;
+    border-radius: 1rem;
+  }
+}
+
+/* #endregion============================================*/
+
+
+
+/*#region ============ Our Games ====================*/
+
+.tag {
+  font-size: 10px;
+}
+
+.game-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.game-card:hover {
+  border: 2px solid var(--green-50);
+}
+
+.game-card .card-img img {
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .card-img img {
+  transform: scale(1.2);
 }
 
 
 
-/* #endregion============================================*/
+.card-tags {
+  opacity: 0;
+  background: linear-gradient(to bottom,
+      transparent 50%,
+      color-mix(in srgb, var(--green-50) 60%, transparent));
+  position: absolute;
+  left: 0px;
+  bottom: -10px;
+  right: 0px;
+  top: -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+
+}
+
+.game-card:hover .card-tags {
+  opacity: 1;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  top: 0px;
+  padding: 10px;
+}
+
+
+/*3333333333333333333333333333333333333*/
+.our-games .title p {
+  color: var(--green-50);
+  position: relative;
+  padding: 5px 30px;
+  background-color: #4ade80;
+  width: 200px;
+  margin: auto;
+}
+
+.our-games .title p::before,
+.our-games .title p::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background-color: var(--green-50);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(to right, transparent, var(--green-50));
+
+
+}
+
+.our-games .title p::before {
+  right: 100%;
+  margin-right: 10px;
+  background: linear-gradient(to right, transparent, var(--green-50));
+}
+
+.our-games .title p::after {
+  left: 100%;
+  margin-left: 10px;
+
+  background: linear-gradient(to left, transparent, var(--green-50));
+
+
+}
+
+.our-games .MyCarousel1 button[data-bs-target] {
+  background: #2a2a2a;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  padding: 10px;
+  /* border: 1px solid #333; */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.our-games .MyCarousel1 button[data-bs-target] {
+  border: 1px solid darkgray;
+}
+
+.our-games .MyCarousel1 button[data-bs-target]:hover {
+  border-color: var(--green-50);
+  color: var(--green-50);
+}
+
+
+.our-games .MyCarousel1 .btn-view-all {
+  border: 2px solid #c8ff00;
+  color: #c8ff00;
+  background: transparent;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 14px 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  text-transform: uppercase;
+}
+
+.our-games .MyCarousel1 .btn-view-all:hover {
+  background-color: var(--green-50);
+  color: black;
+}
+
+/*#endregion ====================================*/
+
+
+
+
+
+
+
+
+@media screen and (max-width:576px) {
+  .hero .hero-headline {
+    font-size: 40px;
+  }
+
+}
