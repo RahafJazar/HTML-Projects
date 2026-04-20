@@ -186,44 +186,6 @@ h6 {
 }
 
 
-/*3333333333333333333333333333333333333*/
-.our-games .title p {
-  color: var(--green-50);
-  position: relative;
-  padding: 5px 30px;
-  background-color: #4ade80;
-  width: 200px;
-  margin: auto;
-}
-
-.our-games .title p::before,
-.our-games .title p::after {
-  content: "";
-  width: 60px;
-  height: 2px;
-  background-color: var(--green-50);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: linear-gradient(to right, transparent, var(--green-50));
-
-
-}
-
-.our-games .title p::before {
-  right: 100%;
-  margin-right: 10px;
-  background: linear-gradient(to right, transparent, var(--green-50));
-}
-
-.our-games .title p::after {
-  left: 100%;
-  margin-left: 10px;
-
-  background: linear-gradient(to left, transparent, var(--green-50));
-
-
-}
 
 .our-games .MyCarousel1 button[data-bs-target] {
   background: #2a2a2a;
@@ -275,15 +237,159 @@ h6 {
 /*#endregion ====================================*/
 
 
+/*#region =============What We Do=====================*/
+.triangle {
+  width: 0;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+}
+
+.triangle-top {
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid var(--green-50);
+  top: -35px;
+  left: -35px;
+  transform: rotate(45deg);
+  transition: all 0.2s ease;
+}
+
+.triangle-bottom {
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid var(--green-50);
+  bottom: -35px;
+  right: -35px;
+  transform: rotate(225deg);
+  transition: all 0.2s ease;
+}
+
+.card-item {
+  transition: border 0.1s ease;
+  overflow: hidden;
+}
+
+.card-item .img-container {
+  background-color: #2a2a2a;
+}
+
+.card-item:hover {
+  border: 1px solid var(--green-50);
+}
+
+.card-item .img-container .cover {
+  opacity: 0;
+  border-radius: 3px;
+  transition: all 0.1s ease;
+
+}
+
+.card-item:hover .img-container .cover {
+  opacity: 1;
+  background-color: var(--green-50);
+}
+
+.card-item:hover .triangle-top {
+  top: 2px;
+  left: 2px;
+  opacity: 1;
+}
+
+.card-item:hover .triangle-bottom {
+  bottom: 2px;
+  right: 2px;
+  opacity: 1;
+}
+
+/*#endregion ==========================================*/
+
+/*#region Motion Section ====================*/
+.motion-images {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/*#endregion =====================================*/
+
+/*###################################################*/
+.title p.top {
+  color: var(--green-50);
+  position: relative;
+  padding: 5px 30px;
+  width: 200px;
+  margin: auto;
+}
+
+.title p.top::before,
+.title p.top::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background-color: var(--green-50);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(to right, transparent, var(--green-50));
+
+
+}
+
+.title p.top::before {
+  right: 100%;
+  margin-right: 10px;
+  background: linear-gradient(to right, transparent, var(--green-50));
+}
+
+.title p.top::after {
+  left: 100%;
+  margin-left: 10px;
+
+  background: linear-gradient(to left, transparent, var(--green-50));
+
+
+}
+
+
+
+.title p:not(:is(.top)) span {
+
+  color: var(--green-50);
+}
+
+/*#############################################*/
+/*#############################################*/
+
+.line {
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #aaff00, #ccff00, transparent);
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+  box-shadow: 0 0 16px #aaff00, 0 0 32px #aaff0055;
+}
 
 
 
 
 
 
+
+
+
+
+
+/*#############################################*/
+
+
+
+/*sm*/
 @media screen and (max-width:576px) {
   .hero .hero-headline {
     font-size: 40px;
   }
+
 
 }
