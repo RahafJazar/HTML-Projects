@@ -2,7 +2,7 @@
   --font-sans:
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --green-50: rgb(197, 247, 28);
+  --green-50: #c5f71c;
   --color-gray-800: oklch(27.8% 0.033 256.848);
 }
 
@@ -31,6 +31,7 @@ h6 {
 .bg-gray-800 {
   background-color: var(--color-gray-800);
 }
+
 /*==================================*/
 
 .myNav .left-side a,
@@ -54,6 +55,18 @@ h6 {
   color: white;
 }
 
+.myNav .navbar-toggler .navbar-toggler-icon:hover {
+  color: var(--green-50);
+}
+
+.myNav .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.myNav .navbar-toggler:hover .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23c5f71c' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
 .myNav .right-side .sign-in {
   background-color: var(--green-50);
   transition: background-color 0.5s ease;
@@ -68,7 +81,7 @@ h6 {
 }
 
 /* #region =================Hero Section================*/
-.hero {
+#hero {
   background-image: url("../images/png/hero-bg-H6PoyNYD.jpg");
   background-position: center;
   background-size: cover;
@@ -157,11 +170,9 @@ h6 {
 
 .card-tags {
   opacity: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    color-mix(in srgb, var(--green-50) 60%, transparent)
-  );
+  background: linear-gradient(to bottom,
+      transparent 50%,
+      color-mix(in srgb, var(--green-50) 60%, transparent));
   position: absolute;
   left: 0px;
   bottom: -10px;
@@ -182,7 +193,7 @@ h6 {
   padding: 10px;
 }
 
-.our-games .MyCarousel1 button[data-bs-target] {
+#our-games .MyCarousel1 button[data-bs-target] {
   background: #2a2a2a;
   width: 48px;
   height: 48px;
@@ -201,16 +212,16 @@ h6 {
   font-size: 1.1rem;
 }
 
-.our-games .MyCarousel1 button[data-bs-target] {
+#our-games .MyCarousel1 button[data-bs-target] {
   border: 1px solid darkgray;
 }
 
-.our-games .MyCarousel1 button[data-bs-target]:hover {
+#our-games .MyCarousel1 button[data-bs-target]:hover {
   border-color: var(--green-50);
   color: var(--green-50);
 }
 
-.our-games .MyCarousel1 .btn-view-all {
+#our-games .MyCarousel1 .btn-view-all {
   border: 2px solid #c8ff00;
   color: #c8ff00;
   background: transparent;
@@ -228,7 +239,7 @@ h6 {
   text-transform: uppercase;
 }
 
-.our-games .MyCarousel1 .btn-view-all:hover {
+#our-games .MyCarousel1 .btn-view-all:hover {
   background-color: var(--green-50);
   color: black;
 }
@@ -303,40 +314,123 @@ h6 {
 
 /*#region Motion Section ====================*/
 .motion-images {
-  overflow: hidden;
+  margin-top: 100px;
   width: 100%;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
+  position: relative;
+  z-index: 2;
+}
+
+
+.custom-background {
+  margin: auto;
+  width: 70%;
+  height: 100px;
+  box-shadow: 3px 3px 30px 100px var(--green-50), inset 3px 3px 30px 100px var(--green-50);
+  border-radius: 50%;
+  position: absolute;
+  top: 60px;
+  left: 200px;
+  z-index: 0;
+  pointer-events: none;
+
+
+}
+
+.scroll-wrapper {
+  overflow: hidden;
+  z-index: 3;
+}
+
+.scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+}
+
+.scroll-track.reverse {
+  animation: scroll-right 30s linear infinite;
+}
+
+.group {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 /*#endregion =====================================*/
+
+/*#region =============Our-team  =====================*/
+#our-team {
+  margin-block: 160px;
+}
+
+
+.team-member .member-data {
+  background-color: #aaff00;
+
+  & p:first-of-type {
+    color: var(--green-50);
+  }
+
+  h3 {
+    color: white;
+  }
+}
+
+.team-member .member-name {
+  /* padding-left: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  background-color: goldenrod;
+  transform: rotate(90deg);
+  transform-origin: center center; */
+
+
+
+  /*  */
+}
+
+/*#endregion =====================================*/
+
+
 
 /*#region =============contact us =====================*/
 .contact-card .contact-icon {
   background-color: var(--green-50);
 }
+
 .contact-card.join-community {
   background: linear-gradient(45deg, var(--green-50), rgb(137, 206, 137));
 }
 
-.form-container input ,
-.form-container textarea ,
-.form-container select  {
+.form-container input,
+.form-container textarea,
+.form-container select {
   background-color: #364153;
- border: none;
+  border: none;
 }
+
 .form-container input:focus,
 .form-container textarea:focus,
 .form-container select:focus {
@@ -349,6 +443,7 @@ h6 {
   accent-color: white;
   outline: 2px solid var(--green-50);
 }
+
 .form-container button[type="submit"] {
   width: 100%;
   color: black;
@@ -356,16 +451,64 @@ h6 {
   background-color: var(--green-50);
   transition: background-color 0.5s ease;
 }
+
 .form-container button[type="submit"]:hover {
   background-color: color-mix(in oklab, var(--green-50) 80%, transparent);
 }
 
-.statistics span{
+.statistics span {
   color: var(--green-50);
   font-weight: bold;
   font-size: 25px;
 }
+
 /*#endregion =====================================*/
+
+/*#region===============Footer==========================*/
+#footer .footer-name {
+  color: var(--green-50);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+ul li {
+  margin-bottom: 10px;
+  color: oklch(70.7% .022 261.325);
+
+}
+
+ul li:hover {
+  color: var(--green-50);
+
+}
+
+#footer .social-apps ul {
+
+
+  li {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+}
+
+#footer .payment p {
+  word-spacing: 1px;
+  color: oklch(70.7% .022 261.325);
+}
+
+/*#endregion============================================*/
+
 /*###################################################*/
 .title p.top {
   color: var(--green-50);
@@ -410,13 +553,11 @@ h6 {
 .line {
   width: 50%;
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #aaff00,
-    #ccff00,
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      #aaff00,
+      #ccff00,
+      transparent);
   margin: 0 auto 1.5rem;
   border-radius: 2px;
   box-shadow:
@@ -428,7 +569,7 @@ h6 {
 
 /*sm*/
 @media screen and (max-width: 576px) {
-  .hero .hero-headline {
+  #hero #hero-headline {
     font-size: 40px;
   }
 }
