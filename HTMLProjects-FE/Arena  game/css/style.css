@@ -3,7 +3,7 @@
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
   --green-50: rgb(197, 247, 28);
-
+  --color-gray-800: oklch(27.8% 0.033 256.848);
 }
 
 body {
@@ -19,15 +19,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Days One, sans-serif;
+  font-family:
+    Days One,
+    sans-serif;
 }
-
-
 
 .font-chakra {
   font-family: "Chakra Petch", sans-serif;
 }
 
+.bg-gray-800 {
+  background-color: var(--color-gray-800);
+}
 /*==================================*/
 
 .myNav .left-side a,
@@ -48,7 +51,7 @@ h6 {
 
 .myNav .right-side a svg,
 .myNav .navbar-toggler .navbar-toggler-icon {
-  color: white
+  color: white;
 }
 
 .myNav .right-side .sign-in {
@@ -57,15 +60,12 @@ h6 {
 }
 
 .myNav .right-side .sign-in a {
-
   color: black;
-
 }
 
 .myNav .right-side .sign-in.background-motion:hover {
   background-color: color-mix(in oklab, var(--green-50) 80%, transparent);
 }
-
 
 /* #region =================Hero Section================*/
 .hero {
@@ -131,8 +131,6 @@ h6 {
 
 /* #endregion============================================*/
 
-
-
 /*#region ============ Our Games ====================*/
 
 .tag {
@@ -157,13 +155,13 @@ h6 {
   transform: scale(1.2);
 }
 
-
-
 .card-tags {
   opacity: 0;
-  background: linear-gradient(to bottom,
-      transparent 50%,
-      color-mix(in srgb, var(--green-50) 60%, transparent));
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    color-mix(in srgb, var(--green-50) 60%, transparent)
+  );
   position: absolute;
   left: 0px;
   bottom: -10px;
@@ -173,7 +171,6 @@ h6 {
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.3s ease;
-
 }
 
 .game-card:hover .card-tags {
@@ -184,8 +181,6 @@ h6 {
   top: 0px;
   padding: 10px;
 }
-
-
 
 .our-games .MyCarousel1 button[data-bs-target] {
   background: #2a2a2a;
@@ -200,7 +195,9 @@ h6 {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
   font-size: 1.1rem;
 }
 
@@ -213,19 +210,21 @@ h6 {
   color: var(--green-50);
 }
 
-
 .our-games .MyCarousel1 .btn-view-all {
   border: 2px solid #c8ff00;
   color: #c8ff00;
   background: transparent;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   padding: 14px 36px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.1s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.1s;
   text-transform: uppercase;
 }
 
@@ -235,7 +234,6 @@ h6 {
 }
 
 /*#endregion ====================================*/
-
 
 /*#region =============What We Do=====================*/
 .triangle {
@@ -282,7 +280,6 @@ h6 {
   opacity: 0;
   border-radius: 3px;
   transition: all 0.1s ease;
-
 }
 
 .card-item:hover .img-container .cover {
@@ -308,12 +305,67 @@ h6 {
 .motion-images {
   overflow: hidden;
   width: 100%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 /*#endregion =====================================*/
 
+/*#region =============contact us =====================*/
+.contact-card .contact-icon {
+  background-color: var(--green-50);
+}
+.contact-card.join-community {
+  background: linear-gradient(45deg, var(--green-50), rgb(137, 206, 137));
+}
+
+.form-container input ,
+.form-container textarea ,
+.form-container select  {
+  background-color: #364153;
+ border: none;
+}
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+  border: 1px solid var(--green-50);
+  outline: none;
+}
+
+.form-container input[type="checkbox"]:focus {
+  transform: scale(1.5);
+  accent-color: white;
+  outline: 2px solid var(--green-50);
+}
+.form-container button[type="submit"] {
+  width: 100%;
+  color: black;
+  font-weight: bold;
+  background-color: var(--green-50);
+  transition: background-color 0.5s ease;
+}
+.form-container button[type="submit"]:hover {
+  background-color: color-mix(in oklab, var(--green-50) 80%, transparent);
+}
+
+.statistics span{
+  color: var(--green-50);
+  font-weight: bold;
+  font-size: 25px;
+}
+/*#endregion =====================================*/
 /*###################################################*/
 .title p.top {
   color: var(--green-50);
@@ -333,8 +385,6 @@ h6 {
   top: 50%;
   transform: translateY(-50%);
   background: linear-gradient(to right, transparent, var(--green-50));
-
-
 }
 
 .title p.top::before {
@@ -348,14 +398,9 @@ h6 {
   margin-left: 10px;
 
   background: linear-gradient(to left, transparent, var(--green-50));
-
-
 }
 
-
-
 .title p:not(:is(.top)) span {
-
   color: var(--green-50);
 }
 
@@ -365,31 +410,25 @@ h6 {
 .line {
   width: 50%;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #aaff00, #ccff00, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #aaff00,
+    #ccff00,
+    transparent
+  );
   margin: 0 auto 1.5rem;
   border-radius: 2px;
-  box-shadow: 0 0 16px #aaff00, 0 0 32px #aaff0055;
+  box-shadow:
+    0 0 16px #aaff00,
+    0 0 32px #aaff0055;
 }
-
-
-
-
-
-
-
-
-
-
 
 /*#############################################*/
 
-
-
 /*sm*/
-@media screen and (max-width:576px) {
+@media screen and (max-width: 576px) {
   .hero .hero-headline {
     font-size: 40px;
   }
-
-
 }
