@@ -1,1360 +1,1245 @@
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/all.min.css" />
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./css/style.css" />
 
-    <!---GoogleFont Chakra  petch-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/all.min.css" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 
-    <!---Google Font Days One -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Days+One&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Arena Game</title>
-  </head>
+  <!---GoogleFont Chakra  petch-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <!-----------///HEADER Section---------------->
-    <header>
-      <!--///Nav Section-->
-      <nav
-        class="navbar navbar-expand-lg bg-black myNav py-3 px-5 border-bottom shadow-lg fixed-top"
-      >
-        <div class="container-fluid">
-          <div class="navbar-brand align-items-center" href="#">
-            <img src="./images/svg/svgexport-1.svg" alt="logo" width="30" />
-            <span class="fw-bold text-xl px-2">GameArena</span>
-          </div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 left-side">
-              <li class="nav-item">
-                <a
-                  class="nav-link fw-bold active text-capitalize text-lg"
-                  aria-current="page"
-                  href="#"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
-                  >our games</a
-                >
-              </li>
+  <!---Google Font Days One -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Days+One&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Arena Game</title>
+</head>
 
-              <li class="nav-item">
-                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
-                  >what we do</a
-                >
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
-                  >our team</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-bold text-capitalize text-lg" href="#"
-                  >contact us
-                </a>
-              </li>
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 right-side">
-              <li class="nav-item">
-                <a
-                  class="nav-link active text-capitalize text-lg"
-                  aria-current="page"
-                  href="#"
-                >
-                  <svg
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="svg-inline--fa fa-bell text-lg"
-                    data-prefix="far"
-                    data-icon="bell"
-                    role="img"
-                    viewBox="0 0 448 512"
-                    aria-hidden="true"
-                    data-fa-i2svg=""
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M224 0c-13.3 0-24 10.7-24 24l0 9.7C118.6 45.3 56 115.4 56 200l0 14.5c0 37.7-10 74.7-29 107.3L5.1 359.2C1.8 365 0 371.5 0 378.2 0 399.1 16.9 416 37.8 416l372.4 0c20.9 0 37.8-16.9 37.8-37.8 0-6.7-1.8-13.3-5.1-19L421 321.7c-19-32.6-29-69.6-29-107.3l0-14.5c0-84.6-62.6-154.7-144-166.3l0-9.7c0-13.3-10.7-24-24-24zM392.4 368l-336.9 0 12.9-22.1C91.7 306 104 260.6 104 214.5l0-14.5c0-66.3 53.7-120 120-120s120 53.7 120 120l0 14.5c0 46.2 12.3 91.5 35.5 131.4L392.4 368zM156.1 464c9.9 28 36.6 48 67.9 48s58-20 67.9-48l-135.8 0z"
-                    ></path>
-                  </svg>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-bold text-capitalize text-lg" href="#">
-                  <svg
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="svg-inline--fa fa-message text-lg"
-                    data-prefix="far"
-                    data-icon="message"
-                    role="img"
-                    viewBox="0 0 512 512"
-                    aria-hidden="true"
-                    data-fa-i2svg=""
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M203.7 512.9s0 0 0 0l-37.8 26.7c-7.3 5.2-16.9 5.8-24.9 1.7S128 529 128 520l0-72-32 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l320 0c53 0 96 43 96 96l0 224c0 53-43 96-96 96l-120.4 0-91.9 64.9zm64.3-104.1c8.1-5.7 17.8-8.8 27.7-8.8L416 400c26.5 0 48-21.5 48-48l0-224c0-26.5-21.5-48-48-48L96 80c-26.5 0-48 21.5-48 48l0 224c0 26.5 21.5 48 48 48l56 0c10.4 0 19.3 6.6 22.6 15.9 .9 2.5 1.4 5.2 1.4 8.1l0 49.7c32.7-23.1 63.3-44.7 91.9-64.9z"
-                    ></path>
-                  </svg>
-                </a>
-              </li>
-
-              <li class="nav-item rounded sign-in background-motion">
-                <a
-                  class="nav-link fw-bold text-capitalize text-lg py-2 px-3"
-                  href="#"
-                >
-                  Sign in
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <!--///Hero Section -->
-      <div class="hero">
-        <div class="container-fluid">
-          <div class="row align-items-center gap-4 gap-lg-0">
-            <div class="col-10 col-lg-6 m-auto left-side">
-              <div
-                class="d-flex flex-column align-items-center text-center text-lg-start"
-              >
-                <h1 class="hero-headline text-upper fw-bold">
-                  THE ULTIMATE
-                  <span class="accent">GAMING</span>
-                  EXPERIENCE
-                </h1>
-                <p class="lead fs-6">
-                  Join millions of gamers worldwide in the most competitive
-                  eSports tournaments. Experience next-level gaming with
-                  cutting-edge technology and endless possibilities.
-                </p>
-                <div class="cta w-100">
-                  <div
-                    class="row gap-2 justify-content-center justify-content-lg-start"
-                  >
-                    <button
-                      class="btn cta-buttons-bg col-sm-4 fw-bold p-3 background-motion"
-                    >
-                      Start Gaming Now
-                    </button>
-                    <button
-                      class="btn cta-buttons-border col-sm-4 fw-bold p-3 background-motion"
-                    >
-                      Watch Tournaments
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-lg-6 m-auto right-side">
-              <div class="position-relative">
-                <div
-                  class="image-container rounded-4 overflow-hidden"
-                  style="width: 100%; height: 400px"
-                >
-                  <img
-                    src="./images/png/hero-img-C0b4IWtS.png"
-                    alt=""
-                    class="w-100 h-100"
-                  />
-                </div>
-
-                <div
-                  class="active-players d-flex justify-content-between align-items-center bg-black border rounded-2 p-3 position-absolute"
-                  style="width: 170px; bottom: -20px; left: -10px"
-                >
-                  <svg
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="svg-inline--fa fa-trophy sm:text-xl text-lg text-primary"
-                    data-prefix="fas"
-                    data-icon="trophy"
-                    role="img"
-                    viewBox="0 0 512 512"
-                    aria-hidden="true"
-                    data-fa-i2svg=""
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      fill="#CBFE1C"
-                      d="M144.3 0l224 0c26.5 0 48.1 21.8 47.1 48.2-.2 5.3-.4 10.6-.7 15.8l49.6 0c26.1 0 49.1 21.6 47.1 49.8-7.5 103.7-60.5 160.7-118 190.5-15.8 8.2-31.9 14.3-47.2 18.8-20.2 28.6-41.2 43.7-57.9 51.8l0 73.1 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0 0-73.1c-16-7.7-35.9-22-55.3-48.3-18.4-4.8-38.4-12.1-57.9-23.1-54.1-30.3-102.9-87.4-109.9-189.9-1.9-28.1 21-49.7 47.1-49.7l49.6 0c-.3-5.2-.5-10.4-.7-15.8-1-26.5 20.6-48.2 47.1-48.2zM101.5 112l-52.4 0c6.2 84.7 45.1 127.1 85.2 149.6-14.4-37.3-26.3-86-32.8-149.6zM380 256.8c40.5-23.8 77.1-66.1 83.3-144.8L411 112c-6.2 60.9-17.4 108.2-31 144.8z"
-                    ></path>
-                  </svg>
-                  <div
-                    class="d-flex flex-column justify-content-center align-items-center"
-                  >
-                    <p class="m-0 text-muted fs-6">Active Players</p>
-                    <span class="fw-bold fs-5">2.5M+</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!----------////OUR GAMES Section ------------->
-    <section class="our-games my-5 pt-2">
+<body>
+  <!-----------///HEADER Section---------------->
+  <header>
+    <!--///Nav Section-->
+    <nav class="navbar navbar-expand-lg bg-black myNav py-3 px-5 border-bottom shadow-lg fixed-top">
       <div class="container-fluid">
-        <div class="row title">
-          <p class="lead mb-3 text-center fw-bold top">Our Games</p>
-          <h2 class="text-center fw-bold fs-1">Our Latest Games</h2>
+        <div class="navbar-brand align-items-center" href="#">
+          <img src="./images/svg/svgexport-1.svg" alt="logo" width="30" />
+          <span class="fw-bold text-xl px-2">GameArena</span>
         </div>
-        <div class="row">
-          <div
-            id="carouselExampleIndicators"
-            class="carousel slide MyCarousel1"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <!---1-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 left-side">
+            <li class="nav-item">
+              <a class="nav-link fw-bold active text-capitalize text-lg" aria-current="page" href="#hero">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-capitalize text-lg" href="#our-games">our
+                games</a>
+            </li>
 
-                <div class="row g-2 p-2">
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-1-CfV33bjK.png"
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-shield-halved mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="shield-halved"
-                            role="img"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="18"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z"
-                            ></path>
-                          </svg>
-                          ADVENTURER</span
-                        >
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-wand-magic-sparkles mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="wand-magic-sparkles"
-                            role="img"
-                            viewBox="0 0 576 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="16"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z"
-                            ></path>
-                          </svg>
-                          MULTIPLAYE</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Alien Companions
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4 d-none d-md-block"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-2-DcGt1MOH.png "
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-flag-checkered mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="flag-checkered"
-                            role="img"
-                            viewBox="0 0 448 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="20.57"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5 46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4-37.9-19-81.4-23.7-122.5-13.4L64 384 64 480c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9 0 65.5-64 13.9 0 65.5 48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3l0-63.9 38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9 0 66.7-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8l0 71.4c21.8 1.9 43.3 6.7 64 14.4l0-69.8 22.7 6.7c13.5 4 27.3 6.4 41.3 7.4l0-64.2c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12 0-62c-13-3.8-25.8-8.8-38.2-15-8.2-4.1-16.9-7-25.8-8.8l0 72.4c-13-.4-26 .8-38.7 3.6l-25.3 5.5 0-75.2-64 16 0 73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2 0-71.7-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5l0 77.4zm64-149.4l0-70.8c-20.9 6.1-42.4 9.1-64 9.1l0 69.4c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z"
-                            ></path>
-                          </svg>
-                          RACING</span
-                        >
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-bolt mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="bolt"
-                            role="img"
-                            viewBox="0 0 448 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="20.57"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z"
-                            ></path>
-                          </svg>
-                          SCI-FI</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Cyber Run 2099
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4 d-none d-lg-block"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-3-3PuaZ95E.png "
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-discord mr-2 text-primary"
-                            data-prefix="fab"
-                            data-icon="discord"
-                            role="img"
-                            viewBox="0 0 576 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="16"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z"
-                            ></path>
-                          </svg>
-                          ACTION
-                        </span>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-microchip mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="microchip"
-                            role="img"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="18"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm16 48l0 160 160 0 0-160-160 0z"
-                            ></path>
-                          </svg>
-                          GEFORCE</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          The Legend of Zelda: Tears of the Kingdom
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <!---2-->
-                <div class="row g-2 p-2">
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-4-DCWGKdgP.png"
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-shield-halved mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="shield-halved"
-                            role="img"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="18"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z"
-                            ></path>
-                          </svg>
-                          RPG</span
-                        >
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-wand-magic-sparkles mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="wand-magic-sparkles"
-                            role="img"
-                            viewBox="0 0 576 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="16"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z"
-                            ></path>
-                          </svg>
-                          FANTASY</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Aetheria Chronicles
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4 d-none d-md-block"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/avatar-5-CKJm2Bjf.png "
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-flag-checkered mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="flag-checkered"
-                            role="img"
-                            viewBox="0 0 448 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="20.57"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5 46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4-37.9-19-81.4-23.7-122.5-13.4L64 384 64 480c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9 0 65.5-64 13.9 0 65.5 48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3l0-63.9 38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9 0 66.7-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8l0 71.4c21.8 1.9 43.3 6.7 64 14.4l0-69.8 22.7 6.7c13.5 4 27.3 6.4 41.3 7.4l0-64.2c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12 0-62c-13-3.8-25.8-8.8-38.2-15-8.2-4.1-16.9-7-25.8-8.8l0 72.4c-13-.4-26 .8-38.7 3.6l-25.3 5.5 0-75.2-64 16 0 73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2 0-71.7-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5l0 77.4zm64-149.4l0-70.8c-20.9 6.1-42.4 9.1-64 9.1l0 69.4c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z"
-                            ></path>
-                          </svg>
-                          SHOOTER</span
-                        >
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-bolt mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="bolt"
-                            role="img"
-                            viewBox="0 0 448 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="20.57"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z"
-                            ></path>
-                          </svg>
-                          CO-OP</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Warfront Protocol
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4 d-none d-lg-block"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-6-DCWGKdgP.png"
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-discord mr-2 text-primary"
-                            data-prefix="fab"
-                            data-icon="discord"
-                            role="img"
-                            viewBox="0 0 576 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="16"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z"
-                            ></path>
-                          </svg>
-                          FOOTBALL
-                        </span>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-microchip mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="microchip"
-                            role="img"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="18"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm16 48l0 160 160 0 0-160-160 0z"
-                            ></path>
-                          </svg>
-                          FANTASY</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Shot Striker
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <!-- 3 -->
-                <div class="row g-2 p-2">
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-7-C9aSwQWa.png"
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-shield-halved mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="shield-halved"
-                            role="img"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="18"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z"
-                            ></path>
-                          </svg>
-                          SPORTS</span
-                        >
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-wand-magic-sparkles mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="wand-magic-sparkles"
-                            role="img"
-                            viewBox="0 0 576 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="16"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z"
-                            ></path>
-                          </svg>
-                          LEAGUE</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Epic Gaming League
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4 d-none d-md-block"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-8-CDS2WV4Q.png "
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-flag-checkered mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="flag-checkered"
-                            role="img"
-                            viewBox="0 0 448 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="20.57"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5 46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4-37.9-19-81.4-23.7-122.5-13.4L64 384 64 480c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9 0 65.5-64 13.9 0 65.5 48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3l0-63.9 38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9 0 66.7-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8l0 71.4c21.8 1.9 43.3 6.7 64 14.4l0-69.8 22.7 6.7c13.5 4 27.3 6.4 41.3 7.4l0-64.2c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12 0-62c-13-3.8-25.8-8.8-38.2-15-8.2-4.1-16.9-7-25.8-8.8l0 72.4c-13-.4-26 .8-38.7 3.6l-25.3 5.5 0-75.2-64 16 0 73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2 0-71.7-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5l0 77.4zm64-149.4l0-70.8c-20.9 6.1-42.4 9.1-64 9.1l0 69.4c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z"
-                            ></path>
-                          </svg>
-                          SPACE</span
-                        >
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-bolt mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="bolt"
-                            role="img"
-                            viewBox="0 0 448 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="20.57"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z"
-                            ></path>
-                          </svg>
-                          EXPLORATION</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Barren alien worlds
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="game-card rounded-4 col-md-6 col-lg-4 d-none d-lg-block"
-                    style="height: 300px"
-                  >
-                    <div class="img-container card-img">
-                      <img
-                        src="./images/png/latest-games-9-BhBeVXRH.png"
-                        alt=""
-                        class="w-100 h-100"
-                      />
-                    </div>
-                    <div class="cover w-100 card-tags">
-                      <div>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-discord mr-2 text-primary"
-                            data-prefix="fab"
-                            data-icon="discord"
-                            role="img"
-                            viewBox="0 0 576 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="16"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z"
-                            ></path>
-                          </svg>
-                          ACTION
-                        </span>
-                        <span
-                          class="rounded-5 text-light bg-dark bg-gradient p-2 tag"
-                        >
-                          <svg
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="svg-inline--fa fa-microchip mr-2 text-primary"
-                            data-prefix="fas"
-                            data-icon="microchip"
-                            role="img"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                            data-fa-i2svg=""
-                            width="18"
-                            height="18"
-                          >
-                            <path
-                              fill="#CBFE1C"
-                              d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm16 48l0 160 160 0 0-160-160 0z"
-                            ></path>
-                          </svg>
-                          FUTURISTIC</span
-                        >
-                      </div>
-                      <div>
-                        <h4 class="font-chakra text-black text-lg fw-bold fs-6">
-                          Cloveland Quest
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex gap-3 justify-content-center mt-2">
-              <button
-                class=""
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev"
-              >
-                <svg
-                  class="svg-inline--fa fa-arrow-left sm:text-xl text-lg"
-                  data-prefix="fas"
-                  data-icon="arrow-left"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  aria-hidden="true"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 105.4-105.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
-                  ></path>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-capitalize text-lg" href="#what-we-do">what we
+                do</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-capitalize text-lg" href="#our-team ">our
+                team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-capitalize text-lg" href="#contact-us">contact
+                us
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 right-side">
+            <li class="nav-item">
+              <a class="nav-link active text-capitalize text-lg" aria-current="page" href="#">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                  class="svg-inline--fa fa-bell text-lg" data-prefix="far" data-icon="bell" role="img"
+                  viewBox="0 0 448 512" aria-hidden="true" data-fa-i2svg="" width="20" height="20">
+                  <path fill="currentColor"
+                    d="M224 0c-13.3 0-24 10.7-24 24l0 9.7C118.6 45.3 56 115.4 56 200l0 14.5c0 37.7-10 74.7-29 107.3L5.1 359.2C1.8 365 0 371.5 0 378.2 0 399.1 16.9 416 37.8 416l372.4 0c20.9 0 37.8-16.9 37.8-37.8 0-6.7-1.8-13.3-5.1-19L421 321.7c-19-32.6-29-69.6-29-107.3l0-14.5c0-84.6-62.6-154.7-144-166.3l0-9.7c0-13.3-10.7-24-24-24zM392.4 368l-336.9 0 12.9-22.1C91.7 306 104 260.6 104 214.5l0-14.5c0-66.3 53.7-120 120-120s120 53.7 120 120l0 14.5c0 46.2 12.3 91.5 35.5 131.4L392.4 368zM156.1 464c9.9 28 36.6 48 67.9 48s58-20 67.9-48l-135.8 0z">
+                  </path>
                 </svg>
-              </button>
-              <button
-                class=""
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next"
-              >
-                <svg
-                  class="svg-inline--fa fa-arrow-right sm:text-xl text-lg"
-                  data-prefix="fas"
-                  data-icon="arrow-right"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  aria-hidden="true"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                  ></path>
+                <span class="d-lg-none">Notfications </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-capitalize text-lg" href="#">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                  class="svg-inline--fa fa-message text-lg" data-prefix="far" data-icon="message" role="img"
+                  viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="" width="20" height="20">
+                  <path fill="currentColor"
+                    d="M203.7 512.9s0 0 0 0l-37.8 26.7c-7.3 5.2-16.9 5.8-24.9 1.7S128 529 128 520l0-72-32 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l320 0c53 0 96 43 96 96l0 224c0 53-43 96-96 96l-120.4 0-91.9 64.9zm64.3-104.1c8.1-5.7 17.8-8.8 27.7-8.8L416 400c26.5 0 48-21.5 48-48l0-224c0-26.5-21.5-48-48-48L96 80c-26.5 0-48 21.5-48 48l0 224c0 26.5 21.5 48 48 48l56 0c10.4 0 19.3 6.6 22.6 15.9 .9 2.5 1.4 5.2 1.4 8.1l0 49.7c32.7-23.1 63.3-44.7 91.9-64.9z">
+                  </path>
                 </svg>
-              </button>
-              <button class="btn-view-all">View All Games</button>
-            </div>
-          </div>
+                <span class="d-lg-none">Messages</span>
+              </a>
+            </li>
+
+            <li class="nav-item rounded sign-in background-motion">
+              <a class="nav-link fw-bold text-capitalize text-lg py-2 px-3" href="#">
+                Sign in
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
+    </nav>
 
-    <!----------///WHAT WE DO Section------------->
-    <section class="what-we-do pt-2" style="margin-top: 160px;">
+    <!--///Hero Section -->
+    <div id="hero">
       <div class="container-fluid">
-        <div class="row title">
-          <p class="lead mb-3 text-center fw-bold top">WHAT WE DO</p>
-          <h2 class="text-center fw-bold fs-1">More Than Just Games</h2>
-          <p class="h1 fw-bold text-center">
-            We Build <span>Interactive</span> Journeys
-          </p>
-        </div>
-        <div class="row gx-4 gy-5">
-          <!-- Card -->
-          <div class="col-6 col-xl-3">
-            <div
-              class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100"
-            >
-              <div
-                class="d-flex flex-column justify-content-evenly align-items-center py-3"
-              >
-                <div class="triangle triangle-top"></div>
-                <div class="triangle triangle-bottom"></div>
-
-                <div
-                  class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    width="18"
-                    height="18"
-                  >
-                    <path
-                      fill="#CBFE1C"
-                      d="M64 32C28.7 32 0 60.7 0 96L0 352c0 35.3 28.7 64 64 64l144 0-16 48-72 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l272 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-72 0-16-48 144 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 32z"
-                    ></path>
-                  </svg>
-                  <div
-                    class="cover position-absolute top-0 start-0 w-100 h-100"
-                  ></div>
-                </div>
-
-                <h3 class="text-center text-white mt-4">PC Game Development</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card -->
-          <div class="col-6 col-xl-3">
-            <div
-              class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100"
-            >
-              <div
-                class="d-flex flex-column justify-content-evenly align-items-center py-3"
-              >
-                <div class="triangle triangle-top"></div>
-                <div class="triangle triangle-bottom"></div>
-
-                <div
-                  class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative"
-                >
-                  <img
-                    src="./images/svg/svgexport-29.svg"
-                    alt="mobile icon"
-                    width="18"
-                    height="24"
-                  />
-                  <div
-                    class="cover position-absolute top-0 start-0 w-100 h-100"
-                  ></div>
-                </div>
-
-                <h3 class="text-center text-white mt-4">
-                  Mobile Game Development
-                </h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- Image Card -->
-          <div class="col-6 col-xl-3">
-            <div class="card-item bg-black rounded overflow-hidden h-100">
-              <img
-                src="./images/png/what-we-do-1-DuZnkwGW.png"
-                alt="gaming studio"
-                class="w-100 h-100 object-fit-cover"
-              />
-            </div>
-          </div>
-
-          <!-- Card -->
-          <div class="col-6 col-xl-3">
-            <div
-              class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100"
-            >
-              <div
-                class="d-flex flex-column justify-content-evenly align-items-center py-3"
-              >
-                <div class="triangle triangle-top"></div>
-                <div class="triangle triangle-bottom"></div>
-
-                <div
-                  class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative"
-                >
-                  <img
-                    src="./images/svg/svgexport-30.svg"
-                    alt="vr icon"
-                    width="18"
-                    height="16"
-                  />
-                  <div
-                    class="cover position-absolute top-0 start-0 w-100 h-100"
-                  ></div>
-                </div>
-
-                <h3 class="text-center text-white mt-4">AR/VR Solutions</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card -->
-          <div class="col-6 col-xl-3">
-            <div
-              class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100"
-            >
-              <div
-                class="d-flex flex-column justify-content-evenly align-items-center py-3"
-              >
-                <div class="triangle triangle-top"></div>
-                <div class="triangle triangle-bottom"></div>
-
-                <div
-                  class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative"
-                >
-                  <img
-                    src="./images/svg/svgexport-31.svg"
-                    alt="design icon"
-                    width="18"
-                    height="18"
-                  />
-                  <div
-                    class="cover position-absolute top-0 start-0 w-100 h-100"
-                  ></div>
-                </div>
-
-                <h3 class="text-center text-white mt-4">AR/VR Design</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- Image Card -->
-          <div class="col-6 col-xl-3">
-            <div class="card-item bg-black rounded overflow-hidden h-100">
-              <img
-                src="./images/png/what-we-do-2-DVAo6agz.png"
-                alt="game character"
-                class="w-100 h-100 object-fit-cover"
-              />
-            </div>
-          </div>
-
-          <!-- Card -->
-          <div class="col-6 col-xl-3">
-            <div
-              class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100"
-            >
-              <div
-                class="d-flex flex-column justify-content-evenly align-items-center py-3"
-              >
-                <div class="triangle triangle-top"></div>
-                <div class="triangle triangle-bottom"></div>
-
-                <div
-                  class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative"
-                >
-                  <img
-                    src="./images/svg/svgexport-32.svg"
-                    alt="ps4 icon"
-                    width="18"
-                    height="16"
-                  />
-                  <div
-                    class="cover position-absolute top-0 start-0 w-100 h-100"
-                  ></div>
-                </div>
-
-                <h3 class="text-center text-white mt-4">
-                  PS4 Game Development
-                </h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card -->
-          <div class="col-6 col-xl-3">
-            <div
-              class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100"
-            >
-              <div
-                class="d-flex flex-column justify-content-evenly align-items-center py-3"
-              >
-                <div class="triangle triangle-top"></div>
-                <div class="triangle triangle-bottom"></div>
-
-                <div
-                  class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative"
-                >
-                  <img
-                    src="./images/svg/svgexport-33.svg"
-                    alt="3d icon"
-                    width="18"
-                    height="18"
-                  />
-                  <div
-                    class="cover position-absolute top-0 start-0 w-100 h-100"
-                  ></div>
-                </div>
-
-                <h3 class="text-center text-white mt-4">3D Modelings</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!----------///MOTION Section -------------->
-    <section class="motion-section my-5 pt-2" >
-      <div class="container-fluid">
-        <div class="line"></div>
-        <div class="motion-images">
-          <!-- First row - Moving left -->
-          <div class="relative overflow-hidden mb-4">
-            <div class="flex animate-scroll-left"></div>
-          </div>
-
-          <!-- First row - Moving right -->
-          <div class="relative overflow-hidden">
-            <div class="flex animate-scroll-right"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!---///CONTACT-US Section-->
-    <section class="contact-us p-4" style="background-color: #0e131f">
-      <div class="container-fluid">
-        <div class="row title">
-          <p class="lead mb-3 text-center fw-bold top">CONTACT US</p>
-          <h2 class="text-center fw-bold fs-1">Get In Touch</h2>
-          <p class="text-center text-muted">
-            Have questions or need support? We're here to help!
-          </p>
-        </div>
-        <div class="row g-5">
-          <div class="col-lg-6 d-flex flex-column gap-3">
-            <div class="contact-card rounded-4 p-4 bg-gray-800">
-              <div class="d-flex align-items-center gap-lg-3">
-                <div class="contact-icon d-inline-block p-3 rounded-circle">
-                  <img
-                    src="./images/svg/svgexport-34.svg"
-                    alt="location"
-                    width="20"
-                    height="20"
-                  />
-                </div>
-                <div class="contact-info pt-3">
-                  <h3 class="h3 text-white">Our Location</h3>
-                  <p class="lead text-muted">
-                    123 Gaming Street, Esports City, EC 12345
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="contact-card rounded-4 p-4 bg-gray-800">
-              <div class="d-flex align-items-center gap-lg-3">
-                <div class="contact-icon d-inline-block p-3 rounded-circle">
-                  <img
-                    src="./images/svg/svgexport-35.svg"
-                    alt="location"
-                    width="20"
-                    height="20"
-                  />
-                </div>
-                <div class="contact-info pt-3">
-                  <h3 class="h3 text-white">Phone Number</h3>
-                  <p class="lead text-muted">+1 (555) 123-4567</p>
-                </div>
-              </div>
-            </div>
-            <div class="contact-card rounded-4 p-4 bg-gray-800">
-              <div class="d-flex align-items-center gap-lg-3">
-                <div class="contact-icon d-inline-block p-3 rounded-circle">
-                  <img
-                    src="./images/svg/svgexport-36.svg"
-                    alt="location"
-                    width="20"
-                    height="20"
-                  />
-                </div>
-                <div class="contact-info pt-3">
-                  <h3 class="h3 text-white">Email Address</h3>
-                  <p class="lead text-muted">contact@gamearena.com</p>
-                </div>
-              </div>
-            </div>
-            <div class="contact-card join-community rounded-4 p-4">
-              <div class="d-flex flex-column mb-2 gap-lg-3">
-                <div class="contact-info">
-                  <h3 class="text-black">Join Our Community</h3>
-                  <p class="lead text-dark">
-                    Connect with us on social media for the latest updates
-                  </p>
-                </div>
-                <div class="contact-apps d-flex gap-2">
-                  <div class="app d-inline-block p-3 rounded-circle bg-black">
-                    <img
-                      src="./images/svg/svgexport-37.svg"
-                      alt="discord"
-                      width="20"
-                      height="20"
-                    />
-                  </div>
-                  <div class="app d-inline-block p-3 rounded-circle bg-black">
-                    <img
-                      src="./images/svg/svgexport-38.svg"
-                      alt="thread"
-                      width="20"
-                      height="20"
-                    />
-                  </div>
-                  <div class="app d-inline-block p-3 rounded-circle bg-black">
-                    <img
-                      src="./images/svg/svgexport-39.svg"
-                      alt="instagram"
-                      width="20"
-                      height="20"
-                    />
-                  </div>
-                  <div class="app d-inline-block p-3 rounded-circle bg-black">
-                    <img
-                      src="./images/svg/svgexport-40.svg"
-                      alt="youtube"
-                      width="20"
-                      height="20"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="membership_form p-4 bg-gray-800 rounded-4" id="Membership_form">
-              <div class="title">
-                <h2>Send Us Message</h2>
-              </div>
-              <div
-                class="form-container py-3 border-bottom border-secondary border-2"
-              >
-                <form action="#">
-                  <div class="form_group d-flex gap-3 my-2">
-                    <div class="first_name d-flex flex-column">
-                      <label for="firstname"> First Name </label>
-                      <input
-                        type="text"
-                        id="firstname"
-                        name="FirstName"
-                        placeholder=" your first name "
-                        class="rounded-3 p-2"
-                      />
-                    </div>
-                    <div class="last_name d-flex flex-column">
-                      <label for="lastname">Last Name</label>
-                      <input
-                        type="text"
-                        id="lastname"
-                        name="LastName"
-                        placeholder=" your last name"
-                        class="rounded-3 p-2"
-                      />
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="email d-flex flex-column my-2">
-                    <label for="email">Email Address</label>
-                    <input
-                      type="email"
-                      name="Email"
-                      id="email"
-                      placeholder="your.email@example.com"
-                      class="rounded-3 p-2"
-                    />
-                  </div>
-
-                  <div class="subject d-flex flex-column my-2">
-                    <label for="subject">subject</label>
-                    <select name="Subject" id="subject" class="rounded-3 p-2">
-                      <option value="General">General Inquiry</option>
-                      <option value="Tournament">Tournament Support</option>
-                      <option value="Partnership">Partnership</option>
-                      <option value="Media">Media Request</option>
-                    </select>
-                  </div>
-                  <div class="Message d-flex flex-column my-2">
-                    <label for="message">Message</label>
-                    <textarea
-                      name="Message"
-                      id="mesage"
-                      placeholder="Tell us how we can help you"
-                      rows="6"
-                      class="rounded-3 p-2"
-                    ></textarea>
-                  </div>
-                  <div class="tick my-2">
-                    <input
-                      type="checkbox"
-                      id="agreement-cred"
-                      class="bg-white"
-                    />
-                    <label for="agreement-cred"
-                      >Subscribe to our newsletter for gaming updates</label
-                    >
-                  </div>
-
-                  <button type="submit" class="rounded-3 p-3">
-                    Send Message
+        <div class="row align-items-center gap-4 gap-lg-0">
+          <div class="col-10 col-lg-6 m-auto left-side">
+            <div class="d-flex flex-column align-items-center text-center  p-2">
+              <h1 class="hero-headline text-upper fw-bold">
+                THE ULTIMATE
+                <span class="accent">GAMING</span>
+                EXPERIENCE
+              </h1>
+              <p class="lead fs-6">
+                Join millions of gamers worldwide in the most competitive
+                eSports tournaments. Experience next-level gaming with
+                cutting-edge technology and endless possibilities.
+              </p>
+              <div class="cta w-100">
+                <div class="row gap-2 justify-content-center justify-content-lg-start">
+                  <button class="btn cta-buttons-bg col-sm-4 fw-bold p-3 background-motion">
+                    Start Gaming Now
                   </button>
-                </form>
+                  <button class="btn cta-buttons-border col-sm-4 fw-bold p-3 background-motion">
+                    Watch Tournaments
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-10 col-lg-6 m-auto right-side">
+            <div class="position-relative">
+              <div class="image-container rounded-4 overflow-hidden" style="width: 100%; height: 400px">
+                <img src="./images/png/hero-img-C0b4IWtS.png" alt="" class="w-100 h-100" />
               </div>
 
-              <div class="statistics d-flex justify-content-between px-5">
-                <div>
-                  <span>24/7</span>
-                  <p class="text-muted">Support Available</p>
-                </div>
-                <div>
-                  <span>&lt; 1hr</span>
-                  <p class="text-muted">Support Available</p>
+              <div
+                class="active-players d-flex justify-content-between align-items-center bg-black border rounded-2 p-3 position-absolute"
+                style="width: 170px; bottom: -20px; left: -10px">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                  class="svg-inline--fa fa-trophy sm:text-xl text-lg text-primary" data-prefix="fas" data-icon="trophy"
+                  role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="" width="20" height="20">
+                  <path fill="#CBFE1C"
+                    d="M144.3 0l224 0c26.5 0 48.1 21.8 47.1 48.2-.2 5.3-.4 10.6-.7 15.8l49.6 0c26.1 0 49.1 21.6 47.1 49.8-7.5 103.7-60.5 160.7-118 190.5-15.8 8.2-31.9 14.3-47.2 18.8-20.2 28.6-41.2 43.7-57.9 51.8l0 73.1 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0 0-73.1c-16-7.7-35.9-22-55.3-48.3-18.4-4.8-38.4-12.1-57.9-23.1-54.1-30.3-102.9-87.4-109.9-189.9-1.9-28.1 21-49.7 47.1-49.7l49.6 0c-.3-5.2-.5-10.4-.7-15.8-1-26.5 20.6-48.2 47.1-48.2zM101.5 112l-52.4 0c6.2 84.7 45.1 127.1 85.2 149.6-14.4-37.3-26.3-86-32.8-149.6zM380 256.8c40.5-23.8 77.1-66.1 83.3-144.8L411 112c-6.2 60.9-17.4 108.2-31 144.8z">
+                  </path>
+                </svg>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <p class="m-0 text-muted fs-6">Active Players</p>
+                  <span class="fw-bold fs-5">2.5M+</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <script src="./js/bootstrap.bundle.min.js"></script>
-  </body>
+  <!----------////OUR GAMES Section ------------->
+  <section id="our-games" class=" my-5 pt-2">
+    <div class="container-fluid">
+      <div class="row title">
+        <p class="lead mb-3 text-center fw-bold top">Our Games</p>
+        <h2 class="text-center fw-bold fs-1">Our Latest Games</h2>
+      </div>
+      <div class="row">
+        <div id="carouselExampleIndicators" class="carousel slide MyCarousel1">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <!---1-->
+
+              <div class="row g-2 p-2">
+                <div class="game-card rounded-4 col-md-6 col-lg-4" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-1-CfV33bjK.png" alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-shield-halved mr-2 text-primary" data-prefix="fas"
+                          data-icon="shield-halved" role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg=""
+                          width="18" height="18">
+                          <path fill="#CBFE1C"
+                            d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z">
+                          </path>
+                        </svg>
+                        ADVENTURER</span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-wand-magic-sparkles mr-2 text-primary" data-prefix="fas"
+                          data-icon="wand-magic-sparkles" role="img" viewBox="0 0 576 512" aria-hidden="true"
+                          data-fa-i2svg="" width="18" height="16">
+                          <path fill="#CBFE1C"
+                            d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z">
+                          </path>
+                        </svg>
+                        MULTIPLAYE</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Alien Companions
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="game-card rounded-4 col-md-6 col-lg-4 d-none d-md-block" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-2-DcGt1MOH.png " alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-flag-checkered mr-2 text-primary" data-prefix="fas"
+                          data-icon="flag-checkered" role="img" viewBox="0 0 448 512" aria-hidden="true"
+                          data-fa-i2svg="" width="18" height="20.57">
+                          <path fill="#CBFE1C"
+                            d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5 46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4-37.9-19-81.4-23.7-122.5-13.4L64 384 64 480c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9 0 65.5-64 13.9 0 65.5 48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3l0-63.9 38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9 0 66.7-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8l0 71.4c21.8 1.9 43.3 6.7 64 14.4l0-69.8 22.7 6.7c13.5 4 27.3 6.4 41.3 7.4l0-64.2c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12 0-62c-13-3.8-25.8-8.8-38.2-15-8.2-4.1-16.9-7-25.8-8.8l0 72.4c-13-.4-26 .8-38.7 3.6l-25.3 5.5 0-75.2-64 16 0 73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2 0-71.7-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5l0 77.4zm64-149.4l0-70.8c-20.9 6.1-42.4 9.1-64 9.1l0 69.4c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z">
+                          </path>
+                        </svg>
+                        RACING</span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-bolt mr-2 text-primary" data-prefix="fas" data-icon="bolt" role="img"
+                          viewBox="0 0 448 512" aria-hidden="true" data-fa-i2svg="" width="18" height="20.57">
+                          <path fill="#CBFE1C"
+                            d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z">
+                          </path>
+                        </svg>
+                        SCI-FI</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Cyber Run 2099
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="game-card rounded-4 col-md-6 col-lg-4 d-none d-lg-block" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-3-3PuaZ95E.png " alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-discord mr-2 text-primary" data-prefix="fab" data-icon="discord"
+                          role="img" viewBox="0 0 576 512" aria-hidden="true" data-fa-i2svg="" width="18" height="16">
+                          <path fill="#CBFE1C"
+                            d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z">
+                          </path>
+                        </svg>
+                        ACTION
+                      </span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-microchip mr-2 text-primary" data-prefix="fas" data-icon="microchip"
+                          role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="" width="18" height="18">
+                          <path fill="#CBFE1C"
+                            d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm16 48l0 160 160 0 0-160-160 0z">
+                          </path>
+                        </svg>
+                        GEFORCE</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        The Legend of Zelda: Tears of the Kingdom
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <!---2-->
+              <div class="row g-2 p-2">
+                <div class="game-card rounded-4 col-md-6 col-lg-4" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-4-DCWGKdgP.png" alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-shield-halved mr-2 text-primary" data-prefix="fas"
+                          data-icon="shield-halved" role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg=""
+                          width="18" height="18">
+                          <path fill="#CBFE1C"
+                            d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z">
+                          </path>
+                        </svg>
+                        RPG</span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-wand-magic-sparkles mr-2 text-primary" data-prefix="fas"
+                          data-icon="wand-magic-sparkles" role="img" viewBox="0 0 576 512" aria-hidden="true"
+                          data-fa-i2svg="" width="18" height="16">
+                          <path fill="#CBFE1C"
+                            d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z">
+                          </path>
+                        </svg>
+                        FANTASY</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Aetheria Chronicles
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="game-card rounded-4 col-md-6 col-lg-4 d-none d-md-block" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/avatar-5-CKJm2Bjf.png " alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-flag-checkered mr-2 text-primary" data-prefix="fas"
+                          data-icon="flag-checkered" role="img" viewBox="0 0 448 512" aria-hidden="true"
+                          data-fa-i2svg="" width="18" height="20.57">
+                          <path fill="#CBFE1C"
+                            d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5 46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4-37.9-19-81.4-23.7-122.5-13.4L64 384 64 480c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9 0 65.5-64 13.9 0 65.5 48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3l0-63.9 38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9 0 66.7-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8l0 71.4c21.8 1.9 43.3 6.7 64 14.4l0-69.8 22.7 6.7c13.5 4 27.3 6.4 41.3 7.4l0-64.2c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12 0-62c-13-3.8-25.8-8.8-38.2-15-8.2-4.1-16.9-7-25.8-8.8l0 72.4c-13-.4-26 .8-38.7 3.6l-25.3 5.5 0-75.2-64 16 0 73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2 0-71.7-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5l0 77.4zm64-149.4l0-70.8c-20.9 6.1-42.4 9.1-64 9.1l0 69.4c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z">
+                          </path>
+                        </svg>
+                        SHOOTER</span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-bolt mr-2 text-primary" data-prefix="fas" data-icon="bolt" role="img"
+                          viewBox="0 0 448 512" aria-hidden="true" data-fa-i2svg="" width="18" height="20.57">
+                          <path fill="#CBFE1C"
+                            d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z">
+                          </path>
+                        </svg>
+                        CO-OP</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Warfront Protocol
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="game-card rounded-4 col-md-6 col-lg-4 d-none d-lg-block" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-6-DCWGKdgP.png" alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-discord mr-2 text-primary" data-prefix="fab" data-icon="discord"
+                          role="img" viewBox="0 0 576 512" aria-hidden="true" data-fa-i2svg="" width="18" height="16">
+                          <path fill="#CBFE1C"
+                            d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z">
+                          </path>
+                        </svg>
+                        FOOTBALL
+                      </span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-microchip mr-2 text-primary" data-prefix="fas" data-icon="microchip"
+                          role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="" width="18" height="18">
+                          <path fill="#CBFE1C"
+                            d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm16 48l0 160 160 0 0-160-160 0z">
+                          </path>
+                        </svg>
+                        FANTASY</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Shot Striker
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <!-- 3 -->
+              <div class="row g-2 p-2">
+                <div class="game-card rounded-4 col-md-6 col-lg-4" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-7-C9aSwQWa.png" alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-shield-halved mr-2 text-primary" data-prefix="fas"
+                          data-icon="shield-halved" role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg=""
+                          width="18" height="18">
+                          <path fill="#CBFE1C"
+                            d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z">
+                          </path>
+                        </svg>
+                        SPORTS</span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-wand-magic-sparkles mr-2 text-primary" data-prefix="fas"
+                          data-icon="wand-magic-sparkles" role="img" viewBox="0 0 576 512" aria-hidden="true"
+                          data-fa-i2svg="" width="18" height="16">
+                          <path fill="#CBFE1C"
+                            d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z">
+                          </path>
+                        </svg>
+                        LEAGUE</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Epic Gaming League
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="game-card rounded-4 col-md-6 col-lg-4 d-none d-md-block" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-8-CDS2WV4Q.png " alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-flag-checkered mr-2 text-primary" data-prefix="fas"
+                          data-icon="flag-checkered" role="img" viewBox="0 0 448 512" aria-hidden="true"
+                          data-fa-i2svg="" width="18" height="20.57">
+                          <path fill="#CBFE1C"
+                            d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5 46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4-37.9-19-81.4-23.7-122.5-13.4L64 384 64 480c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9 0 65.5-64 13.9 0 65.5 48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3l0-63.9 38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9 0 66.7-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8l0 71.4c21.8 1.9 43.3 6.7 64 14.4l0-69.8 22.7 6.7c13.5 4 27.3 6.4 41.3 7.4l0-64.2c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12 0-62c-13-3.8-25.8-8.8-38.2-15-8.2-4.1-16.9-7-25.8-8.8l0 72.4c-13-.4-26 .8-38.7 3.6l-25.3 5.5 0-75.2-64 16 0 73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2 0-71.7-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5l0 77.4zm64-149.4l0-70.8c-20.9 6.1-42.4 9.1-64 9.1l0 69.4c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z">
+                          </path>
+                        </svg>
+                        SPACE</span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-bolt mr-2 text-primary" data-prefix="fas" data-icon="bolt" role="img"
+                          viewBox="0 0 448 512" aria-hidden="true" data-fa-i2svg="" width="18" height="20.57">
+                          <path fill="#CBFE1C"
+                            d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z">
+                          </path>
+                        </svg>
+                        EXPLORATION</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Barren alien worlds
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="game-card rounded-4 col-md-6 col-lg-4 d-none d-lg-block" style="height: 300px">
+                  <div class="img-container card-img">
+                    <img src="./images/png/latest-games-9-BhBeVXRH.png" alt="" class="w-100 h-100" />
+                  </div>
+                  <div class="cover w-100 card-tags">
+                    <div>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-discord mr-2 text-primary" data-prefix="fab" data-icon="discord"
+                          role="img" viewBox="0 0 576 512" aria-hidden="true" data-fa-i2svg="" width="18" height="16">
+                          <path fill="#CBFE1C"
+                            d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z">
+                          </path>
+                        </svg>
+                        ACTION
+                      </span>
+                      <span class="rounded-5 text-light bg-dark bg-gradient p-2 tag">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                          class="svg-inline--fa fa-microchip mr-2 text-primary" data-prefix="fas" data-icon="microchip"
+                          role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="" width="18" height="18">
+                          <path fill="#CBFE1C"
+                            d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c-35.3 0-64 28.7-64 64l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0 0 56-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c0 35.3 28.7 64 64 64l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 56 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c35.3 0 64-28.7 64-64l40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0 0-56 40 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-40 0c0-35.3-28.7-64-64-64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40-56 0 0-40zM160 128l192 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32l0-192c0-17.7 14.3-32 32-32zm16 48l0 160 160 0 0-160-160 0z">
+                          </path>
+                        </svg>
+                        FUTURISTIC</span>
+                    </div>
+                    <div>
+                      <h4 class="font-chakra text-black text-lg fw-bold fs-6">
+                        Cloveland Quest
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex gap-3 justify-content-center mt-2">
+            <button class="" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <svg class="svg-inline--fa fa-arrow-left sm:text-xl text-lg" data-prefix="fas" data-icon="arrow-left"
+                role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 105.4-105.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z">
+                </path>
+              </svg>
+            </button>
+            <button class="" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <svg class="svg-inline--fa fa-arrow-right sm:text-xl text-lg" data-prefix="fas" data-icon="arrow-right"
+                role="img" viewBox="0 0 512 512" aria-hidden="true" data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z">
+                </path>
+              </svg>
+            </button>
+            <button class="btn-view-all">View All Games</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!----------///WHAT WE DO Section------------->
+  <section id="what-we-do" class="pt-2" style="margin-top: 160px;">
+    <div class="container-fluid">
+      <div class="row title">
+        <p class="lead mb-3 text-center fw-bold top">WHAT WE DO</p>
+        <h2 class="text-center fw-bold fs-1">More Than Just Games</h2>
+        <p class="h1 fw-bold text-center">
+          We Build <span>Interactive</span> Journeys
+        </p>
+      </div>
+      <div class="row gx-4 gy-5">
+        <!-- Card -->
+        <div class="col-6 col-xl-3">
+          <div
+            class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100">
+            <div class="d-flex flex-column justify-content-evenly align-items-center py-3">
+              <div class="triangle triangle-top"></div>
+              <div class="triangle triangle-bottom"></div>
+
+              <div
+                class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18">
+                  <path fill="#CBFE1C"
+                    d="M64 32C28.7 32 0 60.7 0 96L0 352c0 35.3 28.7 64 64 64l144 0-16 48-72 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l272 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-72 0-16-48 144 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 32z">
+                  </path>
+                </svg>
+                <div class="cover position-absolute top-0 start-0 w-100 h-100"></div>
+              </div>
+
+              <h3 class="text-center text-white mt-4">PC Game Development</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="col-6 col-xl-3">
+          <div
+            class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100">
+            <div class="d-flex flex-column justify-content-evenly align-items-center py-3">
+              <div class="triangle triangle-top"></div>
+              <div class="triangle triangle-bottom"></div>
+
+              <div
+                class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative">
+                <img src="./images/svg/svgexport-29.svg" alt="mobile icon" width="18" height="24" />
+                <div class="cover position-absolute top-0 start-0 w-100 h-100"></div>
+              </div>
+
+              <h3 class="text-center text-white mt-4">
+                Mobile Game Development
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Card -->
+        <div class="col-6 col-xl-3">
+          <div class="card-item bg-black rounded overflow-hidden h-100">
+            <img src="./images/png/what-we-do-1-DuZnkwGW.png" alt="gaming studio"
+              class="w-100 h-100 object-fit-cover" />
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="col-6 col-xl-3">
+          <div
+            class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100">
+            <div class="d-flex flex-column justify-content-evenly align-items-center py-3">
+              <div class="triangle triangle-top"></div>
+              <div class="triangle triangle-bottom"></div>
+
+              <div
+                class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative">
+                <img src="./images/svg/svgexport-30.svg" alt="vr icon" width="18" height="16" />
+                <div class="cover position-absolute top-0 start-0 w-100 h-100"></div>
+              </div>
+
+              <h3 class="text-center text-white mt-4">AR/VR Solutions</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="col-6 col-xl-3">
+          <div
+            class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100">
+            <div class="d-flex flex-column justify-content-evenly align-items-center py-3">
+              <div class="triangle triangle-top"></div>
+              <div class="triangle triangle-bottom"></div>
+
+              <div
+                class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative">
+                <img src="./images/svg/svgexport-31.svg" alt="design icon" width="18" height="18" />
+                <div class="cover position-absolute top-0 start-0 w-100 h-100"></div>
+              </div>
+
+              <h3 class="text-center text-white mt-4">AR/VR Design</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Card -->
+        <div class="col-6 col-xl-3">
+          <div class="card-item bg-black rounded overflow-hidden h-100">
+            <img src="./images/png/what-we-do-2-DVAo6agz.png" alt="game character"
+              class="w-100 h-100 object-fit-cover" />
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="col-6 col-xl-3">
+          <div
+            class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100">
+            <div class="d-flex flex-column justify-content-evenly align-items-center py-3">
+              <div class="triangle triangle-top"></div>
+              <div class="triangle triangle-bottom"></div>
+
+              <div
+                class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative">
+                <img src="./images/svg/svgexport-32.svg" alt="ps4 icon" width="18" height="16" />
+                <div class="cover position-absolute top-0 start-0 w-100 h-100"></div>
+              </div>
+
+              <h3 class="text-center text-white mt-4">
+                PS4 Game Development
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="col-6 col-xl-3">
+          <div
+            class="card-item bg-black p-4 p-lg-5 d-flex justify-content-center align-items-center rounded position-relative h-100">
+            <div class="d-flex flex-column justify-content-evenly align-items-center py-3">
+              <div class="triangle triangle-top"></div>
+              <div class="triangle triangle-bottom"></div>
+
+              <div
+                class="img-container px-3 py-4 d-flex align-items-center justify-content-center rounded position-relative">
+                <img src="./images/svg/svgexport-33.svg" alt="3d icon" width="18" height="18" />
+                <div class="cover position-absolute top-0 start-0 w-100 h-100"></div>
+              </div>
+
+              <h3 class="text-center text-white mt-4">3D Modelings</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!----------///MOTION Section -------------->
+  <section class="motion-section my-5 pt-2">
+    <div class="container-fluid">
+      <div class="line"></div>
+      <div class="motion-images position-relative">
+        <div class="custom-background">
+
+        </div>
+        <!-- First row - Moving left -->
+        <div class="scroll-wrapper mb-4">
+          <div class="scroll-track">
+
+            <!-- المجموعة الأصلية -->
+            <div class="group">
+              <!-- حط كل الصور مرة وحدة -->
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-1-ByM-Sex8.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/avatar-2-DSM5R69_.png" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-3-CczztP90.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-4-CqgtpirC.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-5-DFypfU0k.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-6-DcGD8G7v.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-7-DSTdzFnp.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-8-BuH3qQns.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-9-btJ2eZYX.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-10-DlvZwrGv.jpg" width="100%" height="100%"></div>
+            </div>
+
+            <!-- نسخة مكررة (نفسهم بالزبط) -->
+            <div class="group">
+              <!-- نفس الصور -->
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-1-ByM-Sex8.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/avatar-2-DSM5R69_.png" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-3-CczztP90.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-4-CqgtpirC.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-5-DFypfU0k.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-6-DcGD8G7v.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-7-DSTdzFnp.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-8-BuH3qQns.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-9-btJ2eZYX.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-10-DlvZwrGv.jpg" width="100%" height="100%"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Second row - Moving right -->
+        <div class="scroll-wrapper mb-4 ">
+          <div class="scroll-track reverse">
+
+            <!-- المجموعة الأصلية -->
+            <div class="group">
+              <!-- حط كل الصور مرة وحدة -->
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-1-ByM-Sex8.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/avatar-2-DSM5R69_.png" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-3-CczztP90.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-4-CqgtpirC.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-5-DFypfU0k.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-6-DcGD8G7v.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-7-DSTdzFnp.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-8-BuH3qQns.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-9-btJ2eZYX.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-10-DlvZwrGv.jpg" width="100%" height="100%"></div>
+            </div>
+
+            <!-- نسخة مكررة (نفسهم بالزبط) -->
+            <div class="group">
+              <!-- نفس الصور -->
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-1-ByM-Sex8.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/avatar-2-DSM5R69_.png" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-3-CczztP90.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-4-CqgtpirC.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-5-DFypfU0k.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-6-DcGD8G7v.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-7-DSTdzFnp.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-8-BuH3qQns.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-9-btJ2eZYX.jpg" width="100%" height="100%"></div>
+              <div class="rounded-3 overflow-hidden" style="width: 100px; height: 100px;"><img
+                  src="./images/png/logo-10-DlvZwrGv.jpg" width="100%" height="100%"></div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+  </section>
+
+
+  <!-------///OUR-TEAM Section ---------------->
+  <section id="our-team ">
+    <div class="container-fluid">
+      <div class="row title">
+        <p class="lead mb-3 text-center fw-bold top">OUR TEAM</p>
+        <h2 class="text-center fw-bold fs-1">Our Best Team Members</h2>
+        <p class="text-center text-muted">
+          Meet the professional gamers and experts behind our success
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member  p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-1-Bk0fx3lX.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-2-DSM5R69_.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member  p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-3-CISh2V2J.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-4-BCbP093U.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member  p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-5-CKJm2Bjf.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member  p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-6-BC4VdJS3.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-7-B1LKlfbK.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 ">
+          <div class="team-member bg-secondary p-2 ">
+            <div class="info ">
+              <div class="w-100 h-100">
+                <img src="./images/png/avatar-8-DlHfYIx6.png" alt="" width="100%" height="100%">
+              </div>
+              <div class="data d-flex   justify-content-between gap-3 align-items-center  p-3 ">
+                <div class="member-data d-flex flex-column justify-content-end  ">
+                  <h3 class=" font-bold mb-1">
+                    Alex "Phantom" Chen
+                  </h3>
+                  <p class="text-white">Pro Player - VALORANT</p>
+                  <p class="lead text-muted">World Champion 2023</p>
+                </div>
+
+                <div class="member-name ms-0 ">
+                  <h3>PHANTOM</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-------///CONTACT-US Section--------------->
+  <section id="contact-us" class=" p-4" style="background-color: #0e131f">
+    <div class="container-fluid">
+      <div class="row title">
+        <p class="lead mb-3 text-center fw-bold top">CONTACT US</p>
+        <h2 class="text-center fw-bold fs-1">Get In Touch</h2>
+        <p class="text-center text-muted">
+          Have questions or need support? We're here to help!
+        </p>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-6 d-flex flex-column gap-3">
+          <div class="contact-card rounded-4 p-4 bg-gray-800">
+            <div class="d-flex align-items-center gap-lg-3">
+              <div class="contact-icon d-inline-block p-3 rounded-circle">
+                <img src="./images/svg/svgexport-34.svg" alt="location" width="20" height="20" />
+              </div>
+              <div class="contact-info pt-3">
+                <h3 class="h3 text-white">Our Location</h3>
+                <p class="lead text-muted">
+                  123 Gaming Street, Esports City, EC 12345
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-card rounded-4 p-4 bg-gray-800">
+            <div class="d-flex align-items-center gap-lg-3">
+              <div class="contact-icon d-inline-block p-3 rounded-circle">
+                <img src="./images/svg/svgexport-35.svg" alt="location" width="20" height="20" />
+              </div>
+              <div class="contact-info pt-3">
+                <h3 class="h3 text-white">Phone Number</h3>
+                <p class="lead text-muted">+1 (555) 123-4567</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-card rounded-4 p-4 bg-gray-800">
+            <div class="d-flex align-items-center gap-lg-3">
+              <div class="contact-icon d-inline-block p-3 rounded-circle">
+                <img src="./images/svg/svgexport-36.svg" alt="location" width="20" height="20" />
+              </div>
+              <div class="contact-info pt-3">
+                <h3 class="h3 text-white">Email Address</h3>
+                <p class="lead text-muted">contact@gamearena.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-card join-community rounded-4 p-4">
+            <div class="d-flex flex-column mb-2 gap-lg-3">
+              <div class="contact-info">
+                <h3 class="text-black">Join Our Community</h3>
+                <p class="lead text-dark">
+                  Connect with us on social media for the latest updates
+                </p>
+              </div>
+              <div class="contact-apps d-flex gap-2">
+                <div class="app d-inline-block p-3 rounded-circle bg-black">
+                  <img src="./images/svg/svgexport-37.svg" alt="discord" width="20" height="20" />
+                </div>
+                <div class="app d-inline-block p-3 rounded-circle bg-black">
+                  <img src="./images/svg/svgexport-38.svg" alt="thread" width="20" height="20" />
+                </div>
+                <div class="app d-inline-block p-3 rounded-circle bg-black">
+                  <img src="./images/svg/svgexport-39.svg" alt="instagram" width="20" height="20" />
+                </div>
+                <div class="app d-inline-block p-3 rounded-circle bg-black">
+                  <img src="./images/svg/svgexport-40.svg" alt="youtube" width="20" height="20" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="membership_form p-4 bg-gray-800 rounded-4" id="Membership_form">
+            <div class="title">
+              <h2>Send Us Message</h2>
+            </div>
+            <div class="form-container py-3 border-bottom border-secondary border-2">
+              <form action="#">
+                <div class="form_group row  g-3 my-2">
+                  <div class="first_name col-6 d-flex flex-column">
+                    <label for="firstname"> First Name </label>
+                    <input type="text" id="firstname" name="FirstName" placeholder=" your first name "
+                      class="rounded-3 p-2" />
+                  </div>
+                  <div class="last_name  col-6 d-flex flex-column">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="LastName" placeholder=" your last name"
+                      class="rounded-3 p-2" />
+                  </div>
+
+                </div>
+                <div class="email d-flex flex-column my-2">
+                  <label for="email">Email Address</label>
+                  <input type="email" name="Email" id="email" placeholder="your.email@example.com"
+                    class="rounded-3 p-2" />
+                </div>
+
+                <div class="subject d-flex flex-column my-2">
+                  <label for="subject">subject</label>
+                  <select name="Subject" id="subject" class="rounded-3 p-2">
+                    <option value="General">General Inquiry</option>
+                    <option value="Tournament">Tournament Support</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Media">Media Request</option>
+                  </select>
+                </div>
+                <div class="Message d-flex flex-column my-2">
+                  <label for="message">Message</label>
+                  <textarea name="Message" id="mesage" placeholder="Tell us how we can help you" rows="6"
+                    class="rounded-3 p-2"></textarea>
+                </div>
+                <div class="tick my-2">
+                  <input type="checkbox" id="agreement-cred" class="bg-white" />
+                  <label for="agreement-cred">Subscribe to our newsletter for gaming updates</label>
+                </div>
+
+                <button type="submit" class="rounded-3 p-3">
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <div class="statistics d-flex justify-content-between px-5">
+              <div>
+                <span>24/7</span>
+                <p class="text-muted">Support Available</p>
+              </div>
+              <div>
+                <span>&lt; 1hr</span>
+                <p class="text-muted">Support Available</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-----////FOOTER Section------------------------->
+  <footer id="footer" class="bg-black">
+    <div class="container-fluid p-4">
+      <div class=" row content border-bottom border-1 border-secondary py-3">
+        <div class="social col-md-6 col-lg-3 d-flex flex-column ">
+          <div class="name d-flex align-items-center">
+            <div class="footer-icon">
+              <img src="./images/svg/svgexport-1.svg" alt="helicopter - icon " width="30">
+            </div>
+            <div class="footer-name">
+              <h3 class="fw-bold text-xl px-2">GameArena</h3>
+            </div>
+
+          </div>
+          <p class=" text-muted">Leading the future of aerial technology with innovative drone solutions for
+            professionals and
+            enthusiasts worldwide.</p>
+          <div class="social-apps">
+            <ul class="d-flex justify-content-start gap-3">
+
+              <li class="thread"><a href="#"><img src="./images/svg/svgexport-42.svg" alt="thread-icon"></a></li>
+              <li class="facebook"><a href="#"><img src="./images/svg/svgexport-43.svg" alt="facebook-icon"></a></li>
+              <li class="instagram"><a href="#"><img src="./images/svg/svgexport-44.svg" alt="instagram-icon"></a></li>
+              <li class="youtube"><a href="#"><img src="./images/svg/svgexport-45.svg" alt="youtube-icon"></a></li>
+              <li class="twitter"><a href="#"><img src="./images/svg/svgexport-46.svg" alt="twitter-icon"></a></li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="product col-md-6 col-lg-3 d-flex flex-column  ">
+          <h3 class="fn-20">Games</h3>
+          <ul>
+            <li>
+              VALORANT
+
+            </li>
+            <li>
+              League of Legends
+
+            </li>
+            <li>
+              CS:GO
+            </li>
+            <li>
+              Dota 2
+            </li>
+            <li>
+              Apex Legends
+            </li>
+          </ul>
+        </div>
+        <div class="supports  col-md-6 col-lg-3 d-flex flex-column">
+          <h3 class="fn-20">Tournaments</h3>
+          <ul>
+            <li>
+              Upcoming Events
+            </li>
+            <li>
+              Live Matches
+            </li>
+            <li>
+              Results
+            </li>
+            <li>
+              Rankings
+
+            </li>
+            <li>
+              Schedule
+            </li>
+          </ul>
+        </div>
+        <div class="companies col-md-6 col-lg-3 d-flex flex-column">
+          <h3 class="fn-20">Support</h3>
+          <ul>
+            <li>
+              Help Center
+            </li>
+            <li>
+              Contact Us
+            </li>
+            <li>
+              Bug Reports
+            </li>
+            <li>
+              Feature Requests
+            </li>
+            <li>
+              Community Guidelines
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="copyright d-flex flex-column  flex-lg-row justify-content-between align-items-center py-3 ">
+        <p class="text-muted fs-5 text-center">© 2025 GameArena. All rights reserved.</p>
+        <div class="payment d-flex justify-content-center align-items-center gap-4 ">
+          <div class="paypal">
+            <p class="text-cen">Privacy Policy
+            </p>
+          </div>
+          <div class="mastercard">
+            <p>
+              Terms of Service</p>
+          </div>
+          <div class="visa">
+            <p>Cookie Policy</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
