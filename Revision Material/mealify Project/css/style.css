@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    width: 85%;
+    margin: auto;
+}
+
+.chefs {
+    background-color: #ffffff;
+
+    .cards {
+        background-color: blue;
+        display: flex;
+        flex-wrap: wrap;
+
+        .card {
+            width: 33.3%;
+            padding: 10px;
+            background-color: aqua;
+
+
+            .inner {
+                background-color: green;
+                overflow: hidden;
+                border-radius: 5px;
+                text-align: center;
+
+                .image {
+                    position: relative;
+
+                    img {
+                        max-width: 100%;
+                    }
+
+                    svg {
+                        position: absolute;
+                        z-index: 99;
+                        left: 0;
+                        width: 100%;
+                        bottom: 0;
+                    }
+                }
+
+
+
+            }
+
+        }
+    }
+
+}
