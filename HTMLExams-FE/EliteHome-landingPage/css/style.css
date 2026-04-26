@@ -1,11 +1,16 @@
-* {
+*,
+html,
+body {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
+
 body {
   font-family: "Exo", sans-serif;
   font-optical-sizing: auto;
 }
+
 span,
 a,
 a::before,
@@ -13,7 +18,7 @@ a::after,
 span::before,
 span::after {
   display: inline-block;
-  
+
 }
 
 :root {
@@ -32,106 +37,228 @@ span::after {
   --color-electric-violet-900: #55178c;
   --color-electric-violet-950: #390269;
   --color-granny-apple-50: #f0fdf4;
---color-granny-apple-100: #dcfce8;
---color-granny-apple-200: #bbf7d2;
---color-granny-apple-300: #86efaf;
---color-granny-apple-400: #4ade85;
---color-granny-apple-500: #22c563;
---color-granny-apple-600: #16a34e;
---color-granny-apple-700: #158040;
---color-granny-apple-800: #166536;
---color-granny-apple-900: #14532f;
---color-granny-apple-950: #052e17;
---color-lemon-chiffon-50: #fefce8;
---color-lemon-chiffon-100: #fffac2;
---color-lemon-chiffon-200: #fff188;
---color-lemon-chiffon-300: #ffe244;
---color-lemon-chiffon-400: #fecf11;
---color-lemon-chiffon-500: #eeb604;
---color-lemon-chiffon-600: #cd8c01;
---color-lemon-chiffon-700: #a46304;
---color-lemon-chiffon-800: #874d0c;
---color-lemon-chiffon-900: #733f10;
---color-lemon-chiffon-950: #432005;
---color-hawkes-blue-50: #eef3ff;
---color-hawkes-blue-100: #e0e8ff;
---color-hawkes-blue-200: #c7d4fe;
---color-hawkes-blue-300: #a5b7fc;
---color-hawkes-blue-400: #8190f8;
---color-hawkes-blue-500: #636bf1;
---color-hawkes-blue-600: #4a46e5;
---color-hawkes-blue-700: #3e38ca;
---color-hawkes-blue-800: #3330a3;
---color-hawkes-blue-900: #2e2e81;
---color-hawkes-blue-950: #1c1b4b;
+  --color-granny-apple-100: #dcfce8;
+  --color-granny-apple-200: #bbf7d2;
+  --color-granny-apple-300: #86efaf;
+  --color-granny-apple-400: #4ade85;
+  --color-granny-apple-500: #22c563;
+  --color-granny-apple-600: #16a34e;
+  --color-granny-apple-700: #158040;
+  --color-granny-apple-800: #166536;
+  --color-granny-apple-900: #14532f;
+  --color-granny-apple-950: #052e17;
+  --color-lemon-chiffon-50: #fefce8;
+  --color-lemon-chiffon-100: #fffac2;
+  --color-lemon-chiffon-200: #fff188;
+  --color-lemon-chiffon-300: #ffe244;
+  --color-lemon-chiffon-400: #fecf11;
+  --color-lemon-chiffon-500: #eeb604;
+  --color-lemon-chiffon-600: #cd8c01;
+  --color-lemon-chiffon-700: #a46304;
+  --color-lemon-chiffon-800: #874d0c;
+  --color-lemon-chiffon-900: #733f10;
+  --color-lemon-chiffon-950: #432005;
+  --color-hawkes-blue-50: #eef3ff;
+  --color-hawkes-blue-100: #e0e8ff;
+  --color-hawkes-blue-200: #c7d4fe;
+  --color-hawkes-blue-300: #a5b7fc;
+  --color-hawkes-blue-400: #8190f8;
+  --color-hawkes-blue-500: #636bf1;
+  --color-hawkes-blue-600: #4a46e5;
+  --color-hawkes-blue-700: #3e38ca;
+  --color-hawkes-blue-800: #3330a3;
+  --color-hawkes-blue-900: #2e2e81;
+  --color-hawkes-blue-950: #1c1b4b;
+  --color-pigment-indigo-50: #faf4ff;
+  --color-pigment-indigo-100: #f2e6ff;
+  --color-pigment-indigo-200: #e8d2ff;
+  --color-pigment-indigo-300: #d7aeff;
+  --color-pigment-indigo-400: #bf7bff;
+  --color-pigment-indigo-500: #a949ff;
+  --color-pigment-indigo-600: #9725f8;
+  --color-pigment-indigo-700: #8215db;
+  --color-pigment-indigo-800: #6f17b2;
+  --color-pigment-indigo-900: #5b148f;
+  --color-pigment-indigo-950: #4b0082;
+  --color-hollywood-cerise-50: #fef1fb;
+  --color-hollywood-cerise-100: #fde6f9;
+  --color-hollywood-cerise-200: #feccf4;
+  --color-hollywood-cerise-300: #fea3ea;
+  --color-hollywood-cerise-400: #fc6ad9;
+  --color-hollywood-cerise-500: #f63ec5;
+  --color-hollywood-cerise-600: #e619a5;
+  --color-hollywood-cerise-700: #c80e88;
+  --color-hollywood-cerise-800: #a50f6f;
+  --color-hollywood-cerise-900: #8a115e;
+  --color-hollywood-cerise-950: #550237;
+  --color-bossanova-50: #fbf7fc;
+  --color-bossanova-100: #f7eef9;
+  --color-bossanova-200: #eeddf1;
+  --color-bossanova-300: #e2c2e5;
+  --color-bossanova-400: #d19dd5;
+  --color-bossanova-500: #b976bf;
+  --color-bossanova-600: #9e57a2;
+  --color-bossanova-700: #834685;
+  --color-bossanova-800: #6d3a6e;
+  --color-bossanova-900: #5b345b;
+  --color-bossanova-950: #4e224e;
   --color-black: #000;
   --color-white: #fff;
   --spacing: 0.25rem;
 }
 
 /*#region =============Built in Classes  =======================*/
-.bg-violet-light{
+.bg-violet-light {
   background-color: var(--color-electric-violet-100);
 }
-.bg-apple-light{
+
+.bg-apple-light {
   background-color: var(--color-granny-apple-100);
 }
-.bg-lemon-light{
+
+.bg-lemon-light {
   background-color: var(--color-lemon-chiffon-100);
 }
-.bg-hawkes-light{
+
+.bg-hawkes-light {
   background-color: var(--color-hawkes-blue-100);
 }
-.text-violet-600{
+
+.text-violet-600 {
   color: var(--color-electric-violet-600);
 }
-.text-apple-600{
+.bg-indigo-500 {
+  background-color: var(--color-pigment-indigo-500);
+}
+.bg-indigo-500 {
+  background-color: var(--color-pigment-indigo-500);
+}
+.bg-indigo700-indigo600 {
+  background: linear-gradient(to right, var(--color-pigment-indigo-700), var(--color-pigment-indigo-600));
+}
+.bg-indigo600-indigo500 {
+  background: linear-gradient(to right, var(--color-pigment-indigo-600), var(--color-pigment-indigo-500));
+}
+
+.bg-violet600-violet500 {
+  background: linear-gradient(to right, var(--color-electric-violet-600), var(--color-electric-violet-500));
+}
+
+.bg-bossanova600-bossanova500 {
+  background: linear-gradient(to right, var(--color-bossanova-600), var(--color-bossanova-500));
+}
+
+.bg-fuchsia500-amber500 {
+  background: linear-gradient(to right, var(--color-hollywood-cerise-500), var(--color-amber-500));
+}
+
+.bg-hawkes600-hawkes500 {
+  background: linear-gradient(to right, var(--color-hawkes-blue-600), var(--color-hawkes-blue-500));
+}
+
+.text-indigo600-indigo500 {
+  background: linear-gradient(to right, var(--color-pigment-indigo-600), var(--color-pigment-indigo-500));
+  color: transparent;
+  background-clip: text;
+}
+
+
+.text-violet600-violet500 {
+  background: linear-gradient(to right, var(--color-electric-violet-600), var(--color-electric-violet-500));
+  color: transparent;
+  background-clip: text;
+}
+
+.text-bossanova600-bossanova500 {
+  background: linear-gradient(to right, var(--color-bossanova-600), var(--color-bossanova-500));
+  color: transparent;
+  background-clip: text;
+}
+
+.text-fuchsia500-amber500 {
+  background: linear-gradient(to right, var(--color-hollywood-cerise-500), var(--color-amber-500));
+  color: transparent;
+  background-clip: text;
+}
+
+.text-hawkes600-hawkes500 {
+  background: linear-gradient(to right, var(--color-hawkes-blue-600), var(--color-hawkes-blue-500));
+  color: transparent;
+  background-clip: text;
+}
+
+
+.text-apple-600 {
   color: var(--color-granny-apple-600);
 }
-.text-lemon-600{
+
+.text-lemon-600 {
   color: var(--color-lemon-chiffon-600);
 }
-.text-hawkes-600{
+
+.text-hawkes-600 {
   color: var(--color-hawkes-blue-600);
 }
 
-.h-96{
+.text-violet-amber {
+  background: linear-gradient(to right, #1f0531, #65149f, #f38806, #dfc3a1);
+  color: transparent;
+  background-clip: text;
+}
+
+.text-violet800-violet600 {
+  background: linear-gradient(to right, var(--color-electric-violet-800), var(--color-electric-violet-600));
+  color: transparent;
+  background-clip: text;
+}
+
+.fs-40 {
+  font-size: 40px;
+}
+
+.h-96 {
   height: calc(var(--spacing)*96);
 }
-.w-40{
+
+.w-40 {
   width: calc(var(--spacing)*40);
 }
 
 .img-box {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-justify-content: space-evenly;
-background-color: white;
-border: 2px solid rgb(221, 206, 206);
-border-radius: 10px;
-padding: 20px 20px;
-z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: white;
+  border: 2px solid rgb(221, 206, 206);
+  border-radius: 10px;
+  padding: 20px 20px;
+  z-index: 4;
 
 }
-.box-left{
-right: 100%;
-top: 100%;
-transform: translate(90% ,-100%);
+
+.box-left {
+  right: 100%;
+  top: 100%;
+  transform: translate(90%, -100%);
 
 }
-.box-right{
 
-}
+.box-right {}
+
+
+
 /*#endregion ==================================================*/
 /*#region =============Shared Utitlities =======================*/
 .section-title {
   text-align: center;
 }
-.section-title > * {
+
+.section-title>* {
   margin-bottom: 20px;
 }
-.section-title > div span {
+
+.section-title>div span {
   position: relative;
   display: inline-block;
   font-size: 15px;
@@ -139,8 +266,10 @@ transform: translate(90% ,-100%);
   padding-inline: calc(var(--spacing) * 5);
   border: 2px solid var(--color-electric-violet-300);
   border-radius: 25px;
+  background-color: white;
 }
-.section-title > div span::before {
+
+.section-title>div span::before {
   content: "";
   width: 80px;
   height: 3px;
@@ -149,7 +278,8 @@ transform: translate(90% ,-100%);
   top: 50%;
   right: 100%;
 }
-.section-title > div span::after {
+
+.section-title>div span::after {
   content: "";
   width: 80px;
   height: 3px;
@@ -159,48 +289,49 @@ transform: translate(90% ,-100%);
   left: 100%;
 }
 
-.section-title--violet span {
+.section-title--violet span,
+.section-title--gradient span {
   color: var(--color-electric-violet-500);
+  font-weight: bold;
+
 }
 
 .section-title--violet span::before {
-  background: linear-gradient(
-    to left,
-    var(--color-electric-violet-500),
-    transparent
-  );
+  background: linear-gradient(to left,
+      var(--color-electric-violet-500),
+      transparent);
 }
+
 .section-title--violet span::after {
-  background: linear-gradient(
-    to right,
-    var(--color-electric-violet-500),
-    transparent
-  );
+  background: linear-gradient(to right,
+      var(--color-electric-violet-500),
+      transparent);
 }
 
 .section-title--gradient span::before {
-  background: linear-gradient(
-    to left,
-    var(--color-electric-violet-500),
-    var(--color-amber-500)
-  );
+  background: linear-gradient(to left,
+      var(--color-electric-violet-500),
+      var(--color-amber-500), transparent);
 }
+
 .section-title--gradient span::after {
-  background: linear-gradient(
-    to right,
-    var(--color-electric-violet-500),
-    var(--color-amber-500)
-  );
+  background: linear-gradient(to right,
+      var(--color-electric-violet-500),
+      var(--color-amber-500), transparent);
 }
 
 /*#endregion========================================================*/
-/* #region =============OUr SERVICES =========================*/
+
+/* #region =============OUR SERVICES =========================*/
+
 .services-links a {
   position: relative;
 }
+
 .services-links a::before {
   transition: width 0.3s ease;
 }
+
 .services-links a::before {
   content: "";
   width: 0%;
@@ -211,6 +342,7 @@ transform: translate(90% ,-100%);
   right: 0;
   top: 100%;
 }
+
 .services-links a:hover:before {
   width: 100%;
 }
@@ -220,21 +352,138 @@ transform: translate(90% ,-100%);
 
 }
 
-.service-info .info-icon { 
+.service-info .info-icon {
   max-width: 40px;
   border-radius: 10px;
   padding: 15px 10px;
 }
- .cta{
+
+.cta {
 
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
   background: var(--color-electric-violet-600);
- }
-
-.service-img{
-align-self: center;
-padding-inline: calc(var(--spacing)*6);
 }
-/*#endregion ================================================*/
+
+.service-img {
+  align-self: center;
+  padding-inline: calc(var(--spacing)*6);
+}
+
+/* #endregion ================================================*/
+
+
+/* #region ==============CLIENT STORIES==========================*/
+#client-stories {
+  background: linear-gradient(to right, var(--color-electric-violet-800), var(--color-electric-violet-700));
+  padding: 20px;
+}
+
+.carousel .carousel-indicators [data-bs-target] {
+
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.carousel .carousel-control-prev,
+.carousel .carousel-control-next {
+  top: 70%;
+  color: white;
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+
+
+.story {
+  max-width: 70%;
+  margin: 30px auto 70px;
+}
+
+.story .author .author-img {
+  max-width: 60px;
+  max-height: 60px;
+
+}
+
+/* #endregion ===================================================*/
+
+/* #region =======QUESTIONS SECTIONS ======================*/
+
+.my-accordion .accordion-item {
+  overflow: hidden;
+  margin-bottom: calc(var(--spacing) *5);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.my-accordion .accordion-item .accordion-header button {
+  padding-block: calc(var(--spacing) *5);
+}
+
+.my-accordion .accordion-item .accordion-body {
+  font-size: large;
+  color: grey;
+}
+
+.my-accordion .accordion-button:not(.collapsed) {
+
+  background-color: white;
+  box-shadow: none;
+}
+
+/* #endregion ============================================*/
+
+/* #region ======= GET IN TOUCH  SECTIONS ======================*/
+.header .content {
+  transition: transform 0.3s ease;
+
+
+}
+
+.header .icon-container {
+  max-width: 60px;
+  padding-block: calc(var(--spacing)*4);
+  padding-inline: calc(var(--spacing)*4);
+  background-color: #052e17;
+  border-radius: 10px;
+  margin-bottom: calc(var(--spacing)*3);
+
+  .rotate {
+    transform: rotate(90deg);
+  }
+
+}
+
+
+.header .content:hover {
+  transform: translateY(-10px);
+
+  &.border-violet {
+    border: 2px solid var(--color-electric-violet-300);
+  }
+
+  &.border-fuchsia {
+    border: 2px solid var(--color-hollywood-cerise-300);
+  }
+
+  &.border-bossanova {
+    border: 2px solid var(--color-bossanova-300);
+  }
+
+  &.border-indigo {
+    border: 2px solid var(--color-pigment-indigo-300);
+  }
+
+  &.border-blue {
+    border: 2px solid var(--color-hawkes-blue-300);
+  }
+}
+
+/* #endregion ====================================================*/

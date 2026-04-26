@@ -1,0 +1,19 @@
+/*sm*/
+@media screen and (max-width: 576px) {
+    /* #region ==============CLIENT STORIES==========================*/
+
+    .story {
+        max-width: 95%;
+        min-height: 520px;
+        margin: 30px auto 70px;
+    }
+
+    .carousel .carousel-control-prev,
+    .carousel .carousel-control-next {
+        display: none;
+    }
+
+
+    /* #endregion ===================================================*/
+
+}
