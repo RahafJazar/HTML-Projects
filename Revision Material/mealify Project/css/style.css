@@ -1,56 +1,81 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
 .container {
-    width: 85%;
-    margin: auto;
+  width: 85%;
+  margin: auto;
 }
 
 .chefs {
-    background-color: #ffffff;
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
 
-    .cards {
-        background-color: blue;
-        display: flex;
-        flex-wrap: wrap;
+    margin-inline: -10px;
+    .card {
+      width: 33.3%;
+      padding: 10px;
 
-        .card {
-            width: 33.3%;
-            padding: 10px;
-            background-color: aqua;
-
-
-            .inner {
-                background-color: green;
-                overflow: hidden;
-                border-radius: 5px;
-                text-align: center;
-
-                .image {
-                    position: relative;
-
-                    img {
-                        max-width: 100%;
-                    }
-
-                    svg {
-                        position: absolute;
-                        z-index: 99;
-                        left: 0;
-                        width: 100%;
-                        bottom: 0;
-                    }
-                }
-
-
-
-            }
-
+      .inner {
+        overflow: hidden;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 2px 2px 3px 2px rgb(218, 213, 213);
+        transition: transform 0.2s ease;
+        position: relative;
+        &:hover {
+          transform: scale(1.02);
         }
-    }
+       
+        .bar {
+          background-color: rgb(237, 232, 225);
+          position: absolute;
+          border-radius: 10px;
+           
+          top: 15px;
+          z-index: 100;
+          padding: 25px 20px;
+          opacity: 0.5;
+          ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+            li i {
+              font-size: 20px;
+            }
+          }
+        }
+         &:hover .bar {
+           right: 5px;
+          top: 15px;
+        }
+        .image {
+          position: relative;
 
+          img {
+            max-width: 100%;
+          }
+
+          svg {
+            position: absolute;
+            z-index: 99;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            height: auto;
+          }
+        }
+
+        .text {
+          line-height: 1.4;
+          padding-block: 30px;
+        }
+      }
+    }
+  }
 }

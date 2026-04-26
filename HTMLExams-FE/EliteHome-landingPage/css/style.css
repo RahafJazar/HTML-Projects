@@ -1,0 +1,240 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Exo", sans-serif;
+  font-optical-sizing: auto;
+}
+span,
+a,
+a::before,
+a::after,
+span::before,
+span::after {
+  display: inline-block;
+  
+}
+
+:root {
+  --color-amber-400: oklch(82.8% 0.189 84.429);
+  --color-amber-500: oklch(76.9% 0.188 70.08);
+  --color-amber-600: oklch(66.6% 0.179 58.318);
+  --color-electric-violet-50: #faf5ff;
+  --color-electric-violet-100: #f2e7ff;
+  --color-electric-violet-200: #e7d3ff;
+  --color-electric-violet-300: #d4b0ff;
+  --color-electric-violet-400: #bb7eff;
+  --color-electric-violet-500: #9a3bff;
+  --color-electric-violet-600: #8e2af3;
+  --color-electric-violet-700: #791ad6;
+  --color-electric-violet-800: #681aaf;
+  --color-electric-violet-900: #55178c;
+  --color-electric-violet-950: #390269;
+  --color-granny-apple-50: #f0fdf4;
+--color-granny-apple-100: #dcfce8;
+--color-granny-apple-200: #bbf7d2;
+--color-granny-apple-300: #86efaf;
+--color-granny-apple-400: #4ade85;
+--color-granny-apple-500: #22c563;
+--color-granny-apple-600: #16a34e;
+--color-granny-apple-700: #158040;
+--color-granny-apple-800: #166536;
+--color-granny-apple-900: #14532f;
+--color-granny-apple-950: #052e17;
+--color-lemon-chiffon-50: #fefce8;
+--color-lemon-chiffon-100: #fffac2;
+--color-lemon-chiffon-200: #fff188;
+--color-lemon-chiffon-300: #ffe244;
+--color-lemon-chiffon-400: #fecf11;
+--color-lemon-chiffon-500: #eeb604;
+--color-lemon-chiffon-600: #cd8c01;
+--color-lemon-chiffon-700: #a46304;
+--color-lemon-chiffon-800: #874d0c;
+--color-lemon-chiffon-900: #733f10;
+--color-lemon-chiffon-950: #432005;
+--color-hawkes-blue-50: #eef3ff;
+--color-hawkes-blue-100: #e0e8ff;
+--color-hawkes-blue-200: #c7d4fe;
+--color-hawkes-blue-300: #a5b7fc;
+--color-hawkes-blue-400: #8190f8;
+--color-hawkes-blue-500: #636bf1;
+--color-hawkes-blue-600: #4a46e5;
+--color-hawkes-blue-700: #3e38ca;
+--color-hawkes-blue-800: #3330a3;
+--color-hawkes-blue-900: #2e2e81;
+--color-hawkes-blue-950: #1c1b4b;
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: 0.25rem;
+}
+
+/*#region =============Built in Classes  =======================*/
+.bg-violet-light{
+  background-color: var(--color-electric-violet-100);
+}
+.bg-apple-light{
+  background-color: var(--color-granny-apple-100);
+}
+.bg-lemon-light{
+  background-color: var(--color-lemon-chiffon-100);
+}
+.bg-hawkes-light{
+  background-color: var(--color-hawkes-blue-100);
+}
+.text-violet-600{
+  color: var(--color-electric-violet-600);
+}
+.text-apple-600{
+  color: var(--color-granny-apple-600);
+}
+.text-lemon-600{
+  color: var(--color-lemon-chiffon-600);
+}
+.text-hawkes-600{
+  color: var(--color-hawkes-blue-600);
+}
+
+.h-96{
+  height: calc(var(--spacing)*96);
+}
+.w-40{
+  width: calc(var(--spacing)*40);
+}
+
+.img-box {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: space-evenly;
+background-color: white;
+border: 2px solid rgb(221, 206, 206);
+border-radius: 10px;
+padding: 20px 20px;
+z-index: 4;
+
+}
+.box-left{
+right: 100%;
+top: 100%;
+transform: translate(90% ,-100%);
+
+}
+.box-right{
+
+}
+/*#endregion ==================================================*/
+/*#region =============Shared Utitlities =======================*/
+.section-title {
+  text-align: center;
+}
+.section-title > * {
+  margin-bottom: 20px;
+}
+.section-title > div span {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  padding-block: calc(var(--spacing) * 2);
+  padding-inline: calc(var(--spacing) * 5);
+  border: 2px solid var(--color-electric-violet-300);
+  border-radius: 25px;
+}
+.section-title > div span::before {
+  content: "";
+  width: 80px;
+  height: 3px;
+  margin-right: 10px;
+  position: absolute;
+  top: 50%;
+  right: 100%;
+}
+.section-title > div span::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  margin-left: 10px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+}
+
+.section-title--violet span {
+  color: var(--color-electric-violet-500);
+}
+
+.section-title--violet span::before {
+  background: linear-gradient(
+    to left,
+    var(--color-electric-violet-500),
+    transparent
+  );
+}
+.section-title--violet span::after {
+  background: linear-gradient(
+    to right,
+    var(--color-electric-violet-500),
+    transparent
+  );
+}
+
+.section-title--gradient span::before {
+  background: linear-gradient(
+    to left,
+    var(--color-electric-violet-500),
+    var(--color-amber-500)
+  );
+}
+.section-title--gradient span::after {
+  background: linear-gradient(
+    to right,
+    var(--color-electric-violet-500),
+    var(--color-amber-500)
+  );
+}
+
+/*#endregion========================================================*/
+/* #region =============OUr SERVICES =========================*/
+.services-links a {
+  position: relative;
+}
+.services-links a::before {
+  transition: width 0.3s ease;
+}
+.services-links a::before {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-electric-violet-400);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+}
+.services-links a:hover:before {
+  width: 100%;
+}
+
+.services-links img {
+  max-width: 15px;
+
+}
+
+.service-info .info-icon { 
+  max-width: 40px;
+  border-radius: 10px;
+  padding: 15px 10px;
+}
+ .cta{
+
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-electric-violet-600);
+ }
+
+.service-img{
+align-self: center;
+padding-inline: calc(var(--spacing)*6);
+}
+/*#endregion ================================================*/
