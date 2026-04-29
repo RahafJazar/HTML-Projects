@@ -1,0 +1,121 @@
+*,
+html,
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+img{
+    width: 100%;
+    display: block;
+}
+
+nav{
+    background-color: grey;
+padding: 20px;
+position: fixed;
+left: 0;
+right: 0;
+}
+nav .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 30px;
+}
+nav h1{
+    font-size: 30px;
+    color: white;
+}
+nav .links{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    list-style-type: none;
+}
+nav .links li{
+  position: relative;
+ 
+ 
+}
+nav .links li a{
+   text-decoration: none;
+   position: relative;
+   padding: 3px;
+}
+nav .links a::after{
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: green;
+  transition: width 0.3s ease;
+}
+nav .links a:hover::after{
+    width: 100%;
+}
+
+header{
+    padding-top: 100px;
+  min-height: 100vh;
+  background-image: url("../images/cookies.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+header .container h2{
+  color: white;
+}
+header  .container p{
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+}
+
+header .container .social{
+list-style-type: none;
+display: flex;
+ justify-content: space-between;
+ gap: 10px;
+}
+
+header .container .social li {
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+}
+header .container .social li:hover {
+   
+    background-color: rgb(206, 195, 195);
+    color: black;
+}
+
+#about .container{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#about .img-side{ 
+width: 36%;
+}
+#about .content-side{
+ 
+    width: 48%;
+
+}
