@@ -62,13 +62,143 @@
 
 // console.log("num1 ** num2 = ", num1PowerNum2);
 
-console.log(Number(false));
-console.log(Number(true));
-console.log(Number(null));
-console.log(Number('ahmad'));
-console.log(Number('3'));
-console.log(Number(undefined));
-console.log(typeof (NaN));
-console.log('2' + '5' * '3');
-console.log('ahmad' * '4' + '3');
+// console.log(Number(false));
+// console.log(Number(true));
+// console.log(Number(null));
+// console.log(Number('ahmad'));
+// console.log(Number('3'));
+// console.log(Number(undefined));
+// console.log(typeof (NaN));
+// console.log('2' + '5' * '3');
+// console.log('ahmad' * '4' + '3');
+// var color = window.prompt("Enter a color ");
+// switch (color) {
+//     case ("green"):
+//         console.log("Go .....");
+//         break;
+//     case ("yellow"):
+//         console.log("wait....");
+//         break;
+//     case ("red"):
+//         console.log("stop .........");
+//         break;
+//     default:
+//         color = window.prompt("Enter a  valid color");
+//         break;
+// }
+// var num = + window.prompt("Enter a number");
+// switch (num > 10) {
+//     case true:
+//         console.log("number >10");
+//         break;
+//     case false: switch (num == 10) {
+//         case true:
+//             console.log("number equal 10");
+//             break;
+//         case false:
+//             console.log("number <10 ");
+//             break;
+//     }
+//         break;
+
+// }
+
+function getAvg(x, y) {
+    var avg = (x + y) / 2; //local variable 
+    return avg;
+}
+// console.log(avg); //uncaught Reference error:
+getAvg(10, 3);
+
+/*Story :
+I have a  store that sell  a  watches ,
+I want to add a payment watches and calculate  profits after subtract tax , advertisment
+*/
+// function getPrice(price, profit, tax, ads) {
+//     var price1 = price + profit; //1000+200 =1200;
+//     var price2 = price1 * tax; //1200*1.4
+//     var price3 = price2 + ads;
+
+//     return price3;
+// }
+
+// console.log(getPrice(400, 200, 1.2, 200))
+// var avgPrice = getAvg(getPrice(400, 200, 1.2, 200), 10);
+// console.log("price  avg =", avgPrice);
+
+// function parent() {
+//     function child() {
+//         console.log("This is child function innside parent function ");
+
+//     }
+//     return child();
+
+// }
+
+
+// parent(); //uncaught reference , child is not defined 
+// sayhello(); //sayhello is not a 
+// var sayhello = function () {
+//     console.log("hello");
+//     return 5;
+// }
+
+// console.log(sayhello());
+
+
+// //hoisting 
+// console.log(x);
+// var x = "dena ";
+console.log(foo());
+function foo() {
+    function bar() {
+        return "bar-" + 3;
+    }
+    return bar();
+    var bar = function () {
+        return "bar-" + 8;
+    }
+}
+
+var product = {
+    name: 'lipstick',
+    marka: 'sheglam',
+    type: 3,
+    price: '5JD',
+    details: function () { //expression function
+        console.log("the product was made in 2023");
+        return 'Product1 '
+    }
+}
+printProduct();
+function printProduct() {
+    console.log("name :", product['name']);
+    console.log("marka :", product['marka']);
+    console.log("type :", product['type']);
+    console.log("price :", product['price']);
+    console.log('details : ', product.details());
+
+}
+
+var person = {
+    name: 'Ahmad',
+    age: 30,
+    sallary: 3000,
+    wife: {
+        name: 'Lara',
+        age: 24,
+        sallary: 1000,
+        sun: {
+            name: 'adam',
+            age: 4
+        }
+    }
+}
+
+console.log('son name : ', person.wife.sun.name);
+console.log('wife name : ', person.wife.name);
+console.log('person name : ', person.name);
+person.weight = 90;
+console.log(person)
+
 //2-non premitive (reference )datatypes
