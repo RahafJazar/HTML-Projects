@@ -202,3 +202,9 @@ person.weight = 90;
 console.log(person)
 
 //2-non premitive (reference )datatypes
+
+
+const isTrue = true == [];
+const isFalse = true == ![];
+
+console.log(isTrue + isFalse);
