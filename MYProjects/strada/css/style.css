@@ -1,0 +1,30 @@
+/* the props */
+@import "https://unpkg.com/open-props";
+
+
+/* see PropPacks for the full list */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+span,
+a {
+    display: inline-block;
+}
+
+
+/* #region ^=====================HEADER=================================*/
+#header {}
+
+.nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--green-9);
+}
+
+
+/* #endregion==============================================================*/
