@@ -25,6 +25,23 @@ a {
     border-radius: 50%;
     background-color: var(--green-9);
 }
+.dropend{
+    position: relative;
+    background-color: yellow;
 
+}
+.dropdown-submenu{
+    position: absolute;
+     left: calc(100% + 10px);
+    top: 60%;
+    background-color: aqua;
+ 
+   display: none;
+    transition:  all 0.2s ease;
+    
+}
+.dropdown-menu li:is(.dropend):hover .dropdown-submenu  {
+  display: block;
 
+}
 /* #endregion==============================================================*/

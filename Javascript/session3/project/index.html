@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="./css/all.min.css">
+    <!----Bootstrap-->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="w-75 m-auto py-5  ">
+        <h2 class="text-center text-success fw-bold"> CRUD Example</h2>
+        <div class="container">
+            <!---product name -->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="prodName" placeholder="Product Name">
+                <label for="prodName">Product Name</label>
+            </div>
+            <!--price-->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="prodPrice" placeholder="Product Price">
+                <label for="prodName">Price</label>
+            </div>
+
+            <!---upload img -->
+            <div class="form-floating mb-3">
+                <input type="file" class="form-control" id="prodImg" placeholder="Product Image">
+                <label for="prodImg">Price</label>
+            </div>
+            <!---catrgory -->
+            <div class="form-floating mb-3 ">
+                <select name="Category" id="prodCategory" class="form-select">
+                    <option value="" disabled selected>Product Category</option>
+                    <option value="screens">Screens</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="mobile">Mobile</option>
+                </select>
+
+            </div>
+
+            <!---description-->
+            <div class="form-floating mb-3">
+                <textarea type="file" class="form-control" id="prodDesc" placeholder="Product Description"> </textarea>
+                <label for="prodDesc">Description</label>
+            </div>
+
+            <button class="btn btn-info" onclick="addProduct()">Add Product</button>
+        </div>
+    </section>
+
+    <section class="">
+        <div class="container">
+            <div class="row" id="myRow">
+
+            </div>
+        </div>
+    </section>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js"> </script>
+</body>
+
+</html>
