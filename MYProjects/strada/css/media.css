@@ -1,0 +1,23 @@
+@media screen and (max-width :800px) {
+    .cinema-frame  .content-inner{
+  left: 4%;
+    width: 100%;
+    gap: 1rem;
+
+}
+ .carousel-control-prev{ 
+  width: 9%;
+ 
+}
+.carousel-control-next{ 
+  width: 9%; 
+  left: 80%;
+}
+
+
+#about .about-right{
+    border-top: 1px solid rgb(175, 171, 171);
+    border-left:  0;
+}
+
+}

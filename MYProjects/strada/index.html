@@ -10,80 +10,257 @@
     <link rel="stylesheet" href="./css/all.min.css">
     <!-------Normalize ---------->
     <link rel="stylesheet" href="./css/Normalize.css">
+    <!----Background utility classes-->
+    <link rel="stylesheet" href="./css/background.css">
+    <!-----Colors utitlity classes-->
+    <link rel="stylesheet" href="./css/colors.css">
     <!-------- MY css ------------>
     <link rel="stylesheet" href="./css/style.css">
+    <!-------- media ------------>
+    <link rel="stylesheet" href="./css/media.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>Strada</title>
 </head>
 
 <body>
     <header id="header">
-        <div class="container-fluid">
-            <div class="nav">
-                <div class="row">
-                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                        <div class="container-fluid">
-                            <a class="navbar-brand  text-capitalize" href="#">strada <span class="nav-dot"></span></a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">About</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Services</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Portfolio</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Pricing</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropdown
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Dropdown1</a></li>
-                                            <li class="dropend">
-                                                <a class="dropdown-item dropdown-toggle"> Deep Dropdown
-                                                </a>
-                                                <ul class="dropdown-menu dropdown-submenu">
-                                                    <li><a class="dropdown-item" href="#">Deep Dropdown1</a></li>
-                                                    <li><a class="dropdown-item" href="#">Deep Dropdown2</a></li>
-                                                    <li><a class="dropdown-item" href="#">Deep Dropdown3</a></li>
-                                                    <li><a class="dropdown-item" href="#">Deep Dropdown4</a></li>
-                                                </ul>
+        <div class="container-fluid p-0">
 
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Dropdown2</a></li>
-                                            <li><a class="dropdown-item" href="#">Dropdown3</a></li>
-                                            <li><a class="dropdown-item" href="#">Dropdown4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link ">Contact</a>
-                                    </li>
-                                </ul>
-                                <button class="btn btn-success text-white ">Get Started</button>
+            <div class="row">
+                <nav class="navbar navbar-expand-lg px-5   p-0  fixed-top">
+                    <div class="container-fluid">
+                        <a class="navbar-brand  text-capitalize text-white fs-2" href="#">strada <span
+                                class="nav-dot"></span></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav m-auto  mb-lg-0">
+                                <li class="nav-item   ">
+                                    <a class="nav-link active" aria-current="page" href="#test">Home</a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a class="nav-link" href="#">About</a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a class="nav-link" href="#">Services</a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a class="nav-link" href="#">Portfolio</a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item   dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Dropdown
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Dropdown1</a></li>
+                                        <li class="dropend">
+                                            <a class="dropdown-item dropdown-toggle"> Deep Dropdown
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-submenu">
+                                                <li><a class="dropdown-item" href="#">Deep Dropdown1</a></li>
+                                                <li><a class="dropdown-item" href="#">Deep Dropdown2</a></li>
+                                                <li><a class="dropdown-item" href="#">Deep Dropdown3</a></li>
+                                                <li><a class="dropdown-item" href="#">Deep Dropdown4</a></li>
+                                            </ul>
+
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Dropdown2</a></li>
+                                        <li><a class="dropdown-item" href="#">Dropdown3</a></li>
+                                        <li><a class="dropdown-item" href="#">Dropdown4</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ">Contact</a>
+                                </li>
+                            </ul>
+                            <button
+                                class=" bg-green-haze-600 py-2  px-3 border-0 rounded-2 text-white my-4 my-md-0 ">Get
+                                Started</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="row ">
+                <div id="carouselExampleCaptions" class="carousel slide position-relative px-0">
+                    <!-- <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                    </div> -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="cinema-frame">
+                                <img src="./images/slider/slider-6.webp" alt="" class="frame-img">
+                                <div class="frame-overlay"></div>
+                                <div class="frame-content">
+                                    <div class="content-inner">
+                                        <div class="accent-line"></div>
+                                        <span class="tag-label">Exclusive Collection</span>
+                                        <h3 class="text-white fw-bold title">Redefine What Elegance Means</h3>
+                                        <p class="text-gray-5 description">Perspiciatis unde omnis iste natus error sit
+                                            voluptatem accusantium
+                                            doloremque laudantium totam rem aperiam eaque ipsa.</p>
+                                        <a href="#"
+                                            class="refined-btn text-white border border-1 border-success text-decoration-none py-2 px-4 border border-1 border-white">Explore
+                                            Further
+                                            <i class="bi bi-arrow-right text-white arrow-icon"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </nav>
+                        <div class="carousel-item">
+                            <div class="cinema-frame">
+                                <img src="./images/slider/slider-7.webp" alt="" class="frame-img">
+                                <div class="frame-overlay"></div>
+                                <div class="frame-content">
+                                    <div class="content-inner">
+                                        <div class="accent-line"></div>
+                                        <span class="tag-label">Artisan Craft</span>
+                                        <h3 class="text-white fw-bold title">Where Vision Meets Precision</h3>
+                                        <p class="text-gray-5 description">Nemo enim ipsam voluptatem quia voluptas sit
+                                            aspernatur aut odit aut
+                                            fugit sed quia consequuntur magni dolores</p>
+                                        <a href="#"
+                                            class="refined-btn text-white border border-1 border-success text-decoration-none py-2 px-4 border border-1 border-white">Explore
+                                            Discover More
+                                            <i class="bi bi-arrow-right text-white arrow-icon"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="cinema-frame">
+                                <img src="./images/slider/slider-12.webp" alt="" class="frame-img">
+                                <div class="frame-overlay"></div>
+                                <div class="frame-content">
+                                    <div class="content-inner">
+                                        <div class="accent-line"></div>
+                                        <span class="tag-label">Limited Edition</span>
+                                        <h3 class="text-white fw-bold title">Curated Experiences Await You</h3>
+                                        <p class="text-gray-5 description">At vero eos et accusamus et iusto odio
+                                            dignissimos ducimus qui
+                                            blanditiis praesentium voluptatum deleniti atque.</p>
+                                        <a href="#"
+                                            class="refined-btn text-white border border-1 border-success text-decoration-none py-2 px-4 border border-1 border-white">Explore
+                                            Begin Your Journey
+                                            <i class="bi bi-arrow-right text-white arrow-icon"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="cinema-frame">
+                                <img src="./images/slider/slider-15.webp" alt="" class="frame-img">
+                                <div class="frame-overlay"></div>
+                                <div class="frame-content">
+                                    <div class="content-inner">
+                                        <div class="accent-line"></div>
+                                        <span class="tag-label">Signature Series</span>
+                                        <h3 class="text-white fw-bold title">Timeless Design For The Bold</h3>
+                                        <p class="text-gray-5 description">Temporibus autem quibusdam et aut officiis
+                                            debitis aut rerum
+                                            necessitatibus saepe eveniet ut et voluptates.</p>
+                                        <a href="#"
+                                            class="refined-btn text-white border border-1 border-success text-decoration-none py-2 px-4 border border-1 border-white">Explore
+                                            View Collection
+                                            <i class="bi bi-arrow-right text-white arrow-icon"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
 
+    <section id="about" class="mt-5">
+        <div class="conatiner-fluid px-3 py-5">
+            <div class="row g-3">
+                <div class="col-md-5 p-5    d-flex flex-column gap-5 about-left">
+                    <h2>Curabitur Blandit Tempus Porttitor</h2>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis
+                        interdum. Donec id elit non mi porta gravida at eget metus.</p>
+                    <div class="statistics d-flex ">
+                        <div class=" p-3 d-flex  border border-top-0 border-start-0 border-bottom-0 border-2">
+                            <span class="text-success fw-bold fs-2">15</span>
+                            <p class="align-self-end align-self-end m-0 fs-5 text-muted">Years of
+                                Practice</p>
+                        </div>
+                        <div class="p-3 d-flex">
+                            <span class="text-success fw-bold fs-2">420+</span>
+                            <p class="align-self-end m-0 fs-5 text-muted">Completed
+                                Works</p>
+                        </div>
+                    </div>
+                    <div>
+                        <a href=""
+                            class="fs-5 text-success refined-btn     py-2    text-decoration-none border border-start-0 border-end-0 border-top-0 border-2 border-success ">Discover
+                            More
+                            <i class="bi bi-arrow-right text-success arrow-icon"></i>
+                        </a>
+                    </div>
 
+                </div>
+                <div class="col-md-3 about-mid px-4 ">
+                    <img src="./images/about-portrait-7.webp" alt="">
+                </div>
+                <div class="col-md-4 about-right p-3">
+                    <div>
+                        <div class="d-flex flex-column gap-2">
+                            <i class="bi bi-arrow-up-right fs-4 text-success"></i>
+                            <span class="fw-bold ">
+                                Maecenas Faucibus.</span>
+                            <p>
+                                Cras justo odio, dapibus ut facilisis in, egestas eget quam. Nullam id dolor praesent
+                                commodo</p>
+                        </div>
+                        <div class="d-flex flex-column gap-2">
+                            <i class="bi bi-layers fs-4 text-success"></i>
+                            <span class="fw-bold">
+                                Maecenas Faucibus.</span>
+                            <p>
+                                Cras justo odio, dapibus ut facilisis in, egestas eget quam. Nullam id dolor praesent
+                                commodo</p>
+                        </div>
+                    </div>
+                    <ul class="border border-bottom-0 border-start-0 border-end-0 border-1  pt-5">
+                        <li style="font-size: 13px;">
+                            Donec ullamcorper nulla non metus auctor fringilla vestibulum.
+                        </li>
+                        <li style="font-size: 13px;">
+                            Cras mattis consectetur purus sit amet fermentum aenean.
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <!------Boostrap JS----->
