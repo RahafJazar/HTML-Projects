@@ -46,7 +46,7 @@ console.log(romanToInt(romanNum));
  */
 /*Valid Paranthesis*/
 //LIFO 
-var isValid = function (s) {
+/*var isValid = function (s) {
     debugger
     var startsArr = [];
     var last;
@@ -91,4 +91,29 @@ var isValid = function (s) {
 
 
 s = "]";
-console.log(isValid(s));
+console.log(isValid(s));*/
+
+
+
+/*Pascal Triangle*/
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+    var pascalArr = [];
+    for (var i = 0; i < numRows; i++) {
+        var rowArr = [];
+        for (var j = 0; j <= i; j++) {
+            if (j == 0 || j == i) {
+                rowArr.push(1);
+            }
+            else {
+                rowArr.push(pascalArr[i - 1][j - 1] + pascalArr[i - 1][j]);
+            }
+        }
+        pascalArr.push(rowArr);
+    }
+    return pascalArr;
+};
+console.log(generate(4));
