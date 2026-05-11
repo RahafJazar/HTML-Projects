@@ -13,16 +13,18 @@
 }
 
 span,
-a,i {
+a,
+i {
     display: inline-block;
 }
 
-img{
+img {
     width: 100%;
     height: 100%;
     display: block;
 }
-li::marker{
+
+li::marker {
     color: var(--green-9);
 }
 
@@ -35,178 +37,219 @@ li::marker{
     border-radius: 50%;
     background-color: var(--green-9);
 }
-.navbar{
-    --background-color:rgba(0, 0, 0, 0.1);
+
+.navbar {
+    --background-color: rgba(0, 0, 0, 0.1);
     padding-inline: 10%;
     background-color: var(--background-color);
 
 }
-.navbar .navbar-nav .nav-item  {
-  margin-inline:  0.8rem;
-  position: relative;
- 
+
+.navbar .navbar-nav .nav-item {
+    margin-inline: 0.8rem;
+    position: relative;
+
 }
+
 .navbar .navbar-nav .nav-item::before {
-  content:"" ;
- position: absolute;
- left: 0;
- width: 0;
- top: 100%;
- height: 3px;
- background-color:var(--green-7);
- transition:  width 0.8s ease;
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    top: 100%;
+    height: 3px;
+    background-color: var(--green-7);
+    transition: width 0.8s ease;
 }
+
 .navbar .navbar-nav .nav-item:hover::before,
-.navbar .navbar-nav .nav-item:has(.active)::before{
-width: 100%;
+.navbar .navbar-nav .nav-item:has(.active)::before {
+    width: 100%;
 }
-.navbar .navbar-nav .nav-item .nav-link{
-   color: rgba(255, 255, 255, 0.637);
+
+.navbar .navbar-nav .nav-item .nav-link {
+    color: rgba(255, 255, 255, 0.637);
 }
-.dropend{
+
+.dropend {
     position: relative;
     background-color: yellow;
 
 }
-.dropdown-submenu{
+
+.dropdown-submenu {
     position: absolute;
-     left: calc(100% + 10px);
+    left: calc(100% + 10px);
     top: 60%;
     background-color: aqua;
- 
-   display: none;
-    transition:  all 0.2s ease;
-    
-}
-.dropdown-menu li:is(.dropend):hover .dropdown-submenu  {
-  display: block;
+
+    display: none;
+    transition: all 0.2s ease;
 
 }
 
-.carousel{
-    padding-top:0px;
+.dropdown-menu li:is(.dropend):hover .dropdown-submenu {
+    display: block;
+
 }
+
+.carousel {
+    padding-top: 0px;
+}
+
 .cinema-frame {
     width: 100%;
     background-color: blue;
     position: relative;
     height: 100vh;
 }
-.cinema-frame  .frame-img{
-  animation: img-motion 6s ease-in  0s infinite  ;
-object-fit: cover;
+
+.cinema-frame .frame-img {
+    animation: img-motion 6s ease-in 0s infinite;
+    object-fit: cover;
 }
 
 @keyframes img-motion {
-    0%{
+    0% {
         transform: scale(1);
     }
-    50%{
+
+    50% {
         transform: scale(1.2);
     }
-    100%{
+
+    100% {
         transform: scale(1);
     }
 }
-.cinema-frame  .frame-overlay{
+
+.cinema-frame .frame-overlay {
     position: absolute;
-    
-  inset: 0;
-  background: linear-gradient(105deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0.15) 100%);
-  pointer-events: none;
-  z-index: 1;
-} 
-.cinema-frame  .content-inner{
+
+    inset: 0;
+    background: linear-gradient(105deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cinema-frame .content-inner {
     position: absolute;
     left: 10%;
     top: 0;
     width: 50%;
-    height: 100%; 
+    height: 100%;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    align-items: start; 
+    align-items: start;
     padding-inline: 3rem;
     gap: 2rem;
-    z-index:2;
+    z-index: 2;
 }
- 
-.cinema-frame  .content-inner .accent-line {
-  height: 3px;
-  background-color: var(--green-9);
-  animation: accentline-motion 3s ease-in  0s infinite  ;
-}
-.cinema-frame  .content-inner .tag-label {
-  font-size:  14px;
-  color: var(--green-9);
 
-  
+.cinema-frame .content-inner .accent-line {
+    height: 3px;
+    background-color: var(--green-9);
+    animation: accentline-motion 3s ease-in 0s infinite;
 }
-.cinema-frame  .content-inner .title{
-  font-size: 3rem;
-  color: var(--green-9);
+
+.cinema-frame .content-inner .tag-label {
+    font-size: 14px;
+    color: var(--green-9);
 
 
-  
 }
-.cinema-frame  .content-inner .description{
-   font-size: 1rem;
-  
+
+.cinema-frame .content-inner .title {
+    font-size: 3rem;
+    color: var(--green-9);
+
+
+
 }
-.cinema-frame  .content-inner .refined-btn {
-   transition: background-color 0.2s ease;
-   
-  
+
+.cinema-frame .content-inner .description {
+    font-size: 1rem;
+
 }
-  .refined-btn .arrow-icon {
-   transition: transform 0.6s ease;
-  
+
+.cinema-frame .content-inner .refined-btn {
+    transition: background-color 0.2s ease;
+
+
 }
-.cinema-frame  .content-inner .refined-btn:hover {
-   background-color: var(--green-9);
-  
+
+.refined-btn .arrow-icon {
+    transition: transform 0.6s ease;
+
 }
-  .refined-btn:hover .arrow-icon {
-   transform: translateX(10px);
-  
+
+.cinema-frame .content-inner .refined-btn:hover {
+    background-color: var(--green-9);
+
 }
-.carousel-control-prev{
+
+.refined-btn:hover .arrow-icon {
+    transform: translateX(10px);
+
+}
+
+.carousel-control-prev {
     border: 2px solid rgba(0, 0, 0, 0.3);
-  width: 5%;
-  height: 7%;
-  position: absolute;
-  top: 90%;
-  left: 70%;
+    width: 5%;
+    height: 7%;
+    position: absolute;
+    top: 90%;
+    left: 70%;
 }
-.carousel-control-next{
+
+.carousel-control-next {
     border: 2px solid rgba(0, 0, 0, 0.3);
-  width: 5%;
-  height: 7%;
-  position: absolute;
-  top: 90%;
-  left: 78%;
+    width: 5%;
+    height: 7%;
+    position: absolute;
+    top: 90%;
+    left: 78%;
 }
 
 @keyframes accentline-motion {
-    0%{
+    0% {
         width: 30px;
     }
-    50%
-    {
+
+    50% {
         width: 80px;
     }
-    100%{
+
+    100% {
         width: 30px;
     }
 }
- 
+
 /* #endregion==============================================================*/
 
 /* #region =======About Section ==================*/
-#about .about-right{
+#about .about-right {
     border-top: 0;
-    border-left:  1px solid rgb(175, 171, 171)
+    border-left: 1px solid rgb(175, 171, 171)
 }
 
 
 /*#endregion=======================================*/
+
+
+/*#region ====Services ======================*/
+
+.section-intro-btn {
+    transition: all 1s 0.3s ease;
+
+}
+
+.section-intro-btn:hover {
+    background-color: var(--green-9);
+    color: white !important;
+
+}
+
+
+/*============================================*/
