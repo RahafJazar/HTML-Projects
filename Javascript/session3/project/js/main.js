@@ -1,7 +1,7 @@
 /* CRUD s Operation*/
 /*===Crete , Retreive , Update , Delete====*/
 
-
+'use strict'; // to apply modern stricts that appear in ES5 like must use var x=5 instead of x=5;
 
 //get element once 
 var prodName = window.document.getElementById("prodName");
@@ -16,8 +16,21 @@ var prodDesc = window.document.getElementById("prodDesc");
 // console.log(prodCategory);
 // console.log(prodDesc);
 
-//declare array to contain all products 
-var allProducts = [];
+//declare array to contain all products v
+var allProducts = []
+if (localStorage.getItem("productContainer") !== null) {
+    allProducts = JSON.parse(localStorage.getItem("productContainer"));
+    displayProducts();
+}
+
+
+//delete 
+function deleteProduct(index) {
+    allProducts.splice(index, 1);
+    console.log(allProducts);
+    displayProducts();
+    localStorage.setItem("productContainer", JSON.stringify(allProducts));
+}
 
 function addProduct() {
     //create object to describe product 
@@ -31,6 +44,7 @@ function addProduct() {
     console.log("product added ", product);
     allProducts.push(product);
     console.log("All Products ", allProducts);
+    localStorage.setItem("productContainer", JSON.stringify(allProducts));
     ResetInputs();
     displayProducts();
 }
@@ -49,13 +63,20 @@ function displayProducts() {
     for (var i = 0; i < allProducts.length; i++) {
         productDiv += `<div class="col-md-3 p-3">
                     <div class="bg-dark">
+                    <p class="text-white">${i}</p>
                         <img src="./images/logo-5-DFypfU0k.jpg" alt="" class="w-100">
                         <h2 class="h5 text-white">${allProducts[i].name}</h2>
                         <div class="d-flex justify-content-between">
                             <span class="text-success">${allProducts[i].price} JD </span>
                             <span class="text-warning">${allProducts[i].category}</span>
                         </div>
+                       
+                            <button class="btn btn-danger w-100 my-2" onclick="deleteProduct(${i})"> Delete Product</button>
+                            <button class="btn btn-warning w-100 my-2"> Update Product</button>
+                   
                     </div>
+               
+                    
                 </div>
                 
         
