@@ -1,92 +1,130 @@
 *,
 html,
-body{
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
-img{
+}
+
+img {
     width: 100%;
     display: block;
 }
 
-nav{
-    background-color: grey;
-padding: 20px;
-position: fixed;
-left: 0;
-right: 0;
+nav {
+    background-color: rgba(187, 187, 187, 0.601);
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
 }
-nav .container{
+
+nav .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-inline: 30px;
+    padding-inline: 80px;
 }
-nav h1{
+
+nav h1 {
     font-size: 30px;
     color: white;
 }
-nav .links{
+
+nav .links {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 20px;
     list-style-type: none;
 }
-nav .links li{
-  position: relative;
- 
- 
+
+nav .links li {
+    position: relative;
+
+
 }
-nav .links li a{
-   text-decoration: none;
-   position: relative;
-   padding: 3px;
+
+nav .links li a {
+    text-decoration: none;
+    position: relative;
+    padding: 3px;
+    color: white;
 }
-nav .links a::after{
-  position: absolute;
-  content: "";
-  width: 0px;
-  height: 2px;
-  left: 0;
-  bottom: 0;
-  background-color: green;
-  transition: width 0.3s ease;
+
+nav .links a::after {
+    position: absolute;
+    content: "";
+    width: 0px;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: green;
+    transition: width 0.3s ease;
 }
-nav .links a:hover::after{
+
+nav .links a:hover::after {
     width: 100%;
 }
 
-header{
+header {
     padding-top: 100px;
-  min-height: 100vh;
-  background-image: url("../images/cookies.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.655), rgba(24, 24, 24, 0.778)), url("../images/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-header .container{
+
+header .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-header .container h2{
-  color: white;
-}
-header  .container p{
-    font-size: 40px;
-    font-weight: 900;
+
+header .container h2 {
     color: white;
 }
 
-header .container .social{
-list-style-type: none;
-display: flex;
- justify-content: space-between;
- gap: 10px;
+header .container p {
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+    animation: paragraphMotion 0.3s ease-in 0s infinite;
+}
+
+
+@keyframes paragraphMotion {
+    0% {
+        header .container p::after {
+            content: "|   ";
+            font-weight: bold;
+        }
+    }
+
+    50% {
+        header .container p::after {
+            content: "| Am  ";
+            font-weight: bold;
+        }
+    }
+
+    70% {
+        header .container p::after {
+            content: "| Am Ahmed ";
+            font-weight: bold;
+        }
+    }
+
+}
+
+header .container .social {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 header .container .social li {
@@ -99,23 +137,37 @@ header .container .social li {
     border-radius: 50%;
     color: white;
 }
+
 header .container .social li:hover {
-   
+
     background-color: rgb(206, 195, 195);
     color: black;
 }
 
-#about .container{
+/* ^ about ^ */
+
+#about .container {
     display: flex;
     justify-content: space-between;
+    padding-inline: 80px;
+    padding-block: 80px;
+}
+
+#about .img-side {
+    width: 36%;
+    background-image: url("../images/dot.png");
+    background-size: 20px;
+    background-repeat: repeat;
 
 }
 
-#about .img-side{ 
-width: 36%;
+#about .img-side img {
+    width: 100%;
+    transform: translate(100px, 100px);
 }
-#about .content-side{
- 
+
+#about .content-side {
+
     width: 48%;
 
 }

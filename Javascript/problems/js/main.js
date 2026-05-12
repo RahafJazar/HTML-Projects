@@ -95,11 +95,13 @@ console.log(isValid(s));*/
 
 
 
+
 /*Pascal Triangle*/
 /**
  * @param {number} numRows
  * @return {number[][]}
  */
+/*
 var generate = function (numRows) {
     var pascalArr = [];
     for (var i = 0; i < numRows; i++) {
@@ -117,3 +119,46 @@ var generate = function (numRows) {
     return pascalArr;
 };
 console.log(generate(4));
+*/
+
+
+
+
+/* Pascal TriangleII*/
+/**
+ * @param {number} numRows
+ * @return {number[]}
+ */
+
+/*var getRow = function (rowIndex) {
+    var row = new Array(rowIndex + 1).fill(0);
+    row[0] = 1;
+    for (var i = 1; i <= rowIndex; i++) {
+        for (var j = i; j >= 1; j--) {
+            row[j] = row[j] + row[j - 1];
+
+        }
+
+    }
+    return row;
+};
+
+console.log(getRow(2));*/
+
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+    var minNum = prices[0];
+    var profit = 0;
+    for (var i = 1; i < prices.length; i++) {
+        minNum = Math.min(prices[i], minNum);
+        profit = Math.max((prices[i] - minNum), profit);
+
+    }
+    return profit;
+};
+
+console.log(maxProfit([7, 6, 4, 3, 1]));
