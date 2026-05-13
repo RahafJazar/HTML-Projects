@@ -48,12 +48,20 @@
                 <label for="prodDesc">Description</label>
             </div>
 
-            <button class="btn btn-info" onclick="addProduct()">Add Product</button>
+            <button class="btn btn-info" onclick="addProduct()" id="add-btn">Add Product</button>
+            <button class="btn btn-warning d-none" onclick="updateProduct()" id="update-btn">update
+                Product</button>
         </div>
     </section>
 
     <section class="">
         <div class="container">
+            <div class="d-flex flex-reverse-row justify-content-center align-items-center">
+                <i class="fa-solid fa-magnifying-glass  "></i>
+                <input type="search" id="searchInput" class="form-control w-75 " placeholder="Search ...."
+                    oninput="searchProduct()">
+            </div>
+
             <div class="row" id="myRow">
 
             </div>
