@@ -150,6 +150,7 @@ console.log(getRow(2));*/
  * @param {number[]} prices
  * @return {number}
  */
+/*
 var maxProfit = function (prices) {
     var minNum = prices[0];
     var profit = 0;
@@ -162,3 +163,13 @@ var maxProfit = function (prices) {
 };
 
 console.log(maxProfit([7, 6, 4, 3, 1]));
+
+*/
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+    
+};
