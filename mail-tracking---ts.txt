@@ -1,0 +1,3238 @@
+
+import { ChangeDetectorRef, Component, EventEmitter, HostListener, Input, NgZone, Output, output } from '@angular/core';
+import { FormGroup, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { Genericform } from '../../../Cors/Interfaces/genericform/genericform';
+import { StorePlace } from '../../../Cors/Models/Correspondance/StorePlace';
+import { Api } from '../../../Cors/Enums/Api/api.enum';
+import { Subject, Subscription } from 'rxjs';
+import { GenericService } from '../../../Cors/Services/generic-service/Generic.service';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { GrandComponent } from '../../../dashboard-control/grand/grand/grand.component';
+import { Router } from '@angular/router';
+import { ServerSideErrorService } from '../../../Cors/Services/server-side-error/server-side-error.service';
+import { GenericeEventMenuService } from '../../../Cors/Services/GenericeEventMenu/generice-event-menu.service';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { InKindAttachments } from '../../../Cors/Models/Correspondance/InKindAttachments';
+import { DisplayColumns } from '../../../Cors/Models/DisplayColumns/DisplayColumns';
+import { MenuItemService } from '../../../Cors/Services/MenuItemService/menu-item.service';
+import { Beneficiary } from '../../../Cors/Models/Correspondance/Beneficiary';
+import { Attachments } from '../../../Cors/Models/Correspondance/Attachments';
+import { AttachmentSaves } from '../../../Cors/Models/Correspondance/AttachmentSaves';
+import { Stakeholders, StakeholdersSave } from '../../../Cors/Models/Correspondance/Stakeholders';
+import { ListOfTasks, Tasks } from '../../../Cors/Models/Correspondance/Tasks';
+import { Comment } from '../../../Cors/Models/Correspondance/Comment';
+import { TaskStatus } from '../../../Cors/Enums/TaskStatus/TaskStatus.enum';
+import { InnerParty } from '../../../Cors/Enums/InnerParty/InnerParty.enum';
+import { DatePipe } from '@angular/common';
+import { Cause } from '../../../Cors/Enums/Cause/Cause.enum';
+import { MainInfo } from '../../../Cors/Models/Correspondance/MainInfo';
+import { ICorrespondance } from '../../../Cors/Interfaces/ICorrespondance/ICorrespondance';
+import { Related } from '../../../Cors/Models/Correspondance/Related';
+import { Correspondence } from '../../../Cors/Models/Correspondence/correspondence';
+import { NewDelegation } from '../../../Cors/Models/Delegation/NewDelegation';
+import { Permissions } from '../../../Cors/Enums/Permissions/Permissions.enum';
+import { CustomDocument } from '../../../Cors/Models/Correspondance/CustomDocument';
+import { CorrspondanceTypeOf } from '../../../Cors/Enums/CorrspondanceTypeOf/CorrspondanceTypeOf.enum';
+import { DelegationPartyType } from '../../../Cors/Enums/DelegationPartyType/DelegationPartyType.enum';
+import { IMailHistory } from '../../../Cors/Interfaces/IMailHistory/IMailHistory';
+import { SystemType } from '../../../Cors/Enums/SystemType/SystemType.enum';
+import { SystemConfigService } from '../../../Cors/Services/SystemConfig/SystemConfig.service';
+import b64toBlob from 'b64-to-blob';
+import { saveAs as importedSaveAs } from 'file-saver';
+import { ConfigurationService } from '../../../Cors/Services/configuration/configuration.service';
+import { getDialogConfig } from '../../../Cors/Functions/dialog-configs/dialog-config.index';
+import { IAllAttachments } from '../../../Cors/Interfaces/IAllAttachments/IAllAttachments';
+import { ComponentsModule } from "../components.module";
+import { Stats } from '../../../Cors/Interfaces/FollowStats/followStats';
+
+
+@Component({
+  selector: 'app-mail-tracking',
+  standalone: false,
+  templateUrl: './mail-tracking.html',
+  styleUrl: './mail-tracking.css',
+
+})
+export class MailTracking extends GrandComponent {
+  ScanningSystemType: any = null
+  ScanningAttachment = []
+  // ==========================
+  // API & Scanner configuration
+  // ==========================
+  override EndPoint: typeof Api = Api;
+
+  // Scanner settings & selections
+  Scannersetting: any[] = [];
+  selectedDocumentSource: any = 0;
+  duplexOptions: any[] = [];
+  selectedDuplexOption: any = 0;
+  pageSizeOptions: any[] = [];
+  selectedPageSizeOption: any = 0;
+  pixelTypeOptions: any[] = [];
+  selectedPixelTypeOption: any = 0;
+  resolutionOptions: any[] = [];
+  selectedResolutionOption: any = 0;
+  ocrOptions: any[] = [];
+  fileTypeOptions: any[] = [];
+
+  // ==========================
+  // Event Subjects
+  // ==========================
+  eventsSubject: Subject<void> = new Subject<void>();            // Used for resize / UI refresh
+  eventsSubjectScanning: Subject<any> = new Subject<any>();      // Used for scanner resize events
+
+  // ==========================
+  // Lookup & data lists
+  // ==========================
+  LookUpList: any[] = [];
+  attachmentType: any[] = [];
+  selectedType: any[] = [];
+
+  // ==========================
+  // Subscriptions
+  // ==========================
+  UnSubLookUp: Subscription;
+  Subscription: Subscription;
+  SubscriptionSecond: Subscription;
+
+  // ==========================
+  // File & attachment handling
+  // ==========================
+  files = FileList;
+  totalSize: number = 0;
+  totalSizePercent: number = 0;
+  Attachments: AttachmentSaves[] = [];
+  chunkSize = 1024 * 1024; // 1 MB chunk upload
+
+  // ==========================
+  // UI state & flags
+  // ==========================
+  subjects: string[] = [];
+  dataKey: string = "EntityID";
+  SelectAll: boolean = false;
+  Selection: any = null;
+  ShowValidationDialog = false;
+  first = 0;
+  firstSecondDialog = 0;
+  text: string | undefined;
+  paginator: boolean = true;
+  customPaginator: boolean = false
+  visibleScanningDialog: boolean = false;
+  ScanningTool: string = null;
+
+  // ==========================
+  // System configuration values
+  // ==========================
+  PostalPattern: string = "";
+  NewZajel: any;
+  ATTACHMNET_TYPE: any;
+  IMAGE_MODE: any;
+  SCAN_TYPE: any;
+  RESOLUTION: any;
+  BRIGHTNESS: any;
+  THRESHOLD: any;
+  CONTRAST: any;
+
+  // ==========================
+  // Dialog initialization
+  // ==========================
+  initdialog: any = null;
+
+  //=================================
+  //added by rahaf 
+  //New Template For Follow
+  //================================
+  showNewFollowUpTemplate: boolean = false;
+
+
+  // ==========================
+  // Inputs from parent component
+  // ==========================
+  @Input() DialogTitle: string = '';
+  @Input() Type: string = '';
+  @Input() TypeSecondDialog: string = null;
+  @Input() SelectedSystemID = null;
+  @Input() TaskId = null;
+  @Input() TaskIsMain = null;
+  @Input() IssuingAndCopyingID = null;
+  @Input() SelectedSystemType = null;
+  @Input() AttachmentMaster = null;
+  @Input() MenuElements = null;
+  @Input() API: string = null;
+  @Input() override FormGroupObj: FormGroup = new FormGroup({});
+  @Input() AdvancedFormGroupObj: FormGroup = new FormGroup({});
+  @Input() FormGroupObjSecondDialog: FormGroup = new FormGroup({});
+  @Input() AdvancedFormList: Genericform[] = [];
+  @Input() FormList: Genericform[] = [];
+  @Input() FormListSecondDialog: Genericform[] = [];
+  @Input() ObjectName: any = {};
+  @Input() ObjectNameSecondDialog: any = {};
+  @Input() buttons = [];
+  @Input() Advancedbuttons = [];
+  @Input() buttonsSecondDialog = [];
+  @Input() visible = false;
+  @Input() visibleSecondDialog = false;
+  @Input() DataSource: any[] = [];
+  @Input() DataSourceSecondDialog: any[] = [];
+  @Input() DisplayColumn: DisplayColumns[] = [];
+  @Input() DisplayColumnSecondDialog: DisplayColumns[] = [];
+
+  @Input() ShowForm: boolean = false;
+  @Input() ShowAdvancedForm: boolean = false;
+  @Input() ShowTable: boolean = false;
+  @Input() ShowSecondForm: boolean = false;
+  @Input() ShowSecondTable: boolean = false;
+  @Input() ShowUpload: boolean = false;
+  @Input() ShowUploadDialog: boolean = false;
+  @Input() dialogWidth: string = '80vw';
+  @Input() dialogHeight: string = '150vh';
+  @Input() DisableDialog: boolean = false;
+
+  // ==========================
+  // Outputs
+  // ==========================
+  @Output() attachments: Attachments[] = [];
+  @Output() HideEvent = new EventEmitter();
+
+  // ==========================
+  // Table row actions
+  // ==========================
+  ActionsList = [
+    { class: 'pi pi-times m-2 text-color text-base', pTooltip: 'Buttons.Close1', tooltipPosition: 'top', show: false, actionName: 'close1', permission: '' },
+    { class: 'pi pi-star m-2 text-color text-base', pTooltip: 'Buttons.Acquise', tooltipPosition: 'top', show: false, actionName: 'acquise', permission: '' },
+    { class: 'pi pi-trash m-2 text-color text-base', pTooltip: 'Buttons.Delete', tooltipPosition: 'top', show: true, actionName: 'delete', permission: '', checkEntityID: true },
+    { class: 'pi pi-comment m-2 text-color text-base', pTooltip: 'Buttons.Comment', tooltipPosition: 'top', show: false, actionName: 'Comment', permission: '' },
+    { class: 'pi pi-file-check  m-1 text-color text-base', pTooltip: 'Buttons.TaskAttachments', tooltipPosition: 'top', show: false, actionName: 'taskAttachments', permission: '' },
+    { class: 'pi pi-clipboard  m-1 text-color text-base', pTooltip: 'Buttons.ViewComments', tooltipPosition: 'top', show: false, actionName: 'ViewComments', permission: '' },
+    { class: 'pi pi-eye  m-1 text-color text-base', pTooltip: 'Buttons.View', tooltipPosition: 'top', show: false, actionName: 'View', permission: '' },
+  ];
+  ShowUploadSection: boolean = true
+  ShowCustomDocumentsSection: boolean = true
+  ShowScanSection: boolean = true
+  TaskUpload: boolean = false
+  TaskType: number = null
+  CommentType: boolean = null
+  // ==========================
+  // Constructor & DI
+  // ==========================
+  constructor(
+    public override TranslateObj: TranslateService,
+    public override GenericServiceObj: GenericService,
+    private menuItemService: MenuItemService,
+    public override RouterObj: Router,
+    public override ErrorsObj: ServerSideErrorService,
+    public override GenericeEventMenuServiceObj: GenericeEventMenuService,
+    public override messageService: MessageService,
+    public override ngZone: NgZone,
+    private config: PrimeNGConfig,
+    public configService: SystemConfigService,
+    public configuration: ConfigurationService,
+    private cdr: ChangeDetectorRef
+  ) {
+    super(
+      TranslateObj,
+      messageService,
+      ngZone,
+      RouterObj,
+      ErrorsObj,
+      GenericServiceObj,
+      null,
+      null,
+      null
+    );
+    // Set default language
+    this.TranslateObj.setDefaultLang('ar');
+  }
+
+  // ==========================
+  // Window resize listener
+  // ==========================
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.eventsSubject.next(event);
+    this.eventsSubjectScanning.next(event);
+  }
+
+  // ==========================
+  // Component initialization
+  // ==========================
+  override ngOnInit(): void {
+
+    // Load scanner policy settings
+    this.ReturnScannersettingPolicy();
+
+    // Subscribe to system configuration
+    this.configuration.Configuration$.subscribe(data => {
+      this.PostalPattern = data.PostalCodePattern;
+      this.ScanningTool = data.ScanningTool;
+      this.NewZajel = data.NewZajel;
+      this.ATTACHMNET_TYPE = data.ATTACHMNET_TYPE;
+      this.IMAGE_MODE = data.IMAGE_MODE;
+      this.SCAN_TYPE = data.SCAN_TYPE;
+      this.RESOLUTION = data.RESOLUTION;
+      this.BRIGHTNESS = data.BRIGHTNESS;
+      this.THRESHOLD = data.THRESHOLD;
+      this.CONTRAST = data.CONTRAST;
+    });
+
+    // Resolve dialog type and load dialog configuration
+    let type = this.Type
+      ? this.Type.split('.')[1]
+      : this.DialogTitle.split('.')[1];
+
+    this.initdialog = getDialogConfig(type, this);
+
+    // Initialize UI elements
+    this.InitFormGroup();
+    this.InitFormList();
+    this.InitDisplayColumn();
+    this.ReturnAttachmentType();
+
+    // Handle readonly / disabled dialog
+
+    if (this.DisableDialog) {
+      if (this.ActionsList[4].show) {
+        this.ActionsList.forEach(element => {
+          if (element.actionName != 'taskAttachments' && element.actionName != 'ViewComments')
+            element.show = false
+        })
+      }
+      else if (this.ActionsList[6].show) {
+        this.ActionsList.forEach(element => {
+          if (element.actionName != 'View')
+            element.show = false
+        })
+      }
+      else
+        this.DisplayColumn = this.DisplayColumn.filter(col => col.field !== 'actions');
+      this.FormGroupObj.disable();
+    } else {
+      this.buttons = this.initdialog?.buttons();
+    }
+
+    // Initialize attachments & localization
+    this.InitUploadAttachments();
+    this.OnChangeLang();
+    if (this.Type.includes(DialogType.Disclaimer))
+      this.FinishIssuingAndCopyingByReviewingWthNotAsync()
+  }
+
+  OnChangeLang() {
+    this.TranslateObj.onLangChange.subscribe(async (event: LangChangeEvent) => {
+      this.InitDisplayColumn()
+    })
+  }
+  override ngOnDestroy() {
+    this.UnSubLookUp?.unsubscribe();
+    this.SubscriptionSecond?.unsubscribe()
+    this.Subscription?.unsubscribe()
+  }
+  InitFormGroup() {
+
+    this.FormGroupObj = this.initdialog?.initForm();
+    if (this.Type.includes(DialogType.StorePlace)) {
+      this.ObjectName = new StorePlace()
+      this.ShowForm = true
+      this.ReturnStoreFileAsync()
+      this.ReturnStorePlaceAsync()
+    }
+    else if (this.Type.includes(DialogType.InKindAttachments)) {
+      this.ObjectName = new InKindAttachments()
+      this.ShowForm = this.ShowTable = true
+      this.ReturnIn_kindAttachmentsAsync()
+      this.ReturnInkindAttachmentType()
+    }
+    else if (this.Type.includes(DialogType.Beneficiaries)) {
+      this.ObjectName = new Beneficiary()
+      this.ShowForm = this.ShowTable = true
+      this.ReturnEntityBeneficiaryAsync()
+    }
+    else if (this.Type.includes(DialogType.Stakeholders)) {
+      this.ObjectName = new Stakeholders()
+      this.ObjectName.StakeholdersSave = new StakeholdersSave()
+      this.ShowAdvancedForm = this.ShowForm = this.ShowTable = true
+      this.AdvancedFormGroupObj = this.initdialog?.initAdvancedForm();
+      this.Advancedbuttons = this.initdialog?.advancedButtons();
+      this.ShowForm = this.ShowTable = true
+      if (this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization) {
+        this.ObjectName.InnerPartyClassification = InnerParty.SameUnit
+        this.ReturnInternalOU()
+      }
+      else {
+        this.ObjectName.InnerPartyClassification = InnerParty.OuterParty
+        this.ReturnPartyAsync()
+      }
+      this.ReturnStakeholdersAsync()
+    }
+    else if (this.Type.includes(DialogType.Tasks)) {
+      this.ObjectName = new ListOfTasks()
+      this.ObjectName.TaskSave = new Tasks()
+      this.ShowAdvancedForm = this.ShowForm = this.ShowTable = true
+      this.ObjectName.InnerPartyClassification = InnerParty.SelectedOU
+      this.AdvancedFormGroupObj = this.initdialog?.initAdvancedForm();
+      this.Advancedbuttons = this.initdialog?.advancedButtons();
+      if ([0, 2].includes(Number(this.configService.getConfig()?.DefaultTaskingCategory)))
+        this.ReturnOU(this.EndPoint.ReturnOUExceptMine)
+      else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 1)
+        this.ReturnAccountForDirectingPurpose()
+      else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 3)
+        this.ReturnGroup()
+      this.ReturnTaskAsync()
+      this.ReturnTaskImportance()
+      this.ReturnRoutingProcedure(this.EndPoint.ReturnRoutingProcedure)
+
+    }
+    else if (this.Type.includes(DialogType.ViewComments)) {
+    }
+    else if (this.Type.includes(DialogType.AddComment)) {
+      this.ObjectName = new Comment()
+      this.ShowForm = true
+    }
+    else if (this.Type.includes(DialogType.TaskAttachments)) {
+    }
+    else if (this.Type.includes(DialogType.Comment)) {
+      this.ShowForm = this.ShowTable = true
+      this.ReturnCommentAsync()
+    }
+    else if (this.Type.includes(DialogType.Related)) {
+      this.ObjectName = new Related()
+      this.ShowForm = this.ShowTable = true
+      this.ReturnRelated()
+    }
+    else if (this.DialogTitle.includes(DialogType.NewDelegation)) {
+
+      this.ObjectName = new NewDelegation()
+      this.Type = this.DialogTitle
+      this.visible = true
+      this.ShowForm = this.ShowTable = true
+      this.ObjectName.DelegatorType = this.ObjectName.DelegatedType = DelegationPartyType.OU
+      this.ReturnOU()
+    }
+  }
+  InitFormList() {
+    this.FormList = this.initdialog?.initList();
+    if (this.Type.includes(DialogType.Stakeholders)) {
+      this.AdvancedFormList = this.initdialog?.initAdvancedList();
+      if (this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization) {
+        this.FormList[0].list = [
+          { label: 'Stakeholders.OU', value: InnerParty.SameUnit },
+          { label: 'Stakeholders.Group', value: InnerParty.GroupMember },
+        ]
+        // this.FormList[1].list = [
+        //   { label: 'Stakeholders.Copy', value: Cause.Copy }
+        // ]
+        this.FormList[0].value = InnerParty.SameUnit
+        // this.FormList[1].value = Cause.Copy
+        this.AdvancedFormList[3].show = this.AdvancedFormList[4].show = false
+      }
+    }
+    else if (this.Type.includes(DialogType.Tasks)) {
+      this.AdvancedFormList = this.initdialog?.initAdvancedList();
+      if (this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization) {
+        this.FormList[0].list = [
+          { label: 'Tasks.InternalOU', value: InnerParty.SelectedOU },
+          { label: 'Stakeholders.Group', value: InnerParty.GroupMember },
+        ]
+        this.FormList[0].class = "col-12"
+
+        this.AdvancedFormList[0].show = this.AdvancedFormList[1].show = this.AdvancedFormList[4].show = this.AdvancedFormList[5].show = this.AdvancedFormList[6].show = this.AdvancedFormList[3].show = this.AdvancedFormList[2].show = false
+        // this.FormList[3].show = this.FormList[4].show = this.FormList[1].show = this.FormList[7].show = this.FormList[8].show = this.FormList[9].show = this.FormList[6].show = this.FormList[5].show = false
+        // this.ObjectName.RoutingProcedure = 485 //للطلاع
+        this.ObjectName.TaskIsMain = 1 //رئيسي
+        this.ObjectName.TimeBurdenHrs = 0
+      }
+    }
+  }
+  InitDisplayColumn() {
+    this.DisplayColumn = this.initdialog?.initColumns();
+    if (this.Type.includes(DialogType.Stakeholders)) {
+      this.SelectAll = true
+      if (Number(this.configService.getConfig().HideSenderName) && Number(this.configService.getConfig().HideReportingDate))
+        this.DisplayColumn =
+          [
+            { field: 'expand', header: '', name: "GroupMember" },
+            { field: 'TaskFromText', header: 'Tasks.Form' },
+            { field: 'TaskToText', header: "Tasks.To" },
+            // { field: 'CreationDate', header: 'Tasks.CreationDate' },
+            // { field: 'CauseText', header: 'Stakeholders.Cause' },
+            // { field: 'InnerPartyClassificationText', header: 'Stakeholders.InnerPartyClassificationText' },
+            // { field: 'ReportNote', header: 'Stakeholders.ReportNote' },
+            { field: 'actions', header: '' },
+          ]
+      else
+        this.DisplayColumn =
+          [
+            { field: 'expand', header: '', name: "GroupMember" },
+            { field: 'TaskFromText', header: 'Tasks.Form' },
+            { field: 'TaskToText', header: "Tasks.To" },
+            // { field: 'CreationDate', header: 'Tasks.CreationDate' },
+            // { field: 'CauseText', header: 'Stakeholders.Cause' },
+            // { field: 'SendToName', header: "Stakeholders.SendToName" },
+            // { field: 'ReportDate', header: 'Stakeholders.ReportDate' },
+            // { field: 'ReportNote', header: 'Stakeholders.ReportNote' },
+            { field: 'actions', header: '' },
+          ]
+      this.dataKey = 'IssuingAndCopyingID'
+    }
+    else if (this.Type.includes(DialogType.Tasks)) {
+      this.SelectAll = true
+      if (Number(this.configService.getConfig()?.TaskUploadfiles) == 1)
+        this.DisplayColumn =
+          [
+            // { field: 'expand', header: '', name: "GroupMember" },
+            { field: 'TaskFromText', header: 'Tasks.Form' },
+            { field: 'TaskToText', header: 'Tasks.To' },
+            // { field: 'TimeBurdenHrs', header: "Tasks.TimeBurdenHrs" },
+            // { field: 'CreationDate', header: 'Tasks.CreationDate' },
+            // { field: 'RoutingProcedureText', header: 'Tasks.RoutingProcedure' },
+            // { field: 'Note', header: "Tasks.Note" },
+            // { field: 'TaskIsMainText', header: "Tasks.Category" },
+            { field: 'Attachment', header: 'Tasks.Attachment', name: 'html' },
+            // { field: 'ProcedureByUser', header: "Tasks.TaskProcedure" },
+            { field: 'actions', header: '' },
+          ]
+      else
+        this.DisplayColumn =
+          [
+            // { field: 'expand', header: '', name: "GroupMember" },
+            { field: 'TaskFromText', header: 'Tasks.Form' },
+            { field: 'TaskToText', header: 'Tasks.To' },
+            // { field: 'TimeBurdenHrs', header: "Tasks.TimeBurdenHrs" },
+            // { field: 'CreationDate', header: 'Tasks.CreationDate' },
+            // { field: 'RoutingProcedureText', header: 'Tasks.RoutingProcedure' },
+            // { field: 'Note', header: "Tasks.Note" },
+            // { field: 'TaskIsMainText', header: "Tasks.Category" },
+            // // { field: 'Attachment', header: 'Tasks.Attachment', name: 'html'},
+            // { field: 'ProcedureByUser', header: "Tasks.TaskProcedure" },
+            { field: 'actions', header: '' },
+          ]
+      this.dataKey = 'TaskID'
+      this.ActionsList[2].show = true
+      this.ActionsList[2].checkEntityID = true
+      // this.ActionsList[3].show = this.RouterObj.url.includes("AddCorrespondance") ? false : true
+      this.ActionsList[3].show = false
+    }
+    else if (this.Type.includes(DialogType.Follow)) {
+      //-------added by rahaf => enable new template for follow ------------
+      this.showNewFollowUpTemplate = true;
+      //-------------------------------------
+      this.ActionsList[5].show = true
+      this.ActionsList[4].show = true
+      //-------Modified By rahaf => "true to false" => disable the  old table  ---------------------
+      this.ShowTable = false;
+      //---------------------------------------------
+      this.ObjectName.Type = 5
+      if (Number(this.configService.getConfig()?.RemovePaginationFromFollowUp) == 1) {
+        // this.paginator = false
+        this.paginator = false;
+        this.customPaginator = false;
+        this.DisplayColumn = [
+          { field: 'TaskFromText', header: 'Tasks.Form', columnWidth: '17%' },
+          { field: 'TaskToText', header: 'Tasks.To', columnWidth: '17%' },
+          // { field: 'RoutingProcedureText', header: "Tasks.Procedure", columnWidth: '15%' },
+          { field: 'ProcedureByUser', header: "Tasks.TaskProcedure", columnWidth: '12%' },
+          { field: 'TaskStatusText', header: "Correspondance.TaskStatus", columnWidth: '7%' },
+          { field: 'ReadingDateTime', header: 'Tasks.ReadingDateTime', pipe: "datetime", columnWidth: '12%' },
+          { field: 'ClosingDate', header: 'Tasks.ClosingDate', pipe: "datetime", columnWidth: '12%' },
+          { field: 'TaskIsMainText', header: "Tasks.Category", columnWidth: '5%' },
+          { field: 'Status', header: "Tasks.Status", columnWidth: '5%' },
+          { field: 'actions', header: '', columnWidth: '2%' },
+        ]
+      }
+      this.ReturnTaskAsyncForFollow()
+    }
+    else if (this.Type.includes(DialogType.Related)) {
+      console.log("tttt", this.DisplayColumn)
+      this.ActionsList[0].show = true
+      this.ActionsList[6].show = true
+    }
+    else if (this.DialogTitle.includes(DialogType.NewDelegation)) {
+
+      this.ActionsList[1].show = true
+      this.ActionsList[2].show = false
+      this.ShowTable = true
+      this.Type = this.DialogTitle
+      this.ReturnDelegationAsync()
+    }
+    else if (this.Type.includes(DialogType.MailHistory)) {
+      this.ShowTable = true
+      this.ReturnCorrespondenceLifeAsync()
+    }
+    else if (this.Type.includes(DialogType.AllAttachments)) {
+      this.ReturnAllAttachmentForCorre()
+      // this.ShowTable = true
+    }
+    else if (this.Type.includes(DialogType.ViewComments)) {
+      this.ReturnNoteAsync()
+      // this.ShowTable = true 
+    }
+    else if (this.Type.includes(DialogType.AddComment)) {
+    }
+    else if (this.Type.includes(DialogType.TaskAttachments)) {
+      this.ReturnTaskAttachmentsAsync()
+      // this.ShowTable = true 
+    }
+  }
+  SelectionChangeRoutingProcedure(event) {
+    if (event.inputname == 'RoutingProcedure') {
+      let obj = this.AdvancedFormList[1].list?.filter(element => event.event.value == element.EntityID)[0]
+      this.ObjectName.ProcedureByUser = obj?.ArabicName
+    }
+  }
+  InitUploadAttachments() {
+    if (this.Type.includes('.Attachments')) {
+      this.ShowUpload = true
+      this.visible = true
+    }
+    else {
+      this.visible = true
+    }
+  }
+  ReturnStorePlaceAsync() {
+    if (this.SelectedSystemID) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReturnStorePlaceAsync).subscribe(
+        data => {
+          if (data[0]) {
+            this.ObjectName = data[0] as StorePlace
+            this.ObjectName.FileNo = Number(data[0].FileNo)
+            this.API = this.EndPoint.UpdateStorePlaceAsync
+          }
+          else
+            this.API = this.EndPoint.NewStorePlaceAsync
+          this.visible = true
+        })
+    }
+    else {
+      if (this.menuItemService.StorePlaceSaves[0])
+        this.ObjectName = this.menuItemService.StorePlaceSaves[0]
+      this.visible = true
+    }
+  }
+  Reset() {
+    if (!this.Type.includes('Related')) {
+      this.InitFormGroup()
+      this.InitFormList()
+      if (this.Type.includes('Tasks')) {
+        this.FormList.forEach(obj => {
+          if (['RoutingProcedure'].includes(obj.inputname))
+            obj.list = []
+        })
+      }
+    }
+    else {
+      this.InitFormGroup()
+      this.ViewAdvancedSearch()
+    }
+  }
+  ResetSecondDialog() {
+    this.FormGroupObjSecondDialog.reset()
+  }
+  async SaveStorePlaceAsync() {
+    if (this.SelectedSystemID) {
+      this.ObjectName.SelectedSystemID = this.SelectedSystemID
+      this.ObjectName.SelectedSystemType = this.SelectedSystemType
+      let Response: number = await super.GenericSubscribe<StorePlace, {}>(this.ObjectName, this.API, { showNotification: true })
+      if (Response > -1) {
+        this.visible = true
+        this.onHide()
+      }
+    }
+    else {
+      this.menuItemService.StorePlaceSaves[0] = this.ObjectName
+      this.onHide()
+    }
+  }
+  ReturnIn_kindAttachmentsAsync() {
+    if (this.SelectedSystemID) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReturnIn_kindAttachmentsAsync).subscribe(
+        data => {
+          this.DataSource = <InKindAttachments[]>data
+          this.visible = true
+        })
+    }
+    else {
+      this.DataSource = this.menuItemService.In_Kinds
+      this.visible = true
+    }
+  }
+  async NewIn_kindAttachmentsAsync() {
+    if (this.FormGroupObj.valid) {
+      if (this.SelectedSystemID) {
+        this.ObjectName.SelectedSystemID = this.SelectedSystemID
+        this.ObjectName.SelectedSystemType = this.SelectedSystemType
+        this.ObjectName.Count = Number(this.ObjectName.Count)
+        this.ObjectName.AttachmentType = Number(this.ObjectName.AttachmentType)
+        let Response: number = await super.GenericSubscribe<InKindAttachments, {}>(this.ObjectName, this.EndPoint.NewIn_kindAttachmentsAsync, { showNotification: true })
+        if (Response > -1) {
+          this.ReturnIn_kindAttachmentsAsync()
+          this.InitFormGroup()
+          this.ObjectName = new InKindAttachments()
+        }
+      }
+      else {
+        this.ObjectName.AttachmentTypeArabicName = this.FormList[0].list.filter(element => element.EntityID == this.ObjectName.AttachmentType ? element : null)[0]?.ArabicName
+        this.menuItemService.In_Kinds.push(this.ObjectName)
+        this.InitFormGroup()
+        this.ObjectName = new InKindAttachments()
+      }
+    }
+    else {
+      this.ShowValidationDialog = true
+    }
+  }
+  ReturnEntityBeneficiaryAsync() {
+    if (this.SelectedSystemID) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReturnEntityBeneficiaryAsync).subscribe(
+        data => {
+          this.DataSource = <InKindAttachments[]>data
+          this.visible = true
+        })
+    }
+    else {
+      this.DataSource = this.menuItemService.EntityBeneficiaries
+      this.visible = true
+    }
+  }
+  async NewEntityBeneficiaryAsync() {
+    if (this.FormGroupObj.valid) {
+      if (this.SelectedSystemID) {
+        this.ObjectName.SelectedSystemID = this.SelectedSystemID
+        this.ObjectName.SelectedSystemType = this.SelectedSystemType
+        let Response: number = await super.GenericSubscribe<Beneficiary, {}>(this.ObjectName, this.EndPoint.NewEntityBeneficiaryAsync, { showNotification: true })
+        if (Response > -1) {
+          this.ReturnEntityBeneficiaryAsync()
+          this.InitFormGroup()
+          this.ObjectName = new Beneficiary()
+        }
+      }
+      else {
+        this.menuItemService.EntityBeneficiaries.push(this.ObjectName)
+        this.InitFormGroup()
+        this.ObjectName = new Beneficiary()
+      }
+    }
+    else {
+      this.ShowValidationDialog = true
+    }
+  }
+  ReturnStakeholdersAsync() {
+    if (this.SelectedSystemID && [null, undefined, 'null', 'undefined'].includes(localStorage.getItem("TaskType"))) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReturnStakeholdersAsync).subscribe(
+        data => {
+          let DataSource = <any[]>data
+
+          DataSource.forEach(data => {
+            data.TaskToText = data.TaskToText ? data.TaskToText : data.ArabicName
+          })
+          if (DataSource.length > 0) {
+            this.ObjectName.ReportDate = DataSource[0].ReportDate
+            this.ObjectName.ReportNote = DataSource[0].ReportNote
+            this.ObjectName.CreationDate = new Date(DataSource[0].CreationDate)
+
+            this.Selection = DataSource.filter(element => element.Cause == Cause.Original)
+          }
+          this.DataSource = DataSource
+          // this.CompressGroup(DataSource)
+          this.visible = true
+        })
+    }
+    else {
+      this.DataSource = this.menuItemService.StakeholdersSave
+      console.log(this.DataSource)
+      if (this.DataSource.length > 0) {
+        this.ObjectName.ReportDate = this.DataSource[0].ReportDate
+        this.ObjectName.ReportNote = this.DataSource[0].ReportNote
+        this.ObjectName.Cause = this.DataSource[0].Cause
+        this.ObjectName.CreationDate = new Date(this.DataSource[0].CreationDate)
+        this.Selection = this.DataSource.filter(element => element.Cause == Cause.Original)
+      }
+      this.visible = true
+    }
+  }
+  async NewStakeholdersAsync() {
+    this.AdvancedFormList.forEach(field => {
+      if (field.inputtype === 'date') {
+        const dateObj = this.ObjectName.StakeholdersSave[field.inputname];
+        if (dateObj) {
+          this.ObjectName.StakeholdersSave[field.inputname] = this.formatDateToLocalISO(dateObj);
+        }
+      }
+    });
+    if (this.MenuElements?.attachments?.length > 0 || this.menuItemService?.CustomDocument) {
+
+      // let hasOriginal = this.DataSource.find(element => element.Cause == Cause.Original) ? true : false
+      //  && (Number(this.configService.getConfig()?.IssuingIsSingleOriginal) == 1 ? (this.ObjectName.Cause == Cause.Original ? !hasOriginal : true) : true)
+      if (this.FormGroupObj.valid) {
+        const isDuplicate = (id: any) => this.menuItemService.StakeholdersSave.some(stakeholder => stakeholder.InnerPartyID === id && stakeholder.InnerPartyClassification == this.ObjectName.InnerPartyClassification) || this.DataSource.some(stakeholder => stakeholder.InnerPartyID === id && stakeholder.InnerPartyClassification == this.ObjectName.InnerPartyClassification);
+        let duplicateCount = 0
+        if (typeof this.ObjectName.list == 'number') {
+          // this.ObjectName.Tolist = this.ObjectName.list.toString()
+          if (!isDuplicate(this.ObjectName.list)) {
+            this.PushStakeholders(this.ObjectName.list, Cause.Copy);
+            this.DataSource = [...this.menuItemService.tasks]
+            if (this.DataSource.length > 0) {
+              this.DataSource[0].TotalRows = this.DataSource.length;
+            }
+            this.ObjectName.Stakeholders.Cause = Cause.Copy
+            this.newObject = this.ObjectName
+            this.ObjectName = new Stakeholders()
+          } else {
+            // Optional: Show a message that this person/OU is already added
+            const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.AlreadyAdded'));
+            this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+          }
+        }
+        else {
+          // if (!isDuplicate((this.ObjectName.list))) {
+          //   this.ObjectName.Tolist = this.ObjectName.list.join(',');
+          // }
+          // else {
+          //   duplicateCount++
+          // }
+
+          this.ObjectName.list.forEach(element => {
+            if (!isDuplicate(element)) {
+              this.PushStakeholders(element, Cause.Copy);
+            }
+            else {
+              duplicateCount++
+            }
+          });
+          if (duplicateCount) {
+            const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.AlreadyAdded'));
+            this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+          }
+          else {
+            this.DataSource = [...this.menuItemService.StakeholdersSave]
+            if (this.DataSource.length > 0) {
+              this.DataSource[0].TotalRows = this.DataSource.length;
+            }
+            // this.ObjectName.TaskSave.TaskIsMain = 1
+            this.newObject = this.ObjectName
+            this.ObjectName = new Stakeholders()
+          }
+
+        }
+
+
+        // this.ObjectName.StakeholdersSave.SelectedSystemID = this.SelectedSystemID
+        // this.ObjectName.StakeholdersSave.SelectedSystemType = this.SelectedSystemType
+        // this.ObjectName.StakeholdersSave.Cause = Number(this.ObjectName.Cause)
+        // this.ObjectName.StakeholdersSave.InnerPartyClassification = this.ObjectName.InnerPartyClassification == InnerParty.OuterParty ? null : this.ObjectName.InnerPartyClassification
+        // this.ObjectName.StakeholdersSave.SendToName = this.ObjectName.SendToName
+        // this.ObjectName.StakeholdersSave.ReportDate = this.ObjectName.ReportDate
+        // this.ObjectName.StakeholdersSave.ReportNote = this.ObjectName.ReportNote
+        // const Response: number = await super.GenericSubscribe<Stakeholders[], {}>([this.ObjectName], this.EndPoint.AddListOfStakeholdersAsync, { showNotification: true })
+        // if (Response > -1) {
+        //   this.ReturnStakeholdersAsync()
+        //   this.InitFormGroup()
+        //   this.ObjectName = new Stakeholders()
+        //   this.ObjectName.InnerPartyClassification = this.ObjectName.StakeholdersSave.InnerPartyClassification = this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization ? InnerParty.SameUnit : InnerParty.OuterParty
+        //   this.CheckedPartyType({ value: this.ObjectName.InnerPartyClassification, inputname: 'InnerPartyClassification' })
+        // }
+      }
+      // else if (Number(this.configService.getConfig()?.IssuingIsSingleOriginal) == 1 ? this.ObjectName.Cause == Cause.Original && hasOriginal : false) {
+      //   const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.IsOriginal'));
+      //   this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+      // }
+      else {
+        this.ShowValidationDialog = true
+      }
+    }
+    else {
+      const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.UploadAttachment'));
+      this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+    }
+
+
+  }
+  async AddStakeholdersAsync() {
+
+    let hasOriginal = this.DataSource.find(element => element.Cause == Cause.Original) ? true : false
+    if (this.AdvancedFormGroupObj.valid && (Number(this.configService.getConfig()?.IssuingIsSingleOriginal) == 1 ? (this.ObjectName.Cause == Cause.Original ? !hasOriginal : true) : true)) {
+      this.menuItemService.Stakeholders = []
+      this.menuItemService.StakeholdersSave.forEach(async element => {
+
+        if (this.AdvancedFormGroupObj.disabled) {
+          element.Cause = this.newObject.Cause = Cause.Copy
+        }
+        else {
+          element.Cause = Cause.Copy
+          this.Selection?.forEach(ele => {
+            if (element.IssuingAndCopyingID == ele.IssuingAndCopyingID) {
+              element.Cause = Cause.Original
+            }
+          })
+        }
+        element.SelectedSystemID = this.SelectedSystemID
+        element.SelectedSystemType = this.SelectedSystemType
+
+        // element.Cause = Number(this.ObjectName.Cause)
+        element.InnerPartyClassification = element.InnerPartyClassification == InnerParty.OuterParty ? null : element.InnerPartyClassification
+        element.SendToName = this.newObject.SendToName || this.ObjectName.SendToName
+        element.ReportDate = this.newObject.ReportDate || this.ObjectName.ReportDate
+        element.ReportNote = this.newObject.ReportNote || this.ObjectName.ReportNote
+        element.CauseText = element.Cause == Cause.Copy ? this.TranslateObj.instant('Stakeholders.Copy') : this.TranslateObj.instant('Stakeholders.Original')
+        this.menuItemService.Stakeholders.push({ StakeholdersSave: element, list: [element.ToParty], Tolist: element.ToParty.toString() })
+
+      })
+      if (this.SelectedSystemID) {
+        const Response: number = await super.GenericSubscribe<Stakeholders[], {}>(this.menuItemService.Stakeholders, this.EndPoint.AddListOfStakeholdersAsync, { showNotification: true })
+        if (Response > -1) {
+          // this.ReturnStakeholdersAsync()
+          // this.InitFormGroup()
+          // this.ObjectName = new Stakeholders()
+          // this.ObjectName.InnerPartyClassification = this.ObjectName.StakeholdersSave.InnerPartyClassification = this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization ? InnerParty.SameUnit : InnerParty.OuterParty
+          // this.CheckedPartyType({ value: this.ObjectName.InnerPartyClassification, inputname: 'InnerPartyClassification' })
+          this.onHide()
+        }
+      }
+      else {
+
+        // this.ObjectName.StakeholdersSave.Cause = Number(this.ObjectName.Cause)
+        // if (typeof this.ObjectName.list == 'number')
+        //   this.PushStakeholders(this.ObjectName.list, Number(this.ObjectName.Cause))
+        // else
+        //   this.ObjectName.list.forEach(element => {
+        //     this.PushStakeholders(element, Number(this.ObjectName.Cause))
+        //   })
+        // if (this.ObjectName.InnerPartyClassification == InnerParty.OuterParty)
+        //   this.ObjectName.StakeholdersSave.InnerPartyClassification = null
+        // else
+        //   this.ObjectName.StakeholdersSave.InnerPartyClassification = this.ObjectName.InnerPartyClassification == InnerParty.OuterParty ? null : this.ObjectName.InnerPartyClassification
+        // this.ObjectName.StakeholdersSave.SendToName = this.ObjectName.SendToName
+        // this.ObjectName.StakeholdersSave.ReportDate = this.ObjectName.ReportDate
+        // this.ObjectName.StakeholdersSave.ReportNote = this.ObjectName.ReportNote
+        // this.menuItemService.Stakeholders.push(this.ObjectName)
+        // this.InitFormGroup()
+        // this.ObjectName = new Stakeholders()
+        // this.ObjectName.InnerPartyClassification = this.ObjectName.StakeholdersSave.InnerPartyClassification = this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization ? InnerParty.SameUnit : InnerParty.OuterParty
+        // this.CheckedPartyType({ value: this.ObjectName.InnerPartyClassification, inputname: 'InnerPartyClassification' })
+        this.onHide()
+      }
+    }
+    else if (Number(this.configService.getConfig()?.IssuingIsSingleOriginal) == 1 ? this.ObjectName.Cause == Cause.Original && hasOriginal : false) {
+      const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.IsOriginal'));
+      this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+    }
+    else {
+      this.ShowValidationDialog = true
+    }
+
+  }
+  TasksList: Tasks[] = []
+  ReturnTaskAsync() {
+    this.DataSource = []
+    if (this.SelectedSystemID && [null, undefined, 'null', 'undefined'].includes(localStorage.getItem("TaskType")) && !this.TaskId) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReturnTaskAsync).subscribe(
+        data => {
+          this.TasksList = <Tasks[]>data
+          let DataSource = <Tasks[]>data
+          // this.CompressGroup(DataSource)
+          this.DataSource = DataSource
+          if (this.DataSource.length > 0) {
+            // this.AdvancedFormGroupObj.disable()
+            this.ObjectName.TimeBurdenHrs = this.DataSource[0].TimeBurdenHrs
+            this.ObjectName.RoutingProcedure = this.DataSource[0].RoutingProcedure
+            this.ObjectName.ProcedureByUser = this.DataSource[0].ProcedureByUser
+            this.ObjectName.NeglectPreviousTasks = this.DataSource[0].NeglectPreviousTasks
+            this.ObjectName.IsOriginal = this.DataSource[0].IsOriginal
+            this.ObjectName.Notify = this.DataSource[0].Notify
+            this.ObjectName.FollowUP = this.DataSource[0].FollowUP
+            this.ObjectName.Note = this.DataSource[0].Note
+            this.ObjectName.Importance = this.DataSource[0].Importance
+            this.ObjectName.AttachmentMaster = this.DataSource[0].AttachmentMaster
+            this.Selection = this.DataSource.filter(element => element.TaskIsMain == 1)
+            // this.Advancedbuttons = []
+          }
+          this.DataSource?.forEach(element => {
+            element.Attachment = element.Attachment ? JSON.parse(element.Attachment) : []
+            element.TaskIsMainText = element.TaskIsMain == 0 ? this.TranslateObj.instant("Stakeholders.Copy") : this.TranslateObj.instant("Tasks.Main")
+            element.Status = element.ReadingDateTime == null ? this.TranslateObj.instant("Mail.UnReadable") : this.TranslateObj.instant("Mail.Readable")
+          })
+
+          this.visible = true
+        })
+    }
+    else {
+      this.DataSource = this.menuItemService.tasks
+      if (this.DataSource.length > 0) {
+        this.ObjectName.TimeBurdenHrs = this.DataSource[0].TimeBurdenHrs
+        this.ObjectName.RoutingProcedure = this.DataSource[0].RoutingProcedure
+        this.ObjectName.ProcedureByUser = this.DataSource[0].ProcedureByUser
+        this.ObjectName.NeglectPreviousTasks = this.DataSource[0].NeglectPreviousTasks
+        this.ObjectName.IsOriginal = this.DataSource[0].IsOriginal
+        this.ObjectName.Notify = this.DataSource[0].Notify
+        this.ObjectName.FollowUP = this.DataSource[0].FollowUP
+        this.ObjectName.Note = this.DataSource[0].Note
+        this.ObjectName.Importance = this.DataSource[0].Importance
+        this.Selection = this.DataSource.filter(element => element.TaskIsMain == 1)
+      }
+      this.visible = true
+    }
+  }
+
+  ReturnTaskAsyncForFollow() {
+
+    this.visible = true
+    this.DataSource = []
+    if (this.SelectedSystemID) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReturnTaskAsync).subscribe(
+        data => {
+          let DataSource = <Tasks[]>data
+          // this.CompressGroup(DataSource)
+          this.DataSource = DataSource
+          this.DataSource?.forEach(element => {
+            element.Attachment = element.Attachment ? JSON.parse(element.Attachment) : []
+            element.TaskIsMainText = element.TaskIsMain == 0 ? this.TranslateObj.instant("Stakeholders.Copy") : this.TranslateObj.instant("Tasks.Main")
+            element.Status = element.ReadingDateTime == null ? this.TranslateObj.instant("Mail.UnReadable") : this.TranslateObj.instant("Mail.Readable")
+          })
+          // this.visible = true;
+          //------------added by rahaf => call calculateStats ----
+          this.calculateStats(this.DataSource);
+          //------------------------------------------------------
+        })
+    }
+    else {
+      this.DataSource = this.menuItemService.tasks
+      this.visible = true
+    }
+  }
+  CompressGroup(DataSource) {
+    // Assuming `tasks` is your input list
+    const tasks = DataSource
+
+    const compressedTasks = Object.values(
+      tasks.reduce((acc: Tasks | StakeholdersSave, task) => {
+        if (this.Type.includes('Stakeholders')) {
+          task.InnerPartyID = task.InnerPartyID ? task.InnerPartyID : task.ToOuterParty
+          task.InnerPartyClassification = task.InnerPartyClassification ? task.InnerPartyClassification : (this.RouterObj.url.includes("GeneralizationCrspndns") || Number(localStorage.getItem('Type')) == CorrspondanceTypeOf.Generalization ? InnerParty.SameUnit : InnerParty.OuterParty)
+        }
+        const key = `${task.InnerPartyID}-${task.InnerPartyClassification}`;
+        if (!acc[key]) {
+          // Initialize the first occurrence
+          acc[key] = { ...task };
+          acc[key].GroupMember = []
+          if (acc[key].InnerPartyClassification == InnerParty.GroupMember) {
+            if (this.Type.includes('Tasks')) {
+              acc[key].TaskTo = task.InnerPartyID
+              acc[key].TaskToText = task.InnerPartyName
+              acc[key].GroupMember.push({ AccountName: task.TaskToText, EntityID: task.TaskTo })
+            }
+            else if (this.Type.includes('Stakeholders')) {
+              acc[key].TaskTo = task.InnerPartyID ? task.InnerPartyID : task.OuterPartyID
+              acc[key].ArabicName = task.InnerPartyName
+
+              acc[key].GroupMember.push({ AccountName: task.AccountName, EntityID: task.ToOuterParty ? task.ToOuterParty : task.ToInnerParty, RowId: task.IssuingAndCopyingID })
+            }
+          }
+          else {
+            acc[key].ArabicName = acc[key].AccountName ? acc[key].AccountName : acc[key].ArabicName
+          }
+
+        } else {
+          if (this.Type.includes('Tasks')) {
+            acc[key].GroupMember.push({ AccountName: task.TaskToText, EntityID: task.TaskTo })
+          }
+          else if (this.Type.includes('Stakeholders')) {
+            acc[key].GroupMember.push({ AccountName: task.AccountName, EntityID: task.ToOuterParty ? task.ToOuterParty : task.ToInnerParty, RowId: task.IssuingAndCopyingID })
+          }
+        }
+
+        return acc;
+      }, {} as Record<string, any>)
+    );
+
+    this.DataSource = compressedTasks;
+
+  }
+  taskUpdated: boolean = false
+  newObject: any = null
+  async NewTaskAsync() {
+
+    if (this.MenuElements?.attachments?.length > 0 || this.menuItemService?.CustomDocument) {
+      // && (Number(this.configService.getConfig()?.TaskIsSingleOriginal) && this.ObjectName.TaskIsMain)
+      if (this.FormGroupObj.valid) {
+        const isDuplicate = (id: any) => this.menuItemService.tasks.some(task => task.TaskTo === id) || this.DataSource.some(task => task.TaskTo === id);
+        let duplicateCount = 0
+        if (typeof this.ObjectName.list == 'number') {
+          if (!isDuplicate(this.ObjectName.list)) {
+            this.PushTasks(this.ObjectName.list);
+            this.DataSource = [...this.menuItemService.tasks]
+            if (this.DataSource.length > 0) {
+              this.DataSource[0].TotalRows = this.DataSource.length;
+            }
+            this.ObjectName.TaskSave.TaskIsMain = 1
+            this.newObject = this.ObjectName
+            this.ObjectName = new ListOfTasks()
+          } else {
+            // Optional: Show a message that this person/OU is already added
+            const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.AlreadyAdded'));
+            this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+          }
+        } else {
+          this.ObjectName.list.forEach(element => {
+            if (!isDuplicate(element)) {
+              this.PushTasks(element);
+            }
+            else {
+              duplicateCount++
+            }
+          });
+          if (duplicateCount) {
+            const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.AlreadyAdded'));
+            this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+          }
+          else {
+            this.DataSource = [...this.menuItemService.tasks]
+            if (this.DataSource.length > 0) {
+              this.DataSource[0].TotalRows = this.DataSource.length;
+            }
+            this.ObjectName.TaskSave.TaskIsMain = 1
+            this.newObject = this.ObjectName
+            this.ObjectName = new ListOfTasks()
+          }
+        }
+        // if (this.ObjectName?.File?.length) {
+        //   const fileArray = Array.from(this.ObjectName.File);
+        //   let i = 0
+        //   for (const file of fileArray) {
+        //     this.ObjectName.AttachmentSaves?.push(await this.uploadFileInChunks((file as File), i));
+        //     this.ObjectName.TaskSave.AttachmentSaves?.push(await this.uploadFileInChunks((file as File), i));
+        //     i++;
+        //   }
+        // }
+        // if (typeof this.ObjectName.list == 'number')
+        //   this.ObjectName.Tolist = this.ObjectName?.list?.toString()
+        // else
+        //   this.ObjectName.Tolist = this.ObjectName?.list?.join(',');
+
+        // this.ObjectName.TaskSave.TaskIsMain = this.ObjectName.TaskIsMain == 0 ? 'نسخة' : 'اصل'
+        // if (typeof this.ObjectName.list == 'number')
+        //   this.PushTasks(this.ObjectName.list)
+        // // this.menuItemService.tasks.push(this.ObjectName.list)
+        // else
+        //   this.ObjectName.list.forEach(element => {
+        //     this.PushTasks(element)
+        //     // this.menuItemService.tasks.push(element)
+        //   })
+        // this.menuItemService.taskSave.push(this.ObjectName)
+        // this.menuItemService.tasks.forEach(element => {
+        //   this.DataSource.push(<Tasks>element)
+        // })
+        // if (this.DataSource.length > 0) {
+        //   this.menuItemService.tasks.forEach(element => {
+        //     this.DataSource.push(<Tasks>element)
+        //   })
+        // }
+        // else {
+        //   this.DataSource = this.menuItemService.tasks
+        // }
+
+
+        // this.menuItemService.taskSave.push(this.ObjectName)
+        // this.InitFormGroup()
+        // if (this.Advancedbuttons.length == 0) {
+        //   this.SaveTaskAsync()
+        //   this.newObject.TaskIsMain = 0
+        // }
+      }
+      else {
+        this.ShowValidationDialog = true
+      }
+    }
+    else {
+      const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.UploadAttachment'));
+      this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+    }
+  }
+  async SaveTaskAsync() {
+    if (this.AdvancedFormGroupObj.valid || this.newObject.list.length || this.ObjectName.list.length) {
+      this.menuItemService.taskSave = []
+      this.menuItemService.tasks.forEach(async element => {
+        if (this.AdvancedFormGroupObj.disabled) {
+          element.TaskIsMain = this.newObject.TaskIsMain = 0
+        }
+        else {
+          element.TaskIsMain = 0
+          this.Selection?.forEach(ele => {
+            if (element.TaskID == ele.TaskID) {
+              element.TaskIsMain = 1
+            }
+          })
+        }
+        // element.AttachmentSaves = [];
+        // if (this.ObjectName?.File?.length || this.ObjectName?.File?.length) {
+        //   const fileArray = Array.from(this.ObjectName.File || this.ObjectName?.File?.length);
+        //   let i = 0
+        //   for (const file of fileArray) {
+        //     // this.ObjectName.AttachmentSaves?.push(await this.uploadFileInChunks((file as File), i));
+        //     element.AttachmentSaves?.push(await this.uploadFileInChunks((file as File), i));
+        //     i++;
+        //   }
+        // }
+
+        element.AttachmentSaves = this.ObjectName.AttachmentSaves
+        element.SelectedSystemID = this.SelectedSystemID
+        element.SelectedSystemType = this.SelectedSystemType
+        element.TaskIsMainText = element.TaskIsMain == 0 ? this.TranslateObj.instant('Stakeholders.Copy') : this.TranslateObj.instant('Stakeholders.Original')
+        element.Note = this.newObject.Note || this.ObjectName?.Note
+        element.TimeBurdenHrs = Number(this.newObject.TimeBurdenHrs || this.ObjectName?.TimeBurdenHrs)
+        element.RoutingProcedure = this.newObject.RoutingProcedure || this.ObjectName?.RoutingProcedure
+        element.Importance = this.newObject.Importance || this.ObjectName?.Importance
+        element.IsOriginal = Number(this.newObject.IsOriginal || this.ObjectName?.IsOriginal)
+        element.Notify = Number(this.newObject.Notify || this.ObjectName?.Notify)
+        element.NeglectPreviousTasks = Number(this.newObject.NeglectPreviousTasks || this.ObjectName?.NeglectPreviousTasks)
+        element.TaskFromType = DelegationPartyType.Employee
+        element.ProcedureByUser = this.newObject.ProcedureByUser || this.ObjectName?.ProcedureByUser
+        element.AttachmentMaster = Number(this.newObject.AttachmentMaster || this.ObjectName?.AttachmentMaster || null)
+        if (this.ScanningAttachment.length) {
+          this.ScanningAttachment.forEach(element => {
+            element.AttachmentSaves?.push(element)
+          })
+        }
+        if (this.newObject.InnerPartyClassification == InnerParty.SpecificAccount) {
+          element.TaskToType = DelegationPartyType.Employee
+        }
+        else if (this.newObject.InnerPartyClassification == InnerParty.SelectedOU) {
+          element.TaskToType = DelegationPartyType.OU
+        }
+        else if (this.newObject.InnerPartyClassification == InnerParty.GroupMember) {
+          element.TaskToType = DelegationPartyType.Employee
+        }
+        this.menuItemService.taskSave.push({ TaskSave: element, list: [element.TaskTo], Tolist: element.TaskTo.toString() })
+      })
+      let hasMain = this.menuItemService.tasks.filter(element => element.TaskIsMain == 1).length
+        + this.TasksList.filter(element => element.TaskIsMain == 1).length
+      if (Number(this.configService.getConfig()?.TaskIsSingleOriginal) == 1 ? (hasMain > 1 ? false : true) : true) {
+        if (this.TaskIsMain != null ? (this.TaskIsMain == 1 ? hasMain != 0 : hasMain == 0) : hasMain != 0) {
+          if (this.SelectedSystemID) {
+
+            // this.ObjectName.TaskSave.SelectedSystemID = this.SelectedSystemID
+            // this.ObjectName.TaskSave.SelectedSystemType = this.SelectedSystemType
+            // this.ObjectName.TaskSave.Note = this.ObjectName.Note
+            // this.ObjectName.TaskSave.TimeBurdenHrs = Number(this.ObjectName.TimeBurdenHrs)
+            // this.ObjectName.TaskSave.RoutingProcedure = this.ObjectName.RoutingProcedure
+            // this.ObjectName.TaskSave.InnerPartyClassification = this.ObjectName.InnerPartyClassification
+            // this.ObjectName.TaskSave.TaskIsMain = this.ObjectName.TaskIsMain
+            // this.ObjectName.TaskSave.Importance = this.ObjectName.Importance
+            // this.ObjectName.TaskSave.IsOriginal = Number(this.ObjectName.IsOriginal)
+            // this.ObjectName.TaskSave.FollowUP = Number(this.ObjectName.FollowUP)
+            // this.ObjectName.TaskSave.Notify = Number(this.ObjectName.Notify)
+            // this.ObjectName.TaskSave.NeglectPreviousTasks = Number(this.ObjectName.NeglectPreviousTasks)
+            // this.ObjectName.TaskSave.TaskFromType = DelegationPartyType.Employee
+            // this.ObjectName.TaskSave.ProcedureByUser = this.ObjectName.ProcedureByUser
+
+            // if (this.ScanningAttachment.length) {
+            //   this.ScanningAttachment.forEach(element => {
+            //     this.ObjectName.TaskSave.AttachmentSaves?.push(element)
+            //   })
+            // }
+            // if (this.ObjectName.InnerPartyClassification == InnerParty.SpecificAccount) {
+            //   this.ObjectName.TaskSave.TaskToType = DelegationPartyType.Employee
+            // }
+            // else if (this.ObjectName.InnerPartyClassification == InnerParty.SelectedOU) {
+            //   this.ObjectName.TaskSave.TaskToType = DelegationPartyType.OU
+            // }
+            // else if (this.ObjectName.InnerPartyClassification == InnerParty.GroupMember) {
+            //   this.ObjectName.TaskSave.TaskToType = DelegationPartyType.Employee
+            // }
+            if (this.TaskId) {
+              const Response: number = await super.GenericSubscribe<any, {}>({ TaskToClose: this.TaskId, taskSave: this.menuItemService.taskSave }, this.EndPoint.EndTaskByCreateNewOne, { showNotification: true })
+              if (Response > -1) {
+                // this.ReturnTaskAsync()
+                this.InitFormGroup()
+                this.ObjectName = new ListOfTasks()
+
+                if ([0, 2].includes(Number(this.configService.getConfig()?.DefaultTaskingCategory)))
+                  this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SelectedOU
+                else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 1)
+                  this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SpecificAccount
+                else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 3)
+                  this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.GroupMember
+                // this.CheckedPartyType({ value: this.ObjectName.InnerPartyClassification, inputname: 'InnerPartyClassification' })
+                this.taskUpdated = true
+                this.ScanningAttachment = []
+                this.menuItemService.tasks = []
+                this.onHide()
+              }
+            }
+            else {
+
+              const Response: number = await super.GenericSubscribe<ListOfTasks[], {}>(this.menuItemService.taskSave, this.EndPoint.AddListOfTasksAsync, { showNotification: true })
+              if (Response > -1) {
+                // this.ReturnTaskAsync()
+                this.InitFormGroup()
+                this.ObjectName = new ListOfTasks()
+
+                if ([0, 2].includes(Number(this.configService.getConfig()?.DefaultTaskingCategory)))
+                  this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SelectedOU
+                else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 1)
+                  this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SpecificAccount
+                else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 3)
+                  this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.GroupMember
+                // this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SelectedOU
+                // this.CheckedPartyType({ value: this.ObjectName.InnerPartyClassification, inputname: 'InnerPartyClassification' })
+                this.taskUpdated = true
+                this.ScanningAttachment = []
+                this.menuItemService.tasks = []
+                this.onHide()
+              }
+            }
+          }
+          else {
+
+
+            // this.ObjectName.TaskSave.IsOriginal = Number(this.ObjectName.IsOriginal)
+            // this.ObjectName.TaskSave.FollowUP = Number(this.ObjectName.FollowUP)
+            // this.ObjectName.TaskSave.Notify = Number(this.ObjectName.Notify)
+            // this.ObjectName.TaskSave.NeglectPreviousTasks = Number(this.ObjectName.NeglectPreviousTasks)
+
+            // this.ObjectName.TaskSave.TaskIsMain = this.ObjectName.TaskIsMain
+            // // this.ObjectName.TaskSave.TaskIsMain = this.ObjectName.TaskIsMain == 0 ? 'نسخة' : 'اصل'
+            // this.menuItemService.taskSave.push(this.ObjectName)
+            // this.InitFormGroup()
+            // this.ObjectName = new ListOfTasks()
+            // this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SelectedOU
+            // this.menuItemService.taskSave = this.menuItemService.tasks
+
+            if ([0, 2].includes(Number(this.configService.getConfig()?.DefaultTaskingCategory)))
+              this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SelectedOU
+            else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 1)
+              this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.SpecificAccount
+            else if (Number(this.configService.getConfig()?.DefaultTaskingCategory) == 3)
+              this.ObjectName.InnerPartyClassification = this.ObjectName.TaskSave.InnerPartyClassification = InnerParty.GroupMember
+            // this.CheckedPartyType({ value: this.ObjectName.InnerPartyClassification, inputname: 'InnerPartyClassification' })
+            this.onHide()
+          }
+        }
+        else if (this.TaskIsMain != null ? (this.TaskIsMain == 1 ? hasMain == 0 : false) : hasMain == 0) {
+          const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.ChooseMain'));
+          this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+        }
+
+        else if (this.TaskIsMain != null ? (this.TaskIsMain == 0 ? hasMain > 0 : false) : false) {
+          const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.NoMain'));
+          this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+        }
+      }
+      else if (Number(this.configService.getConfig()?.TaskIsSingleOriginal) == 1 ? hasMain > 1 : false) {
+        const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.IsMain'));
+        this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+      }
+    }
+    else if (!this.ObjectName.list.length) {
+      const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.AddParties'));
+      this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+    }
+    else {
+      this.ShowValidationDialog = true
+    }
+  }
+  count = 0
+  PushTasks(element) {
+    let object = new Tasks()
+    object.TaskTo = element
+    let TaskTo = this.FormList[1].list.filter(acc => acc.EntityID == element)
+    // let TaskTo = this.FormList[2].list.filter(acc => acc.EntityID == element)
+    object.AttachmentSaves = this.ObjectName.TaskSave.AttachmentSaves
+    object.TaskToText = TaskTo[0]?.OuHead ? TaskTo[0]?.OuHead : (TaskTo[0]?.AccountName ? TaskTo[0]?.AccountName : TaskTo[0]?.ArabicName)
+    object.TaskFromText = localStorage.getItem("accountName")
+    this.ObjectName.TaskSave.TimeBurdenHrs = object.TimeBurdenHrs = this.ObjectName.TimeBurdenHrs && this.ObjectName.TimeBurdenHrs != 'NaN' ? Number(this.ObjectName.TimeBurdenHrs) : null
+    this.ObjectName.TaskSave.Note = object.Note = this.ObjectName.Note
+    this.ObjectName.TaskSave.RoutingProcedure = object.RoutingProcedure = Number(this.ObjectName.RoutingProcedure)
+    this.ObjectName.TaskSave.InnerPartyClassification = object.InnerPartyClassification = this.ObjectName.InnerPartyClassification
+    // object.RoutingProcedureText = this.FormList[4].list.filter(acc => acc.EntityID == object.RoutingProcedure)[0]?.ArabicName
+    // object.TaskIsMain = this.ObjectName.TaskIsMain
+    // object.TaskIsMainText = this.ObjectName.TaskIsMain == 0 ? this.TranslateObj.instant('Stakeholders.Copy') : this.TranslateObj.instant('Stakeholders.Original')
+    this.ObjectName.TaskSave.ProcedureByUser = object.ProcedureByUser = this.ObjectName.ProcedureByUser
+    const datePipe = new DatePipe('en-Us');
+    object.CreationDate = datePipe.transform(new Date(), 'yyyy-MM-dd')
+    object.TaskID = this.count++
+    if (this.ObjectName.InnerPartyClassification == InnerParty.GroupMember)
+      this.ReturnGroupMember(object)
+    else
+      this.menuItemService.tasks.push(object)
+  }
+  PushStakeholders(element, cause) {
+    let object = new StakeholdersSave()
+    object.ToParty = element
+    // object.ArabicName = element
+    // let To = this.FormList[2].list.filter(acc => acc.EntityID == element)
+    let To = this.FormList[1].list.filter(acc => acc.EntityID == element)
+    object.ArabicName = To[0]?.OuHead ? To[0]?.OuHead : (To[0]?.AccountName ? To[0]?.AccountName : To[0]?.ArabicName)
+    object.Issuer = object.TaskFromText = localStorage.getItem("accountName")
+    object.SendToName = this.ObjectName.SendToName
+    object.TaskToText = object.ArabicName
+    object.ReportDate = this.ObjectName.ReportDate
+    object.ReportNote = this.ObjectName.ReportNote
+    object.InnerPartyClassification = object.InnerPartyClassification = this.ObjectName.InnerPartyClassification
+    object.CauseText = cause == Cause.Copy ? this.TranslateObj.instant('Stakeholders.Copy') : this.TranslateObj.instant('Stakeholders.Original')
+    object.Cause = this.ObjectName.Cause
+    const datePipe = new DatePipe('en-Us');
+    object.CreationDate = datePipe.transform(new Date(), 'yyyy-MM-dd')
+    object.InnerPartyID = this.count++
+    object.IssuingAndCopyingID = this.count + 1
+    if (this.ObjectName.InnerPartyClassification == InnerParty.GroupMember)
+      this.ReturnGroupMember(object)
+    else
+      this.menuItemService.StakeholdersSave.push(object)
+  }
+  async AddNoteAsync() {
+    // if (![CorrespondenceStatus.Closed, CorrespondenceStatus.Exported].includes(this.newCrspndns.MainInfo.STATUS)) {
+    let attachments = []
+    console.log("request", this.MenuElements.attachments, this.Attachments)
+    this.menuItemService.AttachmentSaves.forEach(element => {
+      if (!element.AttachmentMaster) {
+        element.SelectedSystemType = SystemType.Task
+        element.SelectedSystemID = this.TaskId
+        attachments.push(element)
+      }
+    })
+    const Response: number = await super.GenericSubscribe<any, {}>({
+      Notify: Number(this.ObjectName.Notify),
+      NoteContent: this.ObjectName.NoteContent, SelectedSystemID: this.TaskId, SelectedSystemType: SystemType.Task, AttachmentSaves: attachments
+    }, this.EndPoint.AddNote, { disableConfirm: true, showNotification: true })
+    if (Response > -1) {
+      this.ObjectName = {}
+      this.onHide()
+      this.MenuElements.attachments = []
+    }
+  }
+
+  async UploadFiles() {
+    let attachments = []
+    console.log("request", this.MenuElements.attachments, this.Attachments)
+    this.menuItemService.AttachmentSaves.forEach(element => {
+      if (!element.AttachmentMaster) {
+        element.SelectedSystemType = SystemType.Task
+        element.SelectedSystemID = this.TaskId
+        attachments.push(element)
+      }
+    })
+    return attachments
+    // let Response: number = await super.GenericSubscribe<AttachmentSaves[], {}>(attachments, this.EndPoint.UploadFileAsync, { showNotification: true, disableConfirm: false })
+    // if (Response > -1) {
+    //   this.onHide()
+    //   this.MenuElements.attachments = []
+    // }
+  }
+  ReturnCommentAsync() {
+    if (this.SelectedSystemID) {
+      this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: SystemType.Correspondence }, this.EndPoint.ReturnCommentAsync).subscribe(
+        data => {
+          this.DataSource = <Comment[]>data
+          this.DataSource?.forEach(element => {
+            element.Attachment = element.Attachment ? JSON.parse(element.Attachment) : null
+          })
+          this.visible = true
+        })
+    }
+    else {
+      // this.ObjectName = this.menuItemService.taskSave
+      this.visible = true
+    }
+  }
+  ReturnCommentTaskAsync(taskID) {
+    this.SubscriptionSecond = this.GenericServiceObj.GenericService({ SelectedSystemID: taskID, SelectedSystemType: SystemType.Task }, this.EndPoint.ReturnCommentAsync).subscribe(
+      data => {
+        this.DataSourceSecondDialog = <Comment[]>data
+        this.DataSourceSecondDialog?.forEach(element => {
+          element.Attachment = element.Attachment ? JSON.parse(element.Attachment) : null
+        })
+      })
+  }
+  @Output() handleEvent = new EventEmitter<any>()
+  pdfsrc: string = null
+  fileType: string = null
+  handleView(event) {
+    this.handleEvent.emit({ attachment: event.attachment, type: event.type, systemtype: this.visibleSecondDialog ? SystemType.Comments : null })
+  }
+  async NewCommentAsync() {
+    if (this.SelectedSystemID) {
+      if (this.ObjectName?.File?.length) {
+        const fileArray = Array.from(this.ObjectName.File);
+        let i = 0
+        for (const file of fileArray) {
+          this.ObjectName.AttachmentSaves?.push(await this.uploadFileInChunks((file as File), i));
+          i++;
+        }
+      }
+
+      if (this.ScanningAttachment.length) {
+        this.ScanningAttachment.forEach(element => {
+          this.ObjectName.AttachmentSaves?.push(element)
+        })
+      }
+      this.ObjectName.SelectedSystemID = this.SelectedSystemID
+      this.ObjectName.SelectedSystemType = SystemType.Correspondence
+      let Response: number = await super.GenericSubscribe<Comment, {}>(this.ObjectName, this.EndPoint.NewCommentAsync, { showNotification: true })
+      if (Response > -1) {
+        this.ScanningAttachment = []
+        this.ReturnCommentAsync()
+        this.InitFormGroup()
+        this.ObjectName = new Comment()
+      }
+    }
+    else {
+      // this.menuItemService.EntityBeneficiaries.push(this.ObjectName)
+      this.InitFormGroup()
+      this.ObjectName = new Comment()
+    }
+  }
+  async NewTaskCommentAsync(taskID) {
+    if (this.ObjectNameSecondDialog?.File?.length) {
+      const fileArray = Array.from(this.ObjectNameSecondDialog.File);
+      let i = 0
+      for (const file of fileArray) {
+        this.ObjectNameSecondDialog.AttachmentSaves?.push(await this.uploadFileInChunks((file as File), i));
+        i++;
+      }
+    }
+    this.ObjectNameSecondDialog.SelectedSystemID = taskID
+    this.ObjectNameSecondDialog.SelectedSystemType = SystemType.Task
+    let Response: number = await super.GenericSubscribe<Comment, {}>(this.ObjectNameSecondDialog, this.EndPoint.NewCommentAsync, { showNotification: true })
+    if (Response > -1) {
+      this.ReturnCommentTaskAsync(taskID)
+      this.ObjectNameSecondDialog = new Comment()
+    }
+  }
+  ViewAdvancedSearch() {
+    this.FormList.forEach(element => {
+      element.show = true
+    })
+    this.ActionsList[0].show = this.buttons[0].show = false
+    this.buttons[1].show = this.buttons[2].show = this.buttons[3].show = this.buttons[4].show = true
+    this.SelectAll = true
+    this.ReturnCorrespondenceAsync()
+
+    this.paginator = false
+    this.customPaginator = true
+    this.ReturnOU()
+    this.ReturnTaskImportance()
+    this.ReturnCrspndnsRecordsAsync()
+    this.ReturnCorrespondenceType()
+    this.ReturnCorrespondenceClassification()
+    this.ReturnCoressStatus()
+  }
+  page = 0
+  paginate(event: any) {
+    if (this.Type.includes('Related')) {
+      // this.ObjectName.PageIndex = event.page ? ++event.page
+
+      this.page = event.page
+      this.first = event.first
+      this.ObjectName.PageIndex = this.page + 1
+      this.ReturnCorrespondenceAsync()
+    }
+  }
+  async ReturnCorrespondenceAsync() {
+    this.ShowTable = false
+    this.ActionsList[2].show = false
+    this.ActionsList[6].show = false
+    this.FormList.forEach(field => {
+      if (field.inputtype === 'date') {
+        const dateObj = this.ObjectName[field.inputname];
+        if (dateObj) {
+          this.ObjectName[field.inputname] = this.formatDateToLocalISO(dateObj);
+        }
+      }
+    });
+    this.ObjectName.ExecludeList = this.SelectedSystemID
+    this.ObjectName.JustCorresInfo = 1
+
+    this.ObjectName.ListOfCoresStatus = this.ObjectName.STATUS?.toString();
+    this.ObjectName.MinCoressID = this.ObjectName.MaxCoressID = Number(this.ObjectName.MinCoressID)
+    this.DataSource = await super.GenericSubscribe<MainInfo, ICorrespondance[]>(this.ObjectName, this.EndPoint.ReturnCorrespondenceAdvancedAsync, { returnAsArray: true, lookup: null, saveMessage: null, disableConfirm: true, showNotification: false });
+    this.ShowTable = true
+  }
+  BackToRelatedTable() {
+    this.FormList.forEach(element => {
+      element.show = false
+    })
+
+    this.paginator = true
+    this.customPaginator = false
+    this.buttons[0].show = true
+    this.buttons[1].show = this.buttons[2].show = this.buttons[3].show = this.buttons[4].show = false
+    this.SelectAll = false
+    this.ReturnRelated()
+  }
+  ReturnRelated() {
+    if (this.SelectedSystemID) {
+      this.ShowTable = false
+      this.Subscription = this.GenericServiceObj.GenericService({ SystemIDDependent: this.SelectedSystemID, SystemTypeDependent: this.SelectedSystemType }, this.EndPoint.ReturnDependentRelated).subscribe(
+        data => {
+          this.first = 0
+          this.DataSource = data as Correspondence[]
+          this.ShowTable = true
+
+          this.ActionsList[6].show = this.ActionsList[2].show = this.visible = true
+        })
+    }
+    else {
+      this.DataSource = this.menuItemService.Related
+      this.visible = true
+    }
+  }
+  async NewRelated() {
+    let ObjectName: Related = new Related()
+    this.Selection.forEach(element => {
+      ObjectName.Pairs.push({ _Type: this.SelectedSystemType, _Value: element.EntityID })
+    })
+    ObjectName.SystemIDDependent = this.SelectedSystemID
+    ObjectName.SystemTypeDependent = this.SelectedSystemType
+    this.menuItemService.ConnectionObject = ObjectName
+    if (this.SelectedSystemID) {
+      let Response: number = await super.GenericSubscribe<Related, {}>(ObjectName, this.EndPoint.ConnectEntityToOthers, { showNotification: true })
+      if (Response > -1) {
+        this.BackToRelatedTable()
+        this.Selection = []
+      }
+    }
+    else {
+      this.Selection.forEach(element => {
+        this.menuItemService.Related.push(element)
+      })
+      this.InitFormGroup()
+      this.ObjectName = new Correspondence()
+      this.BackToRelatedTable()
+    }
+  }
+  ReturnDelegationAsync() {
+    this.Subscription = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnDelegationAsync).subscribe(
+      data => {
+
+        this.DataSource = data as ICorrespondance[]
+        this.ShowTable = this.visible = true
+      })
+  }
+  ReturnCorrespondenceLifeAsync() {
+    this.Subscription = this.GenericServiceObj.GenericService({ Correspondence: this.SelectedSystemID }, this.EndPoint.ReturnCorrespondenceLifeAsync).subscribe(
+      data => {
+        this.DataSource = data as IMailHistory[]
+        this.visible = true
+      })
+  }
+  ReturnAllAttachmentForCorre() {
+    this.Subscription = this.GenericServiceObj.GenericService({ SearchSubject: this.SelectedSystemID }, this.EndPoint.ReturnAllAttachmentForCorre).subscribe(
+      data => {
+        this.DataSource = data as IAllAttachments[]
+        if (this.DataSource?.length) {
+          this.DataSource?.forEach(element => {
+            element.Attachment = [{ ArabicName: element.ArabicName, Extension: element.Extension, EntityID: element.EntityID }]
+          })
+        }
+        this.ShowTable = true
+        this.visible = true
+      })
+  }
+  async ReturnNoteAsync(dialogType?, TaskId?) {
+    this.Subscription = this.GenericServiceObj.GenericService({ EntityID: dialogType != 'Second' ? this.SelectedSystemID : null, SelectedSystemID: dialogType == 'Second' ? TaskId : null, SelectedSystemType: dialogType == 'Second' ? SystemType.Task : null },
+      dialogType == 'Second' ? this.EndPoint.ReturnNoteAsync : this.EndPoint.ReturnNoteForcorrespondenceTasks).subscribe(
+        async (data: any) => {
+          if (data.length) {
+            if (dialogType == 'Second') {
+              this.DataSourceSecondDialog = data as IAllAttachments[]
+              this.DataSourceSecondDialog.forEach(element => {
+                element.Attachment = [element]
+              })
+              this.ShowSecondForm = this.ShowSecondTable = true
+              this.TypeSecondDialog = "Buttons.TaskAttachments"
+              this.visibleSecondDialog = true
+            }
+            else {
+              this.DataSource = data as IAllAttachments[]
+              this.DataSource.forEach(element => {
+                element.Attachment = [element]
+              })
+              this.ShowTable = true
+              this.visible = true
+            }
+          }
+          else {
+            const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.NoComments'));
+            this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+          }
+        })
+  }
+  async ReturnTaskAttachmentsAsync(dialogType?, AttachmentMaster?) {
+
+    if (dialogType == 'Second' && !AttachmentMaster) {
+      const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.NoAttachments'));
+      this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+    }
+    else if (dialogType != 'Second' && !this.AttachmentMaster) {
+      const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.NoAttachments'));
+      this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+    }
+    else {
+      // SelectedSystemID: this.SelectedSystemID, SelectedSystemType: SystemType.Task
+      this.Subscription = this.GenericServiceObj.GenericService({ AttachmentMaster: dialogType == 'Second' ? AttachmentMaster : this.AttachmentMaster }, this.EndPoint.ReturnAttachment).subscribe(
+        async (data: any) => {
+          if (data.length) {
+            if (dialogType == 'Second') {
+              this.DataSourceSecondDialog = data as Attachments[]
+              this.DataSourceSecondDialog.forEach(element => {
+                element.Attachment = [element]
+              })
+              this.ShowSecondForm = this.ShowSecondTable = true
+              this.TypeSecondDialog = "Buttons.TaskAttachments"
+              this.visibleSecondDialog = true
+            }
+            else {
+              this.DataSource = data as Attachments[]
+              this.DataSource.forEach(element => {
+                element.Attachment = [element]
+              })
+              this.ShowTable = true
+              this.visible = true
+            }
+          }
+          else {
+            const notifications = await this.ConfirmMessageObj.ShowNotification('E$' + this.TranslateObj.instant('Messages.NoAttachments'));
+            this.GenericeEventMenuServiceObj.GenericnotificationObj$.next(notifications);
+          }
+        })
+    }
+  }
+  SelectionChange(event) {
+    this.Selection = event
+    if (this.Type.includes('Tasks')) {
+    }
+  }
+  async NewDelegationAsync() {
+    this.ObjectName.DelegatedType = this.ObjectName?.DelegatorType
+    this.FormList.forEach(field => {
+      if (field.inputtype === 'date') {
+        const dateObj = this.ObjectName[field.inputname];
+        if (dateObj) {
+          this.ObjectName[field.inputname] = this.formatDateToLocalISO(dateObj);
+        }
+      }
+    });
+    let Response: number = await super.GenericSubscribe<Related, {}>(this.ObjectName, this.EndPoint.NewDelegationAsync, { showNotification: true })
+    if (Response > -1) {
+      // this.onHide()
+      this.ReturnDelegationAsync()
+      this.ObjectName = new NewDelegation()
+      this.ObjectName.DelegatedType = this.ObjectName.DelegatorType = DelegationPartyType.OU
+      this.ReturnOU()
+      this.FormList[1].optionname = this.FormList[2].optionname = "OuHead"
+    }
+  }
+  onHide() {
+    if (!this.ShowUploadDialog) {
+      this.ScanningAttachment = []
+      if (this.Type.includes(DialogType.Tasks) && this.taskUpdated)
+        this.HideEvent.emit(DialogType.Tasks)
+      else if (this.Type.includes(DialogType.Tasks) && !this.RouterObj.url.includes("AddCorrespondance")) {
+        this.menuItemService.tasks = []
+        this.HideEvent.emit()
+      }
+      else if (this.Type.includes(DialogType.AddComment))
+        this.HideEvent.emit(DialogType.AddComment)
+      else if (this.Type.includes(DialogType.Stakeholders))
+        this.HideEvent.emit(DialogType.Stakeholders)
+      else if (this.Type.includes(DialogType.AttachmentsAction))
+        this.HideEvent.emit(DialogType.AttachmentsAction)
+      else if (this.Type.includes(DialogType.InKindAttachments) || this.Type.includes(DialogType.TaskAttachments) || this.Type.includes(DialogType.AllAttachments))
+        this.HideEvent.emit()
+      else if (this.Type.includes(DialogType.Attachments))
+        this.HideEvent.emit(DialogType.Attachments)
+      else if (this.Type.includes(DialogType.Disclaimer))
+        this.HideEvent.emit(DialogType.Disclaimer)
+      else
+        this.HideEvent.emit()
+    }
+    else {
+      this.ShowUploadDialog = false
+      this.cdr.detectChanges()
+    }
+  }
+  onHideSecondDialog() {
+    this.visibleSecondDialog = false
+    // this.HideEvent.emit()
+  }
+  onHideScanningDialog() {
+    this.visibleScanningDialog = false
+  }
+  SearchByNumber(event) {
+    if (event.fieldName == "Phone") {
+      this.ReturnBeneficiary(event.value)
+    }
+  }
+  ReturnBeneficiary(Phone) {
+    this.Subscription = this.GenericServiceObj.GenericService({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType, Phone: Phone }, this.EndPoint.ReturnEntityBeneficiaryAsync).subscribe(
+      data => {
+        this.ObjectName = data[0]
+        this.visible = true
+      })
+  }
+
+  choose(callback) {
+    callback();
+  }
+  onRemoveTemplatingFile(event, file?, removeFileCallback?, index?) {
+    event.removeFileCallback(event.event, event.index);
+    this.totalSize -= parseInt(this.formatSize(event.file.size));
+    this.totalSizePercent = this.totalSize / 10;
+    this.subjects.splice(event.index, 1);
+    this.selectedType.splice(event.index, 1);
+  }
+  clearCallback() { }
+  onClearTemplatingUpload(clear) {
+    clear();
+    this.totalSize = 0;
+    this.totalSizePercent = 0;
+  }
+
+  onTemplatedUpload() {
+    // this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+  }
+  onSelectedFiles(event) {
+    this.subjects = Array(this.files.length).fill('');
+    this.selectedType = Array(this.files.length).fill('');
+    // let files = Array.from(event.currentFiles);
+    // this.files =<FileList> event.currentFiles
+    // files.forEach((file) => {
+    //   this.totalSize += parseInt(this.formatSize(file?.size));
+    // });
+    // this.totalSizePercent = this.totalSize / 10;
+  }
+
+  uploadEvent(callback) {
+    callback();
+  }
+
+  formatSize(bytes) {
+    const k = 1024;
+    const dm = 3;
+    const sizes = this.config.translation.fileSizeTypes;
+    if (bytes === 0) {
+      return `0 ${sizes[0]}`;
+    }
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+
+    return `${formattedSize} ${sizes[i]}`;
+  }
+
+  // uploadFileInChunks = async (file: File, index: number) => {
+  //   // const totalChunks = Math.ceil(file.size / this.chunkSize);
+  //   let start = 0;
+
+  //   // for (let i = 0; i < file.length; i++) {
+  //   const end = Math.min(start + this.chunkSize, file.size);
+  //   const chunk = file.slice(start, end);
+
+  //   // Create a new Attachment instance for this chunk
+  //   const att = new AttachmentSaves();
+  //   att.Description = this.subjects[index]
+  //   // att.AttachmentMaster = this.AttachmentMaster
+  //   att.SelectedSystemID = this.SelectedSystemID
+  //   att.SelectedSystemType = this.SelectedSystemType
+  //   // att.FileExt = file.name.split('.')[1];
+  //   att.Extension = att.FileExt = file.name.substr(file.name.lastIndexOf('.') + 1)
+  //   att.ArabicName = att.FileName = file.name.substr(0, file.name.lastIndexOf('.'))
+  //   // Convert the file chunk to a base64 string
+  //   att.Byts = await this.readFileAsDataURL(chunk);
+  //   att.AttachmentType = this.selectedType[index]
+  //   att.AttachmentTypeText = this.attachmentType.filter(element => element.EntityID == att.AttachmentType)[0]?.ArabicName
+  //   // this.Attachments.push(att)
+  //   return att;
+
+  //   start = end; // Move to the next chunk
+  //   // }
+  //   // return null;
+  // };
+  // uploadFileInChunks = async (file: File, index: number) => {
+  //   const totalChunks = Math.ceil(file.size / this.chunkSize);
+  //   let start = 0;
+  //   let allBase64Chunks: string[] = [];
+
+  //   for (let i = 0; i < totalChunks; i++) {
+  //     const end = Math.min(start + this.chunkSize, file.size);
+  //     const chunk = file.slice(start, end);
+  //     const base64Chunk = await this.readFileAsDataURL(chunk);
+  //     allBase64Chunks.push(base64Chunk);
+  //     start = end;
+  //   }
+
+  //   const att = new AttachmentSaves();
+  //   att.Description = this.subjects[index];
+  //   att.SelectedSystemID = this.SelectedSystemID;
+  //   att.SelectedSystemType = this.SelectedSystemType;
+  //   att.Extension = att.FileExt = file.name.substr(file.name.lastIndexOf('.') + 1);
+  //   att.ArabicName = att.FileName = file.name.substr(0, file.name.lastIndexOf('.'));
+  //   att.Byts = allBase64Chunks.join(''); // Combine all base64 chunks into one string
+  //   att.AttachmentType = this.selectedType[index];
+  //   att.AttachmentTypeText = this.attachmentType.find(e => e.EntityID == att.AttachmentType)?.ArabicName;
+
+  //   return att;
+  // };
+  uploadFileInChunks = async (file: File, index: number) => {
+    const att = new AttachmentSaves();
+    att.Description = this.subjects[index];
+    if (this.Type.includes('Task')) {
+      att.SelectedSystemID = null
+      att.SelectedSystemType = SystemType.Task
+    }
+    else {
+      att.SelectedSystemID = this.SelectedSystemID;
+      att.SelectedSystemType = this.SelectedSystemType;
+    }
+    att.Extension = att.FileExt = file.name.substr(file.name.lastIndexOf('.') + 1);
+    att.ArabicName = att.FileName = file.name.substr(0, file.name.lastIndexOf('.'));
+    att.Byts = await this.readFileAsDataURL(file).then(res => res); // Single base64
+    att.AttachmentType = this.selectedType[index];
+    att.AttachmentTypeText = this.attachmentType.find(e => e.EntityID == att.AttachmentType)?.ArabicName;
+    return att;
+  };
+
+  processFiles = async (files: FileList) => {
+    this.Attachments = this.MenuElements?.attachments?.length ? this.MenuElements?.attachments : []
+    let attachments = []
+    const fileArray = Array.from(files);
+    let i = 0
+
+    for (const file of fileArray) {
+      if (!this.Type.includes('Task')) {
+        this.Attachments.push(await this.uploadFileInChunks(file, i));
+      }
+      attachments.push(await this.uploadFileInChunks(file, i));
+      i++;
+    }
+    if (!this.Type.includes('Task') && !this.Type.includes('AddComment') && this.SelectedSystemID) {
+      let Response: number = await super.GenericSubscribe<AttachmentSaves[], {}>(attachments, this.EndPoint.UploadFileAsync, { showNotification: true, returnCode: true })
+      if (Response > -1) {
+        if (!this.Type.includes(DialogType.AttachmentsFromTable))
+          this.ReturnAttachment()
+        this.visible = true
+        this.Attachments = []
+        this.onHide()
+      }
+      else if (Response == -2) {
+        this.Attachments = []
+        if (!this.Type.includes('Task') && !this.Type.includes(DialogType.AttachmentsFromTable)) this.ReturnAttachment()
+      }
+      else {
+        this.Attachments = []
+      }
+    }
+    else if (this.Type.includes('Task')) {
+
+
+      this.ObjectName.AttachmentSaves = attachments
+      this.onHide()
+    }
+    else {
+      this.menuItemService.AttachmentSaves = this.MenuElements.attachments = this.Attachments
+      if (!this.Type.includes('.AttachmentsAction') && !this.Type.includes('.AddComment')) this.menuItemService.changeData(this.MenuElements);
+      this.Attachments = []
+      this.onHide()
+    }
+    // const options = {
+    //   headers: new HttpHeaders().append('Content-Type', 'application/json; charset=utf-8').append('Authorization', 'Bearer ' + localStorage.getItem('jwt')),
+    // };
+
+    // // Send each chunk along with the metadata
+    // await this.http.post<any>(this.url, this.Attachments, options).toPromise();
+  };
+
+  readFileAsDataURL = (file: Blob) => {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64String = (reader.result as string).replace(/^data:[^;]+;base64,/, '');
+        resolve(base64String);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  CheckedPartyType(event) {
+    if (event.inputname == "DelegatorType") {
+      if (event.value == DelegationPartyType.Employee) {
+        this.ObjectName = new NewDelegation()
+        this.ObjectName.DelegatorType = this.ObjectName.DelegatorType = event.value
+        this.ReturnAccount()
+        this.FormList[1].optionname = this.FormList[2].optionname = "AccountName"
+        this.buttons[0].permissionNumber = Permissions.NewDelegation_Delegated
+      }
+      else if (event.value == DelegationPartyType.OU) {
+        this.ObjectName = new NewDelegation()
+        this.ObjectName.DelegatorType = this.ObjectName.DelegatorType = event.value
+        this.ReturnOU()
+        this.FormList[1].optionname = this.FormList[2].optionname = "OuHead"
+        this.buttons[0].permissionNumber = Permissions.NewDelegation_Delegated
+      }
+    }
+
+    else if (event.inputname == "Cause") {
+      if (Number(this.configService.getConfig()?.TaskIsSingleOriginal) == 1) {
+        this.ObjectName.list = null
+        // if (event.value == Cause.Copy) {
+        //   this.FormList[1].inputtype = "multiSelect"
+        //   this.FormList[1].formtype = "multiSelect"
+        // }
+
+        // else if (event.value == Cause.Original) {
+        //   this.ObjectName.list = null
+        //   this.FormList[1].inputtype = "select"
+        //   this.FormList[1].formtype = "select"
+        // }
+      }
+    }
+    else if (event.inputname != "TaskIsMain") {
+      if (event.value == InnerParty.OuterParty) {
+        this.ObjectName.list = null
+        this.ObjectName.ToList = null
+        this.ObjectName = new Stakeholders()
+        this.ReturnPartyAsync()
+        if (this.Type.includes('Stakeholders')) {
+          this.FormList[1].optionname = "ArabicName"
+          this.FormList[1].formtype = 'multiSelect'
+        }
+        else {
+          this.FormList[1].optionname = "ArabicName"
+          this.FormList[1].formtype = 'multiSelect'
+        }
+      }
+      else if (event.value == InnerParty.SameUnit) {
+        this.ObjectName.list = null
+        this.ObjectName.ToList = null
+        this.ObjectName = new Stakeholders()
+        this.ReturnInternalOU()
+        if (this.Type.includes('Stakeholders')) {
+          this.FormList[1].optionname = "OuHead"
+          this.FormList[1].formtype = 'multiSelect'
+        }
+        else {
+          this.FormList[1].optionname = "ArabicName"
+          this.FormList[1].formtype = 'multiSelect'
+        }
+      }
+      else if (event.value == InnerParty.SpecificAccount) {
+        this.ObjectName.list = null
+        this.ObjectName.ToList = null
+        this.ObjectName = this.Type.includes('Stakeholders') ? new Stakeholders() : new ListOfTasks()
+        this.ReturnAccountForDirectingPurpose()
+        if (this.Type.includes('Stakeholders')) {
+          this.FormList[1].optionname = "AccountSummary"
+          this.FormList[1].formtype = 'multiSelect'
+        }
+        else {
+          this.FormList[1].optionname = "AccountSummary"
+          this.FormList[1].formtype = 'multiSelect'
+          this.ObjectName.TaskSave.TaskToType = DelegationPartyType.Employee
+          if (this.Type.includes('Tasks')) {
+            this.FormList.forEach(obj => {
+              if (['RoutingProcedure'].includes(obj.inputname))
+                obj.list = []
+            })
+          }
+        }
+      }
+      else if (event.value == InnerParty.SelectedOU) {
+        this.ObjectName.list = null
+        this.ObjectName.ToList = null
+        this.ObjectName = this.Type.includes('Stakeholders') ? new Stakeholders() : new ListOfTasks()
+        if (this.Type.includes('Stakeholders')) {
+          this.ReturnOU()
+          this.FormList[1].optionname = "OuHead"
+          this.FormList[1].formtype = 'multiSelect'
+        }
+        else {
+          this.ReturnOU(this.EndPoint.ReturnOUExceptMine)
+          this.FormList[1].optionname = "OuHead"
+          this.FormList[1].formtype = 'multiSelect'
+          this.ObjectName.TaskSave.TaskToType = DelegationPartyType.OU
+        }
+      }
+      else if (event.value == InnerParty.GroupMember) {
+        this.ObjectName.list = null
+        this.ObjectName.ToList = null
+        this.ObjectName = this.Type.includes('Stakeholders') ? new Stakeholders() : new ListOfTasks()
+        this.ReturnGroup()
+
+        if (this.Type.includes('Stakeholders')) {
+          this.FormList[1].optionname = "ArabicName"
+          this.FormList[1].formtype = 'select'
+        }
+        else {
+          this.FormList[1].optionname = "ArabicName"
+          this.FormList[1].formtype = 'select'
+          this.ObjectName.TaskSave.TaskToType = DelegationPartyType.Employee
+        }
+      }
+      if (event.value != Cause.Copy && event.value != Cause.Original) {
+        if (event.inputname == "InnerPartyClassification") {
+          if (this.Type.includes('Stakeholders'))
+            this.ObjectName.StakeholdersSave.InnerPartyClassification = this.ObjectName.InnerPartyClassification = event.value
+          else if (this.Type.includes('Tasks')) {
+            this.ObjectName.TaskSave.InnerPartyClassification = this.ObjectName.InnerPartyClassification = event.value
+          }
+        }
+      }
+    }
+    else if (event.inputname == "TaskIsMain") {
+      if (event.value == 0) {
+        if (Number(this.configService.getConfig()?.TaskIsSingleOriginal) == 1) {
+          this.ObjectName.list = null
+          this.FormList[1].inputtype = "multiSelect"
+          this.FormList[1].formtype = "multiSelect"
+        }
+        this.ReturnRoutingProcedure(this.EndPoint.ReturnRoutingProcedureCC)
+      }
+      else if (event.value == 1) {
+        if (Number(this.configService.getConfig()?.TaskIsSingleOriginal) == 1) {
+          this.ObjectName.list = null
+          this.FormList[1].inputtype = "select"
+          this.FormList[1].formtype = "select"
+        }
+        this.ReturnRoutingProcedure(this.EndPoint.ReturnRoutingProcedureMain)
+      }
+      else {
+        this.FormList.forEach(obj => {
+          if (['RoutingProcedure'].includes(obj.inputname))
+            obj.list = []
+        })
+      }
+    }
+  }
+  async ReturnAttachment() {
+    this.MenuElements.attachments = await super.GenericSubscribe<any, AttachmentSaves[]>({
+      SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType
+    }, this.EndPoint.ReturnAttachment, { returnAsArray: true, lookup: null, saveMessage: null, disableConfirm: true, showNotification: true });
+    this.menuItemService.changeData(this.MenuElements);
+  }
+  async Action(event: any) {
+    if (event.actionName == "acquise") {
+      let object = event?.event?.Tasks ? JSON.parse(event?.event?.Tasks) : null
+      this.AcquisTasksByDelegationAsync(object[0]?.TaskID)
+    }
+    else if (event.actionName == "close1") {
+      this.CloseCorrespondenceAsync(event?.event?.EntityID)
+    }
+    else if (event.actionName == "delete") {
+      let result = []
+      if (this.Type.includes('InKindAttachments')) {
+        result = await this.Delete(this.EndPoint.DeleteIn_kindAttachmentsAsync, event?.event, event?.event.EntityID)
+        if (Array.isArray(result)) {
+          this.menuItemService.In_Kinds = result
+        } else {
+          this.ReturnIn_kindAttachmentsAsync()
+        }
+      }
+      else if (this.Type.includes('Beneficiaries')) {
+        result = await this.Delete(this.EndPoint.DeleteEntityBeneficiaryAsync, event?.event, event?.event.EntityID)
+        if (Array.isArray(result)) {
+          this.menuItemService.EntityBeneficiaries = result
+        } else {
+          this.ReturnEntityBeneficiaryAsync()
+        }
+      }
+      else if (this.Type.includes('Stakeholders')) {
+        result = await this.DeleteStakeholders(this.EndPoint.DeleteStakeholdersAsync, event?.event, event?.event.EntityID)
+        if (Array.isArray(result)) {
+          this.menuItemService.StakeholdersSave = result
+        } else {
+          this.ReturnStakeholdersAsync()
+        }
+      }
+      else if (this.Type.includes('Tasks')) {
+        result = await this.Delete(this.EndPoint.DeleteTaskAsync, event?.event, event?.event.TaskID)
+        if (Array.isArray(result)) {
+          // result = this.DataSource = this.DataSource.filter(element => element != event?.event ? element : null)
+          this.menuItemService.tasks = result
+        }
+        else if ([null, undefined, 'null', 'undefined'].includes(localStorage.getItem("TaskType"))) {
+          this.ReturnTaskAsync()
+        }
+      }
+      else if (this.Type.includes('Related')) {
+        result = await this.Delete(this.EndPoint.DeleteRelated, event?.event, event?.event.RelatedEntityID)
+        if (Array.isArray(result)) {
+          this.menuItemService.Related = result
+        } else {
+          this.ReturnRelated()
+        }
+      }
+    }
+
+    else if (event.actionName == "ViewComments") {
+      this.InitSecondDialog(event?.event?.TaskID, DialogType.ViewComments)
+      // this.ShowTable = true 
+    }
+    else if (event.actionName == "Comment") {
+      this.InitSecondDialog(event?.event?.TaskID, DialogType.Comment)
+    }
+    else if (event.actionName == "taskAttachments") {
+      this.InitSecondDialog(event?.event?.TaskID, DialogType.TaskAttachments, event?.event?.AttachmentMaster)
+    }
+    else if (event.actionName == "View") {
+      console.log("View View View", event.event.EntityID);
+
+      localStorage.setItem('StkhldrEntityID', null);
+      localStorage.setItem('TaskID', null);
+
+      const encodedRef = btoa(event.event.EntityID);
+
+      const url = `${window.location.origin}/#/Content/ViewCorrespondance?ref=${encodedRef}`;
+
+      window.open(url, '_blank');
+    }
+  }
+  InitSecondDialog(taskID, type, AttachmentMaster?) {
+    if (type.includes(DialogType.ViewComments)) {
+      this.DisplayColumnSecondDialog =
+        [
+          { field: 'CreationDate', header: "Comment.CreationDate" },
+          { field: 'FullName', header: 'Comment.FullName' },
+          { field: 'NoteContent', header: 'Comment.CommentBody' },
+        ]
+      this.ReturnNoteAsync("Second", taskID)
+      // this.ShowTable = true 
+    }
+
+    else if (type == DialogType.Comment) {
+      this.FormListSecondDialog = [
+        {
+          inputname: 'CommentBody',
+          translateinput: 'Comment.CommentBody',
+          placeholder: 'placeholder.string',
+          formtype: 'input',
+          inputtype: 'textareamulti',
+          show: true,
+          isrequired: false,
+        },
+        {
+          inputname: 'File',
+          translateinput: 'Tasks.UploadFile',
+          formtype: 'file',
+          show: true,
+          isrequired: true,
+          class: 'col-6'
+        }
+      ]
+      this.DisplayColumnSecondDialog =
+        [
+          { field: 'CommentBody', header: 'Comment.CommentBody' },
+          { field: 'AccountName', header: 'Comment.AccountName' },
+          { field: 'CreationDate', header: "Comment.CreationDate" },
+          { field: 'Attachment', header: 'Tasks.Attachment', name: 'html' },
+        ]
+      this.buttonsSecondDialog = [
+        {
+          name: 'Buttons.Save',
+          show: true,
+          permissionNumber: '',
+          function: async () => this.NewTaskCommentAsync(taskID),
+          properties: { id: 'SaveButton', class: 'btn btn-primary m-1' }
+        },
+        {
+          name: 'Buttons.Reset',
+          show: true,
+          permissionNumber: '',
+          function: () => this.ResetSecondDialog(),
+          properties: { id: 'resetButton', class: 'btn btn-secondary m-1' }
+        },
+      ]
+      this.ObjectNameSecondDialog = new Comment()
+      this.FormGroupObjSecondDialog = new FormGroup({
+        CommentBody: new UntypedFormControl(this.ObjectName?.CommentBody),
+        File: new UntypedFormControl(this.ObjectName?.File)
+      });
+      this.ShowSecondForm = this.ShowSecondTable = true
+      this.TypeSecondDialog = "Correspondance.Comment"
+
+      this.visibleSecondDialog = true
+
+      // this.visibleSecondDialog = true
+      this.ReturnCommentTaskAsync(taskID)
+    }
+    else if (type == DialogType.TaskAttachments) {
+      this.DisplayColumnSecondDialog =
+        [
+          { field: 'ArabicName', header: "AllAttachment.ArabicName" },
+          { field: 'AttachmentTypeText', header: 'AllAttachment.AttachmentTypeText' },
+          { field: 'Description', header: 'AllAttachment.Description' },
+          { field: 'Attachment', header: 'AllAttachment.Attachment', name: 'html' },
+        ]
+
+      this.ReturnTaskAttachmentsAsync("Second", AttachmentMaster)
+    }
+  }
+  async DeleteStakeholders(api, obj, ID): Promise<any> {
+
+    // if (this.SelectedSystemID) {
+    //   if (obj?.GroupMember?.length) {
+    //     let ids = []
+    //     obj?.GroupMember?.forEach(async element => {
+    //       console.log(element?.RowId)
+    //       ids.push(element?.RowId)
+
+    //       console.log(ids?.join(','))
+    //       //
+    //     })
+    //     await this.DeleteStakeholder(ids?.join(','))
+    //   }
+    //   else {
+    //     await this.DeleteStakeholder(obj.IssuingAndCopyingID.toString())
+    //     // let Response: number = await super.GenericSubscribe<any, {}>({ EntityID: obj.IssuingAndCopyingID }, api, { showNotification: true })
+    //     // if (Response > -1) {
+    //     //   return null;
+    //     // }
+    //   }
+
+    // }
+    // else {
+    this.DataSource = this.DataSource.filter(element => element != obj ? element : null)
+    return this.DataSource
+    // }
+  }
+  async DeleteStakeholder(ids) {
+    let Response: number = await super.GenericSubscribe<any, {}>({ IDzForMaintain: ids }, this.EndPoint.DeleteManyStakeholdersAsync, { showNotification: true })
+    if (Response > -1) {
+      return null;
+    }
+  }
+  async Delete(api, obj, ID): Promise<any> {
+
+    // if (this.SelectedSystemID) {
+    //   let Response: number = await super.GenericSubscribe<any, {}>({ EntityID: ID }, api, { showNotification: true })
+    //   if (Response > -1) {
+    //     return null;
+    //   }
+    // }
+    // else {
+    this.DataSource = this.DataSource.filter(element => element != obj ? element : null)
+    return this.DataSource
+    // }
+  }
+  async AcquisTasksByDelegationAsync(id) {
+
+    let Response: number = await super.GenericSubscribe<{}, {}>({ EntityID: id }, this.EndPoint.AcquisTasksByDelegationAsync, { showNotification: true })
+    if (Response > -1) {
+      this.ReturnDelegationAsync()
+    }
+  }
+  async CloseCorrespondenceAsync(id) {
+
+    const Response: number = await super.GenericSubscribe<{}, {}>({ EntityID: id }, this.EndPoint.CloseCorrespondenceAsync, { showNotification: true })
+    if (Response > -1) {
+      this.ReturnRelated()
+    }
+  }
+  DownloadAttachment(event) {
+
+  }
+  ViewAttachment(event) {
+
+  }
+  customDocument: CustomDocument = new CustomDocument()
+  async CustomDocument(event) {
+    if (this.SelectedSystemID) {
+      this.customDocument.SelectedSystemID = this.SelectedSystemID
+      this.customDocument.SelectedSystemType = this.SelectedSystemType
+      this.customDocument.CustomDocument = this.text = event
+      const Response: number = await super.GenericSubscribe<CustomDocument, {}>(this.customDocument, this.EndPoint.AddCustomDocumnetAsync, { showNotification: true })
+      if (Response > -1) {
+        this.ReturnAttachment()
+        this.text = null
+        this.onHide()
+      }
+      else {
+        this.text = null
+      }
+    }
+    else {
+      this.menuItemService.CustomDocument = this.text
+      this.text = null
+      this.onHide()
+    }
+  }
+  // طباعة سجل المتابعة
+  async ReportAuditLogPdf() {
+    let ReportAuditLogPdf = await super.GenericSubscribe<any, any>({ SelectedSystemID: this.SelectedSystemID, SelectedSystemType: this.SelectedSystemType }, this.EndPoint.ReportTaskAsyncPdf, { returnAsArray: true, lookup: null, saveMessage: null, disableConfirm: true, showNotification: true });
+    let blob = b64toBlob(ReportAuditLogPdf?.Base64, 'application/pdf');
+    importedSaveAs(blob);
+  }
+  //LOOKUPS
+  Lookups = []
+  ReturnPartyAsync() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnPartyAsync).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['list', 'Delegator', 'Delegated'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['list', 'Delegator', 'Delegated'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnOU(api = this.EndPoint.ReturnOU) {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, api).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['list', 'Delegator', 'Delegated', 'OU'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['list', 'Delegator', 'Delegated', 'OU'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnAccount() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({ ExceptMe: 1 }, this.EndPoint.ReturnAccount).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['Delegator', 'Delegated'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['Delegator', 'Delegated'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnAccountForDirectingPurpose() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({ ForCurrentLoggedIn: 1, ExceptMe: 1 }, this.EndPoint.ReturnAccountForDirectingPurpose).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['list'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['list'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnGroup() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnGroup).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['list'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['list'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnInternalOU() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnInternalOU).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['list'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['list'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnRoutingProcedure(api) {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, api).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['RoutingProcedure'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+            this.AdvancedFormList.forEach(obj => {
+              if (['RoutingProcedure'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+
+          } else {
+            this.FormList.forEach(obj => {
+              if (['RoutingProcedure'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+            this.AdvancedFormList.forEach(obj => {
+              if (['RoutingProcedure'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnGroupMember(obj) {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({ EGroup: obj.TaskTo ? obj.TaskTo : obj.TaskTo }, this.EndPoint.ReturnGroupMember).subscribe(
+      data => {
+        try {
+          obj.GroupMember = <[]>data
+          //  this.DataSource.push(obj)
+          if (this.Type.includes('Tasks'))
+            this.menuItemService.tasks.push(obj)
+          else if (this.Type.includes('Stakeholders'))
+            this.menuItemService.StakeholdersSave.push(obj)
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      }
+    );
+  }
+  ReturnInkindAttachmentType() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnInkindAttachmentType).subscribe(
+      data => {
+        try {
+          this.LookUpList = <[]>data
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (['AttachmentType'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (['AttachmentType'].includes(obj.inputname))
+                obj.list = this.LookUpList
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnTaskImportance() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnTaskImportance).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "Importance") {
+                obj.list = this.LookUpList
+              }
+            })
+            this.AdvancedFormList.forEach(obj => {
+              if (obj.inputname == "Importance") {
+                obj.list = this.LookUpList
+              }
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "Importance") {
+                obj.list = this.LookUpList
+              }
+            })
+            this.AdvancedFormList.forEach(obj => {
+              if (obj.inputname == "Importance") {
+                obj.list = this.LookUpList
+              }
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnAttachmentType() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnAttachmentType).subscribe(
+      data => {
+        try {
+          this.attachmentType = data as []
+        }
+        catch (err) {
+          this.ServerSide = true
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnStoreFileAsync() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnStoreFileAsync).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "FileNo") {
+                obj.list = this.LookUpList
+              }
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "FileNo") {
+                obj.list = this.LookUpList
+              }
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnCrspndnsRecordsAsync() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnMyCrspndnsRecordsAsync).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "Record") {
+                obj.list = this.LookUpList
+              }
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "Record") {
+                obj.list = this.LookUpList
+              }
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnCorrespondenceType() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnCorrespondenceType).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "TypeOf") {
+                obj.list = this.LookUpList
+              }
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "TypeOf") {
+                obj.list = this.LookUpList
+              }
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnCorrespondenceClassification() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnCorrespondenceClassification).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "Category") {
+                obj.list = this.LookUpList
+              }
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "Category") {
+                obj.list = this.LookUpList
+              }
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+  ReturnCoressStatus() {
+    this.UnSubLookUp = this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnCoressStatus).subscribe(
+      data => {
+        try {
+          this.LookUpList = data as []
+          if (this.LookUpList.length == 0 || this.LookUpList.length == undefined) {
+            this.LookUpList = []
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "STATUS") {
+                obj.list = this.LookUpList
+              }
+            })
+          } else {
+            this.FormList.forEach(obj => {
+              if (obj.inputname == "STATUS") {
+                obj.list = this.LookUpList
+              }
+            })
+          }
+        }
+        catch (err) {
+          this.ServerSide = true
+
+        }
+      },
+      error => {
+        this.ServerSide = true
+        this.ServerErrors.push(this.ErrorsObj.returnerrormassage("" + error.status));
+      }
+    );
+  }
+
+  //Scan (صويص)
+  checkServiceAvailable(data, buttonID) {
+    fetch("http://localhost:7080/checkServiceAvailable", {
+      method: 'POST',
+      body: data
+    }).then(response => {
+
+
+      console.log('Response status:', response.status);
+      // Check if the response status is OK (200)
+      if (response.ok) {
+
+        // *** this.disableJobsButtons = true
+        this.checkServiceVersion(data, buttonID);
+        console.log('Java service is running on your PC.');
+      } else {
+        // If the response status is not OK, throw an error to trigger the catch block
+        console.error('Non--OK response status received:', response.status);
+        throw new Error('Service unavailable');
+      }
+    })
+      .catch(error => {
+        // An error occurred during the request (e.g., network error or server error)
+        console.error('Error occurred while checking Java service status:', error);
+        if (error instanceof TypeError) {
+          // TypeError indicates a network error or invalid URL
+          console.error('Network error or invalid URL:', error.message);
+        } else if (error instanceof SyntaxError) {
+          // SyntaxError indicates a parsing error in the response
+          console.error('Error parsing response:', error.message);
+        } else {
+          // Other errors (e.g., server error)
+          console.error('Unknown error:', error.message);
+        }
+        // Display a confirmation dialog indicating that the service is unavailable
+        let confirmation = window.confirm("لم يتم العثور على مشغل الماسحة على جهازك ، هل تريد تنزيل المشغل لتقوم بعملية المسح الضوئي؟");
+        if (confirmation) {
+          this.pressButton('headerSubView:downloadSetupFile');
+
+          console.log("Action confirmed. Performing action...");
+
+        } else {
+          // User clicked "Cancel", do nothing or provide feedback
+          console.log("Action cancelled.");
+        }
+      });
+  }
+  async checkServiceVersion(data, buttonID) {
+    try {
+      const response = await fetch("http://localhost:7080/checkServiceVersion", {
+        method: 'POST',
+        body: '1.0'
+      });
+
+      console.log('Response status:', response.status);
+
+      if (response.ok) {
+        // Use await inside an async function
+        const responseData = await this.doScan(data, buttonID);
+        if (responseData === 200)
+          document.getElementById('mailDocumentDataTab:documentTable:returnedFromScanner')?.click();
+        // this.Send = false
+
+        console.log('Java service is running on your PC.');
+      } else if (response.status === 204) { // Use response.status to check status code
+        // If the response status is 204, show confirmation dialog
+        let confirmation = window.confirm("نسخة الماسحة التي على جهازك قديمة وغير متوافقة مع تحديثات النظام ، هل تريد تنزيل النسخة الجديدة؟");
+        if (confirmation) {
+          this.pressButton('headerSubView:downloadSetupFile');
+          console.log("Action confirmed. Performing action...");
+        } else {
+          console.log("Action cancelled.");
+        }
+        throw new Error('Service unavailable');
+      } else {
+        console.error('Non--OK response status received:', response.status);
+        throw new Error('Service unavailable');
+      }
+    } catch (error) {
+      console.error('Error occurred while checking Java service status:', error);
+      // Display a confirmation dialog indicating that the service is unavailable
+      let confirmation = window.confirm("لم يتم العثور على مشغل الماسحة على جهازك ، هل تريد تنزيل المشغل لتقوم بعملية المسح الضوئي؟");
+      if (confirmation) {
+        this.pressButton('headerSubView:downloadSetupFile');
+        console.log("Action confirmed. Performing action...");
+      } else {
+        console.log("Action cancelled.");
+      }
+    }
+  }
+  description: string = null
+  ActionAttachmentType: any = null
+  async doScan(data, buttonID) {
+
+    try {
+
+      const response = await fetch("http://localhost:7080/scanActionFromWebComponent", {
+        method: 'POST',
+        body: data
+      });
+
+      console.log('Response status:', response.status);
+      if (response.status == 200) {
+        if (this.SelectedSystemID && !this.Type.includes('Tasks') && !this.Type.includes('Comment')) {
+          this.ReturnAttachment()
+          this.visible = true
+          this.Attachments = []
+          this.onHide()
+        }
+        else {
+          // ⬇️ Get JSON here
+          const json = await response.json();
+          const att = new AttachmentSaves();
+          if (json.content) {
+            att.SelectedSystemType = this.SelectedSystemType;
+            att.Extension = att.FileExt = this.ATTACHMNET_TYPE;
+            const now = new Date();
+            const timestamp = now.toISOString().replace(/[:]/g, "-").replace("T", "_").split(".")[0];
+            att.ArabicName = att.FileName = `attachment_${timestamp}`;
+            att.Byts = json.content;
+            att.Description = this.description
+            att.AttachmentType = this.ActionAttachmentType
+            if (this.Type.includes('Tasks') || this.Type.includes('Comment')) {
+              // this.ScanningAttachment.push(att)
+              this.ScanningAttachment = [...this.ScanningAttachment, att];
+              this.cdr.detectChanges()
+
+            }
+            else if (this.Type.includes('.AttachmentsAction')) {
+              this.ScanningAttachment = [...this.ScanningAttachment, att];
+              if (this.ScanningAttachment.length) {
+                this.ScanningAttachment.forEach(element => {
+                  this.menuItemService.AttachmentSaves?.push(element)
+                })
+              }
+              this.menuItemService.changeData(this.MenuElements);
+              this.Attachments = []
+              this.onHide()
+            }
+            else {
+              if (!this.MenuElements.attachments) this.MenuElements.attachments = []
+              this.ScanningAttachment = [...this.ScanningAttachment, att];
+              this.menuItemService.AttachmentSaves = this.MenuElements.attachments
+              this.menuItemService.changeData(this.MenuElements);
+              this.Attachments = []
+              this.onHide()
+            }
+          }
+        }
+
+        // *** this.scann = true
+        // *** this.save = true
+        // *** this.Send = false
+        // *** this.reset = true
+        // *** this.disableJobsButtons = false
+        // *** localStorage.setItem("hide", this.hide)
+        // *** console.log("HHHHHHh", this.hide)
+        // *** document.getElementById('documentTable:returnedFromScanner').click();//inmailTrangeranceDialog
+        // *** document.getElementById('mailDocumentDataTab:documentTable:returnedFromScanner').click();
+        // *** document.getElementById('mailDocumentDataTab:documentTable:returnedFromScanner').click();
+        // *** document.getElementById('mailDocumentDataTab:documentTable:returnedFromScanner').click();
+        // *** document.getElementById(buttonID).click();
+        const responseData = await response.status;
+        return responseData;
+      }
+      else if (response.status == 201) {
+        // *** this.disableJobsButtons = false
+      }
+      else {
+        console.error('Non--OK response status received:', response.status);
+        throw new Error('Service unavailable');
+      }
+
+    } catch (error) {
+      alert("حدث خلل أثناء عملية التصوير");
+      console.error('Error occurred while checking Java service status:', error);
+      if (error instanceof TypeError) {
+        console.error('Network error or invalid URL:', error.message);
+      } else if (error instanceof SyntaxError) {
+        console.error('Error parsing response:', error.message);
+      } else {
+        console.error('Unknown error:', (<SyntaxError>error).message);
+      }
+    }
+    return 0;
+  }
+  // Function to initiate the file download with delay
+  downloadFileWithDelay() {
+    // Make a GET request to the API endpoint
+    document.getElementById('mailDocumentDataTab:documentTable:downloadSetupFile').click();
+  }
+  doScan2(data) {
+    fetch("http://localhost:7080/scanActionFromWebComponent", {
+      method: 'POST',
+      body: data
+    }).then(response => {
+      console.log('Response status:', response.status);
+      // Check if the response status is OK (200)
+      if (response.ok) {
+        alert("done Scanning");
+        document.getElementById('mailDocumentDataTab:documentTable:returnedFromScanner').click();
+        console.log('Java service is running on your PC.');
+      } else {
+        // If the response status is not OK, throw an error to trigger the catch block
+        console.error('Non--OK response status received:', response.status);
+        throw new Error('Service unavailable');
+      }
+    })
+      .catch(error => {
+        // An error occurred during the request (e.g., network error or server error)
+        console.error('Error occurred while checking Java service status:', error);
+        if (error instanceof TypeError) {
+          // TypeError indicates a network error or invalid URL
+          console.error('Network error or invalid URL:', error.message);
+        } else if (error instanceof SyntaxError) {
+          // SyntaxError indicates a parsing error in the response
+          console.error('Error parsing response:', error.message);
+        } else {
+          // Other errors (e.g., server error)
+          console.error('Unknown error:', error.message);
+        }
+
+        // Display a confirmation dialog indicating that the service is unavailable
+        let confirmation = window.confirm("؟");
+        if (confirmation) {
+          this.pressButton('headerSubView:downloadSetupFile');
+
+          console.log("Action confirmed. Performing action...");
+
+        } else {
+          // User clicked "Cancel", do nothing or provide feedback
+          console.log("Action cancelled.");
+        }
+      });
+  }
+  Scan() {
+
+    let token = 'Bearer ' + localStorage.getItem('jwt')
+    let BUTTONID = <HTMLDivElement>document.getElementById("BUTTONID")
+    var varaible_
+      = "UPLOAD_URL::" + this.NewZajel + this.EndPoint.NewScan
+      + "#ATTACHMNET_TYPE::" + this.ATTACHMNET_TYPE
+      + "#IMAGE_MODE::" + this.IMAGE_MODE
+      + "#SCAN_TYPE::" + this.SCAN_TYPE
+      + "#RESOLUTION::" + this.RESOLUTION
+      + "#BRIGHTNESS::" + this.BRIGHTNESS
+      + "#THRESHOLD::" + this.THRESHOLD
+      + "#CONTRAST::" + this.CONTRAST
+      + "#parameter::" + this.SelectedSystemType + '|' + this.SelectedSystemID + '|' + token
+
+    this.checkServiceAvailable(varaible_, BUTTONID);
+
+
+  }
+  pressButton(linkId) {
+    var fireOnThis = document.getElementById(linkId);
+    if (fireOnThis == null) {
+      alert('The Link Is Undefined');
+      return;
+    }
+
+  }
+  async ReturnScannersettingPolicy() {
+    let ReturnObj = await this.GenericServiceObj.GenericService({}, this.EndPoint.ReturnScannersettingPolicy).subscribe(
+      data => {
+        this.Scannersetting = <[any]>data
+        this.selectedDocumentSource = Number(this.Scannersetting[0]?.Value)
+        this.selectedResolutionOption == Number(this.Scannersetting[1]?.Value)
+        this.selectedPixelTypeOption == Number(this.Scannersetting[2]?.Value)
+        this.selectedPageSizeOption == Number(this.Scannersetting[4]?.Value)
+        this.selectedDuplexOption == Number(this.Scannersetting[5]?.Value)
+      })
+  }
+  // scan  (Comment / Task)
+  ScanForTaskAndComment() {
+    if (this.Type.includes('Task')) {
+      this.ScanningSystemType = SystemType.Task
+    }
+    else if (this.Type.includes('Comment')) {
+      this.ScanningSystemType = SystemType.Comments
+    }
+    this.visibleScanningDialog = true
+  }
+  OpenAttachmentsDialog() {
+    if (this.Type.includes(DialogType.Tasks)) {
+      this.ShowUploadSection = Number(this.configService.getConfig()?.TaskUploadfiles) == 1 ? true : false
+      this.ShowCustomDocumentsSection = false
+      this.ShowScanSection = Number(this.configService.getConfig()?.TaskUseScanner) == 1 ? true : false
+      this.TaskUpload = true
+      this.TaskType = SystemType.Task
+      this.ShowUploadDialog = true
+    }
+    else {
+      this.ShowUploadSection = true
+      this.ShowCustomDocumentsSection = false
+      this.ShowScanSection = true
+      this.TaskUpload = false
+      this.CommentType = true
+      this.ShowUploadDialog = true
+    }
+  }
+  //save attachment (Comment / Task)
+  onAttachmentSavedForCommentOrTask(Attachments) {
+    Attachments.forEach(element => {
+      this.ScanningAttachment.push(element)
+    })
+    this.visibleScanningDialog = false
+  }
+  // Webtawain scanning tool (للرجوع للصفحة الرئيسية في حال انه لا يريد الاستمرار بالتصوير )
+  BackToMainPage() {
+    this.visibleScanningDialog = false
+  }
+  //format date
+  formatDateToLocalISO(date: Date): string {
+    const d = new Date(date);
+    // Adjust for timezone offset (so date stays the same no matter the timezone)
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().split('T')[0];  // yyyy-MM-dd
+  }
+  // Save Attachments
+  onAttachmentSaved(Attachments) {
+    if (this.SelectedSystemID) {
+      this.ReturnAttachment()
+      this.visible = true
+      this.Attachments = []
+    }
+    else {
+      if (!this.MenuElements.attachments) this.MenuElements.attachments = []
+      Attachments.forEach(element => {
+        this.MenuElements.attachments.push(element)
+      })
+      this.menuItemService.AttachmentSaves = this.MenuElements.attachments
+      this.menuItemService.changeData(this.MenuElements);
+      this.Attachments = []
+      // this.onHide()
+    }
+  }
+
+  //تنويه
+  async FinishIssuingAndCopyingByReviewingWthNotAsync() {
+    const Response: number = await super.GenericSubscribe<any, {}>({
+      CloseTheseTasks: this.IssuingAndCopyingID,
+      // EntityID: this.newCrspndns.MainInfo.StkhldrEntityID ? this.newCrspndns.MainInfo.StkhldrEntityID : this.newCrspndns.MainInfo.TaskID,
+      // SelectedSystemID: this.newCrspndns.MainInfo.StkhldrEntityID ? this.newCrspndns.MainInfo.StkhldrEntityID : this.newCrspndns.MainInfo.TaskID,
+      // SelectedSystemType: this.newCrspndns.MainInfo.IssuingAndCopying ? SystemType.new : SystemType.Correspondence,
+      NoteSave: {
+        NoteContent: this.TranslateObj.instant('Buttons.Knowledge'),
+        //  NoteType: this.selectedNoteType, SelectedSystemID: this.newCrspndns.MainInfo.StkhldrEntityID ? this.newCrspndns.MainInfo.StkhldrEntityID : this.newCrspndns.MainInfo.TaskID, SelectedSystemType: this.newCrspndns.MainInfo.IssuingAndCopying ? SystemType.new : SystemType.Correspondence
+      }
+    }, this.EndPoint.FinishIssuingAndCopyingByReviewingWthNotAsync, { disableConfirm: true, showNotification: true })
+    if (Response > -1) {
+      this.onHide()
+    }
+    // }
+  }
+
+
+  stats: Stats;
+  statCards = [
+    { key: 'total', label: 'FollowStats.total', icon: 'total', color: 'blue' },
+    { key: 'urgent', label: 'FollowStats.urgent', icon: 'urgent', color: 'red' },
+    { key: 'read', label: 'FollowStats.read', icon: 'read', color: 'green' },
+    { key: 'unread', label: 'FollowStats.unread', icon: 'unread', color: 'amber' },
+  ]
+
+
+  //--------added by rahaf => calculate stats for follow ------
+  isStatsLoading: boolean = true;
+  calculateStats(data: any[]) {
+
+    const today = new Date(); //date of today 
+    this.stats = {
+      total: data.length,
+      urgent: data.filter(t => t.IsLate === 1 || (new Date(t.ExpiryDate) < today && t.STATUS !== 267)).length,
+      read: data.filter(t => t.ReadingDateTime !== null).length,
+      unread: data.filter(t => t.ReadingDateTime === null).length
+
+    }
+    this.isStatsLoading = false;
+  }
+}
+
+export enum DialogType {
+  StorePlace = 'StorePlace',
+  InKindAttachments = 'InKindAttachments',
+  Beneficiaries = 'Beneficiaries',
+  Stakeholders = 'Stakeholders',
+  Follow = 'Follow',
+  Tasks = 'Tasks',
+  Comment = 'Comment',
+  Related = 'Related',
+  NewDelegation = 'NewDelegation',
+  MailHistory = 'MailHistory',
+  AllAttachments = 'AllAttachments',
+  Disclaimer = 'Disclaimer',
+  AttachmentsAction = 'AttachmentsAction',
+  Attachments = 'Attachments',
+  ViewComments = 'ViewComments',
+  TaskAttachments = 'TaskAttachments',
+  AttachmentsFromTable = 'AttachmentsFromTable',
+  AddComment = "AddComment"
+}
+

@@ -1,0 +1,93 @@
+<p-dialog [(visible)]="visible" [position]="'center'" [style]="{ width: dialogWidth, height: dialogHeight }"
+    [modal]="true" draggable="false" (onHide)="onHide()" [header]=" Type | translate" class="dialog">
+    <app-form [FormList]="FormList" [FormGroupObj]="FormGroupObj" [ObjectName]="ObjectName"
+        *ngIf="ShowForm && !visibleScanningDialog" [buttons]="buttons" (OnClickEvent)="CheckedPartyType($event)"
+        (openScanEvent)="ScanningTool == 'dwt' ? ScanForTaskAndComment() : Scan()"
+        [ScanningAttachment]="ScanningAttachment"
+        (SelectionChangeWthNameEvent)="SelectionChangeRoutingProcedure($event)"></app-form>
+    <button *ngIf="Type.includes('Follow')" (click)="ReportAuditLogPdf()" class='btn btn-primary m-3'>{{'Buttons.Print'
+        | translate}}</button>
+    <button *ngIf="visibleScanningDialog" class='btn btn-primary m-3' (click)="BackToMainPage()">
+        {{'Buttons.Back' | translate}}</button>
+    <h6 *ngIf="ShowAdvancedForm">{{'Tasks.ChooseMainParty' | translate}}</h6>
+    <app-dwt [events]="eventsSubjectScanning.asObservable()" [SelectedSystemId]="null"
+        [SelectedSystemType]="ScanningSystemType" *ngIf="ScanningTool == 'dwt' && visibleScanningDialog"
+        (attachmentSaved)="onAttachmentSavedForCommentOrTask($event)"></app-dwt>
+
+    <!-------- added by rahaf => For Fllow للمتابعة شاشة خاصة -------->
+    <div *ngIf="Type.includes('Follow') && showNewFollowUpTemplate" class="Follow-up-container">
+        <!---STATS-->
+        <div class="stats-row">
+            <div *ngFor="let card of statCards" class="stat" [ngClass]="card.color">
+                <div class="card-icon-style">
+                    <img [src]="'assets/assets/Images/followStats/'+card.icon+'.png'" alt="" class="w-100">
+                </div>
+                <!-- Loading skeleton -->
+                <span *ngIf="isStatsLoading" class="skeleton-num"></span>
+
+                <div class="card-info" *ngIf="!isStatsLoading">
+                    <span class="stat-num fw-bold ">{{stats[card.key]}}</span>
+                    <p class="stat-lbl text-muted">{{card.label|translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------------------------->
+    <app-table [DataSource]="DataSource" [DisplayColumn]="DisplayColumn"
+        *ngIf="ShowTable && !visibleScanningDialog && !showNewFollowUpTemplate" [showtable]="true" [showAdd]="false"
+        [showDisplayChange]="false" [dataKey]="dataKey" [SelectAll]="SelectAll"
+        [totalRecords]="DataSource[0]?.TotalRows" (HandleHtmlEvent)="handleView($event)" [selectedProducts]="Selection"
+        (SelectionChangeEvent)="SelectionChange($event)" [rows]="5" [showColumnToggle]="false"
+        [disabledCheckbox]="this.TaskIsMain == 0" [customPaginator]="customPaginator" [ActionsList]="ActionsList"
+        (IconsEvent)="Action($event)" [paginator]="paginator" [first]="first" [alwaysShowPaginator]="true"
+        [lazy]="false" (onLazyLoad)="paginate($event)"></app-table>
+    <app-form [FormList]="AdvancedFormList" [FormGroupObj]="AdvancedFormGroupObj" [ObjectName]="ObjectName"
+        *ngIf="ShowAdvancedForm && !visibleScanningDialog" [buttons]="Advancedbuttons"
+        (OnClickEvent)="CheckedPartyType($event)"
+        (openScanEvent)="ScanningTool == 'dwt' ? ScanForTaskAndComment() : Scan()"
+        [ScanningAttachment]="ScanningAttachment"
+        (SelectionChangeWthNameEvent)="SelectionChangeRoutingProcedure($event)"></app-form>
+    <app-upload-attachments *ngIf="ShowUpload" (SelectFileEvent)="onSelectedFiles($event)"
+        (ChooseEvent)="choose($event)" (PocessFilesEvent)="processFiles($event)" (ClearCallBackEvent)="clearCallback()"
+        (onRemoveTemplatingFileEvent)="onRemoveTemplatingFile($event)" (ScanEvent)="Scan()" [files]="files"
+        [subjects]="subjects" [ScanningTool]="ScanningTool" [description]="description"
+        [ActionAttachmentType]="ActionAttachmentType" [attachmentType]="attachmentType"
+        (onAttachmentSavedEvent)="onAttachmentSaved($event)" [SelectedSystemType]="SelectedSystemType"
+        [SelectedSystemID]="SelectedSystemID" [eventsSubject]="eventsSubject"
+        [eventsSubjectScanning]="eventsSubjectScanning" [text]="text" [customDocument]="customDocument"
+        (CustomDocumentEvent)="CustomDocument($event)" [Type]="Type"
+        [selectedType]="selectedType"></app-upload-attachments>
+</p-dialog>
+<p-dialog [(visible)]="ShowUploadDialog" [modal]="true" [header]=" Type | translate"
+    [style]="{ width: dialogWidth, height: dialogHeight }" [draggable]="false" [resizable]="false"
+    styleClass="upload-dialog-modern">
+    <div class="upload-container-wrapper">
+        <app-upload-attachments (SelectFileEvent)="onSelectedFiles($event)" (ChooseEvent)="choose($event)"
+            (PocessFilesEvent)="processFiles($event)" (ClearCallBackEvent)="clearCallback()"
+            (onRemoveTemplatingFileEvent)="onRemoveTemplatingFile($event)" (ScanEvent)="Scan()" [files]="files"
+            [subjects]="subjects" [ScanningTool]="ScanningTool" [description]="description"
+            [ActionAttachmentType]="ActionAttachmentType" [attachmentType]="attachmentType"
+            (onAttachmentSavedEvent)="onAttachmentSaved($event)"
+            [SelectedSystemType]="TaskUpload ? TaskType : (CommentType ? null : SelectedSystemType)"
+            [SelectedSystemID]="TaskUpload || CommentType ? null : SelectedSystemID" [eventsSubject]="eventsSubject"
+            [eventsSubjectScanning]="eventsSubjectScanning" [text]="text" [customDocument]="customDocument"
+            (CustomDocumentEvent)="CustomDocument($event)" [Type]="Type" [selectedType]="selectedType"
+            [ShowScan]="ShowScanSection" [ShowCustomDocuments]="ShowCustomDocumentsSection"
+            [ShowUpload]="ShowUploadSection">
+        </app-upload-attachments>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="visibleSecondDialog" [position]="'center'" [style]="{ width: dialogWidth, height: dialogHeight }"
+    [modal]="true" draggable="false" (onHide)="onHideSecondDialog()" [header]="TypeSecondDialog | translate">
+    <app-form [FormList]="FormListSecondDialog" [FormGroupObj]="FormGroupObjSecondDialog" *ngIf="ShowSecondForm"
+        [ObjectName]="ObjectNameSecondDialog" [buttons]="buttonsSecondDialog"></app-form>
+    <app-table [DataSource]="DataSourceSecondDialog" [DisplayColumn]="DisplayColumnSecondDialog" [showtable]="true"
+        [showAdd]="false" [showDisplayChange]="false" [dataKey]="dataKey" [SelectAll]="SelectAll"
+        *ngIf="ShowSecondTable" [totalRecords]="DataSourceSecondDialog[0]?.TotalRows"
+        (HandleHtmlEvent)="handleView($event)" (SelectionChangeEvent)="SelectionChange($event)" [ActionsList]="[]"
+        (IconsEvent)="Action($event)" [rows]="5" [showColumnToggle]="false" [paginator]="true"
+        [first]="firstSecondDialog" [alwaysShowPaginator]="true" [lazy]="false"></app-table>
+</p-dialog>
+<app-validation *ngIf="ShowValidationDialog" [FormList]="FormList" [FormGroupObj]="FormGroupObj" [Model]="ObjectName"
+    (CloseEvent)="ShowValidationDialog = false"></app-validation>

@@ -1,0 +1,316 @@
+<!-- Top section with title and search form -->
+<!-- <div class="py-0 border-bottom pagination-header">
+    <div class="row mx-2 pt-2">
+        <h5 class="col-6">{{PageName | translate}}</h5>
+    </div>
+    <div class="pagination d-flex flex-wrap justify-content-between align-items-center">
+        <div class="col-6 d-none d-md-block"></div>
+        <div class="col-12 col-md-6 col-lg-4 mt-md-0 text-center text-md-end" dir="ltr">
+            <div class="row align-items-center justify-content-end">
+                <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" class="col"
+                    (onPageChange)="onPageChange($event)" [showCurrentPageReport]="true"
+                    currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false"
+                    [showFirstLastIcon]="false"></p-paginator>
+                <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows"
+                    (ngModelChange)="onPageChange({first: first, rows: rows, page: page})" class="col-1"></p-dropdown>
+            </div>
+        </div>
+        <div class="col-1 sidebar">
+            <svg (click)="MenuElements ? (openSideBar = !openSideBar) : false" xmlns="http://www.w3.org/2000/svg"
+                width="25" height="25" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
+                <path
+                    d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                <path fill-rule="evenodd"
+                    d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z" />
+            </svg>
+        </div>
+    </div>
+</div> -->
+<div class="py-0 border-bottom pagination-header">
+    <div class="mx-2 pt-2">
+
+        <!-- TITLE: Always on its own row -->
+        <h5 class="page-title mb-2 pt-4">{{ PageName | translate }}</h5>
+
+        <!-- PAGINATION + DROPDOWN + SIDEBAR ICON -->
+        <div class="d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap gap-2">
+
+            <!-- Paginator + Dropdown -->
+            <div class="d-flex align-items-center  justify-content-center gap-2 flex-grow-1 pagination">
+                <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords"
+                    (onPageChange)="onPageChange($event)" [showCurrentPageReport]="true"
+                    currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false"
+                    [showFirstLastIcon]="false" class="paginator-responsive">
+                </p-paginator>
+
+                <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows"
+                    (ngModelChange)="onPageChange({first: first, rows: rows, page: page})" class="rows-dropdown">
+                </p-dropdown>
+            </div>
+
+            <!-- Sidebar Icon -->
+            <div class="sidebar-icon-wrapper">
+                <svg (click)="MenuElements ? (openSideBar = !openSideBar) : false" xmlns="http://www.w3.org/2000/svg"
+                    width="25" height="25" fill="currentColor" class="bi bi-list-task sidebar-icon" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
+                    <path
+                        d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                    <path fill-rule="evenodd"
+                        d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z" />
+                </svg>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="menu">
+    <!-- Main content area -->
+    <div class="container-fluid row content-cont">
+        <!-- Left sidebar with a collapsible menu -->
+        <!-- <div class="col-12 col-sm-3 pt-4 height right-side-nav"
+            style="border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6; width: 200px;" *ngIf="openMenu">
+            <ul class="list-unstyled ps-0 scrollable-div">
+                <div class="flex flex-wrap p-fluid gap-3">
+                    <div class="flex-auto md:flex md:justify-content-start md:align-items-center flex-column">
+                        <p-panelMenu [model]="menuList" styleClass="w-full md:w-20rem">
+                            <ng-template pTemplate="item" let-item>
+                                <ng-template [ngxPermissionsOnly]="item.permission">
+                                <div [routerLink]="item?.link">
+                                    <a pRipple class="flex align-items-center cursor-pointer">
+                                        <i [class]="item?.icon"></i>
+                                        <span class="mr-2">
+                                            {{ item?.label | translate}}
+                                        </span>
+                                        <p-badge *ngIf="item?.badge >= 0" class="mr-auto" [value]="item?.badge" />
+                                        <span *ngIf="item?.shortcut"
+                                            class="mr-auto border-1 surface-border border-round surface-100 text-xs p-1">
+                                            {{ item?.shortcut | translate}}
+                                        </span>
+                                    </a>
+                                </div>
+                                </ng-template>
+                            </ng-template>
+                        </p-panelMenu>
+                    </div>
+                </div>
+            </ul>
+        </div> -->
+
+        <div class="sidebar" *ngIf="openMenu">
+
+            <ul class="menu-root">
+
+                <li *ngFor="let item of menuList">
+                    <ng-container *ngIf="item.items?.length && item.show; else singleItem">
+                        <div class="menu-item parent" (click)="toggle(item.key)">
+
+                            <i [class]="item.icon"></i>
+
+                            <span class="menu-label">
+                                {{ item.label | translate }}
+                            </span>
+
+                        </div>
+
+                        <ul class="submenu" *ngIf="isOpen(item.key)">
+                            <li *ngFor="let child of item.items">
+                                <ng-template [ngxPermissionsOnly]="child.permission" *ngIf="child.show">
+
+                                    <a class="menu-item child" [routerLink]="child.link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{ exact: true }">
+
+                                        <i [class]="child.icon"></i>
+
+                                        <span class="menu-label">
+                                            {{ child.label | translate }}
+                                        </span>
+
+                                        <span class="menu-badge"
+                                            *ngIf="child.badge !== undefined && child.badge !== null">
+                                            {{ child.badge }}
+                                        </span>
+                                    </a>
+
+                                </ng-template>
+                            </li>
+                        </ul>
+
+                    </ng-container>
+
+                    <ng-template #singleItem>
+                        <ng-template [ngxPermissionsOnly]="item.permission" *ngIf="item.show">
+
+                            <a class="menu-item" [routerLink]="item.link" routerLinkActive="active">
+
+                                <i [class]="item.icon"></i>
+
+                                <span class="menu-label">
+                                    {{ item.label | translate }}
+                                </span>
+                            </a>
+
+                        </ng-template>
+                    </ng-template>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Main content area where routed components are displayed -->
+        <div class="content col height height-table">
+            <span class="container-fluid content">
+                <router-outlet></router-outlet>
+            </span>
+        </div>
+        <!-- Mobile Bottom Icon Menu -->
+        <div class="mobile-icon-menu d-flex d-sm-none justify-content-around py-2 shadow-sm">
+
+            <div *ngFor="let item of menuList" class="icon-item text-center" (click)="onMobileMenuClick(item)">
+
+                <i [class]="item.icon"></i>
+                <span class="icon-label">{{ item.label | translate }}</span>
+            </div>
+
+        </div>
+        <!-- Mobile icon bar -->
+        <div class="mobile-icon-menu d-flex d-sm-none justify-content-around py-2 shadow-sm">
+
+            <div *ngFor="let item of menuList" class="mobile-menu-item text-center"
+                (click)="toggleMobileDropdown(item)">
+
+                <i [class]="item.icon"></i>
+                <div class="label">{{ item.label | translate }}</div>
+
+                <!-- DROPDOWN FOR CHILD ITEMS -->
+                <div class="mobile-dropdown" *ngIf="openDropdown === item.key">
+
+                    <div class="dropdown-item" *ngFor="let sub of item.items" [routerLink]="sub.link"
+                        (click)="closeDropdown()">
+
+                        <i [class]="sub.icon"></i>
+                        <span>{{ sub.label | translate }}</span>
+
+                        <p-badge *ngIf="sub.badge" [value]="sub.badge"></p-badge>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Popup submenu for collapsible items -->
+        <div *ngIf="mobileSubmenu" class="mobile-submenu-popup d-sm-none shadow-sm p-3">
+
+            <div class="submenu-item" *ngFor="let sub of mobileSubmenu.items" [routerLink]="sub.link"
+                (click)="closeMobileSubmenu()">
+
+                <i [class]="sub.icon"></i>
+                <span>{{ sub.label | translate }}</span>
+
+            </div>
+        </div>
+        <!-- Right sidebar with form controls, displayed conditionally -->
+        <div class="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2 toolbar" [class.open]="openSideBar"
+            *ngIf="openSideBar && MenuElements" style="width: 21vw;">
+            <div class="form-container height">
+                <!-- MOBILE CLOSE BUTTON -->
+                <button class="mobile-close-btn d-sm-none" (click)="openSideBar = false">
+                    ✕
+                </button>
+                <!-- Header with icon buttons -->
+                <div class="form-header d-flex mb-3" *ngIf="MenuElements?.actions?.length">
+                    <span *ngFor="let action of MenuElements?.actions">
+
+                        <button *ngIf="action?.show" class="icon-button" [pTooltip]="action?.name | translate"
+                            (click)="OpenDialog(action?.name,MenuElements?.SelectedSystemID,MenuElements?.AttachmentMaster,MenuElements?.SelectedSystemType,action?.disable)"><i
+                                [class]="action?.properties?.class"></i></button>
+                    </span>
+                </div>
+                <span *ngIf="MenuElements?.form?.show" class=" my-2">
+                    <!-- Form fields -->
+                    <div class="form-group" *ngFor="let input of MenuElements?.form?.formList">
+                        <label for="letter-number" class="col-3">{{input.translate | translate}}</label>
+                        <input type="text" [value]="input?.value" id="letter-number" class="form-control"
+                            *ngIf="input?.inputType == 'input'" disabled>
+                        <textarea id="letter-number" class="form-control" *ngIf="input?.inputType === 'textarea'"
+                            disabled style="height: 4.1rem;">{{input.value}}</textarea>
+                    </div>
+                </span>
+
+                <!-- Action buttons -->
+                <div class="form-actions d-flex mt-3" *ngIf="MenuElements?.form?.formActions?.length">
+                    <span *ngFor="let action of MenuElements?.form?.formActions">
+                        <button [class]="action?.properties?.class"
+                            (click)="action?.function()">{{action.name}}</button>
+                    </span>
+                </div>
+
+                <!-- Attachments section -->
+                <div class="attachment-container mt-4">
+                    <div class="attachment-list" *ngIf="MenuElements?.attachments?.length">
+                        <!-- Attachment items -->
+                        <div class="attachment-item d-flex justify-content-between align-items-center mb-2"
+                            *ngFor="let attachment of MenuElements?.attachments">
+                            <div class="d-flex align-items-center" (click)="ViewFile(attachment, null)">
+                                <i class="file-icon me-2" [class]="attachment.class"></i>
+                                <div>
+                                    <span class="file-name">{{attachment.ArabicName}}</span><br>
+                                    <span class="file-type">{{attachment.Extension}} </span><br>
+                                    <span class="file-type">{{attachment.Description}} - </span>
+                                    <span class="file-type">{{attachment.AttachmentTypeText}} </span>
+                                </div>
+                            </div>
+                            <div class="col" (click)="ViewFile(attachment, null)"></div>
+                            <div class="col-3 text-align-end" style="text-align: end;">
+                                <button class="download-btn" (click)="DownloadFile(attachment)"><i
+                                        class="fa fa-download"></i></button><br>
+                                <button class="remove-btn" (click)="DeleteAttachment(attachment)"><i class="fa fa-times"
+                                        *ngIf="MenuElements?.ShowAttachment"></i></button><br>
+                                <button class="remove-btn" (click)="OpenSignDocDialog(attachment)"
+                                    [pTooltip]="'SignDocument' | translate"><i class="fa fa-pencil-square"
+                                        *ngIf="MenuElements?.ShowAttachment && [null, '0'].includes(configService.getConfig()?.HideFileSignature)"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upload icon -->
+                    <div class="upload-icon mt-3">
+                        <i class="pi pi-upload" *ngIf="MenuElements?.ShowAttachment"
+                            (click)="OpenDialog('Correspondance.Attachments',MenuElements?.SelectedSystemID,MenuElements?.AttachmentMaster,MenuElements?.SelectedSystemType)"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 test" *ngIf="pdfsrc">
+        <app-viwer [File]="pdfsrc" [isDialog]="false" [ViewerHeight]="'100%'" (CloseEvent)="CloseViwer()"
+            [FileType]="fileType"></app-viwer>
+    </div>
+
+    <app-mail-tracking [Type]="DialogName" [MenuElements]="MenuElements" (HideEvent)="onHide($event)" *ngIf="showSearch"
+        [SelectedSystemID]="SelectedSystemID" [SelectedSystemType]="SelectedSystemType" [DisableDialog]="DisableDialog"
+        [AttachmentMaster]="AttachmentMaster" (handleEvent)="handleView($event)" [TaskId]="TaskId"
+        [TaskIsMain]="TaskIsMain" [IssuingAndCopyingID]="IssuingAndCopyingID"></app-mail-tracking>
+
+    <p-dialog [header]="'SignDocument' | translate" [(visible)]="openDialog" [style]="{width: '50vw'}" [modal]="true"
+        (onHide)="SignDocument = null">
+        <div class="dialog m-2">
+            <input id="float-input" type="password" pInputTextarea style="width: -webkit-fill-available;"
+                [(ngModel)]="SignDocument" [placeholder]="'SignDocument' | translate" />
+            <button pButton class="btn btn-primary" type="button" (click)="SignDocumentAsync()" class="mt-2"
+                [disabled]="SignDocument == null || SignDocument == undefined || SignDocument == ''">
+                {{'Buttons.Save' |translate}}
+            </button>
+        </div>
+
+    </p-dialog>
+</div>
