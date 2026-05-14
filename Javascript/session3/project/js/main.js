@@ -6,7 +6,8 @@
 //get element once 
 var prodName = window.document.getElementById("prodName");
 var ProdPrice = window.document.getElementById("prodPrice");
-var prodImg = window.document.getElementById("prodImg");
+var prodImg = window.document.getElementById("prodImg").files[0];
+
 var prodCategory = window.document.getElementById("prodCategory");
 var prodDesc = window.document.getElementById("prodDesc");
 var searchInput = window.document.getElementById("searchInput");
