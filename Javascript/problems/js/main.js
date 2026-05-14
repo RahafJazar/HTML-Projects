@@ -40,6 +40,8 @@ var romanToInt = function (s) {
 console.log(romanToInt(romanNum));
 */
 
+
+
 /**
  * @param {string} s
  * @return {boolean}
@@ -170,6 +172,43 @@ console.log(maxProfit([7, 6, 4, 3, 1]));
  * @param {string} s
  * @return {boolean}
  */
-var isPalindrome = function(s) {
-    
+var isPalindrome = function (s) {
+    debugger
+    s = s.toLowerCase();
+    let isPalindrome = true;
+    let i = 0;
+    let j = s.length - 1;
+    while (i <= j) {
+
+        let Is_i_alphanumeric = isAplhanumeric(s[i]);
+        let Is_j_Alphanumeric = isAplhanumeric(s[j]);
+
+        if (Is_i_alphanumeric && Is_j_Alphanumeric) {
+            if (s[i] == s[j]) {
+                isPalindrome = true;
+                i++;
+                j--;
+            }
+            else {
+                return false;
+            }
+        }
+        else if (Is_i_alphanumeric && !Is_j_Alphanumeric) {
+            j--;
+        }
+        else if (!Is_i_alphanumeric && Is_j_Alphanumeric) {
+            i++;
+        }
+        else if (!Is_i_alphanumeric && !Is_j_Alphanumeric) {
+            i++;
+            j--;
+        }
+    }
+    return isPalindrome;
 };
+
+var isAplhanumeric = function (ch) {
+    return ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9'))
+}
+
+console.log(isPalindrome(" "));
