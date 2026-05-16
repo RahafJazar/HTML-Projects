@@ -139,6 +139,7 @@ nav .profile {
  } 
 .meal .meal-img {
     min-height: 400px;
+    max-height: 600px;
 
     img {
         height: 100%;
@@ -210,9 +211,22 @@ justify-content: center;
  .meal .meal-info .section-tab{
     display: none;
  }
+ /* أول تاب يطلع بالبداية */
+ .meal .meal-info #ingredients-tab{
+    display: block;
+}
+
+.meal .meal-info:has(.section-tab:target) #ingredients-tab{
+    display: none;
+}
+ .meal .meal-info #ingredients-tab:target{
+    display: block !important;
+}
+
  .meal .meal-info .section-tab:target{
     display: block;
  }
+
 
 .meal .meal-info .bottom .nav-link::before{
 content: "";
