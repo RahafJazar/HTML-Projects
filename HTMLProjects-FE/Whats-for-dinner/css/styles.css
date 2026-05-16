@@ -1,0 +1,256 @@
+@import url("./colorsVariables.css");
+@import url("./bootstrap.min.css");
+
+
+/*#region========== GLOBAL =================*/
+
+.bg-orange-red-500 {
+    background: linear-gradient(to right, var(--red-5), var(--orange-5));
+}
+
+a,
+i {
+    display: inline-block;
+}
+
+img {
+    width: 100%;
+}
+
+.my-custom-container {
+    --bs-gutter-x: 7rem;
+}
+ul{
+    list-style-type: none;
+}
+
+/*#endregion================================*/
+
+
+/*#region========== NAVBAR =================*/
+
+nav .navbar-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0.6rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .navbar-header {
+    margin-inline: 0.2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+nav .navbar-nav {
+    gap: 2rem;
+}
+
+nav .navbar-nav .nav-item {
+    /* width: 18px; */
+    color: rgb(87, 83, 83);
+}
+
+nav .navbar-nav .nav-item:hover {
+    color: var(--orange-6);
+}
+
+nav .profile {
+
+    .profile-img {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 50%;
+        box-shadow: 0px 1px 3px 2px var(--orange-5);
+    }
+}
+
+/*#endregion================================*/
+
+
+/*#region========== RESPONSIVE =============*/
+
+/* phone => sm */
+
+@media screen and (max-width:576px) {
+
+    .my-custom-container {
+        --bs-gutter-x: 3rem;
+    }
+
+    nav .profile {
+
+        .profile-img {
+            width: 20px;
+            height: 20px;
+
+            border-radius: 50%;
+            box-shadow: 0px 1px 3px 2px var(--orange-5);
+        }
+    }
+
+    nav #navbarSupportedContent {
+        border-top: 3px solid rgba(0, 0, 0, 0.04);
+    }
+
+
+    .cook-info div p{
+        font-size: 12px;
+    }
+    .cook-info div span{
+        font-size: 12px;
+    }
+}
+
+/*#endregion================================*/
+
+
+/*#region=========== RECIPIENTS SECTION =====*/
+
+.meal .meal-img {
+    min-height: 400px;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.meal .meal-img .cook-info {
+    position: absolute;
+
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+}
+
+.meal .meal-img .reviews {
+    position: absolute;
+
+    left: 5%;
+    top: 5%;
+}
+
+.meal .meal-img .cook-info-icon,
+.meal .meal-img .reviews-icon {
+    width: 20px;
+}
+.meal .meal-info .meal-actions button{
+padding: 0.8rem 0.8rem;
+max-width: 40px;
+min-height: 30px;
+border: none;
+border-radius: 10px;
+background-color: #ffedd4;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.meal .meal-info .meal-actions button img{
+  width: 18px;
+    height: 18px;
+
+}
+
+.meal .meal-info .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+}
+.meal .meal-info .top .meal-name{
+ flex-grow: 1;
+}
+.meal .meal-info .bottom .nav {
+ border-bottom:  1px solid rgba(0,0,0,0.05);
+ 
+ 
+}
+.meal .meal-info .bottom .nav-link{
+ /* color: #6b7282; */
+ color: black;
+ position: relative;
+ 
+}
+
+.meal .meal-info .bottom .nav-link::before{
+content: "";
+position: absolute;
+left: 0;
+bottom: 0;
+width: 0;
+height: 2px;
+background-color: #f54900;
+transition: width 0.2s ease;
+}
+ .meal .meal-info:has(#ingredients-tab:target) a[href="#ingredients-tab"]::before{
+    width: 100%;
+}
+ 
+.meal .meal-info .bottom .nav-link svg{
+ width: 20px;
+ height: 20px;
+ 
+}
+.meal .meal-info .bottom .nav-link.active,
+.meal .meal-info .bottom .nav-link:target{
+ color: #f54900;
+
+}
+.meal .meal-info  #ingredients-tab .tab-container{
+   margin: 1rem;
+   background-color: #fffaeb;
+   border-radius: 10px;
+ 
+
+}
+.meal .meal-info  #ingredients-tab  .tab-container ul  {
+ padding-block: 1rem;
+
+}
+.meal .meal-info  #ingredients-tab  .tab-container ul li{
+ margin-bottom: 0.6rem;
+
+
+}
+.meal .meal-info  #ingredients-tab .ingredient{
+ display: flex;
+ align-items: center;
+ gap: 0.7rem;
+
+
+}
+
+.meal .meal-info  #ingredients-tab .num{
+width: 30px;
+height: 30px;
+border-radius: 50%;
+color: white;
+background-color: var(--orange-5);
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+ 
+
+@media screen and (max-width :767px) {
+    .meal .meal-info .top{
+         display: flex;
+         flex-direction: column-reverse;
+         align-items: stretch;
+
+         .meal-actions{
+            align-self: self-end;
+         }
+    }
+}
+/*#endregion================================*/
