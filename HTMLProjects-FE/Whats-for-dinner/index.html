@@ -73,10 +73,10 @@
     </nav>
 
 
-    <div class="recipients">
+    <div class="recipients py-5">
         <div class="container-fluid my-custom-container">
-            <div class="meal  row px-2 mt-5">
-                <div class="meal-img col-lg-5 px-0 position-relative">
+            <div class="meal  row  ">
+                <div class="meal-img col-lg-5 px-0 position-relative ">
                     <img src="./images/Creamy_Spaghetti.png" alt="">
                     <div class="reviews px-3 py-2 rounded-5 bg-white shadow-lg">
                         <img src="./images/svg/svgexport-6.svg" alt="" class="reviews-icon">
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="meal-info col-lg-7 bg-success">
+                <div class="meal-info col-lg-7 bg-white">
                     <div class="top">
 
                         <div class="meal-name  d-flex flex-column gap-2">
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="bottom">
-                        <ul class="nav d-flex justify-content-between">
+                        <ul class="nav d-flex justify-content-evenly  ">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#ingredients-tab">
                                     <svg class=" svg-inline--fa fa-list-check" aria-hidden="true" focusable="false"
@@ -132,7 +132,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  " aria-current="page" href="#">
+                                <a class="nav-link  " aria-current="page" href="#instructions-tab">
                                     <svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false"
                                         data-prefix="fas" data-icon="book-open" role="img"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
@@ -144,7 +144,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  " aria-current="page" href="#">
+                                <a class="nav-link  " aria-current="page" href="#nutrisons-tab">
                                     <svg class="svg-inline--fa fa-chart-pie" aria-hidden="true" focusable="false"
                                         data-prefix="fas" data-icon="chart-pie" role="img"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
@@ -156,7 +156,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  " aria-current="page" href="#">
+                                <a class="nav-link  " aria-current="page" href="#chefs-tab">
                                     <svg class="svg-inline--fa fa-lightbulb" aria-hidden="true" focusable="false"
                                         data-prefix="fas" data-icon="lightbulb" role="img"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
@@ -169,7 +169,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div id="ingredients-tab" class="info-tab">
+
+                    <div id="ingredients-tab" class="section-tab">
                         <div class="tab-container">
                             <ul>
                                 <li class="ingredient">
@@ -216,6 +217,168 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+
+                    <div id="instructions-tab" class="section-tab">
+                        <div class="tab-container">
+                            <ul>
+                                <li class="instruction">
+                                    <div class="num">
+                                        1
+                                    </div>
+                                    <span>Bring a large pot of salted water to boil. Cook spaghetti according to package
+                                        directions until al dente.</span>
+                                </li>
+                                <li class="instruction">
+                                    <div class="num">
+                                        2
+                                    </div>
+                                    <span>While pasta cooks, heat a large skillet over medium heat. Add diced pancetta
+                                        and cook until crispy, about 5-7 minutes.</span>
+                                </li>
+                                <li class="instruction">
+                                    <div class="num">
+                                        3
+                                    </div>
+                                    <span>In a bowl, whisk together eggs, grated Pecorino Romano, and Parmesan cheese.
+                                        Add plenty of freshly ground black pepper.</span>
+                                </li>
+                                <li class="instruction">
+                                    <div class="num">
+                                        4
+                                    </div>
+                                    <span>
+                                        Reserve 1 cup of pasta cooking water before draining. Drain pasta and
+                                        immediately add to the skillet with pancetta.</span>
+                                </li>
+                                <li class="instruction">
+                                    <div class="num">
+                                        5
+                                    </div>
+                                    <span>
+                                        Remove skillet from heat. Quickly pour in egg mixture while tossing pasta
+                                        vigorously. Add reserved pasta water as needed to create a creamy sauce.</span>
+                                </li>
+                                <li class="instruction">
+                                    <div class="num">
+                                        6
+                                    </div>
+                                    <span>
+                                        Serve immediately with extra cheese and black pepper on top. Enjoy your
+                                        authentic carbonara!</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="nutrisons-tab" class="section-tab">
+                        <div class="tab-container  row px-2 g-2">
+
+                            <div class=" col-md-6 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center nutrision-fact">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="nutrision-icon bg-orange-100">
+                                            <img src="./images/svg/svgexport-17.svg" alt="">
+                                        </div>
+                                        <span>Calories</span>
+                                    </div>
+                                    <span class="nutrision-value fw-bold">580 kcal</span>
+                                </div>
+
+                            </div>
+                            <div class=" col-md-6 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center nutrision-fact">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="nutrision-icon bg-blue-100">
+                                            <img src="./images/svg/svgexport-18.svg" alt="">
+                                        </div>
+                                        <span>Protein</span>
+                                    </div>
+                                    <span class="nutrision-value fw-bold">24g</span>
+                                </div>
+
+                            </div>
+                            <div class=" col-md-6 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center nutrision-fact">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="nutrision-icon bg-yellow-100">
+                                            <img src="./images/svg/svgexport-19.svg" alt="">
+                                        </div>
+                                        <span>Carbohydrates</span>
+                                    </div>
+                                    <span class="nutrision-value fw-bold">68g</span>
+                                </div>
+
+                            </div>
+                            <div class=" col-md-6 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center nutrision-fact">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="nutrision-icon bg-red-100">
+                                            <img src="./images/svg/svgexport-20.svg" alt="">
+                                        </div>
+                                        <span>Fat</span>
+                                    </div>
+                                    <span class="nutrision-value fw-bold">18g</span>
+                                </div>
+
+                            </div>
+                            <div class=" col-md-6 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center nutrision-fact">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="nutrision-icon bg-green-100">
+                                            <img src="./images/svg/svgexport-21.svg" alt="">
+                                        </div>
+                                        <span>Fiber</span>
+                                    </div>
+                                    <span class="nutrision-value fw-bold">3g</span>
+                                </div>
+
+                            </div>
+                            <div class=" col-md-6 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center nutrision-fact">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="nutrision-icon bg-pink-100">
+                                            <img src="./images/svg/svgexport-22.svg" alt="">
+                                        </div>
+                                        <span>Sodium</span>
+                                    </div>
+                                    <span class="nutrision-value fw-bold">680mg</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="chefs-tab" class="section-tab">
+                        <div class="tab-container">
+                            <ul>
+                                <li>
+                                    <img src="./images/svg/svgexport-23.svg" alt="" class="tick-icon">
+                                    <span>Use a pizza stone for crispier crust</span>
+                                </li>
+                                <li>
+                                    <img src="./images/svg/svgexport-23.svg" alt="" class="tick-icon">
+                                    <span>Don't overload with toppings - less is more</span>
+                                </li>
+                                <li>
+                                    <img src="./images/svg/svgexport-23.svg" alt="" class="tick-icon">
+                                    <span>Add basil after baking to keep it fresht</span>
+                                </li>
+                                <li>
+                                    <img src="./images/svg/svgexport-23.svg" alt="" class="tick-icon">
+                                    <span>Let dough rest properly for best texture</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="change-recipe py-4 ">
+                        <button>
+                            <img src="./images/svg/svgexport-24.svg" alt="try another recipe"
+                                class="change-recipe-icon ">
+                            <span>Try Another Recipe</span>
+                        </button>
                     </div>
                 </div>
             </div>

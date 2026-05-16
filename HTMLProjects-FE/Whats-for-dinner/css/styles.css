@@ -7,7 +7,24 @@
 .bg-orange-red-500 {
     background: linear-gradient(to right, var(--red-5), var(--orange-5));
 }
-
+.bg-orange-100{
+    background-color: var(--orange-1);
+}
+.bg-yellow-100{
+    background-color: var(--yellow-1);
+}
+.bg-green-100{
+    background-color: var(--green-1);
+}
+.bg-blue-100{
+    background-color: var(--blue-1);
+}
+.bg-red-100{
+    background-color: var(--red-1);
+}
+.bg-pink-100{
+    background-color: var(--pink-1);
+}
 a,
 i {
     display: inline-block;
@@ -111,7 +128,15 @@ nav .profile {
 
 
 /*#region=========== RECIPIENTS SECTION =====*/
-
+.recipients{
+    
+    background-color: #fffbeb;
+}
+.meal {
+ border-radius: 30px;
+ overflow: hidden;
+ box-shadow: 0px 5px 5px  rgba(0,0,0,0.5);
+ } 
 .meal .meal-img {
     min-height: 400px;
 
@@ -139,6 +164,11 @@ nav .profile {
 .meal .meal-img .cook-info-icon,
 .meal .meal-img .reviews-icon {
     width: 20px;
+}
+
+.meal .meal-info{
+    max-height: 600px;
+    overflow: auto;
 }
 .meal .meal-info .meal-actions button{
 padding: 0.8rem 0.8rem;
@@ -168,17 +198,21 @@ justify-content: center;
 .meal .meal-info .top .meal-name{
  flex-grow: 1;
 }
-.meal .meal-info .bottom .nav {
- border-bottom:  1px solid rgba(0,0,0,0.05);
  
  
-}
 .meal .meal-info .bottom .nav-link{
  /* color: #6b7282; */
  color: black;
  position: relative;
  
 }
+ 
+ .meal .meal-info .section-tab{
+    display: none;
+ }
+ .meal .meal-info .section-tab:target{
+    display: block;
+ }
 
 .meal .meal-info .bottom .nav-link::before{
 content: "";
@@ -190,17 +224,32 @@ height: 2px;
 background-color: #f54900;
 transition: width 0.2s ease;
 }
- .meal .meal-info:has(#ingredients-tab:target) a[href="#ingredients-tab"]::before{
+ .meal .meal-info:has(#ingredients-tab:target) .bottom .nav-link[href="#ingredients-tab"],
+  .meal .meal-info:has(#ingredients-tab:target) .bottom .nav-link[href="#ingredients-tab"]::before{
     width: 100%;
-}
- 
+     color: #f54900;
+} 
+ .meal .meal-info:has(#instructions-tab:target) .bottom .nav-link[href="#instructions-tab"],
+  .meal .meal-info:has(#instructions-tab:target) .bottom .nav-link[href="#instructions-tab"]::before{
+    width: 100%;
+     color: #f54900;
+} 
+ .meal .meal-info:has(#nutrisons-tab:target) .bottom .nav-link[href="#nutrisons-tab"],
+  .meal .meal-info:has(#nutrisons-tab:target) .bottom .nav-link[href="#nutrisons-tab"]::before{
+    width: 100%;
+     color: #f54900;
+} 
+ .meal .meal-info:has(#chefs-tab:target) .bottom .nav-link[href="#chefs-tab"],
+  .meal .meal-info:has(#chefs-tab:target) .bottom .nav-link[href="#chefs-tab"]::before{
+    width: 100%;
+     color: #f54900;
+} 
 .meal .meal-info .bottom .nav-link svg{
  width: 20px;
  height: 20px;
  
 }
-.meal .meal-info .bottom .nav-link.active,
-.meal .meal-info .bottom .nav-link:target{
+.meal .meal-info .bottom .nav-link.active{
  color: #f54900;
 
 }
@@ -211,15 +260,26 @@ transition: width 0.2s ease;
  
 
 }
-.meal .meal-info  #ingredients-tab  .tab-container ul  {
- padding-block: 1rem;
+
+.meal .meal-info    .section-tab{
+     border-top:  1px solid rgba(0,0,0,0.05);
+ border-bottom:  1px solid rgba(0,0,0,0.05);
 
 }
-.meal .meal-info  #ingredients-tab  .tab-container ul li{
- margin-bottom: 0.6rem;
+.meal .meal-info    .tab-container{
+    max-height: 400px;
+    overflow: auto;
+    padding-block: 1rem;
+}
+ 
+
+ 
+.meal .meal-info  .tab-container ul li:not(:last-of-type){
+ margin-bottom: 1.4rem;
 
 
 }
+ 
 .meal .meal-info  #ingredients-tab .ingredient{
  display: flex;
  align-items: center;
@@ -239,10 +299,70 @@ justify-content: center;
 align-items: center;
 
 }
+.meal .meal-info  #instructions-tab .instruction{
+ display: flex;
+ align-items: center;
+ gap: 0.7rem;
+
+
+}
+.meal .meal-info  #instructions-tab .num{
+min-width: 50px;
+min-height: 50px;
+border-radius: 20%;
+padding: 2px 15px ;
+color: white;
+background-color: var(--orange-5);
+display: flex;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+}
+.change-recipe button img{
+    width: 20px;
+    height: 20px;
+}
 
  
 
+.change-recipe button{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    margin-inline: 2rem;
+    color: white;
+    border-radius: 10px;
+    background:linear-gradient(to left , var(--red-6), var(--orange-6));
+}
+ 
+.meal .meal-info #nutrisons-tab .nutrision-fact{
+    background-color: #f7f9fa;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+.meal .meal-info #nutrisons-tab .nutrision-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meal .meal-info #chefs-tab .tick-icon{
+    width: 25px;
+}
+.meal .meal-info #chefs-tab   ul li{
+    padding: 1rem 0.5rem;
+    border-left:3px solid #ffbb00;
+    background-color: #fffbeb;
+    border-radius: 13px;
+}
 @media screen and (max-width :767px) {
+   
     .meal .meal-info .top{
          display: flex;
          flex-direction: column-reverse;
@@ -253,4 +373,27 @@ align-items: center;
          }
     }
 }
+
+@media screen and (max-width :1200px){
+.meal{
+    max-height: fit-content;
+
+}
+}
 /*#endregion================================*/
+
+
+/*===السكرول=====*/
+::-webkit-scrollbar{
+    width: 5px;
+  
+}
+
+/* الخلفية */
+::-webkit-scrollbar-track{
+    
+}
+::-webkit-scrollbar-thumb{
+       background: #ffdad1;
+    border-radius: 10px;
+}
