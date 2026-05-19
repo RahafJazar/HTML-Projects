@@ -172,7 +172,7 @@ console.log(maxProfit([7, 6, 4, 3, 1]));
  * @param {string} s
  * @return {boolean}
  */
-var isPalindrome = function (s) {
+/*var isPalindrome = function (s) {
     debugger
     s = s.toLowerCase();
     let isPalindrome = true;
@@ -211,4 +211,21 @@ var isAplhanumeric = function (ch) {
     return ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9'))
 }
 
-console.log(isPalindrome(" "));
+console.log(isPalindrome(" "));*/
+
+
+//single number 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+    //a^b^a^x^b = (a^a)^(b^b)^c =0 ^0 ^ x =0^x=x  //commutative and associative properties (orders and grouping doesn't matter)
+    let result = 0;
+    for (let i = 0; i < nums.length; i++) {
+        result ^= nums[i];
+
+    }
+    return result;
+};
+console.log(singleNumber([1, 2, 5, 5, 7, 2, 1]));
