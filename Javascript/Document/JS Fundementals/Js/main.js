@@ -102,6 +102,47 @@
 
 //Multuple ternary operator
 //task 
-let login = window.prompt("Enter the logi n user type");
-let message = (login === 'Employee') ? 'Hello' : (login === 'Director') ? 'Greetings' : (login === '') ? 'No login' : '';
-console.log(message);
+// let login = window.prompt("Enter the logi n user type");
+// let message = (login === 'Employee') ? 'Hello' : (login === 'Director') ? 'Greetings' : (login === '') ? 'No login' : '';
+// console.log(message);
+
+
+
+
+
+
+
+///////==========19-5-2026===========/////////
+/*loops => break or continuue in nested loop
+outer: for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 3; j++) {
+        let input = window.prompt(`value at coords(${i} , ${j})`);
+        //if the input is an empty or closed (null) ,then break out of booth loops
+        if (!input) break outer;
+
+    }
+}
+
+alert("Done !")
+
+
+let numInput = "";
+do {
+    numInput = Number(window.prompt("Enter a number greater than 100"));
+
+} while ((numInput <= 100) && (numInput));
+
+alert("done!");*/
+
+//2-prime numbers
+let n = Number(window.prompt("Enter the interval "));
+let primeNumbers = ""
+debugger
+nextPrime: for (let i = 2; i <= n; i++) {
+    for (let j = 2; j < i; j++) {
+        if (!(i % j)) continue nextPrime; //the i is not prime , go to the nextPrime
+    }
+    primeNumbers += i + ",";
+}
+
+alert(primeNumbers);

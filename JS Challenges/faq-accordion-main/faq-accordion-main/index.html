@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | FAQ accordion</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <div class="top-div">
+
+  </div>
+  <div class="bottom-div">
+
+  </div>
+  <div class="faqs-section">
+    <div class="title">
+      <img src="./assets/images/icon-star.svg" alt="">
+      <h1>FAQs</h1>
+    </div>
+    <div class="questions">
+      <div class="question">
+        <div class="question-text" id="question-1">
+          <h2>What is Fronmtend Mentor , and how will it help me ? </h2>
+          <img src="./assets/images/icon-plus.svg" alt="">
+
+        </div>
+        <div class="question-answer" id="answer-q-1">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur quidem, omnis debitis maxime
+            aliquam vel, modi error enim quos delectus temporibus corrupti! Fuga officia reiciendis neque vitae fugit ex
+            tenetur deserunt aliquam excepturi exercitationem labore, similique, autem sunt temporibus.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let question = document.getElementById("question-1");
+    question.addEventListener("click", function (question) {
+      let answerOpenedFlag = document.getElementById("answer-q-1").style.display.valueOf();
+      console.log("clicked")
+      if (answerOpenedFlag == "block") {
+        document.getElementById("answer-q-1").style.display = "none";
+      }
+      else {
+        document.getElementById("answer-q-1").style.display = "block";
+      }
+    })
+
+  </script>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+
+</body>
+
+</html>
