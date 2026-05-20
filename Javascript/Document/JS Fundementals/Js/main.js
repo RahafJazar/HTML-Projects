@@ -135,7 +135,7 @@ do {
 alert("done!");*/
 
 //2-prime numbers
-let n = Number(window.prompt("Enter the interval "));
+/*let n = Number(window.prompt("Enter the interval "));
 let primeNumbers = ""
 debugger
 nextPrime: for (let i = 2; i <= n; i++) {
@@ -143,6 +143,41 @@ nextPrime: for (let i = 2; i <= n; i++) {
         if (!(i % j)) continue nextPrime; //the i is not prime , go to the nextPrime
     }
     primeNumbers += i + ",";
-}
+}*/
 
 alert(primeNumbers);
+
+/*let message = (login === 'Employee') ? 'Hello' : (login === 'Director') ? 'Greetings' : (login === '') ? 'No login' : '';
+console.log(message);
+
+let age = window.prompt("Enter Your age");
+if (!(age >= 14 && age <= 90)) {
+    alert("the age " + age + " is  not between  14 and 90 ")
+}*/
+
+
+let loginUserType = window.prompt("Who's there");
+if (loginUserType === "Admin") {
+    let password = window.prompt("Passsword?");
+    if (password === "TheMaster") {
+        alert("Welcome!");
+    } else if (password === null || password == null) {
+        alert("Cancelled")
+    }
+    else {
+        //other
+        alert("Wrong Password");
+    }
+}
+
+else if (loginUserType === "" || loginUserType === null) {
+    console.log(loginUserType)
+    alert("Cancelled");
+
+}
+else {
+    //other
+    alert("I don't Know You ");
+}
+
+let x = 1 && 2 ?? 3; //syntax error : unexpeted token  of && 
