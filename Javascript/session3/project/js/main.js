@@ -6,7 +6,7 @@
 //get element once اول اشي سحب الداتا 
 var prodNameInput = window.document.getElementById("prodName");
 var ProdPriceInput = window.document.getElementById("prodPrice");
-var prodImg = window.document.getElementById("prodImg").files[0];
+var prodImg = window.document.getElementById("prodImg");
 var prodCategoryInput = window.document.getElementById("prodCategory");
 var prodDescInput = window.document.getElementById("prodDesc");
 var searchInput = window.document.getElementById("searchInput");
@@ -36,7 +36,8 @@ function deleteProduct(index) {
 }
 
 function addProduct() {
-    //create object to describe product 
+    console.log("prod img path ", prodImg.value);
+    //create object to describe product
     var product = {
         name: prodName.value,
         price: ProdPrice.value,
