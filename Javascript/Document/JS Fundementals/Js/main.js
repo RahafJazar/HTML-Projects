@@ -143,9 +143,9 @@ nextPrime: for (let i = 2; i <= n; i++) {
         if (!(i % j)) continue nextPrime; //the i is not prime , go to the nextPrime
     }
     primeNumbers += i + ",";
-}*/
+}
 
-alert(primeNumbers);
+alert(primeNumbers);*/
 
 /*let message = (login === 'Employee') ? 'Hello' : (login === 'Director') ? 'Greetings' : (login === '') ? 'No login' : '';
 console.log(message);
@@ -156,7 +156,7 @@ if (!(age >= 14 && age <= 90)) {
 }*/
 
 
-let loginUserType = window.prompt("Who's there");
+/*let loginUserType = window.prompt("Who's there");
 if (loginUserType === "Admin") {
     let password = window.prompt("Passsword?");
     if (password === "TheMaster") {
@@ -180,4 +180,102 @@ else {
     alert("I don't Know You ");
 }
 
-let x = 1 && 2 ?? 3; //syntax error : unexpeted token  of && 
+let x = 1 && 2 ?? 3; //syntax error : unexpeted token  of &&
+
+*/
+
+//4- switch case  to if..else
+/*let browser = window.prompt("Enter  name of brwoser ");
+if (browser === "Edge") {
+    alert("You've got the Edge!");
+}
+else if (browser === "Chrome" || browser === "Firefox" || browser === "Safari" || browser === "Opera") {
+    alert('Okay we support these browsers too');
+}
+else {
+    alert('We hope that this page looks ok!');
+}
+*/
+//5- If to Switch 
+/*let a = + window.prompt('a?', '');
+switch (a) {
+    case 0:
+        alert(0);
+        break;
+    case 1:
+        alert(1);
+        break;
+    case 2:
+    case 3:
+        alert('2,3');
+        break;
+}*/
+
+
+//6- functions declaration
+///////////Evaluation of default parammeters ///////////////////
+//thec default parameter is called when the second parameter is missing
+//ex : 50 call of f1 function 
+// 45 with parameter text 
+//5 without giving a value to parameter text 
+// ==> anotherFunction() will be called 5 times 
+function f1(from, text = anotherFunction()) {
+    console.log(from + " : " + text);
+}
+function anotherFunction() {
+    return "The Defualt message ";
+}
+
+// f1("Aya", undefined);
+
+//The default value is called every time the function is called 
+//ex: 50 call f1 function 
+// 45 with paarameter text 
+//5 without giving value for parameter text 
+//==> 50 calling  for text ="hello"
+function f2(name, text = "Hello") {
+    console.log(from + " : " + text);
+}
+
+
+// 7- nullish Coalescing operator (??)
+function showCount(count) {
+    if (count) {
+        return count
+
+    }
+    else {
+        return 'undefined';
+    }
+}
+console.log("show count", showCount(5));
+function showCountNullish(count) {
+    return count ?? 'undefined'
+}
+
+
+
+function checkAge(age) {
+    // return age > 18 ? true : "Did parents allow you?"; //ternary operator
+    return age > 18 || confirm("Did parents allow you?");
+}
+
+
+function min(a, b) {
+
+
+    return a < b ? a : b;
+
+}
+
+var base = prompt("Enter the Base ");
+var exponent = prompt("Enter the Exponent");
+function pow(x, n) {
+    var result = 1;
+    for (var i = 1; i <= n; i++) {
+        result *= x;
+    }
+    return result;
+}
+
+console.log(pow(base, exponent));

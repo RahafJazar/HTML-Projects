@@ -37,7 +37,8 @@ html {
 
 /* ^===========faqs-section==================^ */
 .faqs-section {
-    min-width: 50%;
+     width: 65%;
+     min-width: 350px; 
     margin: auto;
     padding: 1rem;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
@@ -73,17 +74,23 @@ html {
     align-items: center;
     padding-block: 0.8em;
     cursor: pointer;
+    /* remove button effect */
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    text-align: left;
 }
 
 
 
-.faqs-section .question .question-text h2 {
+.faqs-section .question .question-text span {
     font-size: 1rem;
+    font-weight: bold;
     color: var(--purple-950);
     transition: color 0.1s ease;
 }
 
-.faqs-section .question .question-text h2:hover {
+.faqs-section .question .question-text span:hover {
     color: var(--purple-700);
 }
 
@@ -128,10 +135,11 @@ html {
 }
 
 /* ^===========================^ */
-
+ 
 
 /*mobile*/
-@media screen and (max-width:375px) {
+ 
+@media screen and (max-width:475px) {
     :root {
         font-size: 14px;
     }
@@ -145,7 +153,8 @@ html {
     }
 
     .faqs-section {
-        width: 85%;
+       width:  85%;
+       min-width:unset;
     }
 
 

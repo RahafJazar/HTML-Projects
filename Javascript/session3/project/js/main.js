@@ -3,13 +3,12 @@
 
 'use strict'; // to apply modern stricts that appear in ES5 like must use var x=5 instead of x=5;
 
-//get element once 
-var prodName = window.document.getElementById("prodName");
-var ProdPrice = window.document.getElementById("prodPrice");
+//get element once اول اشي سحب الداتا 
+var prodNameInput = window.document.getElementById("prodName");
+var ProdPriceInput = window.document.getElementById("prodPrice");
 var prodImg = window.document.getElementById("prodImg").files[0];
-
-var prodCategory = window.document.getElementById("prodCategory");
-var prodDesc = window.document.getElementById("prodDesc");
+var prodCategoryInput = window.document.getElementById("prodCategory");
+var prodDescInput = window.document.getElementById("prodDesc");
 var searchInput = window.document.getElementById("searchInput");
 var addBtn = document.getElementById("add-btn");
 var updateBtn = document.getElementById("update-btn");
@@ -20,7 +19,7 @@ var currentIndex;
 // console.log(prodCategory);
 // console.log(prodDesc);
 
-//declare array to contain all products v
+//declare array to contain all products =>التعامل مع انبوت ك object 
 var allProducts = []
 if (localStorage.getItem("productContainer") !== null) {
     allProducts = JSON.parse(localStorage.getItem("productContainer"));
