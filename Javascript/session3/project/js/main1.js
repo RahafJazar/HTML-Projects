@@ -165,3 +165,18 @@ function searchProduct() {
     document.getElementById("myRow").innerHTML = cartona;
 
 }
+
+//+++++++++Validation++++++++++//
+function validName() {
+    debugger
+    var regexName = /[A-Za-z]{3,5}/;
+    var prodNameVal = prodNameInput.value;
+    if (regexName.test(prodNameVal)) {
+        prodNameInput
+
+    }
+    else {
+        console.log("invalid name");
+
+    }
+}
