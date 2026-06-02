@@ -1,0 +1,12 @@
+body,*{
+    margin: 0;
+    padding: 0;
+}
+
+
+header h1 {
+    background: linear-gradient(to right, purple, rgb(13, 97, 181));
+    color: white;
+    text-align: center;
+    padding-block: 10px;
+}
