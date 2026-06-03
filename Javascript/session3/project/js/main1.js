@@ -25,16 +25,47 @@ if (localStorage.getItem("productContainer") !== null) {
 }
 
 
+
+/*********  Error Alert For Inputs *********** */
+function showError(input, message) {
+
+    input.classList.remove("is-valid");
+    input.classList.add("is-invalid");
+    var errorDiv = input.parentElement.querySelector(".error-alert");
+
+    if (!errorDiv) {
+        errorDiv = document.createElement("div");
+        errorDiv.classList.add("error-alert", "alert", "alert-danger");
+        input.after(errorDiv);
+
+
+    }
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+
+}
+
+function hideError(input) {
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+
+    var nexElem = input.parentElement.querySelector(".error-alert");
+    if (nexElem) {
+        nexElem.style.display = "none";
+    }
+}
+
 /************Add********* */
 // بدنا نعمل  انه يضيف برودكت فوصف ال product بنحطه ب object 
 function AddProduct() {
 
-    var imgsrc = prodImgInput.files[0] ? `images/${prodImgInput.files[0]?.name}` : 'images/logo-5-DFypfU0k.jpg';
+
     console.log("add product");
+    if(validateName()===true && validatePrice )
     var product = {
         name: prodNameInput.value,
         price: prodPriceInput.value,
-        imgSrc: imgsrc,
+        imgSrc: prodImgInput.files[0] ? `images/${prodImgInput.files[0]?.name}` : 'images/logo-5-DFypfU0k.jpg',
         category: prodCategoryInput.value,
         desc: prodDescInput.value
     };
@@ -68,7 +99,7 @@ function updateProduct() {
     var product = {
         name: prodNameInput.value,
         price: prodPriceInput.value,
-        imgSrc: prodImgInput.files[0].name,
+        imgSrc: prodImgInput.files[0] ? prodImgInput.files[0].name : '../images/logo-5-DFypfU0k.jpg',
         category: prodCategoryInput.value,
         desc: prodDescInput.value
     }
@@ -167,16 +198,36 @@ function searchProduct() {
 }
 
 //+++++++++Validation++++++++++//
-function validName() {
-    debugger
-    var regexName = /[A-Za-z]{3,5}/;
-    var prodNameVal = prodNameInput.value;
-    if (regexName.test(prodNameVal)) {
-        prodNameInput
+function validateName() {
+    var regexName = /^[A-Za-z ]{3,5}/;
+    var prodNameVal = prodNameInput.value.trim()
 
+    if (regexName.test(prodNameVal)) {
+        // valid
+        console.log("valid name");
+        hideError(prodNameInput);
+        return true;
     }
     else {
+        // invalid
         console.log("invalid name");
+        showError(prodNameInput, "Name must Start with english letter and contains at least  3 to 5 ");
+        return false;
+    }
 
+}
+
+function validatePrice() {
+    var regexPrice = /^[1-9][0-9]{3,5}$/;
+    var prodPriceVal = prodPriceInput.value;
+
+    if (regexPrice.test(prodPriceVal)) {
+        // valid
+        console.log("valid name");
+        hideError(prodPriceInput);
+        return true;
+    } else {
+        showError(prodPriceInput, "Price must be from 1000 to  999999");
+        return false;
     }
 }
