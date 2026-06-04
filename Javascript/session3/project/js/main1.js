@@ -61,21 +61,23 @@ function AddProduct() {
 
 
     console.log("add product");
-    if(validateName()===true && validatePrice )
-    var product = {
-        name: prodNameInput.value,
-        price: prodPriceInput.value,
-        imgSrc: prodImgInput.files[0] ? `images/${prodImgInput.files[0]?.name}` : 'images/logo-5-DFypfU0k.jpg',
-        category: prodCategoryInput.value,
-        desc: prodDescInput.value
-    };
-    console.log(product)
+    if (validateName() === true && validatePrice() === true) {
+        var product = {
+            name: prodNameInput.value,
+            price: prodPriceInput.value,
+            imgSrc: prodImgInput.files[0] ? `images/${prodImgInput.files[0]?.name}` : 'images/logo-5-DFypfU0k.jpg',
+            category: prodCategoryInput.value,
+            desc: prodDescInput.value
+        };
+        console.log(product)
 
-    allProducts.push(product);    //add product  to allproducts list  
-    localStorage.setItem("productContainer", JSON.stringify(allProducts));
-    DisplayProducts(allProducts);
-    ResetInputs(); //Reset all inputs values after addition     
-    console.log(allProducts)
+        allProducts.push(product);    //add product  to allproducts list  
+        localStorage.setItem("productContainer", JSON.stringify(allProducts));
+        DisplayProducts(allProducts);
+        ResetInputs(); //Reset all inputs values after addition     
+        console.log(allProducts)
+    }
+
 }
 
 //***************update************************ */
@@ -198,6 +200,33 @@ function searchProduct() {
 }
 
 //+++++++++Validation++++++++++//
+function validateAllInputs(input) {
+    var regex = {
+        'prodName': /^[A-Za-z ]{3,5}/,
+        'prodPrice': /^[1-9][0-9]{3,5}$/
+    }
+    var inputVal = null;
+    var regexKey = null;
+    var msg = "";
+    switch (input) {
+        case prodNameInput:
+            inputVal = prodNameInput.value.trim();
+            msg = "Name must Start with english letter and contains at least  3 to 5"
+            regexKey = 'name'
+            break;
+        case prodPriceInput:
+            inputVal = prodPriceInput.value;
+            msg = "Price must be from 1000 to  999999"
+            regexKey = 'price'
+            break;
+    }
+    if (regex[regexKey].test(inputVal)) {
+        hideError(input);
+    }
+    else {
+        showError(input, msg)
+    }
+}
 function validateName() {
     var regexName = /^[A-Za-z ]{3,5}/;
     var prodNameVal = prodNameInput.value.trim()
@@ -230,4 +259,18 @@ function validatePrice() {
         showError(prodPriceInput, "Price must be from 1000 to  999999");
         return false;
     }
+}
+
+
+try {
+
+    console.log(x);
+    throw new Error("fe custom error ") //custom errorr 
+
+
+} catch (error) {
+    console.log(error);
+}
+finally {
+    console.log("finally")
 }
