@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/media.css">
+    <!---"Inter" google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <title>contacthub-route.vercel.app</title>
+</head>
+
+<body>
+
+    <header id="header" class=" bg-body-tertiary fixed-top shadow-sm">
+        <div class="container-fluid  px-md-5 px-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="navbar bg-body-tertiary">
+                    <div>
+                        <a class="navbar-brand d-flex align-items-center gap-md-4 gap-1 m-0" href="#">
+                            <div class="navbar-svg-container  rounded-2  bg-success">
+                                <img src="images/svg/svgexport-1.svg" alt="Logo" width="16" height="16"
+                                    class="d-inline-block align-text-top">
+                            </div>
+
+                            <div class="nav-text d-flex flex-column justify-content-center">
+                                <h1 class="text-xl fw-bold  ">Contact<span class="text-violet-700">Hub</span>
+                                </h1>
+                                <p class="text-muted fw-bold text-xs m-0 ">Smart Contact Manager</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <button id="add-contact-btn" class="d-flex align-items-center gap-2 py-1 px-3">
+                        <img src="images/svg/svgexport-2.svg" alt="" width="12" height="12">
+                        <span class="text-white  fw-bold  text-s ">Add <span class="contact-word">Contact</span></span>
+                    </button>
+                    <button id="settings-btn">
+                        <img src="images/svg/svgexport-3.svg" alt="" width="16" height="16">
+                    </button>
+                    <button id="notifications-btn">
+                        <img src="images/svg/svgexport-4.svg" alt="" width="16" height="16">
+                    </button>
+                    <div class="navbar-user-img-container rounded-3 overflow-hidden">
+                        <img src="images/user.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main id="main-content" class="dashboard bg-secondary pt-5">
+        <div class="container-fluid bg-green-100  px-md-5 px-2  py-5 position-relative">
+            <div class="dashboard-stats py-5">
+                <div class="row g-4">
+                    <div class="col-lg-4  col-6 " id="total-contacts-count">
+                        <div class="d-flex gap-2 rounded-2 shadow-lg bg-white p-2">
+                            <div class="dashboard-stats-svg-container bg-blue500-blue600 rounded-2">
+                                <img src="images/svg/svgexport-5.svg" alt="">
+                            </div>
+                            <div class=" d-flex flex-column ">
+                                <p class="text-muted text-uppercase">Total</p>
+                                <p class="total-count fw-bold">5</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class=" col-lg-4  col-6   " id="favourite-contacts-count">
+                        <div class="d-flex gap-2 rounded-2 shadow-lg bg-white p-2">
+                            <div class="dashboard-stats-svg-container   bg-choco400-orange500 rounded-2">
+                                <img src="images/svg/svgexport-6.svg" alt="">
+                            </div>
+                            <div class=" d-flex flex-column ">
+                                <p class="text-muted text-uppercase">Favorites</p>
+                                <p class="total-count fw-bold">2</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="  col-lg-4  col-6 " id="emergency-contacts-coun">
+                        <div class="d-flex gap-2 rounded-2 shadow-lg bg-white p-2">
+                            <div class="dashboard-stats-svg-container  bg-rose500-red600 rounded-2">
+                                <img src="images/svg/svgexport-6.svg" alt="">
+                            </div>
+                            <div class=" d-flex flex-column ">
+                                <p class="text-muted text-uppercase">Emergency</p>
+                                <p class="total-count fw-bold">3</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="side-panel ms-5 d-flex flex-column gap-2  ">
+                <div id="favourites-list" class="rounded-3 overflow-hidden">
+                    <div id="favourites-list-header"
+                        class="d-flex gap-2 align-items-center  bg-amber50-orange50 px-4 py-3">
+                        <div class="side-panel-svg-container bg-choco400-orange500 rounded-2">
+                            <img src="images/svg/svgexport-6.svg" alt="">
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h2 class="text-s fw-bold">Favorites</h2>
+                            <p class="text-xs text-muted">Quick access to starred contacts</p>
+                        </div>
+                    </div>
+                    <div id="favourites-list-content">
+                        <div class="cards px-4 py-3">
+                            <div class="fav-card my-2 p-2 d-flex justify-content-between align-items-center">
+                                <div class="head d-flex justify-content-between align-items gap-2">
+                                    <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
+                                        <span class="text-uppercase">RJ</span>
+                                    </div>
+                                    <div class="data">
+                                        <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
+                                        <p class="text-xs">01012345674</p>
+                                    </div>
+                                </div>
+                                <a href="tel:" class="call-btn-fav">
+                                    <img src="images/svg/svgexport-13.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="fav-card my-2 p-2 d-flex justify-content-between align-items-center">
+                                <div class="head d-flex justify-content-between align-items gap-2">
+                                    <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
+                                        <span class="text-uppercase">RJ</span>
+                                    </div>
+                                    <div class="data">
+                                        <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
+                                        <p class="text-xs">01012345674</p>
+                                    </div>
+                                </div>
+                                <a href="tel:" class="call-btn-fav">
+                                    <img src="images/svg/svgexport-13.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div id="Emergencies-list" class="rounded-3 overflow-hidden">
+                    <div id="emergincy-list-header"
+                        class="d-flex gap-2 align-items-center  bg-amber50-orange50 px-4 py-3">
+                        <div class="side-panel-svg-container bg-rose500-red600  rounded-2">
+                            <img src="images/svg/svgexport-7.svg" alt="">
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h2 class="text-s fw-bold">Emergency</h2>
+                            <p class="text-xs text-muted">Important contacts for urgent calls</p>
+                        </div>
+                    </div>
+                    <div id="emergincy-list-content">
+                        <div class="cards px-4 py-3">
+                            <div class="fav-card my-2 p-2 d-flex justify-content-between align-items-center">
+                                <div class="head d-flex justify-content-between align-items gap-2">
+                                    <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
+                                        <span class="text-uppercase">RJ</span>
+                                    </div>
+                                    <div class="data">
+                                        <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
+                                        <p class="text-xs">01012345674</p>
+                                    </div>
+                                </div>
+                                <a href="tel:" class="call-btn-emergency">
+                                    <img src="images/svg/svgexport-13.svg" alt="">
+                                </a>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="contact-window">
+                <div>
+                    <h2 class="fw-bold fs-2">All Contacts</h2>
+                    <p class="text-muted">Manage and organize your 3 contacts </p>
+                </div>
+                <div class="search-bar">
+                    <input type="search">
+                </div>
+                <div class="contact-list p-2">
+                    <div class="contact-cards row">
+                        <div class="contact-card col-md-6 bg-white">
+                            <div class="p-2">
+                                <!---Header-->
+                                <div class="d-flex flex-column gap-2">
+
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div
+                                            class="cont-prof-img  contact-card-svg-container rounded-3 bg-success position-relative ">
+                                            <p class="text-white text-uppercase fw-bold">rj</p>
+                                            <div class="circle-svg-fav-container bg-amber-400 set-top">
+                                                <img src="images/svg/svgexport-6.svg" alt="">
+                                            </div>
+                                            <div class="circle-svg-emergency-container bg-rose-500 set-bottom ">
+                                                <img src="images/svg/svgexport-7.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 class="fw-bold fs-5">Rahaf Bassam Jazar</h3>
+                                            <div class="d-flex gap-2 align-items-center ">
+                                                <div class="call-btn-contact">
+                                                    <img src="images/svg/svgexport-9.svg" alt="" width="">
+                                                </div>
+                                                <p class="text-muted">01012345673</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---Contact-Details-->
+                                    <div class="contact-details d-flex flex-column gap-3">
+                                        <div class="email-detail d-flex align-items-center gap-3">
+                                            <div class="email-btn">
+                                                <img src="images/svg/svgexport-10.svg" alt="">
+                                            </div>
+                                            <span class="text-muted  text-s">rahafjazar73@gmail.com</span>
+                                        </div>
+                                        <div class="country-detail  d-flex align-items-center gap-3 ">
+                                            <div class="location-btn">
+                                                <img src="images/svg/svgexport-11.svg" alt="">
+                                            </div>
+                                            <span class="text-muted  text-s">Jordan</span>
+                                        </div>
+                                    </div>
+                                    <!---AcrionBar-->
+                                </div>
+                                <!-----Actions Footer-->
+                                <div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
