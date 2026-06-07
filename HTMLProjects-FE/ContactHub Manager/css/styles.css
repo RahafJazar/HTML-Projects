@@ -307,7 +307,7 @@ ul {
 }
 
 .favourites-head-container,
-.emergincy-list-header {
+.emergency-head-container {
     width: calc(var(--spacing)*10);
     height: calc(var(--spacing)*10);
     display: flex;
@@ -351,15 +351,15 @@ ul {
     background-color: white;
 }
 
-#favourites-list-content .cards,
+/* #favourites-list-content .cards,
 #emergincy-list-content .cards {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-}
+} */
 
 #favourites-list-content .cards .fav-card,
-#emergincy-list-content .cards .fav-card {
+#emergincy-list-content .cards .emergency-card {
     background-color: var(--gray-1);
     border-radius: 10px;
     transition: all 0.2s ease;
@@ -368,7 +368,7 @@ ul {
 
 
 #favourites-list-content .cards .fav-card .data h4,
-#emergincy-list-content .cards .fav-card .data h4 {
+#emergincy-list-content .cards .emergency-card .data h4 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -378,7 +378,7 @@ ul {
 
 
 #favourites-list-content .cards .fav-card:hover,
-#emergincy-list-content .cards .fav-card:hover {
+#emergincy-list-content .cards .emergency-card:hover {
     background: linear-gradient(to right, var(--color-amber-50), var(--orange-1));
 }
 
@@ -406,7 +406,7 @@ ul {
 
 /*=================================*/
 /*^==============Contact Lists==================*/
-.contact-cards .contact-card {}
+
 
 .call-btn-contact {
     width: calc(var(--spacing)*6);
@@ -514,5 +514,80 @@ ul {
     bottom: -2px;
     right: -2px;
 }
+
+
+.bg-work-categ {
+    background-color: var(--purple-1);
+}
+
+.text-work-categ {
+    color: var(--purple-7);
+}
+
+.bg-friend-categ {
+    background-color: var(--green-1);
+}
+
+.text-friend-categ {
+    color: var(--green-7);
+}
+
+.bg-family-categ {
+    background-color: var(--blue-1);
+}
+
+.text-family-categ {
+    color: var(--blue-7);
+}
+
+.bg-school-categ {
+    background-color: var(--color-amber-100);
+}
+
+.text-school-categ {
+    color: var(--color-amber-700);
+}
+
+.bg-other-categ {
+    background-color: var(--gray-1);
+}
+
+.text-other-categ {
+    color: var(--gray-7);
+}
+
+.contact-cards .contact-card {
+    box-shadow: 1px 2px 4px 3px rgba(71, 71, 71, 0.219);
+    transition: box-shadow 0.2s ease;
+}
+
+.contact-cards .contact-card:hover {
+    box-shadow: 1px 4px 8px 3px rgba(71, 71, 71, 0.219);
+}
+
+.contact-call-footer-btn {
+    width: calc(var(--spacing)*9);
+    height: calc(var(--spacing)*9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-call-footer-btn {
+    background-color: var(--color-emerald-100);
+}
+
+.contact-call-footer-btn:hover {
+    background-color: var(--color-emerald-200);
+}
+
+.contact-call-footer-btn img {
+
+    width: 12px !important;
+    height: 12px !important;
+}
+
+
+
 
 /*=================================================*/

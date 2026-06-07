@@ -62,13 +62,13 @@
     </header>
 
 
-    <main id="main-content" class="dashboard bg-secondary pt-5">
+    <main id="main-content" class="dashboard bg-secondary pt-5 ">
         <div class="container-fluid bg-green-100  px-md-5 px-2  py-5 position-relative">
             <div class="dashboard-stats py-5">
                 <div class="row g-4">
                     <div class="col-lg-4  col-6 " id="total-contacts-count">
-                        <div class="d-flex gap-2 rounded-2 shadow-lg bg-white p-2">
-                            <div class="dashboard-stats-svg-container bg-blue500-blue600 rounded-2">
+                        <div class="d-flex gap-2 rounded-4 shadow-lg bg-white p-3 shadow-sm">
+                            <div class="dashboard-stats-svg-container bg-blue500-blue600 rounded-3">
                                 <img src="images/svg/svgexport-5.svg" alt="">
                             </div>
                             <div class=" d-flex flex-column ">
@@ -80,8 +80,8 @@
 
                     </div>
                     <div class=" col-lg-4  col-6   " id="favourite-contacts-count">
-                        <div class="d-flex gap-2 rounded-2 shadow-lg bg-white p-2">
-                            <div class="dashboard-stats-svg-container   bg-choco400-orange500 rounded-2">
+                        <div class="d-flex gap-2 rounded-4 shadow-lg bg-white p-3 shadow-sm">
+                            <div class="dashboard-stats-svg-container   bg-choco400-orange500 rounded-3">
                                 <img src="images/svg/svgexport-6.svg" alt="">
                             </div>
                             <div class=" d-flex flex-column ">
@@ -92,8 +92,8 @@
 
                     </div>
                     <div class="  col-lg-4  col-6 " id="emergency-contacts-coun">
-                        <div class="d-flex gap-2 rounded-2 shadow-lg bg-white p-2">
-                            <div class="dashboard-stats-svg-container  bg-rose500-red600 rounded-2">
+                        <div class="d-flex gap-2 rounded-4 shadow-lg bg-white p-3 shadow-sm">
+                            <div class="dashboard-stats-svg-container  bg-rose500-red600 rounded-3">
                                 <img src="images/svg/svgexport-6.svg" alt="">
                             </div>
                             <div class=" d-flex flex-column ">
@@ -107,7 +107,7 @@
                 </div>
 
             </div>
-            <div class="side-panel ms-5 d-flex flex-column gap-2  ">
+            <div class="side-panel ms-xl-5 d-flex flex-column gap-2  ">
                 <div id="favourites-list" class="rounded-3 overflow-hidden">
                     <div id="favourites-list-header"
                         class="d-flex gap-2 align-items-center  bg-amber50-orange50 px-4 py-3">
@@ -120,34 +120,39 @@
                         </div>
                     </div>
                     <div id="favourites-list-content">
-                        <div class="cards px-4 py-3">
-                            <div class="fav-card my-2 p-2 d-flex justify-content-between align-items-center">
-                                <div class="head d-flex justify-content-between align-items gap-2">
-                                    <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
-                                        <span class="text-uppercase">RJ</span>
+                        <div class="row cards px-4 py-3">
+                            <div class="fav-card col-md-6  col-xl-12 my-2 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="head d-flex justify-content-between align-items gap-2">
+                                        <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
+                                            <span class="text-uppercase">RJ</span>
+                                        </div>
+                                        <div class="data">
+                                            <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
+                                            <p class="text-xs">01012345674</p>
+                                        </div>
                                     </div>
-                                    <div class="data">
-                                        <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
-                                        <p class="text-xs">01012345674</p>
-                                    </div>
+                                    <a href="tel:" class="call-btn-fav">
+                                        <img src="images/svg/svgexport-13.svg" alt="">
+                                    </a>
                                 </div>
-                                <a href="tel:" class="call-btn-fav">
-                                    <img src="images/svg/svgexport-13.svg" alt="">
-                                </a>
                             </div>
-                            <div class="fav-card my-2 p-2 d-flex justify-content-between align-items-center">
-                                <div class="head d-flex justify-content-between align-items gap-2">
-                                    <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
-                                        <span class="text-uppercase">RJ</span>
+                            <div class="fav-card  col-md-6   col-xl-12 my-2 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="head d-flex justify-content-between align-items gap-2">
+                                        <div class="favourites-head-container    bg-indigo5-violet6 rounded-2 ">
+                                            <span class="text-uppercase">RJ</span>
+                                        </div>
+                                        <div class="data">
+                                            <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
+                                            <p class="text-xs">01012345674</p>
+                                        </div>
                                     </div>
-                                    <div class="data">
-                                        <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
-                                        <p class="text-xs">01012345674</p>
-                                    </div>
+                                    <a href="tel:" class="call-btn-fav">
+                                        <img src="images/svg/svgexport-13.svg" alt="">
+                                    </a>
                                 </div>
-                                <a href="tel:" class="call-btn-fav">
-                                    <img src="images/svg/svgexport-13.svg" alt="">
-                                </a>
+
                             </div>
                         </div>
 
@@ -167,20 +172,23 @@
                         </div>
                     </div>
                     <div id="emergincy-list-content">
-                        <div class="cards px-4 py-3">
-                            <div class="fav-card my-2 p-2 d-flex justify-content-between align-items-center">
-                                <div class="head d-flex justify-content-between align-items gap-2">
-                                    <div class="favourites-head-container   bg-indigo5-violet6 rounded-2 ">
-                                        <span class="text-uppercase">RJ</span>
+                        <div class=" row cards px-4 py-3">
+                            <div class="emergency-card col-md-6 col-xl-12 my-2 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="head d-flex justify-content-between align-items gap-2">
+                                        <div class="emergency-head-container  bg-indigo5-violet6 rounded-2 ">
+                                            <span class="text-uppercase">RJ</span>
+                                        </div>
+                                        <div class="data">
+                                            <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
+                                            <p class="text-xs">01012345674</p>
+                                        </div>
                                     </div>
-                                    <div class="data">
-                                        <h4 class="text-s"> Rahaf Bassam Abdelraouf Jazar</h4>
-                                        <p class="text-xs">01012345674</p>
-                                    </div>
+                                    <a href="tel:" class="call-btn-emergency">
+                                        <img src="images/svg/svgexport-19.svg" alt="">
+                                    </a>
                                 </div>
-                                <a href="tel:" class="call-btn-emergency">
-                                    <img src="images/svg/svgexport-13.svg" alt="">
-                                </a>
+
                             </div>
 
                         </div>
@@ -200,8 +208,8 @@
                 </div>
                 <div class="contact-list p-2">
                     <div class="contact-cards row">
-                        <div class="contact-card col-md-6 bg-white">
-                            <div class="p-2">
+                        <div class="contact-card col-md-6 bg-white rounded-3 shadow-sm">
+                            <div class="py-4 px-2">
                                 <!---Header-->
                                 <div class="d-flex flex-column gap-2">
 
@@ -242,10 +250,19 @@
                                         </div>
                                     </div>
                                     <!---AcrionBar-->
+                                    <div class="tags-list d-flex flex-wrap gap-2 py-2">
+                                        <span class="inline-flex rounded-2 px-2 py-1 bg-work-categ">
+                                            <p class="text-xs text-work-categ">work</p>
+                                        </span>
+                                    </div>
                                 </div>
                                 <!-----Actions Footer-->
-                                <div>
-
+                                <div class="py-2    border-top border-1">
+                                    <div class="d-flex">
+                                        <a href="tel:" class="contact-call-footer-btn rounded-3">
+                                            <img src="images/svg/svgexport-13.svg" alt="">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -257,6 +274,7 @@
     </main>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
