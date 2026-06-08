@@ -1,4 +1,24 @@
+
 var categ = "work";
+
+/* ^ ------Add Contact Variables -----^ */
+var fileInput =  document.getElementById("fileInput");
+var profileImgPreview = document.getElementById("profileImgPreview");
+
+/*===============================================================
+Add Contact 
+================================================================*/
+
+//_____add profile img_______
+fileInput.addEventListener('click',function(){
+    
+})
+
+
+
+/*==============================================================
+Contact Cards 
+==============================================================*/
 function returnCategClass(categ) {
     var arrCateg = [];
     switch (categ) {
@@ -39,3 +59,4 @@ function editContactHandler(img) {
 function deleteContactHandler(img) {
 
 }
+

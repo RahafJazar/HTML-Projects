@@ -70,12 +70,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="contact-profile">
-                        <div class="avatar  bg-blue500-blue600">
-                            <img src="images/svg/svgexport-21.svg" alt="">
-                            <label for=""></label>
-                            <input type="file" class="opacity-0">
+                    <div class="profile-wrapper">
+                        <div class="profile-image  bg-blue500-blue600" id="profileImg">
+                            <img src="images/svg/svgexport-21.svg" alt="" class="default-img" id="profileImgPreview">
+
                         </div>
+                        <button class="btn btn-light mt-3" id="changeProfileBtn">
+                            <img src="images/svg/svgexport-23.svg" alt="" width="12" height="12">
+                            change Photo
+                        </button>
+                        <input type="file" accept="image/*" hidden id="fileInput">
                     </div>
 
                 </div>

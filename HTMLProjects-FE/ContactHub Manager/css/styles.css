@@ -590,16 +590,30 @@ ul {
 /*====================================================
  Modal
  =================================================*/
-.modal-body .avatar {
+.profile-wrapper {
+    text-align: center;
+}
+
+.profile-wrapper .profile-image {
+    margin: auto;
     width: calc(var(--spacing)*24);
     height: calc(var(--spacing)*24);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
 }
 
-.modal-body .avatar img {
+.profile-image .preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.profile-image .default-img {
     width: 24px !important;
     height: 24px !important;
 
