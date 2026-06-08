@@ -587,7 +587,22 @@ ul {
     height: 12px !important;
 }
 
+/*====================================================
+ Modal
+ =================================================*/
+.modal-body .avatar {
+    width: calc(var(--spacing)*24);
+    height: calc(var(--spacing)*24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
 
+.modal-body .avatar img {
+    width: 24px !important;
+    height: 24px !important;
 
+}
 
 /*=================================================*/
