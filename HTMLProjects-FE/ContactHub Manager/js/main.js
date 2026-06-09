@@ -1,23 +1,25 @@
 
 var categ = "work";
 var contactObj = {
-    fullname: null,
-    phone: null,
-    email: null,
-    profImg: null,
-    address: null,
-    group: null,
-    notes: null,
-    groupBackgColor: null,
-    groupTextColor: null,
-    isFavorite: null,
-    isEmergency: null
+    fullname: "",
+    phone: "",
+    email: "",
+    profImg: "",
+    address: "",
+    group: "",
+    notes: "",
+    groupBackgColor: "",
+    groupTextColor: "",
+    isFavorite: "",
+    isEmergency: ""
 
 }
-var allContacts = localStorage.getItem("allContacts") != undefined ? JSON.parse(localStorage.getItem(allContacts)) : [];
-var favContacts = localStorage.getItem("favContacts") != undefined ? JSON.parse(localStorage.getItem(allContacts)) : [];
-var emergContacts = localStorage.getItem("emergContacts") != undefined ? JSON.parse(localStorage.getItem(allContacts)) : [];
+var allContacts = localStorage.getItem("allContacts") ? JSON.parse(localStorage.getItem("allContacts")) : [];
+var favContacts = localStorage.getItem("favContacts") ? JSON.parse(localStorage.getItem("favContacts")) : [];
+var emergContacts = localStorage.getItem("emergContacts") ? JSON.parse(localStorage.getItem("emergContacts")) : [];
 
+
+var modalElement = document.getElementById('exampleModal');
 
 
 /* ^ ------Add Contact Variables -----^ */
@@ -28,6 +30,9 @@ var changeProfileImgBtn = document.getElementById("changeProfileBtn");
 var fullNameInput = document.getElementById("fullName");
 var phoneNumInput = document.getElementById("phoneNum");
 var emailInput = document.getElementById("email");
+var groupInput = document.getElementById("group");
+var addressInput = document.getElementById("address");
+var notesInput = document.getElementById("notes");
 
 var favCheckbox = document.getElementById("fav");
 var EmergCheckbox = document.getElementById("emerg");
@@ -36,7 +41,7 @@ var saveContactBtn = document.getElementById("saveContactBtn");
 var cancelBtn = document.getElementById("cancelBtn");
 
 
-
+displayAllContacts();
 /*===============================================================
 Add Contact 
 ================================================================*/
@@ -52,11 +57,13 @@ fileInput.addEventListener("change", function (event) {
     const fileInputRes = event.target.files[0];
     console.log(fileInputRes)
     if (!fileInputRes) {
+        fileInput.files[0].name = null;
         profileImgPreview.setAttribute("src") = "images/svg/svgexport-21.svg";
         profileImgPreview.classList.add("default-img");
         profileImgPreview.classList.remove("preview-img");
 
     } else {
+        fileInput.files[0].name = fileInputRes.name;
         profileImgPreview.setAttribute("src", `images/${fileInputRes.name} `);
         profileImgPreview.classList.remove("default-img");
         profileImgPreview.classList.add("preview-img");
@@ -75,54 +82,92 @@ function validateAllInputs(element) {
         'fullName': /^[a-zA-Z ]{2,50}$/,
         'phoneNum': /^(01[0-9]{9}|\+20[0-9]{10})$/,
         'email': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        'address': /^.{3,300}$/,
+        'notes': /^.{3,600}$/,
 
     }
+    // required fields
+    if (id == 'fullName' || id == 'phoneNum') {
+        if (!regex[id].test(value)) {
+            console.log("match input ");
+            setInvalid(element, nextSibling)
+            return false
 
-    if (regex[id].test(value)) {
-        console.log("match input ");
-        element.classList.add("is-valid");
-        element.classList.remove("is-invalid");
-        nextSibling.classList.add("d-none")
-        nextSibling.classList.remove("d-block")
-
+        }
     }
-    else {
-        console.log("miss match input ");
-        element.classList.add("is-invalid");
-        element.classList.remove("is-valid");
-        nextSibling.classList.add("d-block")
-        nextSibling.classList.remove("d-none")
-
-    }
-}
-
-emailInput.addEventListener('input', function () {
-    validateAllInputs(emailInput)
-})
-
-//_____ save contact btn pressesed _______
-saveContactBtn.addEventListener("click", function () {
-    if (validateAllInputs(fullNameInput) && validateAllInputs(phone) && validateAllInputs(emailInput)) {
-        contactObj = {
-            fullname: fullNameInput.value,
-            phone: phoneNumInput.value,
-            email: emailInput.value,
-            profImg: profImg,
-            address: null,
-            group: null,
-            notes: null,
-            groupBackgColor: null,
-            groupTextColor: null,
-            isFavorite: null,
-            isEmergency: null
+    //optional email but with validation
+    else if (id == 'email') {
+        if (value !== "" && !regex[id].test(value)) {
+            console.log("match input ");
+            setInvalid(element, nextSibling)
+            return false
 
         }
 
     }
+    else {
+        return true;
+    }
+    setValid(element, nextSibling);
+    return true
+
+}
+
+function setInvalid(element, nextSibling) {
+    element.classList.add("is-invalid");
+    element.classList.remove("is-valid");
+    nextSibling.classList.add("d-block")
+    nextSibling.classList.remove("d-none")
+}
+function setValid(element, nextSibling) {
+    element.classList.add("is-valid");
+    element.classList.remove("is-invalid");
+    nextSibling.classList.add("d-none")
+    nextSibling.classList.remove("d-block");
+}
+//event pubbling
+document.querySelector(".modal-body").addEventListener("input", function (event) {
+    validateAllInputs(event.target);
+})
+//_____ save contact btn pressesed _______
+saveContactBtn.addEventListener("click", function () {
+    if (validateAllInputs(fullNameInput) && validateAllInputs(phoneNumInput) && validateAllInputs(emailInput)) {
+        contactObj = {
+            fullname: fullNameInput.value,
+            phone: phoneNumInput.value,
+            email: emailInput.value || "",
+            profImg: fileInput.files[0] ? fileInput.files[0].name : "",
+            address: addressInput.value.trim() || "",
+            group: groupInput.value || "",
+            notes: notesInput.value.trim() || "",
+            groupBackgColor: returnCategClass(groupInput.value)[0] || "",
+            groupTextColor: returnCategClass(groupInput.value)[1] || "",
+            isFavorite: favCheckbox.checked,
+            isEmergency: EmergCheckbox.checked
+
+        }
+        console.log("contact obj ", contactObj);
+        allContacts.push(contactObj);
+        localStorage.setItem("allContacts", JSON.stringify(allContacts));
+        console.log("all contacts  ", allContacts);
+        displayAllContacts();
+        modalElement.modal('hide');
+        resetInputs();
+
+    }
 
 })
-function saveOrUpdateContact() {
 
+function resetInputs() {
+    fullNameInput.value = null
+    phoneNumInput.value = null;
+    emailInput.value = null;
+    fileInput.files.length = 0;
+    addressInput.value - null;
+    groupInput.value = null;
+    notesInput.value = null;
+    favCheckbox.checked = false;
+    EmergCheckbox.checked = false
 }
 
 /*==================================================
@@ -140,38 +185,38 @@ function generateContactTags(contact) {
           
         `;
     }
-    else {
+    if (contact.isEmergency) {
 
         contactTags += `
-               <span class="inline-flex rounded-2 px-2 py-1 bg-rose-500">
-                <img src="images/svg/svgexport-7.svg" alt="" width="10" height="10">
-                     <p class="text-xs text-rose-500 ">Emergency</p>
+               <span class="d-flex justify-content-center align-items-center gap-2 rounded-2 px-2 py-1 bg-rose-100">
+                <img src="images/svg/svgexport-12.svg" alt="" width="10" height="10">
+                     <p class="text-xs text-rose-500 m-0">Emergency</p>
                  </span>
         `;
     }
 
-    return stickers;
+    return contactTags;
 }
 function generateContactProfileImg(contact) {
     let contactCardImg = '';
 
-    if (contact.name) {
+    if (contact.profImg) {
         contactCardImg += `
             
-                <img src="images/${contact.profImg}" alt="">
+                <img src="images/${contact.profImg}" alt="" width="100" height="100">
           
         `;
     }
     else {
-        const NameSplitted = contact.fullname.split(' ');
-        const firstWordLetter1 = NameSplitted[0].slice(0, 1);
-        const LastWordLetter1 = NameSplitted[NameSplitted.length].slice(0, 1);
+        const nameParts = contact.fullname.trim().split(' ');
+        const firstWordLetter1 = nameParts[0].charAt(0)
+        const LastWordLetter1 = nameParts[nameParts.length - 1].charAt(0);
         contactCardImg += `
               <p class="text-white text-uppercase fw-bold"> ${firstWordLetter1 + LastWordLetter1}</p>
         `;
     }
 
-    return stickers;
+    return contactCardImg;
 }
 function generateContactStickers(contact) {
     let stickers = '';
@@ -204,10 +249,10 @@ function displayAllContacts() {
 
         stickers = generateContactStickers(allContacts[i]);
         profCardImg = generateContactProfileImg(allContacts[i]);
-
+        contactTags = generateContactTags(allContacts[i])
         cartona += `
-                  <div class="contact-card col-md-6 bg-white rounded-3 shadow-sm">
-                            <div class="py-4 px-2">
+                  <div class="contact-card col-md-6  rounded-3 shadow-sm">
+                            <div class="py-4 px-2 bg-white">
                                 <!---Header-->
                                 <div class="d-flex flex-column gap-2">
 
@@ -218,7 +263,7 @@ function displayAllContacts() {
                                             ${stickers}
                                         </div>
                                         <div>
-                                            <h3 class="fw-bold fs-5">${allContacts[i].profImg}</h3>
+                                            <h3 class="fw-bold fs-5">${allContacts[i].fullname}</h3>
                                             <div class="d-flex gap-2 align-items-center ">
                                                 <div class="call-btn-contact">
                                                     <img src="images/svg/svgexport-9.svg" alt="" width="">
@@ -283,7 +328,7 @@ function returnCategClass(categ) {
             arrCateg.push("bg-work-categ");
             arrCateg.push("text-work-categ");
             break;
-        case "friend":
+        case "friends":
             arrCateg.push("bg-friend-categ ");
             arrCateg.push("text-friend-categ");
             break;
@@ -295,7 +340,11 @@ function returnCategClass(categ) {
             arrCateg.push("bg-school-categ ");
             arrCateg.push("text-school-categ");
             break;
-        case "family":
+        case "other":
+            arrCateg.push("bg-other-categ ");
+            arrCateg.push("text-other-categ");
+            break;
+        default:
             arrCateg.push("bg-other-categ ");
             arrCateg.push("text-other-categ");
             break;

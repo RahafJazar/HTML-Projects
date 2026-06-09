@@ -488,12 +488,14 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
 }
 
 .contact-card-svg-container>img {
-    width: 16px !important;
-    height: 16px !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
 }
 
 .bg-rose-100 {
