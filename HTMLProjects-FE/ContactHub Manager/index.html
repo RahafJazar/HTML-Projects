@@ -66,10 +66,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Contact</h1>
+                    <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Add New Contact</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body my-custom-form ">
                     <div class="profile-wrapper">
                         <div class="profile-image  bg-blue500-blue600" id="profileImg">
                             <img src="images/svg/svgexport-21.svg" alt="" class="default-img" id="profileImgPreview">
@@ -81,14 +81,85 @@
                         </button>
                         <input type="file" accept="image/*" hidden id="fileInput">
                     </div>
+                    <div class=" input-wrapper fullName-wrapper">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="FullName" class="form-control"
+                            placeholder="Enter full name">
+                        <div class=" text-danger  text-xs d-none" role="alert">
+                            Name should contain only letters and spaces (2-50 characters)
+                        </div>
+                    </div>
+                    <div class=" input-wrapper wrapper phone-wrapper">
+                        <label for="phoneNum">Phone Number <span class="required">*</span></label>
+                        <input type="text" id="phoneNum" name="PhoneNum" class="form-control"
+                            placeholder="e.g, 01012345678">
+                        <div class=" text-danger  text-xs d-none" role="alert">
+                            Please enter a valid Egyptian phone number
+                        </div>
+                    </div>
+                    <div class=" input-wrapper wrapper email-wrapper">
+                        <label for="email">Email Address </label>
+                        <input type="email" id="email" name="Email" class="form-control" placeholder="name@example.com">
+                        <div class=" text-danger  text-xs d-none" role="alert">
+                            Please enter a valid email address
+                        </div>
+                    </div>
+                    <div class=" input-wrapper wrapper email-wrapper">
+                        <label for="address">Address </label>
+                        <input type="text" id="address" name="Address" class="form-control" placeholder="Enter address">
+
+                    </div>
+                    <div class=" input-wrapper wrapper group-wrapper">
+                        <label for="group">Group </label>
+                        <select name="Group" id="group">
+                            <option value="" hidden selected>select a group</option>
+                            <option value="family">Family</option>
+                            <option value="friends">Friends</option>
+                            <option value="work">Work</option>
+                            <option value="school">School</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                    </div>
+                    <div class=" input-wrapper wrapper notes-wrapper">
+                        <label for="notes">Notes </label>
+                        <textarea id="notes" name="Notes" class="form-control"
+                            placeholder="Add notes about this contact"></textarea>
+
+                    </div>
+                    <div class="checkbox-wrapper  d-flex  align-items-center gap-2">
+                        <div class="favourites-checkbox d-flex  align-items-center gap-2">
+                            <input type="checkbox" name="Fav" id="fav">
+                            <div class="d-flex gap-1 align-items-center">
+                                <img src="images/svg/svgexport-23.svg" alt="" width="10" height="10">
+                                <label for="fav">Favorite</label>
+                            </div>
+
+                        </div>
+                        <div class="emergency-checkbox d-flex  align-items-center gap-2">
+                            <input type="checkbox" name="Emerg" id="emerg">
+                            <div class="d-flex gap-1 align-items-center">
+                                <img src="images/svg/svgexport-15.svg" alt="" width="10" height="10">
+                                <label for="emerg">Emergency</label>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="modal-footer d-flex align-items-center">
+                    <button type="button" id="cancelBtn"
+                        class="btn btn-light btn btn-outline-secondary flex-grow-1 text-center p-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="saveContactBtn"
+                        class="btn btn-primary bg-indigo5-violet6 d-flex justify-content-center  align-items-center gap-2  flex-grow-1 p-2 ">
+                        <img src="images/svg/svgexport-24.svg" alt="" width="13" height="13">
+                        Save Contact</button>
                 </div>
             </div>
+
         </div>
+    </div>
     </div>
 
     <main id="main-content" class="dashboard bg-secondary pt-5 ">
