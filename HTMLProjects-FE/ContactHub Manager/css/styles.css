@@ -15,6 +15,7 @@ p {
     margin: 0;
     font-family: "Inter", sans-serif;
     box-sizing: border-box;
+
 }
 
 a {
@@ -560,16 +561,25 @@ ul {
 }
 
 .bg-other-categ {
-    background-color: var(--gray-1);
+    background-color: var(--gray-5);
 }
 
 .text-other-categ {
-    color: var(--gray-7);
+    color: var(--gray-9);
 }
 
 .contact-cards .contact-card {
+    background-color: green;
     box-shadow: 1px 2px 4px 3px rgba(71, 71, 71, 0.219);
     transition: box-shadow 0.2s ease;
+
+}
+
+.contact-cards .contact-card>div {
+    background-color: purple;
+    box-shadow: 1px 2px 4px 3px rgba(145, 32, 32, 0.219);
+    transition: box-shadow 0.2s ease;
+
 }
 
 .contact-cards .contact-card:hover {
@@ -596,6 +606,67 @@ ul {
 
     width: 12px !important;
     height: 12px !important;
+}
+
+.email-footer-btn {
+    width: calc(var(--spacing)*9);
+    height: calc(var(--spacing)*9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: var(--color-amber-50);
+}
+
+.email-footer-btn:hover {
+    background-color: var(--color-amber-100);
+}
+
+.email-footer-btn img {
+
+    width: 12px !important;
+    height: 12px !important;
+}
+
+#fav-footer-btn,
+#emerg-footer-btn,
+#edit-footer-btn,
+#delete-footer-btn {
+    width: calc(var(--spacing)*9);
+    height: calc(var(--spacing)*9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: var(--color-amber-50);
+
+}
+
+
+#fav-footer-btn svg,
+#emerg-footer-btn svg,
+#edit-footer-btn svg,
+#delete-footer-btn svg {
+    color: #c9c8c7;
+
+}
+
+#fav-footer-btn svg:hover {
+    color: #ffbb00;
+}
+
+#emerg-footer-btn svg:hover {
+    color: #ff2159
+}
+
+#edit-footer-btn svg:hover {
+    color: #364fc7;
+
+}
+
+#delete-footer-btn svg:hover {
+    color: #c73636;
+
 }
 
 /*====================================================
@@ -659,3 +730,35 @@ ul {
 }
 
 /*=================================================*/
+
+.bg-rand-colo1 {
+    background: linear-gradient(to right, var(--red-5), var(--orange-5));
+}
+
+.bg-rand-colo2 {
+    background: linear-gradient(to right, var(--blue-5), var(--red-5));
+}
+
+.bg-rand-colo3 {
+    background: linear-gradient(to right, var(--violet-5), var(--indigo-5));
+}
+
+.bg-rand-colo4 {
+    background: linear-gradient(to right, var(--cyan-5), var(--green-5));
+}
+
+.bg-rand-colo5 {
+    background: linear-gradient(to right, var(--lime-5), var(--yellow-5));
+}
+
+.bg-rand-colo6 {
+    background: linear-gradient(to right, var(--brown-5), var(--camo-5));
+}
+
+.bg-rand-colo7 {
+    background: linear-gradient(to right, var(--jungle-5), var(--sand-5));
+}
+
+.bg-rand-colo8 {
+    background: linear-gradient(to right, var(--purple-5), var(--pink-5));
+}
