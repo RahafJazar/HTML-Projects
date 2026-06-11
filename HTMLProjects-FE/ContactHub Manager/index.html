@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!---sweet alert library-->
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -191,7 +192,7 @@
                         </div>
 
                     </div>
-                    <div class="  col-lg-4  col-6 " id="emergency-contacts-coun">
+                    <div class="  col-lg-4  col-6 " id="emergency-contacts-count">
                         <div class="d-flex gap-2 rounded-4 shadow-lg bg-white p-3 shadow-sm">
                             <div class="dashboard-stats-svg-container  bg-rose500-red600 rounded-3">
                                 <img src="images/svg/svgexport-6.svg" alt="">
@@ -220,7 +221,7 @@
                         </div>
                     </div>
                     <div id="favourites-list-content">
-                        <div class="row cards px-4 py-3">
+                        <div class="row cards px-4 py-3" id="fav-list-cards">
                             <div class="fav-card col-md-6  col-xl-12 my-2 p-2 ">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="head d-flex justify-content-between align-items gap-2">
@@ -301,10 +302,21 @@
             <div class="contact-window">
                 <div>
                     <h2 class="fw-bold fs-2">All Contacts</h2>
-                    <p class="text-muted">Manage and organize your 3 contacts </p>
+                    <p class="text-muted">
+                        Manage and organize your
+                        <span id="manageCount"></span>
+                        contacts
+                    </p>
+
                 </div>
-                <div class="search-bar">
-                    <input type="search">
+                <div class="search-bar position-relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16" id="searchIcon">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                    <input type="search" class="w-100 h-100 border border-secondary-subtle py-2 px-5 my-2 rounded-3"
+                        placeholder="search by name, phone and email" oninput="searchInContact()" id="searchInput">
                 </div>
                 <div class="contact-list p-2">
                     <div class="contact-cards row g-3">
@@ -425,7 +437,10 @@
     </main>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <!----Sweet alert library-->
+    <script src="js/sweetalert2.min.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

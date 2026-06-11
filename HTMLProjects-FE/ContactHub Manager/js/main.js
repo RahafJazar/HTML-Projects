@@ -16,8 +16,7 @@ var contactObj = {
 
 }
 var allContacts = localStorage.getItem("allContacts") ? JSON.parse(localStorage.getItem("allContacts")) : [];
-var favContacts = localStorage.getItem("favContacts") ? JSON.parse(localStorage.getItem("favContacts")) : [];
-var emergContacts = localStorage.getItem("emergContacts") ? JSON.parse(localStorage.getItem("emergContacts")) : [];
+var allContactsCount = 0, favCounts = 0, emergCounts = 0;
 
 
 var modalElement = document.getElementById('exampleModal');
@@ -26,6 +25,7 @@ const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
 
 /* ^ ------Add Contact Variables -----^ */
 var fileInput = document.getElementById("fileInput");
+var profImgDiv = document.getElementById("profileImg");
 var profileImgPreview = document.getElementById("profileImgPreview");
 var changeProfileImgBtn = document.getElementById("changeProfileBtn");
 
@@ -42,6 +42,8 @@ var EmergCheckbox = document.getElementById("emerg");
 var saveContactBtn = document.getElementById("saveContactBtn");
 var cancelBtn = document.getElementById("cancelBtn");
 
+var updatedIndex = null;
+var oldImg = "";
 
 displayAllContacts();
 /*===============================================================
@@ -134,11 +136,18 @@ document.querySelector(".modal-body").addEventListener("input", function (event)
 //_____ save contact btn pressesed _______
 saveContactBtn.addEventListener("click", function () {
     if (validateAllInputs(fullNameInput) && validateAllInputs(phoneNumInput) && validateAllInputs(emailInput)) {
+        var imgName = "";
+        if (fileInput.files[0]) {
+            imgName = fileInput.files[0].name;
+        }
+        else {
+            imgName = oldImg;
+        }
         contactObj = {
             fullname: fullNameInput.value,
             phone: phoneNumInput.value,
             email: emailInput.value || "",
-            profImg: fileInput.files[0] ? fileInput.files[0].name : "",
+            profImg: imgName,
             address: addressInput.value.trim() || "",
             group: groupInput.value || "",
             notes: notesInput.value.trim() || "",
@@ -151,13 +160,49 @@ saveContactBtn.addEventListener("click", function () {
 
         }
         console.log("contact obj ", contactObj);
-        allContacts.push(contactObj);
+
+        if (updatedIndex) {
+            allContacts[updatedIndex] = contactObj;
+
+            Swal.fire({
+                icon: "success",
+                title: "Updated",
+                text: "contact has been updated  successfuully!",
+                timer: 1200
+            })
+        }
+        else {
+            allContacts.push(contactObj);
+            Swal.fire({
+                icon: "success",
+                title: "Added",
+                text: "Contact has been added successfuly!",
+                timer: 1200
+
+            })
+        }
+
         localStorage.setItem("allContacts", JSON.stringify(allContacts));
         console.log("all contacts  ", allContacts);
         displayAllContacts();
+        updateCounts();
         modalInstance.hide();
         resetInputs();
 
+    } else if (!validateAllInputs(fullNameInput)) {
+        Swal.fire({
+            icon: "error",
+            title: "Missing Name",
+            text: "Please enter a name for the contact!"
+        })
+
+    }
+    else if (!validateAllInputs(phoneNumInput)) {
+        Swal.fire({
+            icon: "error",
+            title: "Missing Phone",
+            text: "Please enter a phone for the contact!"
+        })
     }
 
 })
@@ -295,8 +340,22 @@ function showEmergFooterImg(contact) {
     return emergBtn;
 }
 
+function updateCounts() {
+    const total = allContacts.length;
+    const favCounts = allContacts.filter(c => c.isFavorite);
+    const emergCounts = allContacts.filter(c => c.isEmergency);
+
+    document.querySelector("#total-contacts-count .total-count").innerHTML = total;
+    document.querySelector("#favourite-contacts-count .total-count").innerHTML = total;
+    document.querySelector("#emergency-contacts-count .total-count").innerHTML = total;
+
+}
+
 
 function displayAllContacts() {
+
+    const manageCountsSpan = document.getElementById("manageCount");
+    manageCountsSpan.innerHTML = allContacts.length;
     var cartona = ``;
     let stickers = ``;
     let profCardImg = ``;
@@ -309,9 +368,9 @@ function displayAllContacts() {
         favFooterBtn = showFavFooterImg(allContacts[i])
         emergFooerBtn = showEmergFooterImg(allContacts[i])
         cartona += `
-                  <div class=" col-md-6 col-lg-6">
-                       <div class="contact-card rounded-5 shadow-sm">
-                            <div class="py-4 px-2 bg-white">
+                  <div class=" col-md-6 col-lg-6 ">
+                       <div class="contact-card  overflow-hidden ">
+                            <div class="pt-4  pb-1 px-2 bg-white rounded-5 shadow-sm">
                                 <!---Header-->
                                 <div class="d-flex flex-column gap-2">
 
@@ -347,7 +406,7 @@ function displayAllContacts() {
                                         </div>
                                     </div>
                                     <!---AcrionBar-->
-                                    <div class="tags-list d-flex flex-wrap gap-2 py-2">
+                                    <div class="tags-list d-flex flex-wrap gap-2 py-2 align-content-center">
                                         ${contactTags}
                                     </div>
                                 </div>
@@ -369,7 +428,7 @@ function displayAllContacts() {
                                         <button id="emerg-footer-btn" onclick="TickCardAsEmerg(${i}) ">
                                            ${emergFooerBtn}
                                         </button>
-                                        <button id="edit-footer-btn">
+                                        <button id="edit-footer-btn"  onclick="setFormForUpdate(${i})">
                                             <svg xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 class="svg-inline--fa fa-pen" aria-hidden="true" focusable="false"
                                                 data-prefix="fas" data-icon="pen" role="img"
@@ -380,7 +439,7 @@ function displayAllContacts() {
                                                 </path>
                                             </svg>
                                         </button>
-                                        <button id="delete-footer-btn">
+                                        <button id="delete-footer-btn" onclick="deleteCard(${i})">
                                             <svg xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 class="svg-inline--fa fa-trash" aria-hidden="true" focusable="false"
                                                 data-prefix="fas" data-icon="trash" role="img"
@@ -408,10 +467,69 @@ function displayAllContacts() {
 }
 
 function displayFavContacts() {
+    var cartona = ``;
+    let profCardImg = ``;
+    for (var i = 0; i < allContacts.length; i++) {
+        if (allContacts[i].isFavorite) {
+          
+            profCardImg = generateContactProfileImg(allContacts[i]);
+            cartona += `
+           <div class="fav-card col-md-6  col-xl-12 my-2 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="head d-flex justify-content-between align-items gap-2">
+                                        <div class="favourites-head-container   bg-rand-colo${allContacts[i].randNum}   rounded-2 "> 
+                                            ${profCardImg}
+                                          
+                                        </div>
+                                        <div class="data">
+                                            <h4 class="text-s"> ${allContacts[i].fullname}</h4>
+                                            <p class="text-xs">${allContacts[i].phone} </p>
+                                        </div>
+                                    </div>
+                                    <a href="tel:${allContacts[i].phone}" class="call-btn-fav">
+                                        <img src="images/svg/svgexport-13.svg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+        
+        
+        `
+        }
+
+    }
 
 }
 function displayEmergContacts() {
+ var cartona = ``;
+    let profCardImg = ``;
+    for (var i = 0; i < allContacts.length; i++) {
+        if (allContacts[i].isEmergency) {
+           
+            profCardImg = generateContactProfileImg(allContacts[i]);
+            cartona += `
+           <div class="fav-card col-md-6  col-xl-12 my-2 p-2 ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="head d-flex justify-content-between align-items gap-2">
+                                        <div class="favourites-head-container   bg-rand-colo${allContacts[i].randNum}   rounded-2 "> 
+                                            ${profCardImg}
+                                          
+                                        </div>
+                                        <div class="data">
+                                            <h4 class="text-s"> ${allContacts[i].fullname}</h4>
+                                            <p class="text-xs">${allContacts[i].phone} </p>
+                                        </div>
+                                    </div>
+                                    <a href="tel:${allContacts[i].phone}" class="call-btn-fav">
+                                        <img src="images/svg/svgexport-13.svg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+        
+        
+        `
+        }
 
+    }
 }
 
 
@@ -469,30 +587,186 @@ function TickCardAsFav(index) {
     debugger
     allContacts[index].isFavorite = !allContacts[index].isFavorite
     localStorage.setItem("allContacts", JSON.stringify(allContacts))
-    displayAllContacts()
+    displayAllContacts();
+    updateCounts();
 
 }
 function TickCardAsEmerg(index) {
     allContacts[index].isEmergency = !allContacts[index].isEmergency
     localStorage.setItem("allContacts", JSON.stringify(allContacts))
+    displayAllContacts();
+    updateCounts();
+}
+
+/*====================================================
+Edit Cardsz
+====================================================*/
+function setFormForUpdate(index) {
+    updatedIndex = index;
+    oldImg = allContacts[index].profImg;
+    alert("foo")
+    fullNameInput.value = allContacts[index].fullname;
+    phoneNumInput.value = allContacts[index].phone;
+    emailInput.value = allContacts[index].email;
+    groupInput.value = allContacts[index].group;
+    addressInput.value = allContacts[index].address;
+    notesInput.value = allContacts[index].value;
+    profImgDiv.innerHTML = generateContactProfileImg(allContacts[index]);
+    favCheckbox.checked = allContacts[index].isFavorite;
+    EmergCheckbox.checked = allContacts[index].isEmergency;
+    modalInstance.show();
+
+}
+
+
+
+/*====================================================
+ Delete Cards
+====================================================*/
+function deleteCard(index) {
+    alert("dsdd")
+    Swal.fire({
+        icon: "warning",
+        title: 'Delete Contact?',
+        text: 'Are you sure you want to delete doaaa alliani? This action cannot be undone.',
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#72797e",
+        confirmButtonText: "Yes, delete it!"
+
+    }).then(
+        (result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Contact has been deleted ",
+                    icon: "success",
+                    timer: 1200
+                });
+            }
+        }
+    )
+    allContacts.splice(index, 1);
+    localStorage.setItem("allContacts", JSON.stringify(allContacts));
     displayAllContacts()
 }
 
 
+/*================================================
+Search 
+===============================================*/
 
+function searchInContact() {
+    alert("gfgfggggg")
+    var searchedText = document.getElementById("searchInput").value;
+    var cartona = "";
+    for (var i = 0; i < allContacts.length; i++) {
+        if (allContacts[i].fullname.toLowerCase().includes(searchedText.toLowerCase())
+            || allContacts[i].phone.toLowerCase().includes(searchedText.toLowerCase()) ||
+            allContacts[i].email.toLowerCase().includes(searchedText.toLowerCase())
+        ) {
 
+            stickers = generateContactStickers(allContacts[i]);
+            profCardImg = generateContactProfileImg(allContacts[i]);
+            contactTags = generateContactTags(allContacts[i])
+            favFooterBtn = showFavFooterImg(allContacts[i])
+            emergFooerBtn = showEmergFooterImg(allContacts[i])
+            cartona += `
+                  <div class=" col-md-6 col-lg-6 ">
+                       <div class="contact-card  overflow-hidden ">
+                            <div class="pt-4  pb-1 px-2 bg-white rounded-5 shadow-sm">
+                                <!---Header-->
+                                <div class="d-flex flex-column gap-2">
 
-
-function toggleFavorite(img) {
-
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div
+                                            class="cont-prof-img  contact-card-svg-container rounded-3 bg-rand-colo${allContacts[i].randNum} position-relative ">
+                                            ${profCardImg}
+                                            ${stickers}
+                                        </div>
+                                        <div>
+                                            <h3 class="fw-bold fs-5">${allContacts[i].fullname}</h3>
+                                            <div class="d-flex gap-2 align-items-center ">
+                                                <div class="call-btn-contact">
+                                                    <img src="images/svg/svgexport-9.svg" alt="" width="">
+                                                </div>
+                                                <p class="text-muted">${allContacts[i].phone} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---Contact-Details-->
+                                    <div class="contact-details d-flex flex-column gap-3">
+                                        <div class="email-detail d-flex align-items-center gap-3">
+                                            <div class="email-btn">
+                                                <img src="images/svg/svgexport-10.svg" alt="">
+                                            </div>
+                                            <span class="text-muted  text-s">${allContacts[i].email}</span>
+                                        </div>
+                                        <div class="country-detail  d-flex align-items-center gap-3 ">
+                                            <div class="location-btn">
+                                                <img src="images/svg/svgexport-11.svg" alt="">
+                                            </div>
+                                            <span class="text-muted  text-s">${allContacts[i].address}</span>
+                                        </div>
+                                    </div>
+                                    <!---AcrionBar-->
+                                    <div class="tags-list d-flex flex-wrap gap-2 py-2 align-content-center">
+                                        ${contactTags}
+                                    </div>
+                                </div>
+                                <!-----Actions Footer-->
+                                   <div
+                                    class="py-2    border-top border-1 d-flex justify-content-between align-items-center">
+                                    <div class="d-flex gap-2">
+                                        <a href="tel:${allContacts[i].phone}" class="contact-call-footer-btn rounded-3">
+                                            <img src="images/svg/svgexport-13.svg" alt="">
+                                        </a>
+                                        <a  href="mailto:${allContacts[i].email}" class="btn email-footer-btn">
+                                            <img src="images/svg/svgexport-10.svg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button id="fav-footer-btn" onclick="TickCardAsFav(${i})">
+                                         ${favFooterBtn}
+                                        </button>
+                                        <button id="emerg-footer-btn" onclick="TickCardAsEmerg(${i}) ">
+                                           ${emergFooerBtn}
+                                        </button>
+                                        <button id="edit-footer-btn"  onclick="setFormForUpdate(${i})">
+                                            <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                class="svg-inline--fa fa-pen" aria-hidden="true" focusable="false"
+                                                data-prefix="fas" data-icon="pen" role="img"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                                data-fa-i2svg="" width="17" height="17">
+                                                <path fill="currentColor"
+                                                    d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button id="delete-footer-btn" onclick="deleteCard(${i})">
+                                            <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                class="svg-inline--fa fa-trash" aria-hidden="true" focusable="false"
+                                                data-prefix="fas" data-icon="trash" role="img"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                                data-fa-i2svg="" width="17" height="19.43">
+                                                <path fill="currentColor"
+                                                    d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                           </div>
+                        </div> 
+`
+        }
+    }
+    if (cartona) {
+        document.querySelector(".contact-cards").innerHTML = cartona;
+    }
 }
-function toggleEmergency(img) {
 
-}
-function editContactHandler(img) {
 
-}
-function deleteContactHandler(img) {
 
-}
 

@@ -406,6 +406,17 @@ ul {
 }
 
 
+/*=====================================================
+search
+===================================================*/
+#searchIcon {
+    color: rgb(167, 167, 167);
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    transform: translateY(-50%);
+}
+
 /*=================================*/
 /*^==============Contact Lists==================*/
 
@@ -569,9 +580,25 @@ ul {
 }
 
 .contact-cards .contact-card {
-    background-color: green;
+    background-color: white;
     box-shadow: 1px 2px 4px 3px rgba(71, 71, 71, 0.219);
     transition: box-shadow 0.2s ease;
+    overflow: hidden;
+    border-radius: 20px;
+
+
+}
+
+.contact-cards .contact-card:hover {
+
+    box-shadow: 3px 3px 6px 3px rgba(71, 71, 71, 0.219);
+
+
+}
+
+.contact-cards .contact-card .tags-list {
+
+    height: 50px;
 
 }
 
