@@ -46,6 +46,9 @@ var updatedIndex = null;
 var oldImg = "";
 
 displayAllContacts();
+displayFavContacts();
+displayEmergContacts();
+updateCounts();
 /*===============================================================
 Add Contact 
 ================================================================*/
@@ -185,6 +188,8 @@ saveContactBtn.addEventListener("click", function () {
         localStorage.setItem("allContacts", JSON.stringify(allContacts));
         console.log("all contacts  ", allContacts);
         displayAllContacts();
+        displayEmergContacts();
+        displayFavContacts()
         updateCounts();
         modalInstance.hide();
         resetInputs();
@@ -342,12 +347,12 @@ function showEmergFooterImg(contact) {
 
 function updateCounts() {
     const total = allContacts.length;
-    const favCounts = allContacts.filter(c => c.isFavorite);
-    const emergCounts = allContacts.filter(c => c.isEmergency);
+    const favCounts = allContacts.filter(c => c.isFavorite).length;
+    const emergCounts = allContacts.filter(c => c.isEmergency).length;
 
     document.querySelector("#total-contacts-count .total-count").innerHTML = total;
-    document.querySelector("#favourite-contacts-count .total-count").innerHTML = total;
-    document.querySelector("#emergency-contacts-count .total-count").innerHTML = total;
+    document.querySelector("#favourite-contacts-count .total-count").innerHTML = favCounts;
+    document.querySelector("#emergency-contacts-count .total-count").innerHTML = emergCounts;
 
 }
 
@@ -459,9 +464,9 @@ function displayAllContacts() {
     }
 
 
-    if (cartona) {
-        document.querySelector(".contact-cards").innerHTML = cartona;
-    }
+
+    document.querySelector(".contact-cards").innerHTML = cartona;
+
 
 
 }
@@ -471,7 +476,7 @@ function displayFavContacts() {
     let profCardImg = ``;
     for (var i = 0; i < allContacts.length; i++) {
         if (allContacts[i].isFavorite) {
-          
+
             profCardImg = generateContactProfileImg(allContacts[i]);
             cartona += `
            <div class="fav-card col-md-6  col-xl-12 my-2 p-2 ">
@@ -496,40 +501,48 @@ function displayFavContacts() {
         `
         }
 
+        document.querySelector("#fav-list-cards").innerHTML = cartona;
+
+
     }
+
+
 
 }
 function displayEmergContacts() {
- var cartona = ``;
+    var cartona = ``;
     let profCardImg = ``;
     for (var i = 0; i < allContacts.length; i++) {
         if (allContacts[i].isEmergency) {
-           
+
             profCardImg = generateContactProfileImg(allContacts[i]);
             cartona += `
-           <div class="fav-card col-md-6  col-xl-12 my-2 p-2 ">
+
+                    <div class="emergency-card col-md-6 col-xl-12 my-2 p-2 ">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="head d-flex justify-content-between align-items gap-2">
-                                        <div class="favourites-head-container   bg-rand-colo${allContacts[i].randNum}   rounded-2 "> 
-                                            ${profCardImg}
-                                          
+                                        <div class="emergency-head-container  bg-rand-colo${allContacts[i].randNum}  rounded-2 ">
+                                             ${profCardImg}
                                         </div>
                                         <div class="data">
                                             <h4 class="text-s"> ${allContacts[i].fullname}</h4>
-                                            <p class="text-xs">${allContacts[i].phone} </p>
+                                            <p class="text-xs">${allContacts[i].phone}</p>
                                         </div>
                                     </div>
-                                    <a href="tel:${allContacts[i].phone}" class="call-btn-fav">
-                                        <img src="images/svg/svgexport-13.svg" alt="">
+                                    <a href="tel:${allContacts[i].phone}" class="call-btn-emergency">
+                                        <img src="images/svg/svgexport-19.svg" alt="">
                                     </a>
                                 </div>
-                            </div>
-        
-        
+
+                            </div>  
         `
         }
 
     }
+
+    document.querySelector("#emerg-list-cards").innerHTML = cartona;
+
+
 }
 
 
@@ -588,6 +601,7 @@ function TickCardAsFav(index) {
     allContacts[index].isFavorite = !allContacts[index].isFavorite
     localStorage.setItem("allContacts", JSON.stringify(allContacts))
     displayAllContacts();
+    displayFavContacts();
     updateCounts();
 
 }
@@ -595,6 +609,7 @@ function TickCardAsEmerg(index) {
     allContacts[index].isEmergency = !allContacts[index].isEmergency
     localStorage.setItem("allContacts", JSON.stringify(allContacts))
     displayAllContacts();
+    displayEmergContacts();
     updateCounts();
 }
 
@@ -649,6 +664,9 @@ function deleteCard(index) {
     allContacts.splice(index, 1);
     localStorage.setItem("allContacts", JSON.stringify(allContacts));
     displayAllContacts()
+    displayFavContacts();
+    displayEmergContacts();
+    updateCounts();
 }
 
 
