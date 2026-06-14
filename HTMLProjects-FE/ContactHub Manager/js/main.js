@@ -463,9 +463,8 @@ function displayAllContacts() {
 `
     }
 
-
-
-    document.querySelector(".contact-cards").innerHTML = cartona;
+    if (cartona)
+        document.querySelector(".contact-cards").innerHTML = cartona;
 
 
 
@@ -500,8 +499,8 @@ function displayFavContacts() {
         
         `
         }
-
-        document.querySelector("#fav-list-cards").innerHTML = cartona;
+        if (cartona)
+            document.querySelector("#fav-list-cards").innerHTML = cartona;
 
 
     }

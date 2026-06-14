@@ -1,0 +1,15 @@
+#mouseImg {
+    width: 30px;
+    position: absolute;
+    border-radius: 30px;
+
+}
+
+html {
+
+    cursor: none;
+}
+
+body {
+    background-color: black;
+}
