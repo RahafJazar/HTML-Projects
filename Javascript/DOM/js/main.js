@@ -150,4 +150,12 @@ console.log("-----------Data traversing---------------");
 console.log(test.children);
 console.log(test.childNodes)
 console.log(test.nextElementSibling);
-console.log(test)
+console.log(test.previousElementSibling);
+console.log(test.nextSibling);
+
+
+topImg.parentElement.classList.add("bg-white");
+var avatar1 = document.getElementById("avatar1");
+avatar1.parentElement.classList.add("p-3");
+avatar1.parentElement.classList.add("bg-success");
+console.log(avatar1.closest("section"));
