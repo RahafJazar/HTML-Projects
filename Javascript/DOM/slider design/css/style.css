@@ -1,0 +1,28 @@
+.caption {
+    text-align: center;
+    background-color: white;
+    width: 80%;
+    bottom: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 0.7s ease-in;
+}
+
+.item:hover .caption {
+    bottom: 5px;
+
+}
+
+.light-container {
+    background-color: rgba(0, 0, 0, 0.3);
+ 
+}
+
+.box-img {
+    background-image: url("../images/portfolio-1.jpeg");
+    background-position: center;
+    background-size: cover;
+    width: 50%;
+    height: 400px;
+
+}
