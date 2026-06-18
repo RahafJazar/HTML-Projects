@@ -161,16 +161,30 @@
 // console.log(avatar1.closest("section"));
 
 
-var test = document.querySelector(".test");
-var allH2 = document.getElementsByTagName("h2");
-console.log("before", allH2);
+// var test = document.querySelector(".test");
+// var allH2 = document.getElementsByTagName("h2");
+// console.log("before", allH2);
 
-var allH2QuerySelector = document.querySelectorAll("h2");
-console.log("before ", allH2QuerySelector)
-console.log(allH2QuerySelector)
+// var allH2QuerySelector = document.querySelectorAll("h2");
+// console.log("before ", allH2QuerySelector)
+// console.log(allH2QuerySelector)
 
-const h2 = document.createElement("h2");
-h2.textContent = "ubraha";
-test.append(h2);
-console.log("after", allH2)
-console.log("after ", allH2QuerySelector)
+// const h2 = document.createElement("h2");
+// h2.textContent = "ubraha";
+// test.append(h2);
+// console.log("after", allH2)
+// console.log("after ", allH2QuerySelector)
+
+
+try {
+    var x = 10;
+    console.log(x);
+
+}
+catch (error) {
+    //custom error 
+    throw new Error("error appeared");
+}
+finally {
+    console.log("both")
+}
