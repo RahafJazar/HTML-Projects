@@ -1965,8 +1965,16 @@
         color: #61dafb
     }
 
+    .text-\[\#de2327\] {
+        color: #de2327
+    }
+
     .text-\[\#3178C6\] {
         color: #3178c6
+    }
+
+    .text-\[\#8211fa\] {
+        color: #8211fa
     }
 
     .text-\[\#F24E1E\] {
@@ -2367,8 +2375,16 @@
             border-color: #61dafb
         }
 
+        .hover\:border-\[\#de2327\]:hover {
+            border-color: #de2327
+        }
+
         .hover\:border-\[\#3178C6\]:hover {
             border-color: #3178c6
+        }
+
+        .hover\:border-\[\#8211fa\]:hover {
+            border-color: #8211fa
         }
 
         .hover\:border-accent:hover {

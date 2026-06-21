@@ -2,6 +2,7 @@
 // // var allBtns = document.querySelectorAll('button'); //return NodeList
 // // console.log(allBtns);
 
+
 // // for (var i = 0; i < allBtns.length; i++) {
 
 
@@ -175,7 +176,7 @@
 // console.log("after", allH2)
 // console.log("after ", allH2QuerySelector)
 
-
+"use strict"
 try {
     var x = 10;
     console.log(x);
@@ -188,3 +189,7 @@ catch (error) {
 finally {
     console.log("both")
 }
+
+let tt = "5";
+delete tt;
+console.log(tt);
