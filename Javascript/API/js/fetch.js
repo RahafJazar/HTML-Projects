@@ -2,6 +2,8 @@
 let allRecipes = [];
 let searchInput = document.getElementById("searchInput");
 let searchBtn = document.getElementById("searchBtn");
+let searhforElem = document.getElementById("searhforElem");
+let searchBtn2 = document.getElementById("searchBtn2");
 const loader = document.querySelector(".loader-container");
 let user = {
     name: "ahmad samir jadallah",
@@ -85,7 +87,35 @@ searchBtn.addEventListener("click", function () {
 })
 
 
+searchBtn2.addEventListener("click", function () {
+    const searchText = searhforElem.value.toLowerCase();
+    const filterdRecipes = allRecipes.filter(elem => elem.title.toLowerCase().includes(searchText.toLowerCase()));
+    let cartona = ``;
+    if (filterdRecipes.length === 0) {
+        cartona = `
+            <div class="col-12 text-center">
+                    <p class="text-muted">No data found</p>
+              </div>
+            `
 
+    } else {
+
+        for (let i = 0; i < filterdRecipes.length; i++) {
+            cartona += `
+        <div class="col-md-6 col-lg-3   ">
+                        <div class="p-2  d-flex flex-column justify-content-center align-items-center shadow text-center recipe"   >
+                            <img src="${filterdRecipes[i].image_url}" alt="" width="100%">
+                            <p class="title fw-bold ">title :${filterdRecipes[i].title.split(' ', 2).join(' ')}</p>
+                                <h4 class="title fw-bold fs-6 text-success">publisher : ${filterdRecipes[i].publisher}</h4>
+                        </div>
+                    </div>
+         `
+        }
+
+    }
+    row.innerHTML = cartona;
+
+})
 async function signup() {
     let req = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signup",
         {
