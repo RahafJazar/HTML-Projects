@@ -1,0 +1,57 @@
+/* small */
+@media screen and (max-width:576px) {}
+
+/* medium */
+@media screen and (min-width:577px) and (max-width:768px) {}
+
+/* Large */
+@media screen and (max-width:769px) and (max-width:992px) {}
+
+/* Extra large */
+@media screen and (max-width:993px) and (max-width:1200px) {}
+
+@media screen and (min-width:640px) {
+    .navbar-brand .nav-text p {
+        display: flex;
+    }
+
+    #settings-btn,
+    #notifications-btn {
+        display: flex;
+    }
+
+    #add-contact-btn .contact-word {
+        display: inline;
+    }
+
+    .navbar-svg-container {
+        width: calc(var(--spacing)*11);
+        height: calc(var(--spacing)*11);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dashboard-stats-svg-container {
+        width: calc(var(--spacing)*12);
+        height: calc(var(--spacing)*12);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+/* Extra large */
+@media screen and (min-width:1201px) {
+    .dashboard .container-fluid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+
+        grid-template-areas:
+            "dashboard-stats dashboard-stats "
+            "contact-window   side-panel"
+    }
+
+
+}

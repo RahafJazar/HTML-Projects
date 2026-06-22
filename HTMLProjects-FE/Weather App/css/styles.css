@@ -1,0 +1,83 @@
+@import url("./colorsVariables.css");
+@import url("./bootstrap.min.css");
+
+
+/*#region========== GLOBAL =================*/
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.bg-cyan-blue-indigo {
+    background: linear-gradient(140deg, var(--teal-4) 50%, var(--blue-3), var(--violet-4));
+}
+
+.bg-orange-red-500 {
+    background: linear-gradient(to right, var(--red-5), var(--orange-5));
+}
+
+.bg-orange-100 {
+    background-color: var(--orange-1);
+}
+
+.bg-yellow-100 {
+    background-color: var(--yellow-1);
+}
+
+.bg-green-100 {
+    background-color: var(--green-1);
+}
+
+.bg-green-0 {
+    background-color: var(--green-0);
+}
+
+.bg-blue-100 {
+    background-color: var(--blue-1);
+}
+
+.bg-red-100 {
+    background-color: var(--red-1);
+}
+
+.bg-pink-100 {
+    background-color: var(--pink-1);
+}
+
+.text-violet-700 {
+    color: var(--violet-7);
+}
+
+a,
+i {
+    display: inline-block;
+}
+
+
+
+
+ul {
+    list-style-type: none;
+}
+
+.country {
+    text-shadow: 2px 2px 3px grey;
+}

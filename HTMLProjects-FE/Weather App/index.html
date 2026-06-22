@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!---sweet alert library-->
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/media.css">
+    <!----Poppins GoogleFont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <title>weather app</title>
+</head>
+
+<body>
+    <div id="weather-app" class="w-50 m-auto rounded-2 bg-cyan-blue-indigo my-5">
+        <div class="container">
+            <div class="p-3">
+                <div class="row search-container">
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        <input type="search" id="searchInput" class="w-50 p-2 ps-4 rounded-4 border-0 bg-green-0"
+                            placeholder="enter city name ">
+                        <button
+                            class="overflow-hidden rounded-circle  bg-white d-flex justify-content-center align-items-center p-3 bg-green-0 border-0"
+                            style="width: 35px; height: 35px;">
+                            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="row content-container ">
+                    <div class="text-white text-center d-flex flex-column  gap-5 py-4">
+                        <div class="img-container w-25 m-auto bg-info">
+                            <img src="images/clear.png" alt="" class="w-100">
+                        </div>
+                        <div class="celisuis-temp">
+                            <div class="temp fw-bold fs-2">
+                                <span class="fs-1"> 7 <sup>o</sup></span> C
+                            </div>
+                            <div class="country   fs-1">
+                                New York
+                            </div>
+                        </div>
+                        <div class="temp-sttistics d-flex  justify-content-evenly align-items-center ">
+
+                            <div class="humidity d-flex align-items-center gap-2">
+                                <img src="images/humidity.png" alt="humadity " width="40" height="40">
+                                <div class="humidity-data d-flex flex-column align-items-center ">
+                                    <span class="fs-4">48 %</span>
+                                    <span>Humidity</span>
+                                </div>
+                            </div>
+                            <div class="wind-speed d-flex align-items-center gap-2">
+                                <img src="images/wind.png" alt="wind" width="40" height="40">
+                                <div class="wind-data d-flex flex-column align-items-center ">
+                                    <span class="fs-4">10.29 km/h</span>
+                                    <span>Wind Speed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
