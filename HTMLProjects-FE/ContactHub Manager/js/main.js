@@ -14,7 +14,11 @@ var contactObj = {
     isEmergency: "",
     randNum: ""
 
+
 }
+
+//Data storage 
+
 var allContacts = localStorage.getItem("allContacts") ? JSON.parse(localStorage.getItem("allContacts")) : [];
 var allContactsCount = 0, favCounts = 0, emergCounts = 0;
 

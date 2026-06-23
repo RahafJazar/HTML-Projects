@@ -176,20 +176,26 @@
 // console.log("after", allH2)
 // console.log("after ", allH2QuerySelector)
 
-"use strict"
-try {
-    var x = 10;
-    console.log(x);
+// "use strict"
+// try {
+//     var x = 10;
+//     console.log(x);
 
-}
-catch (error) {
-    //custom error 
-    throw new Error("error appeared");
-}
-finally {
-    console.log("both")
-}
+// }
+// catch (error) {
+//     //custom error 
+//     throw new Error("error appeared");
+// }
+// finally {
+//     console.log("both")
+// }
 
-let tt = "5";
-delete tt;
-console.log(tt);
+// let tt = "5";
+// delete tt;
+// console.log(tt);
+document.body.style.backgroundColor = "green"
+console.log("screen size", window.innerWidth);
+console.log("node width in px", document.body.offsetWidth)
+setTimeout(() => {
+    document.body.style.backgroundColor = ""
+}, 3000);
