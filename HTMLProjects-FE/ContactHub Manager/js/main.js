@@ -18,8 +18,13 @@ var contactObj = {
 }
 
 //Data storage 
+var allContacts = getLocalStorageContacts()
 
-var allContacts = localStorage.getItem("allContacts") ? JSON.parse(localStorage.getItem("allContacts")) : [];
+//Logic Functions 
+function getLocalStorageContacts() {
+    return localStorage.getItem("allContacts") ? JSON.parse(localStorage.getItem("allContacts")) : [];
+}
+
 var allContactsCount = 0, favCounts = 0, emergCounts = 0;
 
 
@@ -141,7 +146,7 @@ document.querySelector(".modal-body").addEventListener("input", function (event)
     validateAllInputs(event.target);
 })
 //_____ save contact btn pressesed _______
-saveContactBtn.addEventListener("click", function () {
+function addContact() {
     if (validateAllInputs(fullNameInput) && validateAllInputs(phoneNumInput) && validateAllInputs(emailInput)) {
         var imgName = "";
         if (fileInput.files[0]) {
@@ -213,8 +218,8 @@ saveContactBtn.addEventListener("click", function () {
             text: "Please enter a phone for the contact!"
         })
     }
-
-})
+}
+saveContactBtn.addEventListener("click", addContact)
 
 function resetInputs() {
     fullNameInput.value = null
