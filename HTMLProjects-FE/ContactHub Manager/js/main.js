@@ -696,7 +696,7 @@ function searchInContact() {
                   <div class=" col-md-6 col-lg-6 ">
                        <div class="contact-card  overflow-hidden ">
                             <div class="pt-4  pb-1 px-2 bg-white rounded-5 shadow-sm">
-                                <!---Header-->
+                                <!---Header-->  
                                 <div class="d-flex flex-column gap-2">
 
                                     <div class="d-flex align-items-center gap-2">

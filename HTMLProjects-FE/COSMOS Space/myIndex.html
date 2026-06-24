@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMOS - Space Dashboard</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/myStyle.css">
+    <link rel="stylesheet" href="./assets/css/media.css">
+    <!----Grotesk space font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <!-- __________SIDEBAR__________-->
+    <aside id="sidebar" class="offcanvas-lg  offcanvas-start" tabindex="-1">
+
+    </aside>
+    <!-- __________HEADER__________-->
+    <header id="header">
+
+        <div class="header-content h-100">
+            <div class="d-flex justify-content-between align-items-center py-2 px-4 h-100">
+                <div class="left-side d-flex justify-content-between align-items-center  ">
+                    <button class="btn  d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                        <i>
+                            <svg class="svg-inline--fa fa-bars" aria-hidden="true" focusable="false" data-prefix="fas"
+                                data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                data-fa-i2svg="" width="14" height="16"
+                                style="fill: rgb(0, 0, 0); stroke: none; stroke-width: 1px; color: rgb(255, 255, 255);">
+                                <path fill="currentColor"
+                                    d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                                    style="fill: rgb(255, 255, 255); stroke: none; stroke-width: 1px; color: rgb(255, 255, 255);" />
+                            </svg>
+                        </i>
+                    </button>
+                    <div>
+                        <h2 class="h4 m-0">Space Explorer Dashboard</h2>
+                        <p class="text-slate-4 header-subtitle d-md-block  d-none ">Real-time space data from NASA &
+                            SpaceDevs
+                        </p>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="d-flex justify-content-center align-items-center gap-md-3 gap-1 stats-container">
+                        <div class="d-flex justify-content-center align-items-center gap-md-2 px-md-3">
+                            <div class="live-circle">
+                            </div>
+                            <span class="d-none d-md-block">Live Data </span>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-md-2 px-md-3">
+                            <img src="./assets/images/svg/icon-7.svg" alt="">
+
+                            <div>
+                                <b class="mx-1 ">10</b>
+                                <span class="d-none d-md-inline">Planets </span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-md-2 px-md-3">
+                            <img src="./assets/images/svg/icon-8.svg" alt="">
+                            <div>
+                                <b class="mx-1 ">8</b>
+                                <span class="d-none d-md-inline">Launches </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- __________MAIN CONTENT__________-->
+    <main class="content">
+        <section id="today-space">.</section>
+        <section id="launches">.</section>
+        <section id="planets">.</section>
+    </main>
+
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
