@@ -25,23 +25,24 @@
 @media screen and (max-width : 992px) {
     body {
         grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "content";
     }
 
     #sidebar {
-        width: 60%;
+        width: 50%;
     }
 
 
 
     #header {
-        grid-column: 1;
-        grid-row: 1;
+        grid-area: header;
 
     }
 
     .content {
-        grid-column: 1;
-        grid-row: 2;
+        grid-area: content;
     }
 
 }
