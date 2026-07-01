@@ -1829,9 +1829,22 @@ button,
     transform: translate(-100%)
 }
 
+.close-sidebar-icon {
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+}
+
+.close-sidebar-icon:hover {
+    background-color: var(--color-slate-400);
+}
+
 @media(min-width:1024px) {
     .sidebar-mobile {
         transform: translate(0)
+    }
+
+    .sidebar-mobile .close-sidebar-icon {
+        display: none;
     }
 }
 

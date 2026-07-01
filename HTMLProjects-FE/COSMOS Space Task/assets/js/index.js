@@ -65,6 +65,20 @@ let planetInclination = document.getElementById("planet-inclination");
 let planetAxialTilt = document.getElementById("planet-axial-tilt");
 let planetTemp = document.getElementById("planet-temp");
 let planetEscape = document.getElementById("planet-escape");
+
+
+//----SIDEBAR TOGGLE --------
+let sidebarToggleBtn = document.getElementById("sidebar-toggle");
+let sidebar = document.querySelector("aside")
+let closeSidebarIcon = document.querySelector(".close-sidebar-icon");
+
+
+
+
+
+
+
+
 //logic functions 
 
 /* Today In Space */
@@ -120,7 +134,7 @@ function displayTodaySpace(response) {
   apodTitle.textContent = response.title;
   apodDateDetail.innerHTML = `<i class="far fa-calendar mr-2"></i>${dateObj.longMonth} ${dateObj.day}, ${dateObj.year}`;
   apodExplanation.textContent = response.explanation;
- 
+
   if (response.copyright) {
     apodCopyright.innerHTML =
       `&copy; Copyright: ${response.copyright}`;
@@ -212,7 +226,7 @@ function displayLaunches(response) {
 }
 
 function showLaunchCardDetails(index = 0) {
- 
+
   let dateObj = setDateObj(launchesResp[index].net);
   let cardDetail = ` <div
             class="relative bg-slate-800/30 border border-slate-700 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all">
@@ -339,12 +353,12 @@ async function getPlanets() {
 // 1 AU = 149,597,870.7 km 
 //function  to convet KM to AU 
 function convetKMToAU_unit(kmUnitVal) {
- 
+
   return (kmUnitVal / 149597870.7).toFixed(2);
 }
 function displayPlanets(response) {
   let renderedPlanets = ``;
- 
+
   for (let i = 0; i < response.length; i++) {
     const AU_Val = convetKMToAU_unit(response[i].semimajorAxis)
     renderedPlanets += ` <div
@@ -439,12 +453,12 @@ navElement.addEventListener("click", function (event) {
     if (section === selectedSection) {
       section.classList.remove("hidden");
       if (section.id == "launches") {
-       
-        
+
+
         getLaunches();
       } else if (section.id == "planets") {
-    
-        
+
+
         getPlanets()
       }
     } else {
@@ -471,6 +485,16 @@ planetsGrid.addEventListener("click", (event) => {
   showOrbitalCharacteristics(selectedPlanetIndex)
 })
 
+sidebarToggleBtn.addEventListener("click", function () {
+  console.log("sidebar toggle btn clicked")
+  sidebar.classList.remove("hidden")
+  sidebar.classList.add("sidebar-open");
+  closeSidebarIcon.classList.remove("hidden");
+})
+closeSidebarIcon.addEventListener("click", function () {
+  sidebar.classList.remove("sidebar-open");
+  closeSidebarIcon.classList.add("hidden");
+})
 //entry invoke 
 getTodaySpace();
 
