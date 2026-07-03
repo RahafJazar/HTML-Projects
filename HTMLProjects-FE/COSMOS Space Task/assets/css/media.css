@@ -1,0 +1,48 @@
+@media screen and (max-width : 768px) {
+
+    /* ^ HEADER */
+    .right-side .stats-container div:not(:last-child) {
+        border-right: none
+    }
+
+    .left-side h2 {
+        font-size: 1.1rem;
+
+    }
+
+    .right-side .stats-container {
+        border: 1px solid var(--color-slate-600);
+        padding: 4px;
+        border-radius: 10px;
+    }
+
+    .right-side .stats-container>div {
+        padding: 0rem;
+    }
+
+}
+
+@media screen and (max-width : 992px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "content";
+    }
+
+    #sidebar {
+        width: 50%;
+    }
+
+
+
+    #header {
+        grid-area: header;
+
+    }
+
+    .content {
+        grid-area: content;
+    }
+
+}
