@@ -12,12 +12,12 @@ export default class CountryService {
     }
 
     async getCountries() {
-        let countries = this.apiClientObj.get("https://date.nager.at/api/v3/AvailableCountries")
-        return countries;
+        return await this.apiClientObj.get("https://date.nager.at/api/v3/AvailableCountries")
+
     }
 
-    getCountryDetails(code) {
-        let countryDetails = this.apiClientObj.get(`https://restcountries.com/v3.1/alpha/countryCode:${code}`)
-        return countryDetails;
+    async getCountryDetails(countryCode) {
+        return await this.apiClientObj.get("https://restcountries.com/v3.1/alpha/" + countryCode)
+
     }
 }
