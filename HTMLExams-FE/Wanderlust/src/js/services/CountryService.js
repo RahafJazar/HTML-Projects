@@ -17,7 +17,7 @@ export default class CountryService {
     }
 
     async getCountryDetails(countryCode) {
-        return await this.apiClientObj.get("https://restcountries.com/v3.1/alpha/" + countryCode)
+        return await this.apiClientObj.get("https://api.restcountries.com/countries/v5?limit=1&pretty=1" + countryCode)
 
     }
 }
