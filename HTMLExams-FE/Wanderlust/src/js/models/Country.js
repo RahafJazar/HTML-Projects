@@ -5,36 +5,43 @@
 export default class Country {
     constructor(data) {
 
-        this.commonName = data.name.common;
-        this.officialName = data.name.official;
+        this.commonName = data.names.common;
+        this.officialName = data.names.official;
 
-        this.capital = data.capital[0];
+        this.flag = data.flag.url_svg;
 
-        this.latitude = data.capitalInfo.latlng[0];
-        this.longitude = data.capitalInfo.latlng[1];
+        this.capital = data.capitals?.[0]?.name ?? "N/A";
 
         this.region = data.region;
         this.subregion = data.subregion;
 
         this.population = data.population;
-        this.area = data.area;
 
-        this.borders = data.borders;
+        this.area = data.area.kilometers;
 
-        this.languages = Object.values(data.languages);
+        this.continent = data.continents?.[0] ?? "N/A";
 
-        this.currencies = Object.values(data.currencies);
+        this.callingCode = data.calling_codes?.[0] ?? "N/A";
 
-        this.timezones = data.timezones;
+        this.drivingSide = data.cars.driving_side;
 
-        this.flag = data.flags.png;
+        this.startOfWeek = data.date.start_of_week;
 
-        this.drivingSide = data.car.side;
+        this.timezone = data.timezones?.[0] ?? "N/A";
 
-        this.startOfWeek = data.startOfWeek;
+        this.languages = data.languages.map(lang => lang.name);
 
-        this.googleMaps = data.maps.googleMaps;
+        this.currencies = data.currencies.map(currency => ({
+            name: currency.name,
+            code: currency.code,
+            symbol: currency.symbol
+        }));
 
-        this.continent = data.continents[0];
+        this.borders = data.borders ?? [];
+
+        this.googleMaps = data.links.google_maps;
+
+        this.latitude = data.capitals?.[0]?.coordinates?.lat;
+        this.longitude = data.capitals?.[0]?.coordinates?.lng;
     }
 }

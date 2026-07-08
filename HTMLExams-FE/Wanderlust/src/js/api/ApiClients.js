@@ -11,7 +11,7 @@ export default class ApiClient {
         try {
             let req = await fetch(url, {
                 headers: {
-                    'Authorization': 'Bearer' + API_Key,
+                    'Authorization': `Bearer ${this.API_Key}`,
                     'Content-Type': 'application/json'
                 }
             });
