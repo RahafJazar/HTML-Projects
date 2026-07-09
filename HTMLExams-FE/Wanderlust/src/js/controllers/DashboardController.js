@@ -4,15 +4,18 @@
 import DashboardUI from "../ui/DashboardUI.js";
 import CountryService from "../services/CountryService.js";
 import Country from "../models/Country.js";
+import AppState from "../state/AppState.js";
 export default class DashboardController {
     //فقط بتعرف CountryService+ DashobardUI
 
-    constructor(countryService, dashboardUI) {
+    constructor(countryService, dashboardUI, appState) {
         this.countryService = countryService;
         this.dashboardUI = dashboardUI;
+        this.appState = appState
     }
     //1-> when open the dashboard -> load countries -> show it inside "select" ->  events  connect
     async init() {
+        debugger
         await this.loadCountries();
         this.dashboardUI.bindCountryChange(async (countryName) => {
             debugger
@@ -27,7 +30,11 @@ export default class DashboardController {
     }
     async loadCountries() {
         const countries = await this.countryService.getCountries();
-        this.dashboardUI.renderCountries(countries);
+        if (countries) {
+            this.dashboardUI.renderDashboardStatistics(countries);
+            this.dashboardUI.renderCountries(countries);
+        }
+
     }
 
 
@@ -35,12 +42,26 @@ export default class DashboardController {
         debugger
         const result = await this.countryService.getCountryDetails(country);
         const cities = result.data?.objects[0]?.capitals;
-        this.dashboardUI.renderCities(cities);
+        if (cities) {
+            this.dashboardUI.renderCities(cities);
+        }
+
     }
     async explore(country, city, year) {
-        const result = await this.countryService.getCountryDetails(country);
-        const country_info = new Country(result.data?.objects[0]);
-        this.dashboardUI.renderSelectedDistination(country_info);
-        this.dashboardUI.renderCountryInfo(country_info);
+        debugger
+        if (!country) {
+            this.dashboardUI.showToast("Plese select a country first ", "error");
+        }
+        else {
+            this.dashboardUI.showToast(`Exploring ${country.name}`, "success");
+            const result = await this.countryService.getCountryDetails(country.name);
+            const country_info = new Country(result.data?.objects[0]);
+
+            this.dashboardUI.renderSelectedDistination(country_info);
+            this.dashboardUI.renderCountryInfo(country_info);
+            this.appState.setSelection(country, city, year);
+
+        }
+
     }
 }
