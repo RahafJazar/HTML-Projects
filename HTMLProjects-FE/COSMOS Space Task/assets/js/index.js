@@ -154,9 +154,9 @@ async function getLaunches(limit = 10) {
   try {
     let fetchReq = await fetch(`https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?limit=${10}`);
     let response = await fetchReq.json();
-    launchesResp = response.results
+    launches = response.results
     console.log("launches", launches);
-    displayLaunches(launchesResp)
+    displayLaunches(launches)
   } catch (error) {
     console.log(error);
   }
@@ -168,12 +168,13 @@ function displayLaunches(response) {
   showLaunchCardDetails();
   for (let i = 0; i < response.length; i++) {
     let dateObj = setDateObj(response[i].net);
+    debugger
     renderedCards += `
             <!-- STATIC LAUNCH CARD 1 -->
           <div
             class="bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all group cursor-pointer">
             <div class="relative h-48 bg-slate-900/50 flex items-center justify-center">
-             <img src="${response[i].image.image_url}" alt="${response[i].name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.onerror=null; this.src='/images/launch-placeholder.png';">
+             <img src="${response[i].image?.image_url}" alt="${response[i].name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.onerror=null; this.src='/images/launch-placeholder.png';">
               <div class="absolute top-3 right-3">
                 <span class="px-3 py-1 bg-green-500/90 text-white backdrop-blur-sm rounded-full text-xs font-semibold">
                  ${response[i].status.abbrev}
@@ -227,7 +228,7 @@ function displayLaunches(response) {
 
 function showLaunchCardDetails(index = 0) {
 
-  let dateObj = setDateObj(launchesResp[index].net);
+  let dateObj = setDateObj(launches[index].net);
   let cardDetail = ` <div
             class="relative bg-slate-800/30 border border-slate-700 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all">
             <div
@@ -243,20 +244,20 @@ function showLaunchCardDetails(index = 0) {
                       Featured Launch
                     </span>
                     <span class="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-sm font-semibold">
-                    ${launchesResp[index].status.abbrev}
+                    ${launches[index].status.abbrev}
                     </span>
                   </div>
                   <h3 class="text-3xl font-bold mb-3 leading-tight">
-                    ${launchesResp[index].name}
+                    ${launches[index].name}
                   </h3>
                   <div class="flex flex-col xl:flex-row xl:items-center gap-4 mb-6 text-slate-400">
                     <div class="flex items-center gap-2">
                       <i class="fas fa-building"></i>
-                      <span> ${launchesResp[index].launch_service_provider.name}</span>
+                      <span> ${launches[index].launch_service_provider.name}</span>
                     </div>
                     <div class="flex items-center gap-2">
                       <i class="fas fa-rocket"></i>
-                      <span>${launchesResp[index].rocket.configuration.name}</span>
+                      <span>${launches[index].rocket.configuration.name}</span>
                     </div>
                   </div>
                   <div
@@ -287,14 +288,14 @@ function showLaunchCardDetails(index = 0) {
                         <i class="fas fa-map-marker-alt"></i>
                         Location
                       </p>
-                      <p class="font-semibold text-sm">${launchesResp[index].pad.location.name}</p>
+                      <p class="font-semibold text-sm">${launches[index].pad.location.name}</p>
                     </div>
                     <div class="bg-slate-900/50 rounded-xl p-4">
                       <p class="text-xs text-slate-400 mb-1 flex items-center gap-2">
                         <i class="fas fa-globe"></i>
                         Country
                       </p>
-                      <p class="font-semibold">${launchesResp[index].pad.country.alpha_3_code}</p>
+                      <p class="font-semibold">${launches[index].pad.country.alpha_3_code}</p>
                     </div>
                   </div>
                   <p class="text-slate-300 leading-relaxed mb-6">
@@ -323,7 +324,7 @@ function showLaunchCardDetails(index = 0) {
                 <div class="relative h-full min-h-[400px] rounded-2xl overflow-hidden bg-slate-900/50">
                   <!-- Placeholder image/icon since we can't load external images reliably without correct URLs -->
                   <div class="flex items-center justify-center h-full min-h-[400px] bg-slate-800">
-                    <img src="${launchesResp[index].image.image_url}" alt="${launchesResp[index].name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/launch-placeholder.png';">
+                    <img src="${launches[index].image.image_url}" alt="${launches[index].name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/launch-placeholder.png';">
                   </div>
                   <div class="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent"></div>
                 </div>

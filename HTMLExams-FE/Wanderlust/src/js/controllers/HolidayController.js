@@ -12,10 +12,15 @@ export default class HolidayController {
     }
     ;
     async loadHolidays() {
-        const holidays = await this.holidayService.getHolidays(this.appState.getSelection().selectedCountry_.name, this.appState.getSelection().selectedYear_);
+        debugger
+        console.log(this.appState.getSelection().selectedCountry_)
+        const holidays = await this.holidayService.getHolidays(this.appState.getSelection().selectedCountry_["countryCode"], this.appState.getSelection().selectedYear_);
         if (holidays) {
-            console.log("holidays", holidays)
+            console.log("holidays", holidays);
+            this.holidayUI.renderHolidaysSelection({ name: this.appState.getSelection().selectedCountry_["name"] }, this.appState.getSelection().flag_, this.appState.getSelection().selectedYear_)
+            this.holidayUI.renderHolidays(holidays);
         }
+
 
     }
 }

@@ -59,7 +59,7 @@ export default class DashboardController {
 
             this.dashboardUI.renderSelectedDistination(country_info);
             this.dashboardUI.renderCountryInfo(country_info);
-            this.appState.setSelection(country, city, year);
+            this.appState.setSelection(country, country_info.flag, city, year);
 
         }
 

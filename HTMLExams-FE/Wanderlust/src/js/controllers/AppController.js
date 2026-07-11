@@ -29,19 +29,31 @@ export default class AppController {
 
     }
     async init() {
-        debugger
+        const navItems = document.querySelectorAll(".nav-item");
         //event delegation concept
         const sidebarNav = document.querySelector(".sidebar-nav");
         //defaul =>dashboard;
         await this.showView(this.appState.getCurrentView())
         sidebarNav.addEventListener("click", async (e) => {
+            debugger
             console.log("clicked ", e.target.closest("a"))
+
             if (e.target.closest("a")) {
-                const view = e.target.closest("a").getAttribute("data-target")
+
+                const view = e.target.closest("a").getAttribute("data-target");
+                navItems.forEach(item => {
+                    if (item.getAttribute("data-target") === view) {
+                        item.classList.add("active")
+                    }
+                    else {
+                        item.classList.remove("active")
+                    }
+                })
                 this.appState.setCurrentview(view);
                 console.log("view is ", view);
                 await this.showView(this.appState.getCurrentView())
             }
+
 
         })
     }

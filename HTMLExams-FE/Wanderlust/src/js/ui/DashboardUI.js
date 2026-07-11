@@ -26,6 +26,7 @@ export default class DashboardUI {
 
         this.toast = document.getElementById("toast-container");
 
+        this.dashboardCountryFlag = document.getElementById("dashboard-country-flag");
 
 
     }
@@ -58,7 +59,8 @@ export default class DashboardUI {
         debugger
 
         this.exploreBtn.addEventListener("click", (e) => {
-            const selectedOption = this.countrySelect.options[this.countrySelect.selectedIndex]
+            const selectedOption = this.countrySelect.options[this.countrySelect.selectedIndex];
+
             handler({ countryCode: selectedOption.value, name: selectedOption.text }, this.citySelect.value, this.yearSelect.value);
         })
     }

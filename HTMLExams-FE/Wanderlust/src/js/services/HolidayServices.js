@@ -9,6 +9,6 @@ export default class HolidayService {
         this.apiClientObj = apiClient;
     }
     async getHolidays(countryCode, year) {
-        await this.apiClientObj.get(`https://date.nager.at/api/v3/PublicHolidays/2026/AX`)
+        return await this.apiClientObj.get(`https://date.nager.at/api/v3/PublicHolidays/${year}/${countryCode}`)
     }
 }

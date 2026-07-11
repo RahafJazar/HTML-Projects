@@ -2,9 +2,10 @@ export default class AppState {
     constructor() {
         this.currentView = "dashboard-view";
 
-        this.selectedCountry = null;
-        this.selectedCity = null;
-        this.selectedYear = null;
+        this.selectedCountry = { countryCode: "EG", name: "Egypt" };
+        this.flag = "https://flagcdn.com/w40/eg.png";
+        this.selectedCity = "Cairo";
+        this.selectedYear = 2026;
     }
 
     setCurrentview(view) {
@@ -14,9 +15,10 @@ export default class AppState {
         return this.currentView;
     }
 
-    setSelection(country, city, year) {
+    setSelection(country, flag, city, year) {
         debugger
         this.selectedCountry = country;
+        this.flag = flag;
         this.selectedCity = city;
         this.selectedYear = year;
     }
@@ -25,14 +27,16 @@ export default class AppState {
         debugger
         return {
             selectedCountry_: this.selectedCountry,
+            flag_: this.flag,
             selectedCity_: this.selectedCity,
             selectedYear_: this.selectedYear
 
         }
     }
     clearSelection() {
-        this.selectedCountry = null;
-        this.selectedCity = null;
-        this.selectedYear = null;
+        this.selectedCountry = { country_code: "EG", name: "Egypt" };
+        this.flag = "https://flagcdn.com/w40/eg.png";
+        this.selectedCity = "Cairo";
+        this.selectedYear = 2026;
     }
 }
