@@ -1,5 +1,44 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* flowbite package*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
 
 @utility container {
     margin: auto;
+}
+
+.btn-info {
+    @apply bg-sky-300 hover:bg-sky-100 px-5 py-2 rounded-lg;
+}
+
+.underline {
+    @apply after:w-full after:h-3 after:bg-green-300 after:absolute after:bottom-0 after:left-0;
+}
+
+@theme {
+    --color-sand: sandybrown;
+    --breakpoint-wasat: 600px;
+    --animate-move: moveAnimation 2s ease-in-out infinite;
+
+    @keyframes moveAnimation {
+        0% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(50%);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
+
+@utility op-* {
+    opacity: calc(--value(integer) /100);
 }

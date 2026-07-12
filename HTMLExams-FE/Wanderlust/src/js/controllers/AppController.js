@@ -3,11 +3,14 @@
 */
 import ApiClient from "../api/ApiClients.js";
 import CountryService from "../services/CountryService.js";
+import EventService from "../services/EventService.js";
 import HolidayService from "../services/HolidayServices.js";
 import AppState from "../state/AppState.js";
 import DashboardUI from "../ui/DashboardUI.js";
+import EventUI from "../ui/EventUI.js";
 import HolidayUI from "../ui/HolidayUI.js";
 import DashboardController from "./DashboardController.js";
+import EventController from "./EventController.js";
 import HolidayController from "./HolidayController.js";
 export default class AppController {
     constructor(appState) {
@@ -23,6 +26,11 @@ export default class AppController {
             "holidays-view": new HolidayController(
                 new HolidayService(apiClient),
                 new HolidayUI(),
+                appState
+            ),
+            "events-view": new EventController(
+                new EventService(apiClient),
+                new EventUI(),
                 appState
             )
         }
