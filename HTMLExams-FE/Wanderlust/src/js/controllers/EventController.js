@@ -14,11 +14,13 @@ export default class EventController {
     async loadEvents() {
         debugger
         console.log(this.appState.getSelection().selectedCountry_)
-        const events = await this.eventService.getEvents(this.appState.getSelection().selectedCountry_["countryCode"], this.appState.getSelection().selectedCity_, this.appState.getSelection().selectedYear_);
-        if (events) {
-            console.log("events", events);
+        const appStateSelection = this.appState.getSelection();
+        const eventsObj = await this.eventService.getEvents(appStateSelection.selectedCountry_["countryCode"], appStateSelection.selectedCity_, appStateSelection.selectedYear_);
+        const events = eventsObj?._embedded?.events;
 
-        }
+        console.log("events", events);
+        this.eventUI.renderEvents(events);
+
 
 
     }

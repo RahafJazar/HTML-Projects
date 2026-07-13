@@ -6,6 +6,10 @@ export default class AppState {
         this.flag = "https://flagcdn.com/w40/eg.png";
         this.selectedCity = "Cairo";
         this.selectedYear = 2026;
+        this.coordinates = {
+            lat: 27,
+            lng: 30
+        }
     }
 
     setCurrentview(view) {
@@ -15,12 +19,13 @@ export default class AppState {
         return this.currentView;
     }
 
-    setSelection(country, flag, city, year) {
+    setSelection(country, flag, city, year, coordinates) {
         debugger
         this.selectedCountry = country;
         this.flag = flag;
         this.selectedCity = city;
         this.selectedYear = year;
+        this.coordinates = coordinates
     }
 
     getSelection() {
@@ -29,8 +34,8 @@ export default class AppState {
             selectedCountry_: this.selectedCountry,
             flag_: this.flag,
             selectedCity_: this.selectedCity,
-            selectedYear_: this.selectedYear
-
+            selectedYear_: this.selectedYear,
+            coordinates_: this.coordinates
         }
     }
     clearSelection() {
@@ -38,5 +43,9 @@ export default class AppState {
         this.flag = "https://flagcdn.com/w40/eg.png";
         this.selectedCity = "Cairo";
         this.selectedYear = 2026;
+        this.coordinates = {
+            lat: 27,
+            lng: 30
+        }
     }
 }

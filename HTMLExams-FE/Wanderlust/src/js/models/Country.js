@@ -40,8 +40,10 @@ export default class Country {
         this.borders = data.borders ?? [];
 
         this.googleMaps = data.links.google_maps;
+        this.coordinates = {
+            lat: data.capitals?.[0]?.coordinates?.lat,
+            lng: data.capitals?.[0]?.coordinates?.lng
+        }
 
-        this.latitude = data.capitals?.[0]?.coordinates?.lat;
-        this.longitude = data.capitals?.[0]?.coordinates?.lng;
     }
 }
