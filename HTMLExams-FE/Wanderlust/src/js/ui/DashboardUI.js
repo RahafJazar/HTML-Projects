@@ -51,7 +51,7 @@ export default class DashboardUI {
     bindCountryChange(handler) {
         debugger
         this.countrySelect.addEventListener("change", (e) => {
-            console.log("change done on country select : ", e.target.value);
+            console.log("change done on country select : ", e.target);
             handler(e.target.value);
         })
     }

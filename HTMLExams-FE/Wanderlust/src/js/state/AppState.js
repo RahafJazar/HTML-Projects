@@ -10,6 +10,9 @@ export default class AppState {
             lat: 27,
             lng: 30
         }
+
+        //بخصوص ال plans 
+        this.myPlans = [];
     }
 
     setCurrentview(view) {
@@ -47,5 +50,15 @@ export default class AppState {
             lat: 27,
             lng: 30
         }
+    }
+
+    addPlan(plan) {
+        this.myPlans.push(plan);
+        localStorage.setItem("plans", JSON.stringify(this.myPlans));
+
+    }
+    getPlans() {
+        return localStorage.getItem("plans") ? JSON.parse(localStorage.getItem("plans")) : [];
+
     }
 }

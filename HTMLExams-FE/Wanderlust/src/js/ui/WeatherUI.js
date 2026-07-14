@@ -16,12 +16,25 @@ export default class WeatherUI {
         this.hourlyScroll = document.querySelector("#weather-content .weather-section .hourly-scroll");
         this.forecastList = document.querySelector("#weather-content .weather-section .forecast-list");
 
-        this.viewHeaderContent = document.querySelector(".view-header-card .view-header-content p");
-
+        this.viewHeaderContent = document.querySelector("#weather-view .view-header-card .view-header-content p");
+        console.log("viewHeaderContent", this.viewHeaderContent)
 
     }
 
+    renderWeatherSelection(country, flag, year) {
+        debugger
+        let weatherSelection = document.getElementById("weather-selection")
+        weatherSelection.style.cssText = "display:block"
+        let selectionFlag = document.querySelector("#weather-selection .selection-flag");
+        let selectionYear = document.querySelector("#weather-selection .selection-year");
+        let selectionCountry = document.querySelector("#weather-selection .selection-country");
 
+        selectionFlag.setAttribute("src", flag);
+        selectionYear.innerHTML = year;
+        selectionCountry.innerHTML = country.name;
+
+
+    }
     renderWeather(weather) {
         const location = weather.timezone.includes("/") ? weather.timezone.split("/")[1] : weather.timezone;
         console.log(location);

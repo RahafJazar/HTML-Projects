@@ -1,34 +1,49 @@
 export default class EventUI {
-    constructor() {
-        //catch DOM elements 
-        /* 
-          
-         */
+  constructor() {
+    //catch DOM elements 
+    /* 
+      
+     */
 
-        //variables 
-
-
-
-        //elements 
-        this.eventsContent = document.getElementById("events-content");
-
-
-    }
+    //variables 
 
 
 
-    renderEvents(events) {
-        let cartona = ``;
-        if (events?.length > 0) {
-            for (let i = 0; i < events.length; i++) {
-                const event = events[i];
-                cartona += `
+    //elements 
+    this.eventsContent = document.getElementById("events-content");
+    this.viewHeaderContent = document.querySelector("#events-view .view-header-card .view-header-content p");
+
+  }
+
+
+  renderEventsSelection(country, flag, year) {
+    debugger
+    let eventSelection = document.getElementById("events-selection")
+    eventSelection.style.cssText = "display:block"
+    let selectionFlag = document.querySelector("#events-selection .selection-flag");
+    let selectionYear = document.querySelector("#events-selection .selection-year");
+    let selectionCountry = document.querySelector("#events-selection .selection-country");
+
+    selectionFlag.setAttribute("src", flag);
+    selectionYear.innerHTML = year;
+    selectionCountry.innerHTML = country.name;
+
+
+  }
+  renderEvents(events, country = "") {
+
+    let cartona = ``;
+    this.viewHeaderContent.innerHTML = `Discover concerts, sports, theatre and more in   ${country}`;
+    if (events?.length > 0) {
+      for (let i = 0; i < events.length; i++) {
+        const event = events[i];
+        cartona += `
                <div class="event-card">
               <div class="event-card-image">
                 <img src="${event.images?.[0]?.url ?? ''}"
                   alt="${event.name}">
                 <span class="event-card-category">  ${event.classifications?.[0]?.segment?.name ?? 'Unknown'}</span>
-                <button class="event-card-save"><i class="fa-regular fa-heart"></i></button>
+                <button class="event-card-save" data-index=${i} ><i class="fa-regular fa-heart"></i></button>
               </div>
               <div class="event-card-body">
                 <h3>${events[i].name}</h3>
@@ -45,9 +60,9 @@ export default class EventUI {
               </div>
             </div>
        `
-            }
-        } else {
-            cartona = `
+      }
+    } else {
+      cartona = `
            <div class="empty-state">
               <div class="empty-icon"><i data-fa-i2svg=""><svg class="svg-inline--fa fa-ticket" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ticket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64C28.7 64 0 92.7 0 128v64c0 8.8 7.4 15.7 15.7 18.6C34.5 217.1 48 235 48 256s-13.5 38.9-32.3 45.4C7.4 304.3 0 311.2 0 320v64c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V320c0-8.8-7.4-15.7-15.7-18.6C541.5 294.9 528 277 528 256s13.5-38.9 32.3-45.4c8.3-2.9 15.7-9.8 15.7-18.6V128c0-35.3-28.7-64-64-64H64zm64 112l0 160c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H144c-8.8 0-16 7.2-16 16zM96 160c0-17.7 14.3-32 32-32H448c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V160z"></path></svg></i></div>
               <h3>No City Selected</h3>
@@ -59,10 +74,15 @@ export default class EventUI {
             </div>
             
             `
-        }
-
-        this.eventsContent.innerHTML = cartona;
     }
+
+    this.eventsContent.innerHTML = cartona;
+  }
+
+
+  markAsSaved(button) {
+    button.classList.add("saved");
+  }
 
 }
 

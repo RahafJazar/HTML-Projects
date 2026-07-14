@@ -11,6 +11,7 @@ export default class HolidayUI {
          */
         this.holidaysContent = document.getElementById("holidays-content");
         this.holidaysSelection = document.getElementById("holidays-selection");
+        this.viewHeaderContent = document.querySelector("#holidays-view .view-header-card .view-header-content p");
     }
     getDateInfo(date) {
         const dateObj = new Date(date);
@@ -38,32 +39,41 @@ export default class HolidayUI {
 
 
     }
-    renderHolidays(holidays) {
-
+    renderHolidays(holidays, country = "") {
+        this.viewHeaderContent.innerHTML = `Browse public holidays for ${country} and plan your trips around them `;
         let cartona = ``;
         for (let i = 0; i < holidays.length; i++) {
 
             const holidayDate = this.getDateInfo(holidays[i].date);
             cartona += `
-                            <div class="holiday-card">
-                        <div class="holiday-card-header">
-                            <div class="holiday-date-box"><span class="day">${holidayDate.day}</span><span class="month">${holidayDate.monthString}</span></div>
-                            <button class="holiday-action-btn"><i class="fa-regular fa-heart"></i></button>
-                        </div>
-                        <h3>${holidays[i].localName}</h3>
-                        <p class="holiday-name"> ${holidays[i].name}</p>
-                        <div class="holiday-card-footer">
-                            <span class="holiday-day-badge"><i class="fa-regular fa-calendar"></i> ${holidayDate.weekDayString}</span>
-                            <span class="holiday-type-badge">${holidays[i].types[0]}</span>
-                        </div>
+                       <div class="holiday-card">
+                            <div class="holiday-card-header">
+                                <div class="holiday-date-box"><span class="day">${holidayDate.day}</span><span class="month">${holidayDate.monthString}</span></div>
+                                <button class="holiday-action-btn" data-index=${i}><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                            <h3>${holidays[i].localName}</h3>
+                            <p class="holiday-name"> ${holidays[i].name}</p>
+                            <div class="holiday-card-footer">
+                                <span class="holiday-day-badge"><i class="fa-regular fa-calendar"></i> ${holidayDate.weekDayString}</span>
+                                <span class="holiday-type-badge">${holidays[i].types[0]}</span>
+                            </div>
                         </div>
                 
                 `;
+
         }
 
 
+
         this.holidaysContent.innerHTML = cartona;
+
+
+
     }
+    markAsSaved(button) {
+        button.classList.add("saved");
+    }
+
 
 }
 

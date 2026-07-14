@@ -5,15 +5,21 @@ import ApiClient from "../api/ApiClients.js";
 import CountryService from "../services/CountryService.js";
 import EventService from "../services/EventService.js";
 import HolidayService from "../services/HolidayServices.js";
+import LongWeekendService from "../services/LongWeekendService.js";
+import PlanService from "../services/PlanService.js";
 import WeatherService from "../services/WeatherService.js";
 import AppState from "../state/AppState.js";
 import DashboardUI from "../ui/DashboardUI.js";
 import EventUI from "../ui/EventUI.js";
 import HolidayUI from "../ui/HolidayUI.js";
+import PlanUI from "../ui/PlanUI.js";
 import WeatherUI from "../ui/WeatherUI.js";
+import WeekendUI from "../ui/WeekendUI.js";
 import DashboardController from "./DashboardController.js";
 import EventController from "./EventController.js";
 import HolidayController from "./HolidayController.js";
+import LongWeekendController from "./LongWeekendController.js";
+import MyPlansController from "./MyPlansController.js";
 import WeatherController from "./WeatherController.js";
 export default class AppController {
     constructor(appState) {
@@ -39,6 +45,16 @@ export default class AppController {
             "weather-view": new WeatherController(
                 new WeatherService(apiClient),
                 new WeatherUI(),
+                appState
+            ),
+            "my-plans-view": new MyPlansController(
+                new PlanService(apiClient),
+                new PlanUI(),
+                appState
+            ),
+            "long-weekends-view": new LongWeekendController(
+                new LongWeekendService(apiClient),
+                new WeekendUI(),
                 appState
             )
         }
@@ -67,7 +83,22 @@ export default class AppController {
                 })
                 this.appState.setCurrentview(view);
                 console.log("view is ", view);
-                await this.showView(this.appState.getCurrentView())
+                await this.showView(this.appState.getCurrentView());
+
+                if (window.innerWidth <= 1024) {
+                    const sidebar = document.getElementById("sidebar");
+                    const overlay = document.getElementById("sidebar-overlay");
+                    sidebar.style.cssText = ` 
+                       transform: translateX(-100%);
+                       `
+
+                    overlay.classList.add("hidden");
+                    overlay.style.cssText = `
+                        opacity:0;
+                        visibility: hidden;
+                    `
+                }
+
             }
 
 

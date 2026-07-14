@@ -12,6 +12,7 @@ export default class DashboardController {
         this.countryService = countryService;
         this.dashboardUI = dashboardUI;
         this.appState = appState
+        this.loadingElements = document.getElementById("loading-overlay");
     }
     //1-> when open the dashboard -> load countries -> show it inside "select" ->  events  connect
     async init() {
@@ -23,13 +24,16 @@ export default class DashboardController {
         });
         this.dashboardUI.bindExplore(async (country, city, year) => {
             debugger
+            localStorage.clear();
             await this.explore(country, city, year);
         })
 
 
     }
     async loadCountries() {
+        this.loadingElements.classList.remove("hidden");
         const countries = await this.countryService.getCountries();
+        this.loadingElements.classList.add("hidden");
         if (countries) {
             this.dashboardUI.renderDashboardStatistics(countries);
             this.dashboardUI.renderCountries(countries);
@@ -40,7 +44,9 @@ export default class DashboardController {
 
     async loadCities(country) {
         debugger
+        this.loadingElements.classList.remove("hidden");
         const result = await this.countryService.getCountryDetails(country);
+        this.loadingElements.classList.add("hidden");
         const cities = result.data?.objects[0]?.capitals;
         if (cities) {
             this.dashboardUI.renderCities(cities);
@@ -54,7 +60,9 @@ export default class DashboardController {
         }
         else {
             this.dashboardUI.showToast(`Exploring ${country.name}`, "success");
+            this.loadingElements.classList.remove("hidden");
             const result = await this.countryService.getCountryDetails(country.name);
+            this.loadingElements.classList.add("hidden");
             const country_info = new Country(result.data?.objects[0]);
 
             this.dashboardUI.renderSelectedDistination(country_info);
