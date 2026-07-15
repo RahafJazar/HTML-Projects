@@ -16,37 +16,40 @@ export default class EventUI {
   }
 
 
-  renderEventsSelection(country, flag, year) {
+  renderEventsSelection(country, flag, city) {
     debugger
     let eventSelection = document.getElementById("events-selection")
     eventSelection.style.cssText = "display:block"
     let selectionFlag = document.querySelector("#events-selection .selection-flag");
-    let selectionYear = document.querySelector("#events-selection .selection-year");
+    let selectioncity = document.querySelector("#events-selection .selection-city");
     let selectionCountry = document.querySelector("#events-selection .selection-country");
 
     selectionFlag.setAttribute("src", flag);
-    selectionYear.innerHTML = year;
+    selectioncity.innerHTML = city;
     selectionCountry.innerHTML = country.name;
 
 
   }
-  renderEvents(events, country = "") {
+  renderEvents(events, country = "", savedPlans = []) {
 
     let cartona = ``;
     this.viewHeaderContent.innerHTML = `Discover concerts, sports, theatre and more in   ${country}`;
     if (events?.length > 0) {
       for (let i = 0; i < events.length; i++) {
         const event = events[i];
+        const isSaved = savedPlans.some(p => {
+          p.planKey === `event-${even.type}-${event.id}`;
+        })
         cartona += `
                <div class="event-card">
               <div class="event-card-image">
                 <img src="${event.images?.[0]?.url ?? ''}"
                   alt="${event.name}">
                 <span class="event-card-category">  ${event.classifications?.[0]?.segment?.name ?? 'Unknown'}</span>
-                <button class="event-card-save" data-index=${i} ><i class="fa-regular fa-heart"></i></button>
+                <button class="event-card-save" data-index=${i} ><i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
               </div>
               <div class="event-card-body">
-                <h3>${events[i].name}</h3>
+                <h3>${events.name}</h3>
                 <div class="event-card-info">
                   <div><i class="fa-regular fa-calendar"></i> ${event.dates?.start?.localDate} at
                             ${event.dates?.start?.localTime ?? ""}</div>

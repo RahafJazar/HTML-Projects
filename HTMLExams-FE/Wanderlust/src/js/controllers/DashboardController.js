@@ -5,13 +5,15 @@ import DashboardUI from "../ui/DashboardUI.js";
 import CountryService from "../services/CountryService.js";
 import Country from "../models/Country.js";
 import AppState from "../state/AppState.js";
+import ToastUI from "../ui/ToastUI.js";
 export default class DashboardController {
     //فقط بتعرف CountryService+ DashobardUI
 
-    constructor(countryService, dashboardUI, appState) {
+    constructor(countryService, dashboardUI, appState, toastUI) {
         this.countryService = countryService;
         this.dashboardUI = dashboardUI;
-        this.appState = appState
+        this.appState = appState;
+        this.toastUI = toastUI;
         this.loadingElements = document.getElementById("loading-overlay");
     }
     //1-> when open the dashboard -> load countries -> show it inside "select" ->  events  connect
@@ -56,10 +58,10 @@ export default class DashboardController {
     async explore(country, city, year) {
         debugger
         if (!country) {
-            this.dashboardUI.showToast("Plese select a country first ", "error");
+            this.toastUI.showToast("Plese select a country first ", "error");
         }
         else {
-            this.dashboardUI.showToast(`Exploring ${country.name}`, "success");
+            this.toastUI.showToast(`Exploring ${country.name}`, "success");
             this.loadingElements.classList.remove("hidden");
             const result = await this.countryService.getCountryDetails(country.name);
             this.loadingElements.classList.add("hidden");

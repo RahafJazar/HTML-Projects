@@ -2,10 +2,11 @@ import LongWeekendService from "../services/LongWeekendService.js";
 import WeekendUI from "../ui/WeekendUI.js";
 import AppState from "../state/AppState.js";
 export default class LongWeekendController {
-    constructor(longWeekendService, weekendUI, appState) {
+    constructor(longWeekendService, weekendUI, appState, toastUI) {
         this.longWeekendService = longWeekendService;
         this.weekendUI = weekendUI;
         this.appState = appState;
+        this.toastUI = toastUI;
         this.loadingElements = document.getElementById("loading-overlay");
         this.longWeekends = [];
     }
@@ -26,19 +27,24 @@ export default class LongWeekendController {
         if (longWeekends) {
             console.log("longWeekends", longWeekends);
             this.weekendUI.renderLongWeekendsSelection({ name: this.appState.getSelection().selectedCountry_["name"] }, this.appState.getSelection().flag_, this.appState.getSelection().selectedYear_)
-            this.weekendUI.renderLongWeekends(longWeekends, this.appState.getSelection().selectedCountry_["name"]);
+            this.weekendUI.renderLongWeekends(longWeekends, this.appState.getSelection().selectedCountry_["name"], this.appState.getPlans());
 
-            // this.holidayUI.holidaysContent.addEventListener("click", (e) => {
-            //     const btn = e.target.closest(".holiday-action-btn");
-            //     if (!btn) return;
-            //     const index = btn.dataset.index;
-            //     this.appState.addPlan({
-            //         type: "holiday",
-            //         ...this.holidays[index]
-            //     })
-            //     this.holidayUI.markAsSaved(btn);
-            //     console.log("plan saved is ", this.appState.getPlans());
-            // })
+            this.weekendUI.lwContent.addEventListener("click", (e) => {
+                const btn = e.target.closest(".holiday-action-btn");
+                if (!btn) return;
+                const index = btn.dataset.index;
+                const saved = this.appState.addPlan({
+                    type: "longweekend",
+                    countryCode: this.appState.getSelection().selectedCountry_.countryCode,
+                    ...this.longWeekends[index]
+                })
+                if (!saved) {
+                    this.toastUI.showToast("Already Saved !", "info");
+                    return
+                }
+                this.weekendUI.markAsSaved(btn);
+                console.log("plan saved is ", this.appState.getPlans());
+            })
         }
 
 

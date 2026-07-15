@@ -19,7 +19,7 @@ export default class WeekendUI {
 
     }
 
-    renderLongWeekends(longWeekends, country = "") {
+    renderLongWeekends(longWeekends, country = "", savedPlans = []) {
         let cartona = ``;
         for (let i = 0; i < longWeekends.length; i++) {
 
@@ -31,11 +31,14 @@ export default class WeekendUI {
                 month: "short",
                 day: "numeric"
             })
+            const isSaved = savedPlans.some(p => {
+                p.planKey === `longweekend-${longWeekends[i].startDate}-${longWeekends[i].endDate}`;
+            })
             cartona += `
             <div class="lw-card">
                     <div class="lw-card-header">
                         <span class="lw-badge"><i class="fa-solid fa-calendar-days"></i> ${longWeekends[i].dayCount} Days</span>
-                        <button class="holiday-action-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="holiday-action-btn"  data-index=${i}><i class="fa-regular fa-heart"></i></button>
                     </div>
                     <h3>Long Weekend #2</h3>
                     <div class="lw-dates"><i class="fa-regular fa-calendar"></i> ${startDate}- ${endDate}, ${new Date(longWeekends[i].endDate).getFullYear()}</div>
@@ -80,6 +83,8 @@ export default class WeekendUI {
 
         return html;
     }
-
+    markAsSaved(button) {
+        button.classList.add("saved");
+    }
 }
 

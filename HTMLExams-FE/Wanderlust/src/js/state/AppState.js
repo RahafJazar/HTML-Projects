@@ -12,7 +12,7 @@ export default class AppState {
         }
 
         //بخصوص ال plans 
-        this.myPlans = [];
+        this.myPlans = localStorage.getItem("plans") ? JSON.parse(localStorage.getItem("plans")) : [];
     }
 
     setCurrentview(view) {
@@ -53,12 +53,50 @@ export default class AppState {
     }
 
     addPlan(plan) {
-        this.myPlans.push(plan);
+        debugger
+        const newPlan = {
+            ...plan,
+            planKey: this.getPlanKey(plan)
+        }
+        console.log("new plan ", newPlan)
+        const exists = this.myPlans.some(p => p.planKey === newPlan.planKey);
+        if (exists) {
+            return false;
+        }
+
+        this.myPlans.push(newPlan);
         localStorage.setItem("plans", JSON.stringify(this.myPlans));
+
+        document.dispatchEvent(new Event("plansChanged"))
+        return true;
 
     }
     getPlans() {
-        return localStorage.getItem("plans") ? JSON.parse(localStorage.getItem("plans")) : [];
 
+        return this.myPlans;
+
+    }
+    removePlan(id) {
+        this.myPlans = this.myPlans.filter(p => p.planKey !== id);
+        localStorage.setItem("plans", JSON.stringify(this.myPlans));
+        document.dispatchEvent(new Event("plansChanged"));
+    }
+
+
+    getPlanKey(plan) {
+        switch (plan.type) {
+            case "holiday":
+                return `${plan.type}-${plan.date}-${plan.name}-${plan.countryCode}`;
+
+            case "event":
+                return `${plan.type}-${plan.id}`;
+
+            case "longweekend":
+                return `${plan.type}-${plan.startDate}-${plan.endDate}`
+
+            default:
+                return null;
+
+        }
     }
 }

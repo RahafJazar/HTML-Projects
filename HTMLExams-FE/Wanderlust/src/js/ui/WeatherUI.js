@@ -21,16 +21,16 @@ export default class WeatherUI {
 
     }
 
-    renderWeatherSelection(country, flag, year) {
+    renderWeatherSelection(country, flag, city) {
         debugger
         let weatherSelection = document.getElementById("weather-selection")
         weatherSelection.style.cssText = "display:block"
         let selectionFlag = document.querySelector("#weather-selection .selection-flag");
-        let selectionYear = document.querySelector("#weather-selection .selection-year");
+        let selectioncity = document.querySelector("#weather-selection .selection-city");
         let selectionCountry = document.querySelector("#weather-selection .selection-country");
 
         selectionFlag.setAttribute("src", flag);
-        selectionYear.innerHTML = year;
+        selectioncity.innerHTML = city;
         selectionCountry.innerHTML = country.name;
 
 

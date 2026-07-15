@@ -2,10 +2,11 @@ import WeatherService from "../services/WeatherService.js";
 import WeatherUI from "../ui/WeatherUI.js";
 import AppState from "../state/AppState.js";
 export default class WeatherController {
-    constructor(weatherService, weatherUI, appState) {
+    constructor(weatherService, weatherUI, appState, toastUI) {
         this.weatherService = weatherService;
         this.weatherUI = weatherUI;
         this.appState = appState;
+        this.toastUI = toastUI;
         this.loadingElements = document.getElementById("loading-overlay");
     }
     async init() {
@@ -20,7 +21,7 @@ export default class WeatherController {
         this.loadingElements.classList.add("hidden");
 
         console.log("weather", weatherObj);
-        this.weatherUI.renderWeatherSelection({ name: this.appState.getSelection().selectedCountry_["name"] }, this.appState.getSelection().flag_, this.appState.getSelection().selectedYear_)
+        this.weatherUI.renderWeatherSelection({ name: this.appState.getSelection().selectedCountry_["name"] }, this.appState.getSelection().flag_, this.appState.getSelection().selectedCity_)
         this.weatherUI.renderWeather(weatherObj)
 
 

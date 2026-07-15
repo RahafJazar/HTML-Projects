@@ -39,17 +39,20 @@ export default class HolidayUI {
 
 
     }
-    renderHolidays(holidays, country = "") {
+    renderHolidays(holidays, country = "", savedPlans = []) {
         this.viewHeaderContent.innerHTML = `Browse public holidays for ${country} and plan your trips around them `;
         let cartona = ``;
         for (let i = 0; i < holidays.length; i++) {
 
             const holidayDate = this.getDateInfo(holidays[i].date);
+            const isSaved = savedPlans.some(p => {
+                p.planKey === `holiday-${holidays[i].date}-${holidays[i].name}-${holidays[i].countryCode}`;
+            })
             cartona += `
                        <div class="holiday-card">
                             <div class="holiday-card-header">
                                 <div class="holiday-date-box"><span class="day">${holidayDate.day}</span><span class="month">${holidayDate.monthString}</span></div>
-                                <button class="holiday-action-btn" data-index=${i}><i class="fa-regular fa-heart"></i></button>
+                                <button class="holiday-action-btn" data-index=${i}><i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
                             </div>
                             <h3>${holidays[i].localName}</h3>
                             <p class="holiday-name"> ${holidays[i].name}</p>
@@ -69,7 +72,10 @@ export default class HolidayUI {
 
 
 
+
     }
+
+
     markAsSaved(button) {
         button.classList.add("saved");
     }

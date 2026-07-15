@@ -2,10 +2,11 @@ import EventService from "../services/EventService.js";
 import EventUI from "../ui/EventUI.js";
 import AppState from "../state/AppState.js";
 export default class EventController {
-    constructor(eventService, eventUI, appState) {
+    constructor(eventService, eventUI, appState, toastUI) {
         this.eventService = eventService;
         this.eventUI = eventUI;
         this.appState = appState;
+        this.toastUI = toastUI;
         this.loadingElements = document.getElementById("loading-overlay");
         this.events = [];
     }
@@ -23,17 +24,23 @@ export default class EventController {
         const events = eventsObj?._embedded?.events;
         this.events = events;
         console.log("events", events);
-        this.eventUI.renderEventsSelection({ name: this.appState.getSelection().selectedCountry_["name"] }, this.appState.getSelection().flag_, this.appState.getSelection().selectedYear_)
-        this.eventUI.renderEvents(events, appStateSelection.selectedCountry_["name"]);
+        this.eventUI.renderEventsSelection({ name: this.appState.getSelection().selectedCountry_["name"] }, this.appState.getSelection().flag_, this.appState.getSelection().selectedCity_)
+        this.eventUI.renderEvents(events, appStateSelection.selectedCountry_["name"], this.appState.getPlans());
 
         this.eventUI.eventsContent.addEventListener("click", (e) => {
             const btn = e.target.closest(".event-card-save");
             if (!btn) return;
             const index = btn.dataset.index;
-            this.appState.addPlan({
+            const saved = this.appState.addPlan({
                 type: "event",
+                countryCode: this.appState.getSelection().selectedCountry_.countryCode,
                 ...this.events[index]
             })
+            if (!saved) {
+                this.toastUI.showToast("Already Saved !", "info");
+                return
+            }
+
             this.eventUI.markAsSaved(btn);
             console.log("plan saved is ", this.appState.getPlans());
         })

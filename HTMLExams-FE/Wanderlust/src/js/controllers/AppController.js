@@ -21,6 +21,7 @@ import HolidayController from "./HolidayController.js";
 import LongWeekendController from "./LongWeekendController.js";
 import MyPlansController from "./MyPlansController.js";
 import WeatherController from "./WeatherController.js";
+import ToastUI from "../ui/ToastUI.js";
 export default class AppController {
     constructor(appState) {
         this.appState = appState;
@@ -29,41 +30,54 @@ export default class AppController {
             "dashboard-view": new DashboardController(
                 new CountryService(apiClient),
                 new DashboardUI(),
-                appState
+                appState,
+                new ToastUI()
+
             ),
 
             "holidays-view": new HolidayController(
                 new HolidayService(apiClient),
                 new HolidayUI(),
-                appState
+                appState,
+                new ToastUI()
             ),
             "events-view": new EventController(
                 new EventService(apiClient),
                 new EventUI(),
-                appState
+                appState,
+                new ToastUI()
             ),
             "weather-view": new WeatherController(
                 new WeatherService(apiClient),
                 new WeatherUI(),
-                appState
+                appState,
+                new ToastUI()
             ),
             "my-plans-view": new MyPlansController(
                 new PlanService(apiClient),
                 new PlanUI(),
-                appState
+                appState,
+                new ToastUI()
             ),
             "long-weekends-view": new LongWeekendController(
                 new LongWeekendService(apiClient),
                 new WeekendUI(),
-                appState
+                appState,
+                new ToastUI()
             )
         }
-
+        this.plansCount = document.getElementById("plans-count");
     }
     async init() {
+        document.addEventListener("plansChanged", () => {
+            this.updatePlansCount();
+        })
+
         const navItems = document.querySelectorAll(".nav-item");
         //event delegation concept
         const sidebarNav = document.querySelector(".sidebar-nav");
+
+
         //defaul =>dashboard;
         await this.showView(this.appState.getCurrentView())
         sidebarNav.addEventListener("click", async (e) => {
@@ -116,6 +130,16 @@ export default class AppController {
 
 
         await this.controllers[view].init();
+
+    }
+
+    updatePlansCount() {
+        const count = this.appState.getPlans().filter(p => {
+            return p.countryCode === this.appState.getSelection().selectedCountry_["countryCode"];
+        }).length;
+        this.plansCount.classList.remove("hidden");
+        this.plansCount.textContent = count;
+
 
     }
 }
