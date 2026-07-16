@@ -9,8 +9,14 @@ export default class CurrencyController {
 
     }
     async init() {
-
+        await this.loadlatestExchangeRates();
     }
 
+    async loadlatestExchangeRates() {
+        const exhanges = await this.currencyService.getLatestExchangeRates();
+        this.echangesRatesResult = exhanges.results;
+        console.log("exchanges :", this.echangesRatesResult);
+        this.currencyUI.renderLatestExchangesRates(echangesRatesResult);
+    }
 
 }

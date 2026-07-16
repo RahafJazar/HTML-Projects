@@ -15,7 +15,7 @@ export default class HolidayUI {
     }
     getDateInfo(date) {
         const dateObj = new Date(date);
-        const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "OCt", "Nov", "Dec"];
+        const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
         const weekDays = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thirsday", "Friday"];
 
         return {
@@ -46,13 +46,13 @@ export default class HolidayUI {
 
             const holidayDate = this.getDateInfo(holidays[i].date);
             const isSaved = savedPlans.some(p => {
-                p.planKey === `holiday-${holidays[i].date}-${holidays[i].name}-${holidays[i].countryCode}`;
+                return p.planKey === `holiday-${holidays[i].date}-${holidays[i].name}-${holidays[i].countryCode}`;
             })
             cartona += `
                        <div class="holiday-card">
                             <div class="holiday-card-header">
                                 <div class="holiday-date-box"><span class="day">${holidayDate.day}</span><span class="month">${holidayDate.monthString}</span></div>
-                                <button class="holiday-action-btn" data-index=${i}><i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
+                                <button class="holiday-action-btn ${isSaved ? 'saved' : ''}" data-index=${i}><i class="${isSaved ? 'fa-solid ' : 'fa-regular'} fa-heart"></i></button>
                             </div>
                             <h3>${holidays[i].localName}</h3>
                             <p class="holiday-name"> ${holidays[i].name}</p>

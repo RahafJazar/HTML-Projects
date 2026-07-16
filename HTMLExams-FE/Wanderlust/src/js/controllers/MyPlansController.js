@@ -1,6 +1,7 @@
 import PlanService from "../services/PlanService.js";
 import PlanUI from "../ui/PlanUI.js";
 import AppState from "../state/AppState.js";
+
 export default class MyPlansController {
     constructor(planService, planUI, appState, toastUI) {
         this.planService = planService;
@@ -67,8 +68,29 @@ export default class MyPlansController {
     }
     handleRemovePlan(id) {
         console.log(id)
-        this.appState.removePlan(id);
-        this.loadPlans();
+        Swal.fire({
+            icon: "warning",
+            iconColor: "#f7bb86",
+            title: "Remove Plan?",
+            text: "Are you sure you want to remove this plan?",
+            confirmButtonText: "Yes, remove it !",
+            confirmButtonColor: "#f04343",
+            cancelButtonText: "cancel",
+            cancelButtonColor: "#65758c",
+            showCancelButton: true
+        }).then(result => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Removed",
+                    text: "Plan has been removed successfully",
+                    timer: 1500
+                })
+                this.appState.removePlan(id);
+                this.loadPlans();
+            }
+        })
+
     }
 
 }

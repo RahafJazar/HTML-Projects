@@ -6,10 +6,12 @@ import CountryService from "../services/CountryService.js";
 import Country from "../models/Country.js";
 import AppState from "../state/AppState.js";
 import ToastUI from "../ui/ToastUI.js";
+
 export default class DashboardController {
     //فقط بتعرف CountryService+ DashobardUI
 
     constructor(countryService, dashboardUI, appState, toastUI) {
+
         this.countryService = countryService;
         this.dashboardUI = dashboardUI;
         this.appState = appState;
@@ -28,6 +30,7 @@ export default class DashboardController {
             debugger
             localStorage.clear();
             await this.explore(country, city, year);
+            document.dispatchEvent(new Event("plansChanged"));
         })
 
 

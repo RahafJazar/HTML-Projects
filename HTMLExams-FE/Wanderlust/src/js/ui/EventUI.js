@@ -38,7 +38,7 @@ export default class EventUI {
       for (let i = 0; i < events.length; i++) {
         const event = events[i];
         const isSaved = savedPlans.some(p => {
-          p.planKey === `event-${even.type}-${event.id}`;
+          return p.planKey === `event-${even.type}-${event.id}`;
         })
         cartona += `
                <div class="event-card">
@@ -46,7 +46,7 @@ export default class EventUI {
                 <img src="${event.images?.[0]?.url ?? ''}"
                   alt="${event.name}">
                 <span class="event-card-category">  ${event.classifications?.[0]?.segment?.name ?? 'Unknown'}</span>
-                <button class="event-card-save" data-index=${i} ><i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
+                <button class="event-card-save ${isSaved ? 'saved' : ''} " data-index=${i} ><i class="${isSaved ? 'fa-solid ' : 'fa-regular'} fa-heart"></i></button>
               </div>
               <div class="event-card-body">
                 <h3>${events.name}</h3>
