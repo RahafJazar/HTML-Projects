@@ -24,11 +24,37 @@ let salaries = {
 let sum = 0;
 
 for (let k in salaries) {
-    sum += salaries[key]
+    sum += salaries[k]
 
 }
 
 //q4
-function multiplyNumeric(obj) {
-    for 
+
+
+
+//replicate object (independent 2 objects)
+let obj1 = {
+    name: 'rahaf',
+    age: 34,
+    salary: 5000
 }
+let obj2 = {};;
+for (let key in obj1) {
+    obj2[key] = obj1[key];
+}
+
+let obj3 = {};
+Object.assign(obj3, obj1);
+obj3.age = 26;
+console.log("age in obj1 is :", obj1.age);
+console.log("obj3 is", obj3)
+
+//clone nested object 
+/* assign x
+  structuredClone(user) ✔
+*/
+
+let obj4 = structuredClone(obj1);
+obj4.name = "raya";
+console.log(obj1.name)
+
